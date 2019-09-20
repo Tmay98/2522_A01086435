@@ -1,7 +1,7 @@
 package ca.bcit.comp2522.labs.lab02;
 
 /**
- * Driver.
+ * Driver. Tortoise wins the most by a large amount.
  *
  * @author Tommy May
  * @version 2019
