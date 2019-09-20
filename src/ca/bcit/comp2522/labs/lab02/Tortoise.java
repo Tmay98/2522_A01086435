@@ -10,6 +10,16 @@ import java.util.Objects;
  */
 public class Tortoise {
 
+    public static final double TORTOISE_FAST_PLOD_CHANCE = 0.5;
+
+    public static final double TORTOISE_SLIP_CHANCE = 0.7;
+
+    public static final int TORTOISE_FAST_PLOD_MOVEMENT = 3;
+
+    public static final double TORTOISE_SLIP_MOVEMENT = -6;
+
+    public static final double TORTOISE_SLOW_PLOD_MOVEMENT = 1;
+
     private int position;
 
     /**
@@ -47,16 +57,16 @@ public class Tortoise {
      */
     public int move() {
         double randomNumber = Math.random();
-        if(Double.compare(randomNumber, 0.5) < 0) {
-            this.position += 3;
+        if(Double.compare(randomNumber, TORTOISE_FAST_PLOD_CHANCE) < 0) {
+            this.position += TORTOISE_FAST_PLOD_MOVEMENT;
             return this.position;
         }
-        else if(Double.compare(randomNumber, 0.7) < 0) {
-            this.position -= 6;
+        else if(Double.compare(randomNumber, TORTOISE_SLIP_CHANCE) < 0) {
+            this.position += TORTOISE_SLIP_MOVEMENT;
             return this.position;
         }
         else {
-            this.position += 1;
+            this.position += TORTOISE_SLOW_PLOD_MOVEMENT;
             return this.position;
         }
     }

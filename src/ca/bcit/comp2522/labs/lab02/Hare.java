@@ -10,6 +10,23 @@ import java.util.Objects;
  */
 public class Hare {
 
+    public static final double HARE_SLEEP_CHANCE = 0.2;
+
+    public static final double HARE_BIG_HOP_CHANCE = 0.3;
+
+    public static final double HARE_BIG_SLIP_CHANCE = 0.4;
+
+    public static final double HARE_SMALL_HOP_CHANCE = 0.7;
+
+    public static final int HARE_BIG_HOP_MOVEMENT = 9;
+
+    public static final int HARE_BIG_SLIP_MOVEMENT = -12;
+
+    public static final int HARE_SMALL_HOP_MOVEMENT = 1;
+
+    public static final int HARE_SMALL_SLIP_MOVEMENT = -2;
+
+
     private int position;
 
     /**
@@ -49,23 +66,23 @@ public class Hare {
      */
     public int move() {
         double randomNumber = Math.random();
-        if(Double.compare(randomNumber, 0.2) < 0) {
+        if(Double.compare(randomNumber, HARE_SLEEP_CHANCE) < 0) {
             return this.position;
         }
-        else if(Double.compare(randomNumber, 0.3) < 0) {
-            this.position += 9;
+        else if(Double.compare(randomNumber, HARE_BIG_HOP_CHANCE) < 0) {
+            this.position += HARE_BIG_HOP_MOVEMENT;
             return this.position;
         }
-        else if(Double.compare(randomNumber, 0.4) < 0) {
-            this.position -= 12;
+        else if(Double.compare(randomNumber, HARE_BIG_SLIP_CHANCE) < 0) {
+            this.position += HARE_BIG_SLIP_MOVEMENT;
             return this.position;
         }
-        else if(Double.compare(randomNumber, 0.7) < 0) {
-            this.position += 1;
+        else if(Double.compare(randomNumber, HARE_SMALL_HOP_CHANCE) < 0) {
+            this.position += HARE_SMALL_HOP_MOVEMENT;
             return this.position;
         }
         else {
-            this.position -= 3;
+            this.position += HARE_SMALL_SLIP_MOVEMENT;
             return this.position;
         }
     }
