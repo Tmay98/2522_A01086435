@@ -17,7 +17,7 @@ public class Driver {
     }
 
     /**
-     * Simulates numberOfRaces races of length lengthofrace between a tortoise and a hare and returns the results
+     * Simulates numberOfRaces races of length lengthOfRace between a tortoise and a hare and returns the results
      * as a string
      *
      * @param numberOfRaces an int
@@ -50,11 +50,12 @@ public class Driver {
     public static String simulateDetailedRace(int lengthOfRace) {
         Race race = new Race(lengthOfRace);
         if (race.simulateRace().equals("Hare")){
-            return "The Hare won the race of length 100 after " + race.getClockTicks() +
-                    " clock ticks: \n" + race.getHare().toString() + "\n" + race.getTortoise().toString() + "\n";
+            return "1 Race of length " + lengthOfRace + "\nAfter " + race.getClockTicks() + " clock ticks: \n" +
+                    race.getHare().toString() + "\n" + race.getTortoise().toString() + "\n" + "The Hare wins" + "\n";
         } else {
-            return "The Tortoise won the race of length 100 after " + race.getClockTicks() + " clock ticks: \n"
-                    + race.getHare().toString() + "\n" + race.getTortoise().toString() + "\n";
+            return "1 Race of length " + lengthOfRace + "\nAfter " + race.getClockTicks() + " clock ticks: \n"
+                    + race.getHare().toString() + "\n" + race.getTortoise().toString() +
+                    "\n" + "The Tortoise wins" + "\n";
         }
     }
 }
