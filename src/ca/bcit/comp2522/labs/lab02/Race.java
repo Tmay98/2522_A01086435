@@ -14,6 +14,17 @@ public class Race {
 
     private int length;
 
+    private int clockTicks;
+
+    /**
+     * returns the amount of clock_ticks
+     *
+     * @return clock_ticks as an int
+     */
+    public int getClockTicks() {
+        return clockTicks;
+    }
+
     /**
      * returns the hare
      *
@@ -58,6 +69,7 @@ public class Race {
     public void reset() {
         tortoise.setPosition(0);
         hare.setPosition(0);
+        this.clockTicks = 0;
     }
 
     /**
@@ -77,6 +89,7 @@ public class Race {
      */
     private String race(){
         do {
+            clockTicks++;
             double moveOrder = Math.random();
             if(moveOrder < 0.5) {
                 if(hare.move() >= length) {

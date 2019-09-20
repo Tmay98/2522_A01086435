@@ -50,11 +50,11 @@ public class Driver {
     public static String simulateDetailedRace(int lengthOfRace) {
         Race race = new Race(lengthOfRace);
         if (race.simulateRace().equals("Hare")){
-            return "The Hare won the race of length 100:\n" + race.getHare().toString() +
-                    "\n" + race.getTortoise().toString() + "\n";
+            return "The Hare won the race of length 100 after " + race.getClockTicks() +
+                    " clock ticks: \n" + race.getHare().toString() + "\n" + race.getTortoise().toString() + "\n";
         } else {
-            return "The Tortoise won the race of length 100:\n" + race.getHare().toString() +
-                    "\n" + race.getTortoise().toString() + "\n";
+            return "The Tortoise won the race of length 100 after" + race.getClockTicks() + "clock ticks: \n"
+                    + race.getHare().toString() + "\n" + race.getTortoise().toString() + "\n";
         }
     }
 }
