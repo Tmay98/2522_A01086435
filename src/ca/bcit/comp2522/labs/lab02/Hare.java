@@ -16,7 +16,7 @@ public class Hare {
     /**
      * returns the position
      *
-     * @return position
+     * @return position as as int
      */
     public int getPosition() {
         return this.position;
@@ -25,12 +25,22 @@ public class Hare {
     /**
      * Sets position
      *
-     * @param newPosition an int
+     * @param newPosition as an int
      */
     public void setPosition(int newPosition) {
         this.position = newPosition;
     }
 
+    /**
+     * Moves the hare by adding a value to position and returns its new position
+     * 20% of the time adds nothing
+     * 10% of the time adds 9 to position
+     * 10% of the time subtracts 12 to position
+     * 30% of the time adds 1 to position
+     * 30% of the time subtracts 3 from position
+     *
+     * @return position as an int
+     */
     public int move() {
         double randomNumber = Math.random();
         if(Double.compare(randomNumber, 0.2) < 0) {
@@ -54,6 +64,11 @@ public class Hare {
         }
     }
 
+    /**
+     * Returns a String representation of this hare
+     *
+     * @return toString a String representation
+     */
     @Override
     public String toString() {
         return "Hare{" +
@@ -61,6 +76,12 @@ public class Hare {
                 '}';
     }
 
+    /**
+     * Returns true if the specified object is equal to this Guppy.
+     *
+     * @param o an Object
+     * @return true if this equals o, else false.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
