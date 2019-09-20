@@ -2,14 +2,14 @@ package ca.bcit.comp2522.labs.lab02;
 
 import java.util.Objects;
 
-public class Hare {
+public class Tortoise {
 
     private int position;
 
     /**
-     * Constructs an object of type Hare with default position.
+     * Constructs an object of type Tortoise with default position.
      */
-    public Hare() {
+    public Tortoise() {
         this.position = 0;
     }
 
@@ -32,52 +32,43 @@ public class Hare {
     }
 
     /**
-     * Moves the Hare by adding a value to position and returns its new position
-     * 20% of the time adds nothing
-     * 10% of the time adds 9 to position
-     * 10% of the time subtracts 12 to position
+     * Moves the Tortoise by adding a value to position and returns its new position
+     * 50% of the time adds 3 to position
+     * 20% of the time subtracts 6 from position
      * 30% of the time adds 1 to position
-     * 30% of the time subtracts 3 from position
      *
      * @return position as an int
      */
     public int move() {
         double randomNumber = Math.random();
-        if(Double.compare(randomNumber, 0.2) < 0) {
-            return this.position;
-        }
-        else if(Double.compare(randomNumber, 0.3) < 0) {
-            this.position += 9;
-            return this.position;
-        }
-        else if(Double.compare(randomNumber, 0.4) < 0) {
-            this.position -= 12;
+        if(Double.compare(randomNumber, 0.5) < 0) {
+            this.position += 3;
             return this.position;
         }
         else if(Double.compare(randomNumber, 0.7) < 0) {
-            this.position += 1;
+            this.position -= 6;
             return this.position;
         }
         else {
-            this.position -= 3;
+            this.position += 1;
             return this.position;
         }
     }
 
     /**
-     * Returns a String representation of this Hare
+     * Returns a String representation of this Tortoise
      *
      * @return toString a String representation
      */
     @Override
     public String toString() {
-        return "Hare{" +
+        return "Tortoise{" +
                 "position=" + position +
                 '}';
     }
 
     /**
-     * Returns true if the specified object is equal to this Hare.
+     * Returns true if the specified object is equal to this Tortoise.
      *
      * @param o an Object
      * @return true if this equals o, else false.
@@ -87,10 +78,10 @@ public class Hare {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Hare hare = (Hare) o;
-        return position == hare.position;
+        Tortoise tortoise = (Tortoise) o;
+        return position == tortoise.position;
     }
 }
