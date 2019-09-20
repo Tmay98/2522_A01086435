@@ -2,6 +2,12 @@ package ca.bcit.comp2522.labs.lab02;
 
 import java.util.Objects;
 
+/**
+ * Tortoise.
+ *
+ * @author Tommy May
+ * @version 2019
+ */
 public class Tortoise {
 
     private int position;
