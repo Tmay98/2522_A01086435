@@ -61,11 +61,11 @@ public class Race {
     }
 
     /**
-     * Simulates a race between a hare and tortoise then returns the winner
+     * Simulates a race between a hare and tortoise then returns the winner as a string
      *
-     * @return Hare or Tortoise based on who won the race
+     * @return String representation of the Hare or Tortoise based on who won the race
      */
-    public Object simulateRace() {
+    public String simulateRace() {
         reset();
         return race();
     }
@@ -73,25 +73,25 @@ public class Race {
     /**
      * Simulates a race between a hare and tortoise then returns the winner
      *
-     * @return Hare or Tortoise based on who won the race
+     * @return String representation of the Hare or Tortoise based on who won the race
      */
-    private Object race(){
+    private String race(){
         do {
             double moveOrder = Math.random();
             if(moveOrder < 0.5) {
                 if(hare.move() >= length) {
-                    return this.hare;
+                    return "Hare";
                 }
                 if(tortoise.move() >= length) {
-                    return this.tortoise;
+                    return "Tortoise";
                 }
             }
             else {
                 if(tortoise.move() >= length) {
-                    return this.tortoise;
+                    return "Tortoise";
                 }
                 if(hare.move() >= length) {
-                    return this.hare;
+                    return "Hare";
                 }
             }
         } while(true);

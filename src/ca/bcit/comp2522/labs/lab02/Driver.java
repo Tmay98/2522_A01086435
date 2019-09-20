@@ -9,7 +9,11 @@ package ca.bcit.comp2522.labs.lab02;
 public class Driver {
 
     public static void main(String[] args) {
+        System.out.println(simulateDetailedRace(100));
+        System.out.println(simulateRaces(100,100));
+        System.out.println(simulateRaces(100,1000));
         System.out.println(simulateRaces(10000,100));
+        System.out.println(simulateRaces(10000,1000));
     }
 
     /**
@@ -27,12 +31,30 @@ public class Driver {
         int tortoiseWins = 0;
         while(simulations < numberOfRaces) {
             simulations++;
-            if (race.simulateRace().equals(race.getHare())) {
+            if (race.simulateRace().equals("Hare")) {
                 hareWins++;
             } else {
                 tortoiseWins++;
             }
         }
-        return "Tortoise Wins: " + tortoiseWins + "\nHare Wins: " + hareWins;
+        return numberOfRaces + " Races of length " + lengthOfRace + ":\nTortoise Wins: "
+                + tortoiseWins + "\nHare Wins: " + hareWins + "\n";
+    }
+
+    /**
+     * Simulates  1 race of length LengthOfRace between a tortoise and a hare and returns the results as a string
+     *
+     * @param lengthOfRace an int
+     * @return string with who won and positions of the hare and tortoise
+     */
+    public static String simulateDetailedRace(int lengthOfRace) {
+        Race race = new Race(lengthOfRace);
+        if (race.simulateRace().equals("Hare")){
+            return "The Hare won the race of length 100:\n" + race.getHare().toString() +
+                    "\n" + race.getTortoise().toString() + "\n";
+        } else {
+            return "The Tortoise won the race of length 100:\n" + race.getHare().toString() +
+                    "\n" + race.getTortoise().toString() + "\n";
+        }
     }
 }
