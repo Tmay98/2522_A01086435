@@ -53,7 +53,7 @@ public class Driver {
             return "The Hare won the race of length 100 after " + race.getClockTicks() +
                     " clock ticks: \n" + race.getHare().toString() + "\n" + race.getTortoise().toString() + "\n";
         } else {
-            return "The Tortoise won the race of length 100 after" + race.getClockTicks() + "clock ticks: \n"
+            return "The Tortoise won the race of length 100 after " + race.getClockTicks() + " clock ticks: \n"
                     + race.getHare().toString() + "\n" + race.getTortoise().toString() + "\n";
         }
     }
