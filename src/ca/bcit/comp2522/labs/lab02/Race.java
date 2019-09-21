@@ -8,11 +8,11 @@ package ca.bcit.comp2522.labs.lab02;
  */
 public class Race {
 
-    private Tortoise tortoise;
+    private final Tortoise tortoise;
 
-    private Hare hare;
+    private final Hare hare;
 
-    private int length;
+    private final int length;
 
     private int clockTicks;
 
@@ -60,7 +60,8 @@ public class Race {
     public Race(int length) {
         this.length = length;
         this.hare = new Hare();
-        this. tortoise = new Tortoise();
+        this.tortoise = new Tortoise();
+        this.clockTicks = 0;
     }
 
     /**

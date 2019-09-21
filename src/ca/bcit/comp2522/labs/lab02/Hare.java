@@ -51,7 +51,7 @@ public class Hare {
      * @param newPosition as an int
      */
     public void setPosition(int newPosition) {
-        this.position += newPosition;
+        this.position = newPosition;
     }
 
     /**
