@@ -10,22 +10,14 @@ import java.util.Objects;
  */
 public class Hare {
 
-    public static final double HARE_SLEEP_CHANCE = 0.2;
-
-    public static final double HARE_BIG_HOP_CHANCE = 0.3;
-
-    public static final double HARE_BIG_SLIP_CHANCE = 0.4;
-
-    public static final double HARE_SMALL_HOP_CHANCE = 0.7;
-
-    public static final int HARE_BIG_HOP_MOVEMENT = 9;
-
-    public static final int HARE_BIG_SLIP_MOVEMENT = -12;
-
-    public static final int HARE_SMALL_HOP_MOVEMENT = 1;
-
-    public static final int HARE_SMALL_SLIP_MOVEMENT = -2;
-
+    private static final double HARE_SLEEP_CHANCE = 0.2;
+    private static final double HARE_BIG_HOP_CHANCE = 0.3;
+    private static final double HARE_BIG_SLIP_CHANCE = 0.4;
+    private static final double HARE_SMALL_HOP_CHANCE = 0.7;
+    private static final int HARE_BIG_HOP_MOVEMENT = 9;
+    private static final int HARE_BIG_SLIP_MOVEMENT = -12;
+    private static final int HARE_SMALL_HOP_MOVEMENT = 1;
+    private static final int HARE_SMALL_SLIP_MOVEMENT = -2;
 
     private int position;
 

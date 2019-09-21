@@ -10,15 +10,11 @@ import java.util.Objects;
  */
 public class Tortoise {
 
-    public static final double TORTOISE_FAST_PLOD_CHANCE = 0.5;
-
-    public static final double TORTOISE_SLIP_CHANCE = 0.7;
-
-    public static final int TORTOISE_FAST_PLOD_MOVEMENT = 3;
-
-    public static final double TORTOISE_SLIP_MOVEMENT = -6;
-
-    public static final double TORTOISE_SLOW_PLOD_MOVEMENT = 1;
+    private static final double TORTOISE_FAST_PLOD_CHANCE = 0.5;
+    private static final double TORTOISE_SLIP_CHANCE = 0.7;
+    private static final int TORTOISE_FAST_PLOD_MOVEMENT = 3;
+    private static final double TORTOISE_SLIP_MOVEMENT = -6;
+    private static final double TORTOISE_SLOW_PLOD_MOVEMENT = 1;
 
     private int position;
 
