@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.labs.lab02;
 
-import java.util.Objects;
-
 /**
  * Tortoise.
  *
@@ -26,7 +24,7 @@ public class Tortoise {
     }
 
     /**
-     * returns the position
+     * returns the position.
      *
      * @return position as as int
      */
@@ -35,7 +33,7 @@ public class Tortoise {
     }
 
     /**
-     * Sets position
+     * Sets position.
      *
      * @param newPosition as an int
      */
@@ -44,7 +42,9 @@ public class Tortoise {
     }
 
     /**
-     * Moves the Tortoise by adding a value to position and returns its new position
+     * Moves the Tortoise by adding a value
+     * to position and returns its new position.
+     *
      * 50% of the time adds 3 to position
      * 20% of the time subtracts 6 from position
      * 30% of the time adds 1 to position
@@ -53,28 +53,26 @@ public class Tortoise {
      */
     public int move() {
         double randomNumber = Math.random();
-        if(Double.compare(randomNumber, TORTOISE_FAST_PLOD_CHANCE) < 0) {
+        if (Double.compare(randomNumber, TORTOISE_FAST_PLOD_CHANCE) < 0) {
             this.position += TORTOISE_FAST_PLOD_MOVEMENT;
-        }
-        else if(Double.compare(randomNumber, TORTOISE_SLIP_CHANCE) < 0) {
+        } else if (Double.compare(randomNumber, TORTOISE_SLIP_CHANCE) < 0) {
             this.position += TORTOISE_SLIP_MOVEMENT;
-        }
-        else {
+        } else {
             this.position += TORTOISE_SLOW_PLOD_MOVEMENT;
         }
         return this.position;
     }
 
     /**
-     * Returns a String representation of this Tortoise
+     * Returns a String representation of this Tortoise.
      *
      * @return toString a String representation
      */
     @Override
     public String toString() {
-        return "Tortoise{" +
-                "position=" + position +
-                '}';
+        return "Tortoise{"
+                + "position=" + position
+                + '}';
     }
 
     /**

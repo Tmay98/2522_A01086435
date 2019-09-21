@@ -10,15 +10,15 @@ public class Driver {
 
     public static void main(String[] args) {
         System.out.println(simulateDetailedRace(100));
-        System.out.println(simulateRaces(100,100));
-        System.out.println(simulateRaces(100,1000));
-        System.out.println(simulateRaces(10000,100));
-        System.out.println(simulateRaces(10000,1000));
+        System.out.println(simulateRaces(100, 100));
+        System.out.println(simulateRaces(100, 1000));
+        System.out.println(simulateRaces(10000, 100));
+        System.out.println(simulateRaces(10000, 1000));
     }
 
     /**
-     * Simulates numberOfRaces races of length lengthOfRace between a tortoise and a hare and returns the results
-     * as a string
+     * Simulates numberOfRaces races of length lengthOfRace between
+     * a tortoise and a hare and returns the results as a string.
      *
      * @param numberOfRaces an int
      * @param lengthOfRace an int
@@ -29,7 +29,7 @@ public class Driver {
         int simulations = 0;
         int hareWins = 0;
         int tortoiseWins = 0;
-        while(simulations < numberOfRaces) {
+        while (simulations < numberOfRaces) {
             simulations++;
             if (race.simulateRace().equals("Hare")) {
                 hareWins++;
@@ -42,20 +42,26 @@ public class Driver {
     }
 
     /**
-     * Simulates  1 race of length LengthOfRace between a tortoise and a hare and returns the results as a string
+     * Simulates  1 race of length LengthOfRace between a tortoise
+     * and a hare and returns the results as a string.
      *
      * @param lengthOfRace an int
      * @return string with who won and positions of the hare and tortoise
      */
     public static String simulateDetailedRace(int lengthOfRace) {
         Race race = new Race(lengthOfRace);
-        if (race.simulateRace().equals("Hare")){
-            return "1 Race of length " + lengthOfRace + "\nAfter " + race.getClockTicks() + " clock ticks: \n" +
-                    race.getHare().toString() + "\n" + race.getTortoise().toString() + "\n" + "The Hare wins" + "\n";
+        if (race.simulateRace().equals("Hare")) {
+            return "1 Race of length " + lengthOfRace + "\nAfter "
+                    + race.getClockTicks() + " clock ticks: \n"
+                    + race.getHare().toString() + "\n"
+                    + race.getTortoise().toString() + "\n"
+                    + "The Hare wins" + "\n";
         } else {
-            return "1 Race of length " + lengthOfRace + "\nAfter " + race.getClockTicks() + " clock ticks: \n"
-                    + race.getHare().toString() + "\n" + race.getTortoise().toString() +
-                    "\n" + "The Tortoise wins" + "\n";
+            return "1 Race of length " + lengthOfRace + "\nAfter "
+                    + race.getClockTicks() + " clock ticks: \n"
+                    + race.getHare().toString() + "\n"
+                    + race.getTortoise().toString() + "\n"
+                    + "The Tortoise wins" + "\n";
         }
     }
 }

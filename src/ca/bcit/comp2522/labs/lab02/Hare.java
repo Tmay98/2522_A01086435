@@ -1,6 +1,5 @@
 package ca.bcit.comp2522.labs.lab02;
 
-import java.util.Objects;
 
 /**
  * Hare.
@@ -29,7 +28,7 @@ public class Hare {
     }
 
     /**
-     * returns the position
+     * returns the position.
      *
      * @return position as as int
      */
@@ -38,7 +37,7 @@ public class Hare {
     }
 
     /**
-     * Sets position
+     * Sets position.
      *
      * @param newPosition as an int
      */
@@ -47,7 +46,8 @@ public class Hare {
     }
 
     /**
-     * Moves the Hare by adding a value to position and returns its new position
+     * Moves the Hare by adding a value to position and returns its new position.
+     *
      * 20% of the time adds nothing
      * 10% of the time adds 9 to position
      * 10% of the time subtracts 12 to position
@@ -58,33 +58,29 @@ public class Hare {
      */
     public int move() {
         double randomNumber = Math.random();
-        if(Double.compare(randomNumber, HARE_SLEEP_CHANCE) < 0) {
-        }
-        else if(Double.compare(randomNumber, HARE_BIG_HOP_CHANCE) < 0) {
+        if (Double.compare(randomNumber, HARE_SLEEP_CHANCE) < 0) {
+        } else if (Double.compare(randomNumber, HARE_BIG_HOP_CHANCE) < 0) {
             this.position += HARE_BIG_HOP_MOVEMENT;
-        }
-        else if(Double.compare(randomNumber, HARE_BIG_SLIP_CHANCE) < 0) {
+        } else if (Double.compare(randomNumber, HARE_BIG_SLIP_CHANCE) < 0) {
             this.position += HARE_BIG_SLIP_MOVEMENT;
-        }
-        else if(Double.compare(randomNumber, HARE_SMALL_HOP_CHANCE) < 0) {
+        } else if (Double.compare(randomNumber, HARE_SMALL_HOP_CHANCE) < 0) {
             this.position += HARE_SMALL_HOP_MOVEMENT;
-        }
-        else {
+        } else {
             this.position += HARE_SMALL_SLIP_MOVEMENT;
         }
         return this.position;
     }
 
     /**
-     * Returns a String representation of this Hare
+     * Returns a String representation of this Hare.
      *
      * @return toString a String representation
      */
     @Override
     public String toString() {
-        return "Hare{" +
-                "position=" + position +
-                '}';
+        return "Hare{"
+                + "position=" + position
+                + '}';
     }
 
     /**
@@ -98,7 +94,7 @@ public class Hare {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Hare hare = (Hare) o;
