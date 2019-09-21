@@ -51,7 +51,7 @@ public class Hare {
      * @param newPosition as an int
      */
     public void setPosition(int newPosition) {
-        this.position = newPosition;
+        this.position += newPosition;
     }
 
     /**
@@ -67,24 +67,20 @@ public class Hare {
     public int move() {
         double randomNumber = Math.random();
         if(Double.compare(randomNumber, HARE_SLEEP_CHANCE) < 0) {
-            return this.position;
         }
         else if(Double.compare(randomNumber, HARE_BIG_HOP_CHANCE) < 0) {
             this.position += HARE_BIG_HOP_MOVEMENT;
-            return this.position;
         }
         else if(Double.compare(randomNumber, HARE_BIG_SLIP_CHANCE) < 0) {
             this.position += HARE_BIG_SLIP_MOVEMENT;
-            return this.position;
         }
         else if(Double.compare(randomNumber, HARE_SMALL_HOP_CHANCE) < 0) {
             this.position += HARE_SMALL_HOP_MOVEMENT;
-            return this.position;
         }
         else {
             this.position += HARE_SMALL_SLIP_MOVEMENT;
-            return this.position;
         }
+        return this.position;
     }
 
     /**

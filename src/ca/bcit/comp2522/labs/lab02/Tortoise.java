@@ -59,16 +59,14 @@ public class Tortoise {
         double randomNumber = Math.random();
         if(Double.compare(randomNumber, TORTOISE_FAST_PLOD_CHANCE) < 0) {
             this.position += TORTOISE_FAST_PLOD_MOVEMENT;
-            return this.position;
         }
         else if(Double.compare(randomNumber, TORTOISE_SLIP_CHANCE) < 0) {
             this.position += TORTOISE_SLIP_MOVEMENT;
-            return this.position;
         }
         else {
             this.position += TORTOISE_SLOW_PLOD_MOVEMENT;
-            return this.position;
         }
+        return this.position;
     }
 
     /**
