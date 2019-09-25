@@ -216,6 +216,21 @@ public class Pool {
         }
     }
 
+    /**
+     * Adds value in delta to nutrientCoefficient instance variable.
+     * If health becomes less than MINIMUM_NUTRIENT_COEFFICIENT sets nutrientCoefficient to MINIMUM_NUTRIENT_COEFFICIENT
+     * If health becomes more than MAXIMUM_NUTRIENT_COEFFICIENT sets nutrientCoefficient to MAXIMUM_NUTRIENT_COEFFICIENT
+     *
+     * @param delta a double
+     */
+    public void changeNutrientCoefficient(double delta) {
+        if (nutrientCoefficient + delta < MINIMUM_NUTRIENT_COEFFICIENT) {
+            setNutrientCoefficient(MINIMUM_NUTRIENT_COEFFICIENT);
+        } else {
+            setNutrientCoefficient(Math.min(nutrientCoefficient + delta, MAXIMUM_NUTRIENT_COEFFICIENT));
+        }
+    }
+
     public static void main(String[] args) {
         Pool test = new Pool();
         int i = 0;
