@@ -231,6 +231,21 @@ public class Pool {
         }
     }
 
+    /**
+     * Adds value in delta to temperatureCelsius instance variable.
+     * If health becomes less than MINIMUM_POOL_TEMP_CELSIUS sets temperatureCelsius to MINIMUM_POOL_TEMP_CELSIUS
+     * If health becomes more than MAXIMUM_POOL_TEMP_CELSIUS sets temperatureCelsius to MAXIMUM_POOL_TEMP_CELSIUS
+     *
+     * @param delta a double
+     */
+    public void changeTemperature(double delta) {
+        if (temperatureCelsius + delta < MINIMUM_POOL_TEMP_CELSIUS) {
+            setTemperatureCelsius(MINIMUM_POOL_TEMP_CELSIUS);
+        } else {
+            setTemperatureCelsius(Math.min(temperatureCelsius + delta, MAXIMUM_POOL_TEMP_CELSIUS));
+        }
+    }
+
     public static void main(String[] args) {
         Pool test = new Pool();
         int i = 0;
