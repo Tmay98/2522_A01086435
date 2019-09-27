@@ -58,6 +58,18 @@ public class Plantation  {
         return treesHarvested;
     }
 
+    public ArrayList<Tree> harvest(Tree.species speciesToRemove) {
+        ArrayList<Tree> treesHarvested = new ArrayList<>();
+        Iterator<Tree> it = this.trees.iterator();
+        while (it.hasNext()) {
+            Tree tree = it.next();
+            if (tree.getType() == speciesToRemove) {
+                treesHarvested.add(tree);
+                it.remove();
+            }
+        }
+        return treesHarvested;
+    }
     @Override
     public String toString() {
         return "Plantation{"
