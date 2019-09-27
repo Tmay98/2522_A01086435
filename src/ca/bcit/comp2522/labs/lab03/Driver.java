@@ -8,7 +8,9 @@ public class Driver {
         for (int i = 0; i < 10; i++) {
             lotuslandLumber.seed();
         }
+        System.out.println("There are " + lotuslandLumber.size() + " Trees in the lotuslandLumber plantation");
         ArrayList<Tree> harvested = lotuslandLumber.harvest(80);
         System.out.println("There were " + harvested.size() + " Trees harvested.");
+        System.out.println("There are " + lotuslandLumber.size() + " Trees in the lotuslandLumber plantation");
     }
 }

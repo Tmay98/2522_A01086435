@@ -39,5 +39,14 @@ public class Tree {
     public void setTrunkCircumference(double trunkCircumference) {
         this.trunkCircumference = trunkCircumference;
     }
+
+    @Override
+    public String toString() {
+        return "Tree{"
+                + "type=" + type
+                + ", ageInYears=" + ageInYears
+                + ", trunkCircumference=" + trunkCircumference
+                + '}';
+    }
 }
 
