@@ -2,10 +2,7 @@ package ca.bcit.comp2522.labs.lab03;
 
 public class Tree {
 
-    /**
-     * Enumeration of species.
-     */
-    enum species { MAPLE, ARBUTUS, BLUE_SPRUCE};
+    public enum species { MAPLE, ARBUTUS, BLUE_SPRUCE }
 
     private species type;
 
@@ -15,14 +12,12 @@ public class Tree {
 
     public Tree(species type, int ageInYears, double trunkCircumference) {
         this.type = type;
-        this.ageInYears = ageInYears;
         this.trunkCircumference = trunkCircumference;
+        this.ageInYears = Math.max(ageInYears, 0);
     }
 
     public Tree(int ageInYears, double trunkCircumference) {
-        this.type = species.MAPLE;
-        this.ageInYears = ageInYears;
-        this.trunkCircumference = trunkCircumference;
+        this(species.MAPLE, ageInYears, trunkCircumference);
     }
 
     public double getTrunkCircumference() {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Driver {
     public static void main(String[] args) {
-        Planatation lotuslandLumber = new Planatation();
+        Plantation lotuslandLumber = new Plantation();
         for (int i = 0; i < 10; i++) {
             lotuslandLumber.seed();
         }
