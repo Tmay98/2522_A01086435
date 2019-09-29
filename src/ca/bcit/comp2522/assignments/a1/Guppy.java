@@ -139,9 +139,11 @@ public class Guppy {
      * Sets isAlive to false if age exceeds MAXIMUM_AGE_IN_WEEKS.
      */
     public void incrementAge() {
-        ageInWeeks++;
-        if (ageInWeeks > MAXIMUM_AGE_IN_WEEKS) {
-            isAlive = false;
+        if (!this.isAlive) { return; }
+        if (ageInWeeks + 1 > MAXIMUM_AGE_IN_WEEKS) {
+            this.isAlive = false;
+        } else {
+            this.ageInWeeks++;
         }
     }
 
@@ -264,11 +266,11 @@ public class Guppy {
      * @return water in ML that the guppy needs
      */
     public double getVolumeNeeded() {
-        if (ageInWeeks < YOUNG_FISH_AGE_IN_WEEKS) {
+        if (this.ageInWeeks < YOUNG_FISH_AGE_IN_WEEKS) {
             return MINIMUM_WATER_VOLUME_ML;
-        } else if (ageInWeeks <= MATURE_FISH_AGE_IN_WEEKS) {
-            return MINIMUM_WATER_VOLUME_ML * ageInWeeks / YOUNG_FISH_AGE_IN_WEEKS;
-        } else if (ageInWeeks <= MAXIMUM_AGE_IN_WEEKS) {
+        } else if (this.ageInWeeks <= MATURE_FISH_AGE_IN_WEEKS) {
+            return MINIMUM_WATER_VOLUME_ML * this.ageInWeeks / YOUNG_FISH_AGE_IN_WEEKS;
+        } else if (this.ageInWeeks <= MAXIMUM_AGE_IN_WEEKS) {
             return MINIMUM_WATER_VOLUME_ML * MATURE_FISH_WATER_VOLUME_CONSTANT;
         }
         return 0.0;
@@ -282,11 +284,11 @@ public class Guppy {
      * @param delta a double
      */
     public void changeHealthCoefficient(double delta) {
-        if (healthCoefficient + delta < MINIMUM_HEALTH_COEFFICIENT) {
-            healthCoefficient = MINIMUM_HEALTH_COEFFICIENT;
-            isAlive = false;
+        if (this.healthCoefficient + delta < MINIMUM_HEALTH_COEFFICIENT) {
+            this.healthCoefficient = MINIMUM_HEALTH_COEFFICIENT;
+            this.isAlive = false;
         } else {
-            healthCoefficient = Math.min(healthCoefficient + delta, MAXIMUM_HEALTH_COEFFICIENT);
+            this.healthCoefficient = Math.min(this.healthCoefficient + delta, MAXIMUM_HEALTH_COEFFICIENT);
         }
     }
 
@@ -300,17 +302,17 @@ public class Guppy {
     public ArrayList<Guppy> spawn() {
         if (!this.isFemale) { return null; }
         if (this.ageInWeeks < MINIMUM_SPAWNING_AGE) { return null; }
-        if (Double.compare(randomNumberGenerator.nextDouble(), SPAWN_CHANCE) > 0) { return null; }
+        if (Double.compare(this.randomNumberGenerator.nextDouble(), SPAWN_CHANCE) > 0) { return null; }
 
         ArrayList<Guppy> babyGuppies = new ArrayList<>();
-        int babiesAmount = randomNumberGenerator.nextInt(MAX_BABIES_SPAWN_AMOUNT + 1);
+        int babiesAmount = this.randomNumberGenerator.nextInt(MAX_BABIES_SPAWN_AMOUNT + 1);
         for (int i = 0; i < babiesAmount; i++) {
-            babyGuppies.add(new Guppy(genus,
-                    species,
+            babyGuppies.add(new Guppy(this.genus,
+                    this.species,
                     0,
-                    randomNumberGenerator.nextBoolean(),
-                    generationNumber + 1,
-                    (healthCoefficient + 1) / 2));
+                    this.randomNumberGenerator.nextBoolean(),
+                    this.generationNumber + 1,
+                    (this.healthCoefficient + 1) / 2));
             }
             return babyGuppies;
     }

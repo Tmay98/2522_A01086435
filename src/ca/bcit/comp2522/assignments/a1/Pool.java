@@ -52,6 +52,21 @@ public class Pool {
      */
     public static final double MAXIMUM_NUTRIENT_COEFFICIENT = 1.0;
 
+    /**
+     * Constant to convert from mL to L.
+     */
+    public static final double ML_TO_L_CONVERSION = 0.001;
+
+    /**
+     * Constant to convert to percentage.
+     */
+    public static final int PERCENTAGE_CONVERSION = 100;
+
+    /**
+     * Maximum pH.
+     */
+    public static final double MAXIMUM_PH = 14.0;
+
     private String name;
     private double volumeLitres;
     private double temperatureCelsius;
@@ -91,25 +106,25 @@ public class Pool {
 
         if (temperatureCelsius > MINIMUM_POOL_TEMP_CELSIUS
                 && temperatureCelsius < MAXIMUM_POOL_TEMP_CELSIUS) {
-            setTemperatureCelsius(temperatureCelsius);
+            this.temperatureCelsius = temperatureCelsius;
         } else {
-            setTemperatureCelsius(DEFAULT_POOL_TEMP_CELSIUS);
+            this.temperatureCelsius = DEFAULT_POOL_TEMP_CELSIUS;
         }
 
-        if (pH > 0.0 && pH < 14.0) {
-            setpH(pH);
+        if (pH > 0.0 && pH < MAXIMUM_PH) {
+            this.pH = pH;
         } else {
-            setpH(NEUTRAL_PH);
+            this.pH = NEUTRAL_PH;
         }
 
         if (nutrientCoefficient > MINIMUM_NUTRIENT_COEFFICIENT
                 && nutrientCoefficient < MAXIMUM_NUTRIENT_COEFFICIENT) {
-            setNutrientCoefficient(nutrientCoefficient);
+            this.nutrientCoefficient = nutrientCoefficient;
         } else {
-            setNutrientCoefficient(DEFAULT_NUTRIENT_COEFFICIENT);
+            this.nutrientCoefficient = DEFAULT_NUTRIENT_COEFFICIENT;
         }
 
-        setVolumeLitres(!(volumeLitres < 0) ? volumeLitres : 0.0);
+        this.volumeLitres = !(volumeLitres < 0) ? volumeLitres : 0.0;
         this.guppiesInPool = new ArrayList<Guppy>();
         this.randomNumberGenerator = new Random();
         this.identificationNumber = ++numberOfPools;
@@ -221,7 +236,7 @@ public class Pool {
      * @param pH a double
      */
     public void setpH(double pH) {
-        if (pH > 0.0 || pH < 14.0) {
+        if (pH > 0.0 || pH < MAXIMUM_PH) {
             this.pH = pH;
         }
     }
@@ -248,9 +263,9 @@ public class Pool {
      */
     public void changeNutrientCoefficient(double delta) {
         if (nutrientCoefficient + delta < MINIMUM_NUTRIENT_COEFFICIENT) {
-            setNutrientCoefficient(MINIMUM_NUTRIENT_COEFFICIENT);
+            this.nutrientCoefficient = MINIMUM_NUTRIENT_COEFFICIENT;
         } else {
-            setNutrientCoefficient(Math.min(nutrientCoefficient + delta, MAXIMUM_NUTRIENT_COEFFICIENT));
+            this.nutrientCoefficient = Math.min(nutrientCoefficient + delta, MAXIMUM_NUTRIENT_COEFFICIENT);
         }
     }
 
@@ -263,9 +278,9 @@ public class Pool {
      */
     public void changeTemperature(double delta) {
         if (temperatureCelsius + delta < MINIMUM_POOL_TEMP_CELSIUS) {
-            setTemperatureCelsius(MINIMUM_POOL_TEMP_CELSIUS);
+            this.temperatureCelsius = MINIMUM_POOL_TEMP_CELSIUS;
         } else {
-            setTemperatureCelsius(Math.min(temperatureCelsius + delta, MAXIMUM_POOL_TEMP_CELSIUS));
+            this.temperatureCelsius = Math.min(temperatureCelsius + delta, MAXIMUM_POOL_TEMP_CELSIUS);
         }
     }
 
@@ -326,7 +341,7 @@ public class Pool {
         Iterator<Guppy> it = guppiesInPool.iterator();
         while (it.hasNext()) {
             Guppy guppy = it.next();
-            totalVolumeRequired += guppy.getVolumeNeeded() * 0.001;
+            totalVolumeRequired += guppy.getVolumeNeeded() * ML_TO_L_CONVERSION;
         }
         return totalVolumeRequired;
     }
@@ -380,9 +395,10 @@ public class Pool {
             Guppy guppy = it.next();
             if (guppy.getIsFemale() && guppy.getIsAlive()) {
                 totalFemales++;
+                totalFemales++;
             }
         }
-        return totalFemales / getPopulation() * 100;
+        return totalFemales / getPopulation() * PERCENTAGE_CONVERSION;
     }
 
     /**
@@ -461,7 +477,7 @@ public class Pool {
                     weakestGuppy = guppy;
                 }
             }
-            totalVolumeNeeded -= weakestGuppy.getVolumeNeeded() * 0.001;
+            totalVolumeNeeded -= weakestGuppy.getVolumeNeeded() * ML_TO_L_CONVERSION;
             guppiesInPool.remove(weakestGuppy);
             deadGuppiesAmount++;
         }
