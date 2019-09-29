@@ -60,24 +60,32 @@ public class Guppy {
      */
     public static final double MAXIMUM_HEALTH_COEFFICIENT = 1.0;
 
+    /**
+     * Maximum number of babies spawned per spawn.
+     */
+    public static final int MAX_BABIES_SPAWN_AMOUNT = 100;
+
+    /**
+     * Chance for a female guppy to spawn.
+     */
+    public static final double SPAWN_CHANCE = 0.25;
+
+    /**
+     * Minimum age for a female guppy to spawn.
+     */
+    public static final int MINIMUM_SPAWNING_AGE = 8;
+
 
     private static int numberOfGuppiesBorn;
-
     private String genus;
-
     private String species;
-
     private int ageInWeeks;
-
     private boolean isFemale;
-
     private int generationNumber;
-
     private boolean isAlive;
-
     private double healthCoefficient;
-
     private int identificationNumber;
+    private Random randomNumberGenerator;
 
     /**
      * Constructs an object of type Guppy with default values.
@@ -291,23 +299,20 @@ public class Guppy {
      */
     public ArrayList<Guppy> spawn() {
         if (!this.isFemale) { return null; }
-        if (this.ageInWeeks < 8) { return null; }
+        if (this.ageInWeeks < MINIMUM_SPAWNING_AGE) { return null; }
+        if (Double.compare(randomNumberGenerator.nextDouble(), SPAWN_CHANCE) > 0) { return null; }
+
         ArrayList<Guppy> babyGuppies = new ArrayList<>();
-        Random rand = new Random();
-        if (Double.compare(rand.nextDouble(), 0.25) < 0) {
-            int babiesAmount = rand.nextInt(101);
-            double babyHealthCoefficient = (healthCoefficient + 1) / 2;
-            boolean babyIsFemale;
-            for (int i = 0; i < babiesAmount; i++) {
-                babyIsFemale = rand.nextBoolean();
-                babyGuppies.add(new Guppy(genus, species, 0, babyIsFemale,
-                        generationNumber + 1, babyHealthCoefficient));
+        int babiesAmount = randomNumberGenerator.nextInt(MAX_BABIES_SPAWN_AMOUNT + 1);
+        for (int i = 0; i < babiesAmount; i++) {
+            babyGuppies.add(new Guppy(genus,
+                    species,
+                    0,
+                    randomNumberGenerator.nextBoolean(),
+                    generationNumber + 1,
+                    (healthCoefficient + 1) / 2));
             }
             return babyGuppies;
-        } else {
-            return null;
-        }
-
     }
 
     /**
