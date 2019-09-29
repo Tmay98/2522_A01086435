@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a1;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -60,7 +61,7 @@ public class Pool {
     private ArrayList<Guppy> guppiesInPool;
     private Random randomNumberGenerator;
 
-    private static int numberOfPools = 0;
+    private static int numberOfPools;
 
     /**
      * Constructs an object of type Pool with default values.
@@ -169,6 +170,28 @@ public class Pool {
     }
 
     /**
+     * returns the number of living guppies in the pool.
+     *
+     * @return number of guppies
+     */
+    public int getPopulation() {
+        int guppiesAlive = 0;
+        for (Guppy guppy : guppiesInPool) {
+            if (guppy.getIsAlive()) { guppiesAlive++; }
+        }
+        return guppiesAlive;
+    }
+
+    /**
+     * Returns the number of pools.
+     *
+     * @return numberOfPools
+     */
+    public static int getNumberCreated() {
+        return numberOfPools;
+    }
+
+    /**
      * Sets the volume in litres only if it is greater than 0.
      *
      * @param volumeLitres a double
@@ -246,9 +269,232 @@ public class Pool {
         }
     }
 
+    /**
+     * Adds a guppy to the pool. if input parameter is null returns false.
+     *
+     * @param guppy a Guppy
+     * @return true if guppy was added, false otherwise
+     */
+    public boolean addGuppy(Guppy guppy) {
+        if (guppy == null) { return false; }
+        return guppiesInPool.add(guppy);
+    }
+
+    /**
+     * Calculates which guppies have died of malnutrition
+     * this week and returns the number of deaths.
+     *
+     * @return deadGuppies
+     */
+    public int applyNutrientCoefficient() {
+        int deadGuppies = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        while (it.hasNext()) {
+            Guppy guppy = it.next();
+            if (randomNumberGenerator.nextDouble() > this.nutrientCoefficient) {
+                guppy.setIsAlive(false);
+            }
+        }
+        return deadGuppies;
+    }
+
+    /**
+     * Removes all dead guppies from guppiesInPool.
+     *
+     * @return deadGuppiesRemoved
+     */
+    public int removeDeadGuppies() {
+        int deadGuppiesRemoved = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        while (it.hasNext()) {
+            Guppy guppy = it.next();
+            if (!guppy.getIsAlive()) {
+                it.remove();
+                deadGuppiesRemoved++;
+            }
+        }
+        return deadGuppiesRemoved;
+    }
+
+    /**
+     * returns the total volume required in Litres for guppies in the pool.
+     *
+     * @return totalVolumeRequired
+     */
+    public double getGuppyVolumeRequirementInLitres() {
+        double totalVolumeRequired = 0.0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        while (it.hasNext()) {
+            Guppy guppy = it.next();
+            totalVolumeRequired += guppy.getVolumeNeeded() * 0.001;
+        }
+        return totalVolumeRequired;
+    }
+
+    /**
+     * Returns the average age of the living guppies in the pool.
+     *
+     * @return averageAgeOfGuppies
+     */
+    public double getAverageAgeInWeeks() {
+        if (getPopulation() == 0) { return 0; }
+        int totalGuppiesAge = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        while (it.hasNext()) {
+            Guppy guppy = it.next();
+            if (guppy.getIsAlive()) {
+                totalGuppiesAge += guppy.getAgeInWeeks();
+            }
+        }
+        return (double) totalGuppiesAge / getPopulation();
+    }
+
+    /**
+     * Returns the average health coefficient of the living guppies in the pool.
+     *
+     * @return averageHealthCoefficient
+     */
+    public double getAverageHealthCoefficient() {
+        if (getPopulation() == 0) { return 0; }
+        double totalHealthCoefficient = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        while (it.hasNext()) {
+            Guppy guppy = it.next();
+            if (guppy.getIsAlive()) {
+                totalHealthCoefficient += guppy.getHealthCoefficient();
+            }
+        }
+        return totalHealthCoefficient / getPopulation();
+    }
+
+    /**
+     * Returns the percentage of living guppies in the pool that are female.
+     *
+     * @return percentage of female guppies in the pool
+     */
+    public double getFemalePercentage() {
+        if (getPopulation() == 0) { return 0; }
+        double totalFemales = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        while (it.hasNext()) {
+            Guppy guppy = it.next();
+            if (guppy.getIsFemale() && guppy.getIsAlive()) {
+                totalFemales++;
+            }
+        }
+        return totalFemales / getPopulation() * 100;
+    }
+
+    /**
+     * Returns the median age of the living guppies in the pool.
+     *
+     * @return median age of living guppies in pool
+     */
+    public double getMedianAge() {
+        this.removeDeadGuppies();
+        if (getPopulation() == 0) { return 0; }
+        double medianAge = 0.0;
+        int guppiesAmount = guppiesInPool.size();
+        if (guppiesAmount % 2 == 0) {
+            return (double) (guppiesInPool.get(guppiesAmount / 2).getAgeInWeeks()
+                    + guppiesInPool.get(guppiesAmount / 2 + 1).getAgeInWeeks()) / 2;
+        } else {
+            return guppiesInPool.get(guppiesAmount / 2 + 1).getAgeInWeeks();
+        }
+    }
+
+    /**
+     * Iterates over all guppies in the pool and invokes the spawn method on each one.
+     *
+     * @return totalBabyGuppies
+     */
+    public int spawn() {
+        if (getPopulation() == 0) { return 0; }
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        int totalBabyGuppies = 0;
+        ArrayList<Guppy> babyGuppies = new ArrayList<>();
+        while (it.hasNext()) {
+            Guppy guppy = it.next();
+            babyGuppies = guppy.spawn();
+            totalBabyGuppies += babyGuppies.size();
+            this.guppiesInPool.addAll(babyGuppies);
+        }
+        return totalBabyGuppies;
+    }
+
+    /**
+     * Increments the age of every guppy in the pool
+     * and returns the number that have died of old age.
+     *
+     * @return deadGuppiesAmount
+     */
+    public int incrementAge() {
+        if (getPopulation() == 0) { return 0; }
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        int deadGuppiesAmount = 0;
+        boolean isAlive;
+        while (it.hasNext()) {
+            Guppy guppy = it.next();
+            isAlive = guppy.getIsAlive();
+            guppy.incrementAge();
+            if (!guppy.getIsAlive() && isAlive) {
+                deadGuppiesAmount++;
+            }
+        }
+        return deadGuppiesAmount;
+    }
+
+    /**
+     * Extinguishes the guppies that have suffocated due to overcrowding.
+     *
+     * @return Amount of guppies that suffocated
+     */
+    public int adjustForCrowding() {
+        int deadGuppiesAmount = 0;
+        Guppy weakestGuppy = guppiesInPool.get(0);
+        double totalVolumeNeeded = getGuppyVolumeRequirementInLitres();
+        while (totalVolumeNeeded < getVolumeLitres()) {
+            Iterator<Guppy> it = guppiesInPool.iterator();
+            while (it.hasNext()) {
+                Guppy guppy = it.next();
+                if (guppy.getHealthCoefficient() < weakestGuppy.getHealthCoefficient()) {
+                    weakestGuppy = guppy;
+                }
+            }
+            totalVolumeNeeded -= weakestGuppy.getVolumeNeeded() * 0.001;
+            guppiesInPool.remove(weakestGuppy);
+            deadGuppiesAmount++;
+        }
+        return deadGuppiesAmount;
+    }
+
+    /**
+     * prints pool details.
+     */
+    public void printDetails() {
+        System.out.println(this.toString());
+    }
+
+    /**
+     * String representation of this pool.
+     *
+     * @return representation as a string
+     */
+    @Override
+    public String toString() {
+        return "Pool{"
+                + "name='" + name + '\''
+                + ", volumeLitres=" + volumeLitres
+                + ", temperatureCelsius=" + temperatureCelsius
+                + ", pH=" + pH
+                + ", nutrientCoefficient=" + nutrientCoefficient
+                + ", identificationNumber=" + identificationNumber
+                + ", guppiesInPool=" + guppiesInPool
+                + '}';
+    }
+
     public static void main(String[] args) {
         Pool test = new Pool();
-        int i = 0;
     }
 
 }

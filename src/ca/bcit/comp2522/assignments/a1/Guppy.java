@@ -282,12 +282,19 @@ public class Guppy {
         }
     }
 
+    /**
+     * 25% chance to Spawn a random number of guppies if the guppy
+     * is over 8 weeks old then returns them in an arrayList.
+     * otherwise returns null.
+     *
+     * @return arrayList of guppies if spawned otherwise returns null
+     */
     public ArrayList<Guppy> spawn() {
         if (!this.isFemale) { return null; }
         if (this.ageInWeeks < 8) { return null; }
         ArrayList<Guppy> babyGuppies = new ArrayList<>();
         Random rand = new Random();
-        if (Double.compare(rand.nextDouble(), 0.5) < 0) {
+        if (Double.compare(rand.nextDouble(), 0.25) < 0) {
             int babiesAmount = rand.nextInt(101);
             double babyHealthCoefficient = (healthCoefficient + 1) / 2;
             boolean babyIsFemale;
