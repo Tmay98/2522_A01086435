@@ -135,20 +135,20 @@ public class Ecosystem {
         int newFry = spawn();
         int crowdedOut = adjustForCrowding();
         numberRemoved += removeDeadGuppies();
-        
+
         if (diedOfOldAge + starvedToDeath + crowdedOut != numberRemoved) {
             System.out.println("simulateOneWeek ERROR!!!");
         } else {
-            System.out.println("Week number: ??\n"
-                    + "Deaths this week due to old age: " + diedOfOldAge
-                    + "Deaths this week due to starvation:" + starvedToDeath
-                    + "Deaths this week due to overcrowding" + crowdedOut
-                    + "Number of births this week:" + newFry
-                    + "Ecosystem population this week: " + this.getGuppyPopulation());
+            System.out.println("Week number: ??"
+                    + "\nDeaths this week due to old age: " + diedOfOldAge
+                    + "\nDeaths this week due to starvation:" + starvedToDeath
+                    + "\nDeaths this week due to overcrowding: " + crowdedOut
+                    + "\nNumber of births this week: " + newFry
+                    + "\nEcosystem population this week: " + this.getGuppyPopulation());
             for (Pool pool : pools) {
                 System.out.println(pool.getName() + "Population: " + pool.getPopulation());
             }
-
+            System.out.println();
         }
     }
 

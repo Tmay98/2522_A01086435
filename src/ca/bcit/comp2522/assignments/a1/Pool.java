@@ -128,6 +128,10 @@ public class Pool {
         this.guppiesInPool = new ArrayList<Guppy>();
         this.randomNumberGenerator = new Random();
         this.identificationNumber = ++numberOfPools;
+
+        for (int i = 0; i < 1000; i ++) {
+            addGuppy(new Guppy());
+        }
     }
 
     /**
@@ -308,6 +312,7 @@ public class Pool {
             Guppy guppy = it.next();
             if (randomNumberGenerator.nextDouble() > this.nutrientCoefficient) {
                 guppy.setIsAlive(false);
+                deadGuppies++;
             }
         }
         return deadGuppies;
@@ -427,15 +432,17 @@ public class Pool {
     public int spawn() {
         if (getPopulation() == 0) { return 0; }
         Iterator<Guppy> it = guppiesInPool.iterator();
-        int totalBabyGuppies = 0;
-        ArrayList<Guppy> babyGuppies = new ArrayList<>();
+        ArrayList<Guppy> totalbabyGuppies = new ArrayList<>();
+        ArrayList<Guppy> babyGuppies;
         while (it.hasNext()) {
             Guppy guppy = it.next();
             babyGuppies = guppy.spawn();
-            totalBabyGuppies += babyGuppies.size();
-            this.guppiesInPool.addAll(babyGuppies);
+            if (babyGuppies != null) {
+                totalbabyGuppies.addAll(babyGuppies);
+            }
         }
-        return totalBabyGuppies;
+        guppiesInPool.addAll(totalbabyGuppies);
+        return totalbabyGuppies.size();
     }
 
     /**
@@ -466,19 +473,20 @@ public class Pool {
      * @return Amount of guppies that suffocated
      */
     public int adjustForCrowding() {
+        if (getPopulation() == 0) { return 0; }
         int deadGuppiesAmount = 0;
         Guppy weakestGuppy = guppiesInPool.get(0);
         double totalVolumeNeeded = getGuppyVolumeRequirementInLitres();
-        while (totalVolumeNeeded < getVolumeLitres()) {
+        while (Double.compare(totalVolumeNeeded, getVolumeLitres()) > 0) {
             Iterator<Guppy> it = guppiesInPool.iterator();
             while (it.hasNext()) {
                 Guppy guppy = it.next();
-                if (guppy.getHealthCoefficient() < weakestGuppy.getHealthCoefficient()) {
+                if (guppy.getHealthCoefficient() <= weakestGuppy.getHealthCoefficient() && guppy.getIsAlive()) {
                     weakestGuppy = guppy;
                 }
             }
             totalVolumeNeeded -= weakestGuppy.getVolumeNeeded() * ML_TO_L_CONVERSION;
-            guppiesInPool.remove(weakestGuppy);
+            weakestGuppy.setIsAlive(false);
             deadGuppiesAmount++;
         }
         return deadGuppiesAmount;

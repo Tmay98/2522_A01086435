@@ -132,6 +132,7 @@ public class Guppy {
         this.generationNumber = newGenerationNumber < 0 ? 1 : newGenerationNumber;
         this.isAlive = true;
         this.identificationNumber = numberOfGuppiesBorn;
+        this.randomNumberGenerator = new Random();
     }
 
     /**
