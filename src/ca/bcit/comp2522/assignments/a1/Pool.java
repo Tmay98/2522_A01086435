@@ -128,10 +128,6 @@ public class Pool {
         this.guppiesInPool = new ArrayList<Guppy>();
         this.randomNumberGenerator = new Random();
         this.identificationNumber = ++numberOfPools;
-
-        for (int i = 0; i < 1000; i ++) {
-            addGuppy(new Guppy());
-        }
     }
 
     /**
