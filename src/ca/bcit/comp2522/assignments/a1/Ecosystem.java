@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a1;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ecosystem {
 
@@ -111,6 +112,50 @@ public class Ecosystem {
             newFry += pool.spawn();
         }
         return newFry;
+    }
+
+    /**
+     * Sets up a new ecosystem for simulation.
+     */
+    public void setupSimulation() {
+        addPool(new Pool("Skookumchuk", 3000, 42, 7.9, 0.9));
+        addPool(new Pool("Squamish", 15000, 39, 7.7, 0.85));
+        addPool(new Pool("Semiahmoo", 8500, 37, 7.5, 1.0));
+        Pool currentPool;
+        Random rand = new Random();
+
+        currentPool = pools.get(0);
+        for (int i = 0; i < 300; i++) {
+            currentPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(16) + 10,
+                    rand.nextInt(4) < 4,
+                    0,
+                    rand.nextDouble() * 0.3 + 0.5)
+            );
+        }
+
+        currentPool = pools.get(1);
+        for (int i = 0; i < 100; i++) {
+            currentPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(6) + 10,
+                    rand.nextInt(4) < 4,
+                    0,
+                    rand.nextDouble() * 0.2 + 0.8)
+            );
+        }
+
+        currentPool = pools.get(2);
+        for (int i = 0; i < 200; i++) {
+            currentPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(35) + 15,
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble())
+            );
+        }
     }
 
     /**

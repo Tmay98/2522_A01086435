@@ -104,21 +104,21 @@ public class Pool {
             throw new IllegalArgumentException("invalid name");
         }
 
-        if (temperatureCelsius > MINIMUM_POOL_TEMP_CELSIUS
-                && temperatureCelsius < MAXIMUM_POOL_TEMP_CELSIUS) {
+        if (temperatureCelsius >= MINIMUM_POOL_TEMP_CELSIUS
+                && temperatureCelsius <= MAXIMUM_POOL_TEMP_CELSIUS) {
             this.temperatureCelsius = temperatureCelsius;
         } else {
             this.temperatureCelsius = DEFAULT_POOL_TEMP_CELSIUS;
         }
 
-        if (pH > 0.0 && pH < MAXIMUM_PH) {
+        if (pH >= 0.0 && pH <= MAXIMUM_PH) {
             this.pH = pH;
         } else {
             this.pH = NEUTRAL_PH;
         }
 
-        if (nutrientCoefficient > MINIMUM_NUTRIENT_COEFFICIENT
-                && nutrientCoefficient < MAXIMUM_NUTRIENT_COEFFICIENT) {
+        if (nutrientCoefficient >= MINIMUM_NUTRIENT_COEFFICIENT
+                && nutrientCoefficient <= MAXIMUM_NUTRIENT_COEFFICIENT) {
             this.nutrientCoefficient = nutrientCoefficient;
         } else {
             this.nutrientCoefficient = DEFAULT_NUTRIENT_COEFFICIENT;
@@ -236,7 +236,7 @@ public class Pool {
      * @param pH a double
      */
     public void setpH(double pH) {
-        if (pH > 0.0 || pH < MAXIMUM_PH) {
+        if (Double.compare(pH, 0.0) > 0 && Double.compare(pH, MAXIMUM_PH) < 0) {
             this.pH = pH;
         }
     }
@@ -248,8 +248,8 @@ public class Pool {
      * @param nutrientCoefficient a double
      */
     public void setNutrientCoefficient(double nutrientCoefficient) {
-        if (nutrientCoefficient > MINIMUM_NUTRIENT_COEFFICIENT
-                && nutrientCoefficient < MAXIMUM_NUTRIENT_COEFFICIENT) {
+        if (nutrientCoefficient >= MINIMUM_NUTRIENT_COEFFICIENT
+                && nutrientCoefficient <= MAXIMUM_NUTRIENT_COEFFICIENT) {
             this.nutrientCoefficient = nutrientCoefficient;
         }
     }
@@ -342,7 +342,9 @@ public class Pool {
         Iterator<Guppy> it = guppiesInPool.iterator();
         while (it.hasNext()) {
             Guppy guppy = it.next();
-            totalVolumeRequired += guppy.getVolumeNeeded() * ML_TO_L_CONVERSION;
+            if (guppy.getIsAlive()) {
+                totalVolumeRequired += guppy.getVolumeNeeded() * ML_TO_L_CONVERSION;
+            }
         }
         return totalVolumeRequired;
     }
@@ -395,7 +397,6 @@ public class Pool {
         while (it.hasNext()) {
             Guppy guppy = it.next();
             if (guppy.getIsFemale() && guppy.getIsAlive()) {
-                totalFemales++;
                 totalFemales++;
             }
         }
