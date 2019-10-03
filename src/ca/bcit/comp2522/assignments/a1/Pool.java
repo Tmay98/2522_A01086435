@@ -1,8 +1,6 @@
 package ca.bcit.comp2522.assignments.a1;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Represents a Pool.
@@ -104,8 +102,8 @@ public class Pool {
             throw new IllegalArgumentException("invalid name");
         }
 
-        if (temperatureCelsius >= MINIMUM_POOL_TEMP_CELSIUS
-                && temperatureCelsius <= MAXIMUM_POOL_TEMP_CELSIUS) {
+        if (Double.compare(temperatureCelsius, MINIMUM_POOL_TEMP_CELSIUS) >= 0
+                && Double.compare(temperatureCelsius, MAXIMUM_POOL_TEMP_CELSIUS) <= 0) {
             this.temperatureCelsius = temperatureCelsius;
         } else {
             this.temperatureCelsius = DEFAULT_POOL_TEMP_CELSIUS;
@@ -117,8 +115,8 @@ public class Pool {
             this.pH = NEUTRAL_PH;
         }
 
-        if (nutrientCoefficient >= MINIMUM_NUTRIENT_COEFFICIENT
-                && nutrientCoefficient <= MAXIMUM_NUTRIENT_COEFFICIENT) {
+        if (Double.compare(nutrientCoefficient, MINIMUM_NUTRIENT_COEFFICIENT) >= 0
+                && Double.compare(nutrientCoefficient, MAXIMUM_NUTRIENT_COEFFICIENT) <= 0) {
             this.nutrientCoefficient = nutrientCoefficient;
         } else {
             this.nutrientCoefficient = DEFAULT_NUTRIENT_COEFFICIENT;
@@ -224,8 +222,8 @@ public class Pool {
      * @param temperatureCelsius a double
      */
     public void setTemperatureCelsius(double temperatureCelsius) {
-        if (temperatureCelsius >= MINIMUM_POOL_TEMP_CELSIUS
-                && temperatureCelsius <= MAXIMUM_POOL_TEMP_CELSIUS)  {
+        if (Double.compare(temperatureCelsius, MINIMUM_POOL_TEMP_CELSIUS) >= 0
+                && Double.compare(temperatureCelsius, MAXIMUM_POOL_TEMP_CELSIUS) <= 0) {
             this.temperatureCelsius = temperatureCelsius;
         }
     }
@@ -248,8 +246,8 @@ public class Pool {
      * @param nutrientCoefficient a double
      */
     public void setNutrientCoefficient(double nutrientCoefficient) {
-        if (nutrientCoefficient >= MINIMUM_NUTRIENT_COEFFICIENT
-                && nutrientCoefficient <= MAXIMUM_NUTRIENT_COEFFICIENT) {
+        if (Double.compare(nutrientCoefficient, MINIMUM_NUTRIENT_COEFFICIENT) >= 0
+                && Double.compare(nutrientCoefficient, MAXIMUM_NUTRIENT_COEFFICIENT) <= 0) {
             this.nutrientCoefficient = nutrientCoefficient;
         }
     }
@@ -411,13 +409,14 @@ public class Pool {
     public double getMedianAge() {
         this.removeDeadGuppies();
         if (getPopulation() == 0) { return 0; }
+        Collections.sort(this.guppiesInPool, new GuppyAgeComparator());
         double medianAge = 0.0;
         int guppiesAmount = guppiesInPool.size();
         if (guppiesAmount % 2 == 0) {
             return (double) (guppiesInPool.get(guppiesAmount / 2).getAgeInWeeks()
-                    + guppiesInPool.get(guppiesAmount / 2 + 1).getAgeInWeeks()) / 2;
+                    + guppiesInPool.get(guppiesAmount / 2 - 1).getAgeInWeeks()) / 2;
         } else {
-            return guppiesInPool.get(guppiesAmount / 2 + 1).getAgeInWeeks();
+            return guppiesInPool.get(guppiesAmount / 2).getAgeInWeeks();
         }
     }
 
@@ -492,10 +491,10 @@ public class Pool {
             if (guppy.getHealthCoefficient() <= weakestGuppy.getHealthCoefficient() && guppy.getIsAlive()) {
                 weakestGuppy = guppy;
             }
-
         }
         return weakestGuppy;
     }
+
     /**
      * prints pool details.
      */

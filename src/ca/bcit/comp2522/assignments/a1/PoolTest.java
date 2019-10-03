@@ -29,6 +29,41 @@ public class PoolTest {
     }
 
     @Test
+    public void correctMedianAgeZeroLengthList() {
+        assertEquals(defaultPool.getMedianAge(), 0, 0.0);
+    }
+
+    @Test
+    public void correctMedianAgeEvenLengthList() {
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++) {
+            defaultPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    i,
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble())
+            );
+        }
+        assertEquals(defaultPool.getMedianAge(), 4.5, 0.0);
+    }
+
+    @Test
+    public void correctMedianAgeOddLengthList() {
+        Random rand = new Random();
+        for (int i = 0; i < 9; i++) {
+            defaultPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    i,
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble())
+            );
+        }
+        assertEquals(defaultPool.getMedianAge(), 4, 0.0);
+    }
+
+    @Test
     public void containsConstantCalledDEFAULT_POOL_NAME() {
         assertTrue(Pool.DEFAULT_POOL_NAME.equals(Pool.DEFAULT_POOL_NAME));
     }
