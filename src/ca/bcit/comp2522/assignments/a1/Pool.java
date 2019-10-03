@@ -165,6 +165,15 @@ public class Pool {
     }
 
     /**
+     * Returns guppiesInPool.
+     *
+     * @return guppiesInPool
+     */
+    public ArrayList<Guppy> getGuppiesInPool() {
+        return guppiesInPool;
+    }
+
+    /**
      * Returns the nutrient Coefficient.
      *
      * @return nutrientCoefficient
@@ -481,6 +490,11 @@ public class Pool {
         return deadGuppiesAmount;
     }
 
+    /**
+     * Finds the weakest guppy in the pool and returns it.
+     *
+     * @return weakestGuppy
+     */
     private Guppy findWeakestGuppy() {
         Guppy weakestGuppy = null;
         Iterator<Guppy> it = guppiesInPool.iterator();
@@ -519,9 +533,4 @@ public class Pool {
                 + ", guppiesInPool=" + guppiesInPool
                 + '}';
     }
-
-    public static void main(String[] args) {
-        Pool test = new Pool();
-    }
-
 }

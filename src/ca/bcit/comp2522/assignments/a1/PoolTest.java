@@ -5,6 +5,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -29,6 +31,135 @@ public class PoolTest {
     }
 
     @Test
+    public void testAdjustForCrowdingDoesntRemoveGuppiesFromArrayList() {
+        Random rand = new Random();
+        Pool pool = new Pool("Test",
+                500.0,
+                40.0,
+                7.0,
+                0.5);
+
+        for (int i = 0; i < 5000; i++) {
+            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(40),
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble());
+            pool.addGuppy(guppy);
+        }
+        int oldArrayListSize = pool.getGuppiesInPool().size();
+        pool.adjustForCrowding();
+        int newArrayListSize = pool.getGuppiesInPool().size();
+        assertEquals(oldArrayListSize, newArrayListSize);
+    }
+
+    @Test
+    public void testAdjustForCrowding() {
+        Random rand = new Random();
+        Pool pool = new Pool("Test",
+                500.0,
+                40.0,
+                7.0,
+                0.5);
+
+        for (int i = 0; i < 5000; i++) {
+            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(40),
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble());
+            pool.addGuppy(guppy);
+        }
+        double poolVolume = pool.getVolumeLitres();
+        pool.adjustForCrowding();
+        double guppiesRequiredVolume = pool.getGuppyVolumeRequirementInLitres();
+        assertTrue(Double.compare(guppiesRequiredVolume, poolVolume) <= 0);
+    }
+
+    @Test
+    public void incrementAgeReturnsCorrectDeadGuppiesAmount() {
+        Pool pool = new Pool();
+        Random rand = new Random();
+        for (int i = 0; i < 100; i++) {
+            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    i,
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble());
+            pool.addGuppy(guppy);
+        }
+        int deadGuppies = pool.incrementAge();
+        assertEquals(deadGuppies, 50, 0.0);
+    }
+    @Test
+    public void incrementAgeWithZeroLengthGuppiesArrayList() {
+        Pool pool = new Pool();
+        int deadGuppies = pool.incrementAge();
+        assertEquals(deadGuppies, 0, 0.0);
+    }
+
+    @Test
+    public void incrementAgeIncrementsAllGuppiesAges() {
+        Pool pool = new Pool();
+        Random rand = new Random();
+        ArrayList<Integer> oldAges = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(20),
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble());
+            pool.addGuppy(guppy);
+            oldAges.add(guppy.getAgeInWeeks());
+        }
+        pool.incrementAge();
+        ArrayList<Guppy> guppiesInPool = pool.getGuppiesInPool();
+        for(int i = 0; i < guppiesInPool.size() - 1; i++) {
+            assertEquals(guppiesInPool.get(i).getAgeInWeeks(), oldAges.get(i) + 1, 0.0);
+        }
+    }
+
+    @Test
+    public void spawnAddsCorrectAmountOfGuppiesToArrayList() {
+        Pool pool = new Pool();
+        Random rand = new Random();
+        int initialGuppiesAmount = 100;
+        for (int i = 0; i < initialGuppiesAmount; i++) {
+            pool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    i,
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble())
+            );
+        }
+        int guppiesSpawned = pool.spawn();
+        assertEquals(pool.getPopulation(), initialGuppiesAmount + guppiesSpawned, 0.0);
+    }
+
+    @Test
+    public void spawnReturnsCorrectAmountOfGuppies() {
+        Pool pool = new Pool();
+        Random rand = new Random();
+        int initialGuppiesAmount = 100;
+        for (int i = 0; i < initialGuppiesAmount; i++) {
+            pool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    i,
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble())
+            );
+        }
+        int guppiesSpawned = pool.spawn();
+        assertEquals(guppiesSpawned, pool.getPopulation() - initialGuppiesAmount, 0.0);
+    }
+
+    @Test
     public void correctMedianAgeZeroLengthList() {
         assertEquals(defaultPool.getMedianAge(), 0, 0.0);
     }
@@ -36,8 +167,9 @@ public class PoolTest {
     @Test
     public void correctMedianAgeEvenLengthList() {
         Random rand = new Random();
+        Pool pool = new Pool();
         for (int i = 0; i < 10; i++) {
-            defaultPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+            pool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
                     Guppy.DEFAULT_SPECIES,
                     i,
                     Double.compare(rand.nextDouble(), 0.35) < 0,
@@ -45,14 +177,15 @@ public class PoolTest {
                     rand.nextDouble())
             );
         }
-        assertEquals(defaultPool.getMedianAge(), 4.5, 0.0);
+        assertEquals(pool.getMedianAge(), 4.5, 0.0);
     }
 
     @Test
     public void correctMedianAgeOddLengthList() {
         Random rand = new Random();
+        Pool pool = new Pool();
         for (int i = 0; i < 9; i++) {
-            defaultPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+            pool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
                     Guppy.DEFAULT_SPECIES,
                     i,
                     Double.compare(rand.nextDouble(), 0.35) < 0,
@@ -60,7 +193,7 @@ public class PoolTest {
                     rand.nextDouble())
             );
         }
-        assertEquals(defaultPool.getMedianAge(), 4, 0.0);
+        assertEquals(pool.getMedianAge(), 4, 0.0);
     }
 
     @Test

@@ -4,6 +4,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class GuppyTest {
@@ -24,6 +26,30 @@ public class GuppyTest {
                                 true,
                                 3,
                                 0.75);
+    }
+
+    @Test
+    public void SpawnWithGuppyUnderMinimumSpawningAgeReturnsNull() {
+        Guppy guppy = new Guppy("Poecilia",
+                "elegans",
+                Guppy.MINIMUM_SPAWNING_AGE - 1,
+                true,
+                4,
+                0.75);
+        ArrayList<Guppy>  spawnedGuppies = guppy.spawn();
+        assertNull(spawnedGuppies);
+    }
+
+    @Test
+    public void SpawnWithMaleGuppyReturnsNull() {
+        Guppy guppy = new Guppy("Poecilia",
+                "elegans",
+                Guppy.MINIMUM_SPAWNING_AGE + 1,
+                false,
+                4,
+                0.75);
+        ArrayList<Guppy>  spawnedGuppies = guppy.spawn();
+        assertNull(spawnedGuppies);
     }
 
     @Test

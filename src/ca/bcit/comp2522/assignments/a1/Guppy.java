@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a1;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -323,6 +324,7 @@ public class Guppy {
      *
      * @return representation as a String
      */
+    @Override
     public String toString() {
         String representation;
         representation = "Genus: " + genus + "\n";
@@ -343,6 +345,7 @@ public class Guppy {
      * @param obj an Object
      * @return true if objects are equal false otherwise
      */
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -355,6 +358,12 @@ public class Guppy {
                 && ageInWeeks == otherGuppy.ageInWeeks && isFemale == otherGuppy.isFemale
                 && generationNumber == otherGuppy.generationNumber && isAlive == otherGuppy.isAlive
                 && healthCoefficient == otherGuppy.healthCoefficient;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(genus, species, ageInWeeks, isFemale, generationNumber,
+                isAlive, healthCoefficient, identificationNumber, randomNumberGenerator);
     }
 
     public static void main(String[] args) {

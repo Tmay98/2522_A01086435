@@ -25,6 +25,15 @@ public class Ecosystem {
     }
 
     /**
+     * Returns pools ArrayList.
+     *
+     * @return pools
+     */
+    public ArrayList<Pool> getPools() {
+        return pools;
+    }
+
+    /**
      * Resets the Ecosystem by emptying the pools ArrayList.
      */
     public void reset() {
@@ -123,7 +132,6 @@ public class Ecosystem {
         addPool(new Pool("Semiahmoo", 8500, 37, 7.5, 1.0));
         Pool currentPool;
         Random rand = new Random();
-
         currentPool = pools.get(0);
         for (int i = 0; i < 300; i++) {
             currentPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
