@@ -31,6 +31,28 @@ public class PoolTest {
     }
 
     @Test
+    public void testApplyNutrientCoefficientReturnsCorrectAmount() {
+        Random rand = new Random();
+        Pool pool = new Pool("Test",
+                500.0,
+                40.0,
+                7.0,
+                0.25);
+
+        for (int i = 0; i < 150; i++) {
+            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(40),
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble());
+            pool.addGuppy(guppy);
+        }
+        int deadGuppies = pool.applyNutrientCoefficient();
+        assertEquals( pool.getPopulation(), 150 - deadGuppies);
+    }
+
+    @Test
     public void testAdjustForCrowdingDoesntRemoveGuppiesFromArrayList() {
         Random rand = new Random();
         Pool pool = new Pool("Test",
@@ -131,10 +153,10 @@ public class PoolTest {
         for (int i = 0; i < initialGuppiesAmount; i++) {
             pool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
                     Guppy.DEFAULT_SPECIES,
-                    i,
-                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    20,
+                    true,
                     0,
-                    rand.nextDouble())
+                    0.5)
             );
         }
         int guppiesSpawned = pool.spawn();
@@ -149,10 +171,10 @@ public class PoolTest {
         for (int i = 0; i < initialGuppiesAmount; i++) {
             pool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
                     Guppy.DEFAULT_SPECIES,
-                    i,
-                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    20,
+                    true,
                     0,
-                    rand.nextDouble())
+                    0.5)
             );
         }
         int guppiesSpawned = pool.spawn();

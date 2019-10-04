@@ -29,6 +29,31 @@ public class GuppyTest {
     }
 
     @Test
+    public void SpawnWithRandNumberAboveSpawnChanceReturnsNull() {
+        Guppy guppy = new Guppy("Poecilia",
+                "elegans",
+                20,
+                true,
+                4,
+                0.75);
+        guppy.getRandomNumberGenerator().setSeed(1); // seed with random double above 0.25 for spawning.
+        assertNull(guppy.spawn());
+    }
+
+    @Test
+    public void SpawnWithRandNumberBelowSpawnChanceSpawnsCorrectNumberOfGuppies() {
+        Guppy guppy = new Guppy("Poecilia",
+                "elegans",
+                20,
+                true,
+                4,
+                0.75);
+        guppy.getRandomNumberGenerator().setSeed(4097); // seed with random double below 0.25 for spawning.
+        int guppiesSpawned = 12;
+        assertEquals(guppy.spawn().size(), guppiesSpawned, 0.0);
+    }
+
+    @Test
     public void SpawnWithGuppyUnderMinimumSpawningAgeReturnsNull() {
         Guppy guppy = new Guppy("Poecilia",
                 "elegans",

@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a1;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class Ecosystem {
@@ -205,4 +206,23 @@ public class Ecosystem {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Ecosystem{" +
+                "pools=" + pools +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ecosystem ecosystem = (Ecosystem) o;
+        return Objects.equals(pools, ecosystem.pools);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pools);
+    }
 }

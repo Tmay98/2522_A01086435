@@ -4,6 +4,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 public class EcosystemTest {
@@ -21,6 +23,101 @@ public class EcosystemTest {
     }
 
     @Test
+    public void testSpawnReturnsCorrectAmount() {
+        Random rand = new Random();
+        Ecosystem ecosystem = new Ecosystem();
+        Pool pool = new Pool("Test",
+                500.0,
+                40.0,
+                7.0,
+                0.25);
+
+        for (int i = 0; i < 150; i++) {
+            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(40),
+                    true,
+                    0,
+                    0.5);
+            pool.addGuppy(guppy);
+        }
+        ecosystem.addPool(pool);
+        int newFry = ecosystem.spawn();
+        assertEquals( pool.getPopulation(), 150 + newFry);
+    }
+
+    @Test
+    public void testApplyNutrientCoefficientReturnsCorrectAmount() {
+        Random rand = new Random();
+        Ecosystem ecosystem = new Ecosystem();
+        Pool pool = new Pool("Test",
+                500.0,
+                40.0,
+                7.0,
+                0.25);
+
+        for (int i = 0; i < 150; i++) {
+            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    rand.nextInt(40),
+                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    0,
+                    rand.nextDouble());
+            pool.addGuppy(guppy);
+        }
+        ecosystem.addPool(pool);
+        int deadGuppies = ecosystem.applyNutrientCoefficient();
+        assertEquals( pool.getPopulation(), 150 - deadGuppies);
+    }
+
+    @Test
+    public void testRemoveDeadGuppies() {
+        Ecosystem ecosystem = new Ecosystem();
+        Pool pool = new Pool("Test",
+                500.0,
+                40.0,
+                7.0,
+                0.5);
+
+        for (int i = 0; i < 100; i++) {
+            pool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    i,
+                    true,
+                    0,
+                    0.5)
+            );
+        }
+
+        for(int i = 0; i < 50; i ++) {
+            pool.getGuppiesInPool().get(i).setIsAlive(false); // set 50 guppies to not be alive
+        }
+        ecosystem.addPool(pool);
+        assertEquals(ecosystem.removeDeadGuppies(), 50);
+    }
+    @Test
+    public void testIncrementAges() {
+        Ecosystem ecosystem = new Ecosystem();
+        Pool pool = new Pool("Test",
+                500.0,
+                40.0,
+                7.0,
+                0.5);
+
+        for (int i = 0; i < 100; i++) {
+            pool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    i,
+                    true,
+                    0,
+                    0.5)
+            );
+        }
+        ecosystem.addPool(pool);
+        assertEquals(ecosystem.incrementAges(), 50);
+    }
+
+    @Test
     public void testAddPool() {
         Ecosystem ecosystem = new Ecosystem();
         ecosystem.addPool(defaultPool);
@@ -32,6 +129,18 @@ public class EcosystemTest {
         Ecosystem ecosystem = new Ecosystem();
         ecosystem.addPool(null);
         assertEquals(ecosystem.getPools().size(), 0);
+    }
+
+    @Test
+    public void testGetPoolsReturnsAllPoolsCorrectly()  {
+        Ecosystem ecosystem = new Ecosystem();
+        Pool pool1 = new Pool();
+        Pool pool2 = new Pool();
+        ecosystem.addPool(pool1);
+        ecosystem.addPool(pool2);
+        int i = 0;
+        assertEquals(ecosystem.getPools().get(0), pool1);
+        assertEquals(ecosystem.getPools().get(1), pool2);
     }
 
     @Test

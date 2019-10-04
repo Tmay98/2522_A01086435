@@ -533,4 +533,25 @@ public class Pool {
                 + ", guppiesInPool=" + guppiesInPool
                 + '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pool pool = (Pool) o;
+        return Double.compare(pool.volumeLitres, volumeLitres) == 0 &&
+                Double.compare(pool.temperatureCelsius, temperatureCelsius) == 0 &&
+                Double.compare(pool.pH, pH) == 0 &&
+                Double.compare(pool.nutrientCoefficient, nutrientCoefficient) == 0 &&
+                identificationNumber == pool.identificationNumber &&
+                Objects.equals(name, pool.name) &&
+                Objects.equals(guppiesInPool, pool.guppiesInPool) &&
+                Objects.equals(randomNumberGenerator, pool.randomNumberGenerator);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, volumeLitres, temperatureCelsius, pH,
+                nutrientCoefficient, identificationNumber, guppiesInPool, randomNumberGenerator);
+    }
 }

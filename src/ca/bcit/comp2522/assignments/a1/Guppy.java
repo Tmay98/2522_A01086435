@@ -150,13 +150,17 @@ public class Guppy {
     }
 
     /**
+     * Returns the random number generator.
+     *
+     * @return randomNumberGenerator
+     */
+    public Random getRandomNumberGenerator() { return randomNumberGenerator; }
+    /**
      * Returns the genus.
      *
      * @return genus
      */
-    public String getGenus() {
-        return genus;
-    };
+    public String getGenus() { return genus; }
 
     /**
      * Returns the species.
@@ -165,7 +169,7 @@ public class Guppy {
      */
     public String getSpecies() {
         return species;
-    };
+    }
 
     /**
      * Returns the age in weeks.
@@ -174,7 +178,7 @@ public class Guppy {
      */
     public int getAgeInWeeks() {
         return ageInWeeks;
-    };
+    }
 
     /**
      * Returns if guppy is female.
@@ -183,7 +187,7 @@ public class Guppy {
      */
     public boolean getIsFemale() {
         return isFemale;
-    };
+    }
 
     /**
      * Returns Generation number.
@@ -192,7 +196,7 @@ public class Guppy {
      */
     public int getGenerationNumber() {
         return generationNumber;
-    };
+    }
 
     /**
      * Returns if guppy is alive.
@@ -201,7 +205,7 @@ public class Guppy {
      */
     public boolean getIsAlive() {
         return isAlive;
-    };
+    }
 
     /**
      * Returns Health coefficient.
@@ -210,7 +214,7 @@ public class Guppy {
      */
     public double getHealthCoefficient() {
         return healthCoefficient;
-    };
+    }
 
     /**
      * Returns Identification number.
@@ -219,7 +223,7 @@ public class Guppy {
      */
     public int getIdentificationNumber() {
         return identificationNumber;
-    };
+    }
 
     /**
      * Returns Number of guppies born.
@@ -228,7 +232,7 @@ public class Guppy {
      */
     public static int getNumberOfGuppiesBorn() {
         return numberOfGuppiesBorn;
-    };
+    }
 
     /**
      * Sets the age in weeks only if it is over 0 and less than MAXIMUM_AGE_IN_WEEKS.
@@ -268,6 +272,9 @@ public class Guppy {
      * @return water in ML that the guppy needs
      */
     public double getVolumeNeeded() {
+        if (!this.getIsAlive()) {
+            return 0.0;
+        }
         if (this.ageInWeeks < YOUNG_FISH_AGE_IN_WEEKS) {
             return MINIMUM_WATER_VOLUME_ML;
         } else if (this.ageInWeeks <= MATURE_FISH_AGE_IN_WEEKS) {
@@ -364,10 +371,5 @@ public class Guppy {
     public int hashCode() {
         return Objects.hash(genus, species, ageInWeeks, isFemale, generationNumber,
                 isAlive, healthCoefficient, identificationNumber, randomNumberGenerator);
-    }
-
-    public static void main(String[] args) {
-        Guppy myGuppy = new Guppy("hi", "me", 10, true, 2, 0.5);
-        ArrayList<Guppy> babyGuppies = myGuppy.spawn();
     }
 }
