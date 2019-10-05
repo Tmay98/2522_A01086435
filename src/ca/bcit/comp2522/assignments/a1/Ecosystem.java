@@ -6,6 +6,35 @@ import java.util.Random;
 
 public class Ecosystem {
 
+    public static final int SKOOKUMCHUK_VOLUME_LITRES = 3000;
+    public static final int SQUAMISH_VOLUME_LITRES = 15000;
+    public static final int SEMIAHMOO_VOLUME_LITRES = 8500;
+    public static final int SKOOKUMCHUK_TEMP_CELSIUS = 42;
+    public static final double SKOOKUMCHUK_PH = 7.9;
+    public static final double SKOOKUMCHUK_NUTRIENT_COEFFICIENT = 0.9;
+    public static final int SQUAMISH_TEMP_CELSIUS = 39;
+    public static final double SQUAMISH_PH = 7.7;
+    public static final double SQUAMISH_NUTRIENT_COEFFICIENT = 0.85;
+    public static final int SEMIAHMOO_TEMP_CELSIUS = 37;
+    public static final double SEMIAHMOO_PH = 7.5;
+    public static final double SEMIAHMOO_NUTRIENT_COEFFICIENT = 1.0;
+    public static final int SKOOKUMCHUK_POPULATION = 300;
+    public static final int SKOOKUMCHUK_AGE_IN_YEARS_RANGE = 16;
+    public static final int SKOOKUMCHUK_AGE_IN_YEARS_MIN = 10;
+    public static final double SKOOKUMCHUK_FEMALE_CHANCE = 0.75;
+    public static final double SKOOKUMCHUK_HEALTH_COEFFICIENT_RANGE = 0.3;
+    public static final double SKOOKUMCHUK_HEALTH_COEFFICIENT_MIN = 0.5;
+    public static final int SQUAMISH_AGE_IN_YEARS_RANGE = 6;
+    public static final int SQUAMISH_AGE_IN_YEARS_MIN = 10;
+    public static final double SQUAMISH_FEMALE_CHANCE = 0.75;
+    public static final double SQUAMISH_HEALTH_COEFFICIENT_RANGE = 0.2;
+    public static final double SQUAMISH_HEALTH_COEFFICIENT_MIN = 0.8;
+    public static final int SQUAMISH_POPULATION = 100;
+    public static final int SEMIAHMOO_POPULATION = 200;
+    public static final int SEMIAHMOO_AGE_IN_YEARS_RANGE = 35;
+    public static final int SEMIAHMOO_AGE_IN_YEARS_MIN = 15;
+    public static final double SEMIAHMOO_FEMALE_CHANCE = 0.35;
+
     private ArrayList<Pool> pools;
 
     /**
@@ -128,39 +157,43 @@ public class Ecosystem {
      * Sets up a new ecosystem for simulation.
      */
     public void setupSimulation() {
-        addPool(new Pool("Skookumchuk", 3000, 42, 7.9, 0.9));
-        addPool(new Pool("Squamish", 15000, 39, 7.7, 0.85));
-        addPool(new Pool("Semiahmoo", 8500, 37, 7.5, 1.0));
-        Pool currentPool;
+        Pool skookumchuk = new Pool("Skookumchuk", SKOOKUMCHUK_VOLUME_LITRES,
+                SKOOKUMCHUK_TEMP_CELSIUS, SKOOKUMCHUK_PH, SKOOKUMCHUK_NUTRIENT_COEFFICIENT);
+        Pool squamish = new Pool("Squamish", SQUAMISH_VOLUME_LITRES,
+                SQUAMISH_TEMP_CELSIUS, SQUAMISH_PH, SQUAMISH_NUTRIENT_COEFFICIENT);
+        Pool semiahmoo = new Pool("Semiahmoo", SEMIAHMOO_VOLUME_LITRES,
+                SEMIAHMOO_TEMP_CELSIUS, SEMIAHMOO_PH, SEMIAHMOO_NUTRIENT_COEFFICIENT);
+        addPool(skookumchuk);
+        addPool(squamish);
+        addPool(semiahmoo);
         Random rand = new Random();
-        currentPool = pools.get(0);
-        for (int i = 0; i < 300; i++) {
-            currentPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+        for (int i = 0; i < SKOOKUMCHUK_POPULATION; i++) {
+            skookumchuk.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
                     Guppy.DEFAULT_SPECIES,
-                    rand.nextInt(16) + 10,
-                    rand.nextInt(4) < 4,
+                    rand.nextInt(SKOOKUMCHUK_AGE_IN_YEARS_RANGE) + SKOOKUMCHUK_AGE_IN_YEARS_MIN,
+                    Double.compare(rand.nextDouble(), SKOOKUMCHUK_FEMALE_CHANCE) < 0,
                     0,
-                    rand.nextDouble() * 0.3 + 0.5)
+                    rand.nextDouble() * SKOOKUMCHUK_HEALTH_COEFFICIENT_RANGE
+                            + SKOOKUMCHUK_HEALTH_COEFFICIENT_MIN)
             );
         }
 
-        currentPool = pools.get(1);
-        for (int i = 0; i < 100; i++) {
-            currentPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+        for (int i = 0; i < SQUAMISH_POPULATION; i++) {
+            squamish.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
                     Guppy.DEFAULT_SPECIES,
-                    rand.nextInt(6) + 10,
-                    rand.nextInt(4) < 4,
+                    rand.nextInt(SQUAMISH_AGE_IN_YEARS_RANGE) + SQUAMISH_AGE_IN_YEARS_MIN,
+                    Double.compare(rand.nextDouble(), SQUAMISH_FEMALE_CHANCE) < 0,
                     0,
-                    rand.nextDouble() * 0.2 + 0.8)
+                    rand.nextDouble() * SQUAMISH_HEALTH_COEFFICIENT_RANGE
+                            + SQUAMISH_HEALTH_COEFFICIENT_MIN)
             );
         }
 
-        currentPool = pools.get(2);
-        for (int i = 0; i < 200; i++) {
-            currentPool.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
+        for (int i = 0; i < SEMIAHMOO_POPULATION; i++) {
+            semiahmoo.addGuppy(new Guppy(Guppy.DEFAULT_GENUS,
                     Guppy.DEFAULT_SPECIES,
-                    rand.nextInt(35) + 15,
-                    Double.compare(rand.nextDouble(), 0.35) < 0,
+                    rand.nextInt(SEMIAHMOO_AGE_IN_YEARS_RANGE) + SEMIAHMOO_AGE_IN_YEARS_MIN,
+                    Double.compare(rand.nextDouble(), SEMIAHMOO_FEMALE_CHANCE) < 0,
                     0,
                     rand.nextDouble())
             );

@@ -23,6 +23,20 @@ public class EcosystemTest {
     }
 
     @Test
+    public void testSetupSimulationTotalPopulationIsCorrect() {
+        Ecosystem ecosystem = new Ecosystem();
+        ecosystem.setupSimulation();
+        assertEquals(ecosystem.getGuppyPopulation(), 600);
+    }
+
+    @Test
+    public void testSetupSimulationCreatesThreePools() {
+        Ecosystem ecosystem = new Ecosystem();
+        ecosystem.setupSimulation();
+        assertEquals(ecosystem.getPools().size(), 3);
+    }
+
+    @Test
     public void testSpawnReturnsCorrectAmount() {
         Random rand = new Random();
         Ecosystem ecosystem = new Ecosystem();
