@@ -502,7 +502,7 @@ public class Pool {
             Guppy guppy = it.next();
             if (!guppy.getIsAlive()) { continue; }
             if (weakestGuppy == null) { weakestGuppy = guppy; }
-            if (guppy.getHealthCoefficient() <= weakestGuppy.getHealthCoefficient() && guppy.getIsAlive()) {
+            if (guppy.getHealthCoefficient() <= weakestGuppy.getHealthCoefficient()) {
                 weakestGuppy = guppy;
             }
         }
