@@ -161,8 +161,9 @@ public class EcosystemTest {
         ecosystem.addPool(pool);
         assertEquals(ecosystem.removeDeadGuppies(), 50);
     }
+
     @Test
-    public void testIncrementAges() {
+    public void testIncrementAgesKillsAllGuppiesOverMaxAge() {
         Ecosystem ecosystem = new Ecosystem();
         Pool pool = new Pool("Test",
                 500.0,
