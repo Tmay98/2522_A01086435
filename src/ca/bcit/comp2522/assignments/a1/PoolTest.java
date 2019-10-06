@@ -77,21 +77,43 @@ public class PoolTest {
     }
 
     @Test
-    public void testAdjustForCrowding() {
+    public void testAdjustForCrowdingReturnsCorrectDeadGuppies() {
         Random rand = new Random();
         Pool pool = new Pool("Test",
-                500.0,
+                0,
                 40.0,
                 7.0,
                 0.5);
 
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 50; i++) {
             Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
                     Guppy.DEFAULT_SPECIES,
-                    rand.nextInt(40),
+                    10,
                     Double.compare(rand.nextDouble(), 0.35) < 0,
                     0,
-                    rand.nextDouble());
+                    0.5);
+            pool.addGuppy(guppy);
+        }
+        double poolVolume = pool.getVolumeLitres();
+        assertEquals(pool.adjustForCrowding(), 50);
+    }
+
+    @Test
+    public void testAdjustForCrowding() {
+        Random rand = new Random();
+        Pool pool = new Pool("Test",
+                0,
+                40.0,
+                7.0,
+                0.5);
+
+        for (int i = 0; i < 500; i++) {
+            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS,
+                    Guppy.DEFAULT_SPECIES,
+                    40,
+                    true,
+                    0,
+                    0.5);
             pool.addGuppy(guppy);
         }
         double poolVolume = pool.getVolumeLitres();
