@@ -23,6 +23,58 @@ public class EcosystemTest {
     }
 
     @Test
+    public void testSimulateOneWeekPopulationIsChanging() {
+        Ecosystem ecosystem = new Ecosystem();
+        ecosystem.setupSimulation();
+        int ecosystemInitialPopulation = ecosystem.getGuppyPopulation();
+        ecosystem.simulateOneWeek();
+        int ecosystemPopulationAfterOneWeek = ecosystem.getGuppyPopulation();
+        assertTrue(ecosystemInitialPopulation != ecosystemPopulationAfterOneWeek);
+    }
+
+    @Test
+    public void testSetupSimulationCreatesPoolNamedSemiahmoo() {
+        Ecosystem ecosystem = new Ecosystem();
+        ecosystem.setupSimulation();
+        boolean SemiahmooPoolFound = false;
+        for (Pool pool : ecosystem.getPools()) {
+            if (pool.getName().equals("Semiahmoo")) {
+                SemiahmooPoolFound = true;
+                break;
+            }
+        }
+        assertTrue(SemiahmooPoolFound);
+    }
+
+    @Test
+    public void testSetupSimulationCreatesPoolNamedSquamish() {
+        Ecosystem ecosystem = new Ecosystem();
+        ecosystem.setupSimulation();
+        boolean squamishPoolFound = false;
+        for (Pool pool : ecosystem.getPools()) {
+            if (pool.getName().equals("Squamish")) {
+                squamishPoolFound = true;
+                break;
+            }
+        }
+        assertTrue(squamishPoolFound);
+    }
+
+    @Test
+    public void testSetupSimulationCreatesPoolNamedSkookumchuk() {
+        Ecosystem ecosystem = new Ecosystem();
+        ecosystem.setupSimulation();
+        boolean skookumchukPoolFound = false;
+        for (Pool pool : ecosystem.getPools()) {
+            if (pool.getName().equals("Skookumchuk")) {
+                skookumchukPoolFound = true;
+                break;
+            }
+        }
+        assertTrue(skookumchukPoolFound);
+    }
+
+    @Test
     public void testSetupSimulationTotalPopulationIsCorrect() {
         Ecosystem ecosystem = new Ecosystem();
         ecosystem.setupSimulation();
