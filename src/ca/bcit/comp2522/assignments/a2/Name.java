@@ -18,7 +18,7 @@ public class Name {
      * @param firstName a String
      * @param middleName a String
      * @param lastName a String
-     * @throws IllegalArgumentException an exception
+     * @throws IllegalArgumentException an Exception
      */
     public Name(String firstName, String middleName, String lastName) throws IllegalArgumentException {
         if (firstName == null  || firstName.trim().length() == 0 || !isAlpha(firstName)) {
