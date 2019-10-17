@@ -28,18 +28,38 @@ public class Card {
         this.cardDescription = cardDescription;
     }
 
+    /**
+     * Returns the organization name.
+     *
+     * @return organizationName
+     */
     public String getOrganizationName() {
         return organizationName;
     }
 
+    /**
+     * Returns the card name.
+     *
+     * @return cardName
+     */
     public String getCardName() {
         return cardName;
     }
 
+    /**
+     * Returns the card description.
+     *
+     * @return cardDescription
+     */
     public String getCardDescription() {
         return cardDescription;
     }
 
+    /**
+     * Returns if there is a card logo.
+     *
+     * @return cardLogo
+     */
     public Boolean getCardLogo() {
         return cardLogo;
     }
