@@ -1,9 +1,10 @@
 package ca.bcit.comp2522.assignments.a2;
 
 /**
- * Represents Issue and expiry dates of a card.
+ * Represents issue and expiry dates of a card.
  *
  * @author Tommy
+ * @author Aiman Ismail
  * @version 2019
  */
 public class IssueAndExpiryDate {
