@@ -23,10 +23,26 @@ public abstract class Card {
      * @param cardDescription a String
      */
     public Card(String organizationName, String cardName, Boolean cardLogo, String cardDescription) {
-        this.organizationName = organizationName;
-        this.cardName = cardName;
-        this.cardLogo = cardLogo;
-        this.cardDescription = cardDescription;
+        if (organizationName == null  || organizationName.trim().length() == 0 || !isAlpha(organizationName)) {
+            throw new IllegalArgumentException("Invalid organization name");
+        } else {
+            this.organizationName = formatName(organizationName);
+        }
+        if (cardName == null  || cardName.trim().length() == 0 || !isAlpha(cardName)) {
+            throw new IllegalArgumentException("Invalid card name");
+        } else {
+            this.cardName = formatName(cardName);
+        }
+        if (cardLogo == null) {
+            throw new IllegalArgumentException("Invalid card logo value");
+        } else {
+            this.cardLogo = cardLogo;
+        }
+        if (cardDescription == null || cardDescription.trim().length() == 0) {
+            throw new IllegalArgumentException("You have an invalid card description.");
+        } else {
+            this.cardDescription = cardDescription;
+        }
     }
 
     /**
@@ -63,5 +79,13 @@ public abstract class Card {
      */
     public Boolean getCardLogo() {
         return cardLogo;
+    }
+
+    private String formatName(String name) {
+        return name.trim().substring(0, 1).toUpperCase() + name.trim().substring(1).toLowerCase();
+    }
+
+    private boolean isAlpha(String name) {
+        return name.matches("[a-zA-Z]*");
     }
 }
