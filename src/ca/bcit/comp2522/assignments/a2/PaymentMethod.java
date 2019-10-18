@@ -7,9 +7,9 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Aiman Ismail
  * @version 2019
  */
-public interface PaymentMethods {
+public interface PaymentMethod {
     /**
      * A method for a card to complete a payment transaction.
      */
-    void payment();
+    void payment(int amount);
 }

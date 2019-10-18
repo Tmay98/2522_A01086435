@@ -7,7 +7,7 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Aiman Ismail
  * @version 2019
  */
-public class PointsRewardCard extends Card {
+public class PointsRewardCard extends Card implements PaymentMethod {
 
     private int points;
     private Name ownerName;
@@ -61,6 +61,21 @@ public class PointsRewardCard extends Card {
     public void setPoints(int points) {
         if (points >= 0) {
             this.points = points;
+        }
+    }
+
+    /**
+     * Pays an amount of points and subtracts it from points.
+     *
+     * @param amount an int
+     */
+    @Override
+    public void payment(int amount) {
+        if (amount < points) {
+            points -= amount;
+            System.out.println("You payed" + amount + " points");
+        } else {
+            System.out.println("You dont have enough points!");
         }
     }
 }

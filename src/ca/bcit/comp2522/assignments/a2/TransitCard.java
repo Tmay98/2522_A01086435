@@ -6,7 +6,7 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Tommy
  * @version 2019
  */
-public class TransitCard extends Card {
+public class TransitCard extends Card implements PaymentMethod {
 
     private static final int VALID_JAPAN_TRANSIT_CARD_NUMBER_LENGTH = 15;
     private static final int VALID_LONDON_TRANSIT_CARD_NUMBER_LENGTH = 8;
@@ -101,4 +101,18 @@ public class TransitCard extends Card {
         }
     }
 
+    /**
+     * Pays an amount of points and subtracts it from points.
+     *
+     * @param amount an int
+     */
+    @Override
+    public void payment(int amount) {
+        if (amount < accountBalance) {
+            accountBalance -= amount;
+            System.out.println("You payed" + amount);
+        } else {
+            System.out.println("You dont have" + amount + "in your account");
+        }
+    }
 }

@@ -1,9 +1,10 @@
 package ca.bcit.comp2522.assignments.a2;
 
-public class StampRewardCard extends Card {
+public class StampRewardCard extends Card implements PaymentMethod {
 
     private int maxStamps;
     private int currentStamps;
+    private String reward;
 
     /**
      * Constructs an object of type RewardCard.
@@ -14,9 +15,10 @@ public class StampRewardCard extends Card {
      * @param cardDescription  a String
      * @param maxStamps an int
      * @param currentStamps an int
+     * @param reward a String
      */
     public StampRewardCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                           int maxStamps, int currentStamps) {
+                           int maxStamps, int currentStamps, String reward) {
         super(organizationName, cardName, cardLogo, cardDescription);
 
         if (maxStamps <= 0) {
@@ -25,6 +27,10 @@ public class StampRewardCard extends Card {
         if (currentStamps < 0) {
             throw new IllegalArgumentException("Current stamps cannot be a negative integer");
         }
+        if (reward == null || reward.trim().length() == 0) {
+            throw new IllegalArgumentException("Must have a reward");
+        }
+        this.reward = reward;
         this.maxStamps = maxStamps;
         this.currentStamps = currentStamps;
     }
@@ -36,6 +42,15 @@ public class StampRewardCard extends Card {
      */
     public int getMaxStamps() {
         return maxStamps;
+    }
+
+    /**
+     * Returns the reward.
+     *
+     * @return reward
+     */
+    public String getReward() {
+        return reward;
     }
 
     /**
@@ -66,6 +81,28 @@ public class StampRewardCard extends Card {
     public void setCurrentStamps(int currentStamps) {
         if (!(currentStamps <= 0)) {
             this.currentStamps = currentStamps;
+        }
+    }
+
+    /**
+     * Increments stamps by 1.
+     */
+    public void incrementStamps() {
+        if (currentStamps++ == maxStamps) {
+            payment(maxStamps);
+        }
+    }
+
+    /**
+     * Receives card reward.
+     *
+     * @param amount an int
+     */
+    @Override
+    public void payment(int amount) {
+        if (amount == maxStamps) {
+            System.out.println("You got " + amount + "Stamps. You received" + getReward());
+            setCurrentStamps(0);
         }
     }
 }
