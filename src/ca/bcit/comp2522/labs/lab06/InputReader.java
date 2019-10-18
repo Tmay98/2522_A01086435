@@ -28,8 +28,7 @@ public class InputReader {
      */
     public int getNumber() throws NotAnIntegerException {
         try {
-            int userInput = scanner.nextInt();
-            return userInput;
+            return scanner.nextInt();
         } catch (InputMismatchException e) {
             scanner.nextLine();
             throw new NotAnIntegerException("That's not an integer!");
