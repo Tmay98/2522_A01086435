@@ -32,7 +32,7 @@ public class NumberReader {
             } catch (NotAnIntegerException e) {
                 System.out.println(e.toString());
             }
-        } while(userInput != 0);
+        } while (userInput != 0);
         System.out.println("The sum of numbers entered is " + total);
     }
 
