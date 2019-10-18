@@ -4,7 +4,7 @@ package ca.bcit.comp2522.assignments.a2;
 import java.util.Objects;
 
 /**
- * Represents a Identification Card
+ * Represents a Identification Card.
  *
  * @author Tommy May
  * @author Aiman Ismail

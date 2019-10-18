@@ -7,16 +7,23 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Aiman Ismail
  * @version 2019
  */
-public class PersonalBusinessCard extends Business{
-    /**
-     * Constructs an object of type Card.
-     *
-     * @param organizationName a String
-     * @param cardName         a String
-     * @param cardLogo         a Boolean
-     * @param cardDescription  a String
-     */
-    public PersonalBusinessCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription) {
-        super(organizationName, cardName, cardLogo, cardDescription);
+public class PersonalBusinessCard extends BusinessCard {
+
+    private ContactInformation personalContactInformation;
+
+    public PersonalBusinessCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                                ContactInformation contactInformation, ContactInformation personalContactInformation,
+                                String address) {
+        super(organizationName, cardName, cardLogo, cardDescription, contactInformation, address);
+
+        if (personalContactInformation == null) {
+            throw new IllegalArgumentException("Invalid personal contact info");
+        } else {
+            this.personalContactInformation = personalContactInformation;
+        }
+    }
+
+    public ContactInformation getOwnerContactInformation() {
+        return personalContactInformation;
     }
 }

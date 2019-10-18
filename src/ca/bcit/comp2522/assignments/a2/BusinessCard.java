@@ -6,7 +6,7 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Tommy
  * @version 2019
  */
-public class Business {
+public class BusinessCard extends Card {
 
     private ContactInformation contactInformation;
     private String address;
@@ -17,7 +17,9 @@ public class Business {
      * @param contactInformation ContactInformation
      * @param address a String
      */
-    public Business(ContactInformation contactInformation, String address) {
+    public BusinessCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                        ContactInformation contactInformation, String address) {
+        super(organizationName, cardName, cardLogo, cardDescription);
         if (contactInformation == null) {
             throw new IllegalArgumentException("Invalid contact info");
         }

@@ -17,7 +17,8 @@ public class AdditionalIdentification extends IdentificationCard{
      * @param newIssueAndExpiryDate a IssueAndExpiryDate
      * @param newName               a Name
      */
-    public AdditionalIdentification(String organizationName, String cardName, Boolean cardLogo, String cardDescription, String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate, Name newName) {
+    public AdditionalIdentification(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                                    String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate, Name newName) {
         super(organizationName, cardName, cardLogo, cardDescription, newIDNumber, newIssueAndExpiryDate, newName);
     }
 }
