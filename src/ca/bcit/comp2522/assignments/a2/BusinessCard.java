@@ -14,6 +14,10 @@ public class BusinessCard extends Card {
     /**
      * Constructs an object of type Business.
      *
+     * @param organizationName a String
+     * @param cardName a String
+     * @param cardLogo a Boolean
+     * @param cardDescription a String
      * @param contactInformation ContactInformation
      * @param address a String
      */

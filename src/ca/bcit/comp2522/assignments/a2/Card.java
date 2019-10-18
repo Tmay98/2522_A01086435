@@ -7,7 +7,7 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Aiman Ismail
  * @version 2019
  */
-public class Card {
+public abstract class Card {
 
     private String organizationName;
     private String cardName;

@@ -7,7 +7,7 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Aiman Ismail
  * @version 2019
  */
-public class DebitCard extends Financial{
+public class DebitCard extends FinancialCard {
     /**
      * Constructs an object of type Card.
      *

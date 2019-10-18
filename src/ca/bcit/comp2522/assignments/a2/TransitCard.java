@@ -6,7 +6,7 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Tommy
  * @version 2019
  */
-public class Transit {
+public class TransitCard extends Card {
 
     private static final int VALID_JAPAN_TRANSIT_CARD_NUMBER_LENGTH = 15;
     private static final int VALID_LONDON_TRANSIT_CARD_NUMBER_LENGTH = 8;
@@ -16,15 +16,22 @@ public class Transit {
     private IssueAndExpiryDate issueAndExpiryDate;
 
     /**
-     * Constsructs an object of type Transit.
+     * Constsructs an object of type TransitCard.
      *
+     * @param organizationName a String
+     * @param cardName a String
+     * @param cardLogo a Boolean
+     * @param cardDescription a String
      * @param accountBalance a double
      * @param transitCardNumber a String
      * @param issueAndExpiryDate an IssueAndExpiryDate
      * @throws IllegalArgumentException an Exception
-     */
-    public Transit(double accountBalance, String transitCardNumber, IssueAndExpiryDate issueAndExpiryDate)
+     * */
+    public TransitCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                       double accountBalance, String transitCardNumber, IssueAndExpiryDate issueAndExpiryDate)
             throws IllegalArgumentException {
+        super(organizationName, cardName, cardLogo, cardDescription);
+
         if (Double.compare(accountBalance, 0) < 0) {
             throw new IllegalArgumentException("Invalid account balance");
         }

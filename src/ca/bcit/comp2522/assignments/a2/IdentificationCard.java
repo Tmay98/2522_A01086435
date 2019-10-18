@@ -17,6 +17,7 @@ public class IdentificationCard extends Card {
     private Name ownerName;
 
     /**
+     * Creates an object of type IdentificationCard.
      *
      * @param organizationName a String
      * @param cardName a String

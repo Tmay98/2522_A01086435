@@ -7,8 +7,11 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Aiman Ismail
  * @version 2019
  */
-public class AdditionalIdentification extends IdentificationCard{
+public class AdditionalIdentification extends IdentificationCard {
+
     /**
+     * Constructs an object of type AdditionalIdentification.
+     *
      * @param organizationName      a String
      * @param cardName              a String
      * @param cardLogo              a Boolean

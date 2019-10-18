@@ -11,6 +11,5 @@ public interface PaymentMethods {
     /**
      * A method for a card to complete a payment transaction.
      */
-    private void payment() {
-    }
+    void payment();
 }
