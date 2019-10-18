@@ -1,13 +1,26 @@
 package ca.bcit.comp2522.labs.lab06;
 
+/**
+ * Represents a NumberReader object.
+ *
+ * @author Tommy May
+ * @version 2019
+ */
 public class NumberReader {
 
     private InputReader inputReader;
 
+    /**
+     * Constructs an object of type NumberReader.
+     */
     public NumberReader() {
         inputReader = new InputReader();
     }
 
+    /**
+     * Asks for user to enter an integer until user enters 0
+     * and sums them up and prints the result.
+     */
     public void guessNumber() {
         int userInput = 1;
         int total = 0;

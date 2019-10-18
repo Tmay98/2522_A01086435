@@ -1,5 +1,11 @@
 package ca.bcit.comp2522.labs.lab06;
 
+/**
+ * Represents a NotAnIntegerException Exception object.
+ *
+ * @author Tommy May
+ * @version 2019
+ */
 public class NotAnIntegerException extends java.lang.Exception {
 
     private String key;
