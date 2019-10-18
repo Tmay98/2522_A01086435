@@ -1,6 +1,6 @@
 package ca.bcit.comp2522.assignments.a2;
 
-public class DiscountRewardCard extends Card {
+public class DiscountRewardCard extends Card implements PaymentMethod {
 
     private int discountAmount;
 
@@ -40,5 +40,15 @@ public class DiscountRewardCard extends Card {
      */
     public void setDiscountAmount(int discountAmount) {
         this.discountAmount = discountAmount;
+    }
+
+    /**
+     * Receives card reward.
+     *
+     * @param amount an int
+     */
+    @Override
+    public void payment(int amount) {
+       System.out.println("You got a" + amount + "% discount");
     }
 }

@@ -1,6 +1,6 @@
 package ca.bcit.comp2522.assignments.a2;
 
-public class StampRewardCard extends Card implements PaymentMethods {
+public class StampRewardCard extends Card implements PaymentMethod {
 
     private int maxStamps;
     private int currentStamps;
@@ -15,6 +15,7 @@ public class StampRewardCard extends Card implements PaymentMethods {
      * @param cardDescription  a String
      * @param maxStamps an int
      * @param currentStamps an int
+     * @param reward a String
      */
     public StampRewardCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
                            int maxStamps, int currentStamps, String reward) {
@@ -88,16 +89,20 @@ public class StampRewardCard extends Card implements PaymentMethods {
      */
     public void incrementStamps() {
         if (currentStamps++ == maxStamps) {
-            payment();
+            payment(maxStamps);
         }
     }
 
     /**
      * Receives card reward.
+     *
+     * @param amount an int
      */
     @Override
-    public void payment() {
-        System.out.println("You received" + getReward());
-        setCurrentStamps(0);
+    public void payment(int amount) {
+        if (amount == maxStamps) {
+            System.out.println("You got " + amount + "Stamps. You received" + getReward());
+            setCurrentStamps(0);
+        }
     }
 }
