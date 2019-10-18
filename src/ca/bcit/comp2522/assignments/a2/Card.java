@@ -81,7 +81,7 @@ public abstract class Card {
         return cardLogo;
     }
 
-    private String formatName(String name) {
+    public String formatName(String name) {
         return name.trim().substring(0, 1).toUpperCase() + name.trim().substring(1).toLowerCase();
     }
 
