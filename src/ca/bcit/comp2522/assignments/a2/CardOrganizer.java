@@ -138,27 +138,9 @@ public class CardOrganizer {
                 "589 588 141",
                 new IssueAndExpiryDate("00/00/00", "00/00/00"),
                 new Name("Christopher", "G", "Thompson"));
-
-        // Sunroute Card
-        IdentificationCard sunrouteClubCard = new IdentificationCard("Sunroute",
-                "Club Card",
-                true,
-                "A Club Card for Sunroute",
-                "30092459",
-                new IssueAndExpiryDate("00/00/00", "00/00/00"),
-                new Name("Christopher", "G", "Thompson"));
     }
     public void createInsuranceCard() {
-        InsuranceCard manulifeCard = new InsuranceCard(
-                "Manulife",
-                "Insurance Card",
-                true,
-                "A Insurance Card with Information",
-                "987654",
-                "0012321",
-                new IssueAndExpiryDate("00/00/00", "00/00/00"),
-                new Name("Christopher", "G", "Thompson"),
-                "9505");
+        //manulife card
     }
     public void createMembershipCard() {
         //bank of poland
@@ -234,27 +216,10 @@ public class CardOrganizer {
                 "A Rewards Plum Card",
                 "500028606142", new IssueAndExpiryDate("00/00/00","00/00/00"),
                 new Name("Christopher", "G", "Thompson"), 1337);
-
+        // sunroute club point card edy todo serial
         // aeroplan todo serial
-        PointsRewardCard airMilesCardTravelAndMore = new PointsRewardCard(
-                "Air Miles",
-                "Travel and More, Air Miles",
-                true,
-                "A exclusive Air Miles card.",
-                "123433",
-                new IssueAndExpiryDate("06/94", "00/00"),
-                new Name("Christopher", "G", "Thompson"),
-                1337);
         // JAL mileage bank //todo serial id number
-        PointsRewardCard jalMileageBank = new PointsRewardCard(
-                "JAL",
-                "Mileage Bank Card",
-                true,
-                "A points card for JAL",
-                "403954425",
-                new IssueAndExpiryDate("00/00", "00/00"),
-                new Name("Christopher", "G", "Thompson"),
-                1337);
+        // AIR MILES //todo id
     }
     public void createStampRewardCard() {
         StampRewardCard wholeFoodsCard = new StampRewardCard("Whole Foods",
@@ -268,46 +233,12 @@ public class CardOrganizer {
     }
     public void createTicket() {
         // studio ghibli ticket
-        Ticket ghibliTicketForHowlsMovingCastle = new Ticket("Ghibli Musuem","Ticket", true, "A ticket to the Ghibli Museum", 1000);
         // 2nd studio ghibli ticket
-        Ticket ghibliTicketForPonyoByTheCliffSide = new Ticket("Ghibli Musuem","Ticket", true, "A ticket to the Ghibli Museum", 1000);
     }
     public void createTransitCard() {
         //hello kitty
-        TransitCard helloKittyCard = new TransitCard(
-                "Suica",
-                "ICOCA",
-                true,
-                "Suica Transit Card",
-                0.0,
-                "JW301B15042825970",
-                new IssueAndExpiryDate("00/00","00/00"));
         // oyster london
-        TransitCard londonOysterTransitCard = new TransitCard(
-                "Transport for London",
-                "Oyster",
-                true,
-                "A transit card for Oyster",
-                0.0,
-                "060054294844",
-                new IssueAndExpiryDate("00/00","00/00"));
         // two japan endless discovery todo includes a id number
-        TransitCard japanEndlessDiscoveryPrimary = new TransitCard(
-                "Suica",
-                "Japan Endless Discovery",
-                true,
-                "Suica Transit Card",
-                0.0,
-                "JE338D13090202315",
-                new IssueAndExpiryDate("00/00","00/00"));
-        TransitCard japanEndlessDiscoverySecondary = new TransitCard(
-                "Suica",
-                "Japan Endless Discovery",
-                true,
-                "Suica Transit Card",
-                0.0,
-                "JE338D13090202316",
-                new IssueAndExpiryDate("00/00","00/00"));
     }
 
 }
