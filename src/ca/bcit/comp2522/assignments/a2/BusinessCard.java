@@ -6,6 +6,7 @@ import java.util.Objects;
  * Represents a Business Card.
  *
  * @author Tommy
+ * @author Aiman
  * @version 2019
  */
 public class BusinessCard extends Card {

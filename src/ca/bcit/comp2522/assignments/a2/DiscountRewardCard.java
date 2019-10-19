@@ -2,6 +2,13 @@ package ca.bcit.comp2522.assignments.a2;
 
 import java.util.Objects;
 
+/**
+ * Represents a Discount Reward Card.
+ *
+ * @author Tommy
+ * @author Aiman
+ * @version 2019
+ */
 public class DiscountRewardCard extends Card implements PaymentMethod {
 
     private int discountAmount;

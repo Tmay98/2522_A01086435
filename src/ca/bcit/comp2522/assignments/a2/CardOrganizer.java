@@ -1,9 +1,15 @@
 package ca.bcit.comp2522.assignments.a2;
 
-import java.lang.reflect.Member;
-import java.util.ArrayList;
-import java.util.Objects;
 
+import java.util.ArrayList;
+
+/**
+ * Represents a Card Organizer for the 35 cards in Assignment 2.
+ *
+ * @author Tommy
+ * @author Aiman
+ * @version 2019
+ */
 public class CardOrganizer {
     private ArrayList<Card> cardList = new ArrayList<>();
 
