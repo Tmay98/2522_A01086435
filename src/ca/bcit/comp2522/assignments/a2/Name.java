@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents a Name.
  *
@@ -42,7 +44,7 @@ public class Name {
     /**
      * Returns the first name.
      *
-     * @return firstName
+     * @return firstName as a String
      */
     public String getFirstName() {
         return firstName;
@@ -51,7 +53,7 @@ public class Name {
     /**
      * Returns the middle name.
      *
-     * @return middleName
+     * @return middleName as a String
      */
     public String getMiddleName() {
         return middleName;
@@ -60,7 +62,7 @@ public class Name {
     /**
      * Returns the last name.
      *
-     * @return lastName
+     * @return lastName as a String
      */
     public String getLastName() {
         return lastName;
@@ -99,12 +101,47 @@ public class Name {
         }
     }
 
+    /**
+     * Returns a boolean after comparing a Regex pattern.
+     *
+     * @param name a String
+     * @return Boolean
+     */
     private boolean isAlpha(String name) {
         return name.matches("[a-zA-Z]*");
     }
 
+    /**
+     * Return a formatted string.
+     *
+     * @param name a String
+     * @return name a String
+     */
     private String formatName(String name) {
         return name.trim().substring(0, 1).toUpperCase() + name.trim().substring(1).toLowerCase();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name = (Name) o;
+        return Objects.equals(firstName, name.firstName) &&
+                Objects.equals(middleName, name.middleName) &&
+                Objects.equals(lastName, name.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, middleName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return "Name{" +
+                "firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

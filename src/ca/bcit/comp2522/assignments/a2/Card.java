@@ -85,7 +85,7 @@ public abstract class Card {
         return name.trim().substring(0, 1).toUpperCase() + name.trim().substring(1).toLowerCase();
     }
 
-    private boolean isAlpha(String name) {
+    public boolean isAlpha(String name) {
         return name.matches("[a-zA-Z]*");
     }
 }

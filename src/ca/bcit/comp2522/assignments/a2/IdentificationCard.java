@@ -27,43 +27,71 @@ public class IdentificationCard extends Card {
      * @param newIssueAndExpiryDate a IssueAndExpiryDate
      * @param newName a Name
      */
-    public IdentificationCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate, Name newName) {
+    public IdentificationCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription, String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate, Name newName) {
         super(organizationName, cardName, cardLogo, cardDescription);
-        this.identificationNumber = newIDNumber;
+        if(newIDNumber==null) {
+            throw new IllegalArgumentException("A Card's Identification Number cannot be null.");
+        }
+        if (!isAlphaNumeric(newIDNumber)) {
+            throw new IllegalArgumentException("Card Identification Number has illegal characters.");
+        } else {
+            this.identificationNumber = newIDNumber;
+        }
         this.issueAndExpiryDate = newIssueAndExpiryDate;
-        this.ownerName = newName;
-
+        if (newName == null) {
+            throw new IllegalArgumentException("Card Owner Name is Null");
+        } else {
+            this.ownerName = newName;
+        }
     }
 
     /**
+     * Set the identification number of a card.
      *
      * @param newIdentificationNumber a String
      */
     public void setIdentificationNumber(String newIdentificationNumber){
-        this.identificationNumber = newIdentificationNumber;
+        if(newIdentificationNumber==null) {
+            throw new IllegalArgumentException("A Card's Identification Number cannot be null.");
+        }
+        if (!isAlphaNumeric(newIdentificationNumber)) {
+            throw new IllegalArgumentException("Card Identification Number has illegal characters.");
+        } else {
+            this.identificationNumber = newIdentificationNumber;
+        }
     }
 
     /**
+     * Set the new effective dates a card can be used.
      *
      * @param newDates a IssueAndExpiryDate
      */
     public void setIssueAndExpiryDate(IssueAndExpiryDate newDates){
-        this.issueAndExpiryDate = newDates;
+        if (newDates == null) {
+            throw new IllegalArgumentException("Your value is not valid for Issue and Expiry Date");
+        } else {
+            this.issueAndExpiryDate = newDates;
+        }
     }
 
     /**
+     * Set the owner name of the card.
      *
      * @param ownerName a Name
      */
     public void setOwnerName(Name ownerName) {
-        this.ownerName = ownerName;
+        if (ownerName == null) {
+            throw new IllegalArgumentException("Your value for ownerName is invalid.");
+        } else {
+            this.ownerName = ownerName;
+        }
     }
 
     /**
      *
      * @return a String
      */
-    public Object getIdentificationNumber() {
+    public String getIdentificationNumber() {
         return identificationNumber;
     }
 
@@ -76,11 +104,22 @@ public class IdentificationCard extends Card {
     }
 
     /**
+     * Returns owner name as a Name object.
      *
-     * @return a Name
+     * @return a ownerName as a Name
      */
     public Name getOwnerName() {
         return ownerName;
+    }
+
+    /**
+     * Returns a boolean after verifying a Regex pattern.
+     *
+     * @param idString as a boolean
+     * @return
+     */
+    public boolean isAlphaNumeric(String idString) {
+            return idString.matches("[a-zA-Z0-9_\\-]*");
     }
 
     @Override
