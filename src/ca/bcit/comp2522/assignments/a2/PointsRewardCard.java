@@ -7,7 +7,7 @@ package ca.bcit.comp2522.assignments.a2;
  * @author Aiman Ismail
  * @version 2019
  */
-public class PointsRewardCard extends Card implements PaymentMethod {
+public class PointsRewardCard extends IdentificationCard implements PaymentMethod {
 
     private int points;
     private Name ownerName;
@@ -18,21 +18,20 @@ public class PointsRewardCard extends Card implements PaymentMethod {
      * @param cardName         a String
      * @param cardLogo         a Boolean
      * @param cardDescription  a String
-     * @param ownerName a Name
+     * @param newIDNumber a String
+     * @param newIssueAndExpiryDate a IssueAndExpiryDate
+     * @param newName a Name
      * @param points an int
      */
-    public PointsRewardCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                            Name ownerName, int points) {
-        super(organizationName, cardName, cardLogo, cardDescription);
+    public PointsRewardCard(String organizationName, String cardName, Boolean cardLogo,
+                            String cardDescription, String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate,
+                            Name newName, int points) {
+        super(organizationName, cardName, cardLogo, cardDescription, newIDNumber, newIssueAndExpiryDate, newName);
 
-        if (ownerName == null) {
-            throw new IllegalArgumentException("Must provide a valid name");
-        }
         if (points < 0) {
             throw new IllegalArgumentException("Points must be a non-negative integer");
         }
         this.points = points;
-        this.ownerName = ownerName;
     }
 
     /**
@@ -42,15 +41,6 @@ public class PointsRewardCard extends Card implements PaymentMethod {
      */
     public int getPoints() {
         return points;
-    }
-
-    /**
-     * Returns owner name.
-     *
-     * @return ownerName
-     */
-    public Name getOwnerName() {
-        return ownerName;
     }
 
     /**
