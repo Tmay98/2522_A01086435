@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aiman Ismail
  * @version 2019
  */
-public class PointsRewardCard extends IdentificationCard implements PaymentMethod {
+public class PointsReward extends Identification implements PaymentMethod {
 
     private int points;
     private Name ownerName;
@@ -25,9 +25,9 @@ public class PointsRewardCard extends IdentificationCard implements PaymentMetho
      * @param newName a Name
      * @param points an int
      */
-    public PointsRewardCard(String organizationName, String cardName, Boolean cardLogo,
-                            String cardDescription, String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate,
-                            Name newName, int points) {
+    public PointsReward(String organizationName, String cardName, Boolean cardLogo,
+                        String cardDescription, String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate,
+                        Name newName, int points) {
         super(organizationName, cardName, cardLogo, cardDescription, newIDNumber, newIssueAndExpiryDate, newName);
 
         if (points < 0) {
@@ -84,7 +84,7 @@ public class PointsRewardCard extends IdentificationCard implements PaymentMetho
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        PointsRewardCard that = (PointsRewardCard) o;
+        PointsReward that = (PointsReward) o;
         return points == that.points &&
                 Objects.equals(ownerName, that.ownerName);
     }

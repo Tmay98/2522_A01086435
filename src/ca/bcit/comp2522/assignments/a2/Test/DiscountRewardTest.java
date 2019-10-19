@@ -1,6 +1,6 @@
 package ca.bcit.comp2522.assignments.a2.Test;
 
-import ca.bcit.comp2522.assignments.a2.DiscountRewardCard;
+import ca.bcit.comp2522.assignments.a2.DiscountReward;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -8,16 +8,16 @@ import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
-public class DiscountRewardCardTest {
+public class DiscountRewardTest {
 
-    private DiscountRewardCard defaultDiscountRewardCard;
+    private DiscountReward defaultDiscountRewardCard;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
-        defaultDiscountRewardCard = new DiscountRewardCard("eorgeio",
+        defaultDiscountRewardCard = new DiscountReward("eorgeio",
                 "eerger",
                 true,
                 "description",

@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aiman
  * @version 2019
  */
-public class DiscountRewardCard extends Card implements PaymentMethod {
+public class DiscountReward extends Card implements PaymentMethod {
 
     private int discountAmount;
 
@@ -22,8 +22,8 @@ public class DiscountRewardCard extends Card implements PaymentMethod {
      * @param cardDescription  a String
      * @param discountAmount an int
      */
-    public DiscountRewardCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                              int discountAmount) {
+    public DiscountReward(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                          int discountAmount) {
         super(organizationName, cardName, cardLogo, cardDescription);
 
         if (discountAmount <= 0) {
@@ -74,7 +74,7 @@ public class DiscountRewardCard extends Card implements PaymentMethod {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DiscountRewardCard that = (DiscountRewardCard) o;
+        DiscountReward that = (DiscountReward) o;
         return discountAmount == that.discountAmount;
     }
 

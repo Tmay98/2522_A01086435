@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aiman
  * @version 2019
  */
-public class StampRewardCard extends Card implements PaymentMethod {
+public class StampReward extends Card implements PaymentMethod {
 
     private int maxStamps;
     private int currentStamps;
@@ -26,8 +26,8 @@ public class StampRewardCard extends Card implements PaymentMethod {
      * @param currentStamps    an int
      * @param reward           a String
      */
-    public StampRewardCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                           int maxStamps, int currentStamps, String reward) {
+    public StampReward(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                       int maxStamps, int currentStamps, String reward) {
         super(organizationName, cardName, cardLogo, cardDescription);
 
         if (maxStamps <= 0) {
@@ -128,7 +128,7 @@ public class StampRewardCard extends Card implements PaymentMethod {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StampRewardCard that = (StampRewardCard) o;
+        StampReward that = (StampReward) o;
         return maxStamps == that.maxStamps &&
                 currentStamps == that.currentStamps &&
                 Objects.equals(reward, that.reward);

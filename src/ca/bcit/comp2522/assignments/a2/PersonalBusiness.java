@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aiman Ismail
  * @version 2019
  */
-public class PersonalBusinessCard extends BusinessCard {
+public class PersonalBusiness extends BusinessCard {
 
     private ContactInformation personalContactInformation;
 
@@ -24,9 +24,9 @@ public class PersonalBusinessCard extends BusinessCard {
      * @param personalContactInformation a ContactInformation object
      * @param address a String
      */
-    public PersonalBusinessCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                                ContactInformation contactInformation, ContactInformation personalContactInformation,
-                                String address) {
+    public PersonalBusiness(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                            ContactInformation contactInformation, ContactInformation personalContactInformation,
+                            String address) {
         super(organizationName, cardName, cardLogo, cardDescription, contactInformation, address);
 
         if (personalContactInformation == null) {
@@ -36,13 +36,23 @@ public class PersonalBusinessCard extends BusinessCard {
         }
     }
 
+
     /**
-     * Returns the personal contact information.
+     * Returns the personal contact information of the business employee.
      *
-     * @return PersonalContactInformation
+     * @return personalContactInformation as a ContactInformation
      */
-    public ContactInformation getOwnerContactInformation() {
+    public ContactInformation getPersonalContactInformation() {
         return personalContactInformation;
+    }
+
+    /**
+     * Set the personal contact information of an employee with a Contact Information object.
+     *
+     * @param newContactInformation a ContactInformation
+     */
+    public void setPersonalContactInformation(ContactInformation newContactInformation) {
+        this.personalContactInformation = newContactInformation;
     }
 
     @Override
@@ -56,7 +66,7 @@ public class PersonalBusinessCard extends BusinessCard {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonalBusinessCard that = (PersonalBusinessCard) o;
+        PersonalBusiness that = (PersonalBusiness) o;
         return Objects.equals(personalContactInformation, that.personalContactInformation);
     }
 

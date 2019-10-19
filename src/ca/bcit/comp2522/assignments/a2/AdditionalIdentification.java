@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aiman Ismail
  * @version 2019
  */
-public class AdditionalIdentification extends IdentificationCard {
+public class AdditionalIdentification extends Identification {
 
     private String secondIDNumber;
     /**

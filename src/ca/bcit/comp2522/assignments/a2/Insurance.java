@@ -9,13 +9,13 @@ import java.util.Objects;
  * @author Aiman Ismail
  * @version 2019
  */
-public class InsuranceCard extends AdditionalIdentification {
+public class Insurance extends AdditionalIdentification {
 
     private String planNumber;
 
-    public InsuranceCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                         String newIDNumber, String newSecondIDNumber,
-                         IssueAndExpiryDate newIssueAndExpiryDate, Name newName, String planNumber) {
+    public Insurance(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                     String newIDNumber, String newSecondIDNumber,
+                     IssueAndExpiryDate newIssueAndExpiryDate, Name newName, String planNumber) {
         super(organizationName, cardName, cardLogo, cardDescription, newIDNumber,
                 newSecondIDNumber, newIssueAndExpiryDate, newName);
 
@@ -66,7 +66,7 @@ public class InsuranceCard extends AdditionalIdentification {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        InsuranceCard that = (InsuranceCard) o;
+        Insurance that = (Insurance) o;
         return Objects.equals(planNumber, that.planNumber);
     }
 

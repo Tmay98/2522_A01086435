@@ -101,7 +101,7 @@ public class CardOrganizer {
     }
     public void createDiscountRewardCard() {
 
-        DiscountRewardCard mrRedCafe = new DiscountRewardCard(
+        DiscountReward mrRedCafe = new DiscountReward(
                 "Mr Red Cafe",
                 "Quintessence of Vietnamese Cuisine",
                 true,
@@ -109,7 +109,7 @@ public class CardOrganizer {
                 10);
         cardList.add(mrRedCafe);
 
-        DiscountRewardCard dispensaryDiscountCard = new DiscountRewardCard(
+        DiscountReward dispensaryDiscountCard = new DiscountReward(
                 "The Dispensary",
                 "Sorry For the Inconvenience",
                 true,
@@ -119,7 +119,7 @@ public class CardOrganizer {
     }
     public void createIdentificationCards() {
 
-        IdentificationCard studentCardUniversityOfBritishColumbia = new IdentificationCard("BCIT",
+        Identification studentCardUniversityOfBritishColumbia = new Identification("BCIT",
                 "Student",
                 true,
                 "Student card for a BCIT student.",
@@ -128,7 +128,7 @@ public class CardOrganizer {
                 new Name("Christopher", "G", "Thompson"));
         cardList.add(studentCardUniversityOfBritishColumbia);
 
-        IdentificationCard vancouverPublicLibraryCard = new IdentificationCard(
+        Identification vancouverPublicLibraryCard = new Identification(
                 "Vancouver Public Library",
                 "VPL",
                 true,
@@ -138,7 +138,7 @@ public class CardOrganizer {
                 new Name("Christopher", "G", "Thompson"));
         cardList.add(vancouverPublicLibraryCard);
 
-        IdentificationCard alumniCard = new IdentificationCard(
+        Identification alumniCard = new Identification(
                 "UBC",
                 "alumni UBC A-Card",
                 true,
@@ -148,7 +148,7 @@ public class CardOrganizer {
                 new Name("Christopher", "G", "Thompson"));
         cardList.add(alumniCard);
 
-        IdentificationCard vancouverArtGalleryCard = new IdentificationCard(
+        Identification vancouverArtGalleryCard = new Identification(
                 "Vancouver Art Gallery",
                 "Membership",
                 true,
@@ -158,7 +158,7 @@ public class CardOrganizer {
                 new Name("Christopher", "G", "Thompson"));
         cardList.add(vancouverArtGalleryCard);
 
-        IdentificationCard mecCard = new IdentificationCard("Mountain Equipment CO-OP",
+        Identification mecCard = new Identification("Mountain Equipment CO-OP",
                 "MEC Card",
                 true,
                 "A Identification Card for MEC",
@@ -167,7 +167,7 @@ public class CardOrganizer {
                 new Name("Christopher", "G", "Thompson"));
         cardList.add(mecCard);
 
-        IdentificationCard govermentSocialInsuranceNumberCard = new IdentificationCard(
+        Identification govermentSocialInsuranceNumberCard = new Identification(
                 "Employment and Immigration Canada",
                 "Social Insurance Number",
                 true,
@@ -177,7 +177,7 @@ public class CardOrganizer {
                 new Name("Christopher", "G", "Thompson"));
         cardList.add(govermentSocialInsuranceNumberCard);
 
-        IdentificationCard sunrouteClubCard = new IdentificationCard("Sunroute",
+        Identification sunrouteClubCard = new Identification("Sunroute",
                 "Club Card",
                 true,
                 "A Club Card for Sunroute",
@@ -188,7 +188,7 @@ public class CardOrganizer {
 
     }
     public void createInsuranceCard() {
-        InsuranceCard manulifeCard = new InsuranceCard(
+        Insurance manulifeCard = new Insurance(
                 "Manulife",
                 "Insurance Card",
                 true,
@@ -202,14 +202,14 @@ public class CardOrganizer {
     }
     public void createMembershipCard() {
 
-        MembershipCard debitCardBankOfPoland = new MembershipCard(
+        Membership debitCardBankOfPoland = new Membership(
                 "Phony Credit Cards",
                 "Bank of Poland Gold Card - The peasants card.",
                 true, "A phony, novelty bank card.",
                 "Standard");
         cardList.add(debitCardBankOfPoland);
 
-        MembershipCard independentFlixxCard = new MembershipCard(
+        Membership independentFlixxCard = new Membership(
                 "Independent Flixx Inc.",
                 "Membership Card",
                 true,
@@ -217,7 +217,7 @@ public class CardOrganizer {
                 "Standard");
         cardList.add(independentFlixxCard);
 
-        MembershipCard legoCard = new MembershipCard(
+        Membership legoCard = new Membership(
                 "Lego",
                 "VIP Program",
                 true,
@@ -225,14 +225,14 @@ public class CardOrganizer {
                 "Standard");
         cardList.add(legoCard);
 
-        MembershipCard fairmontClubCard = new MembershipCard("Fairmont",
+        Membership fairmontClubCard = new Membership("Fairmont",
                 "Fairmont President's Club",
                 true,
                 "A membership card for Fairmont",
                 "Standard");
         cardList.add(fairmontClubCard);
 
-        MembershipCard blackBondBooksCard = new MembershipCard(
+        Membership blackBondBooksCard = new Membership(
                 "Black Bond Books",
                 "Readers Club Card",
                 true,
@@ -240,7 +240,7 @@ public class CardOrganizer {
                 "Standard");
         cardList.add(blackBondBooksCard);
 
-        MembershipCard hmartDiscountCard = new MembershipCard(
+        Membership hmartDiscountCard = new Membership(
                 "H Mart",
                 "Savings Card",
                 true,
@@ -250,7 +250,7 @@ public class CardOrganizer {
     }
     public void createPersonalBusinessCard() {
 
-        PersonalBusinessCard flowersByMichaelPark = new PersonalBusinessCard(
+        PersonalBusiness flowersByMichaelPark = new PersonalBusiness(
                 "Flowers By Michael",
                 "Michael Park",
                 true,
@@ -264,7 +264,7 @@ public class CardOrganizer {
     }
     public void createPointsRewardCard() {
 
-        PointsRewardCard airMilesCard = new PointsRewardCard(
+        PointsReward airMilesCard = new PointsReward(
                 "Air Miles",
                 "Air Miles Travel Card",
                 true,
@@ -275,7 +275,7 @@ public class CardOrganizer {
                 1337);
         cardList.add(airMilesCard);
 
-        PointsRewardCard plumRewardsCard = new PointsRewardCard(
+        PointsReward plumRewardsCard = new PointsReward(
                 "Plum",
                 "Plum Rewards, Enrich Your Life",
                 true,
@@ -284,7 +284,7 @@ public class CardOrganizer {
                 new Name("Christopher", "G", "Thompson"), 1337);
         cardList.add(plumRewardsCard);
 
-        PointsRewardCard airMilesCardTravelAndMore = new PointsRewardCard(
+        PointsReward airMilesCardTravelAndMore = new PointsReward(
                 "Air Miles",
                 "Travel and More, Air Miles",
                 true,
@@ -295,7 +295,7 @@ public class CardOrganizer {
                 1337);
         cardList.add(airMilesCardTravelAndMore);
 
-        PointsRewardCard jalMileageBank = new PointsRewardCard(
+        PointsReward jalMileageBank = new PointsReward(
                 "JAL",
                 "Mileage Bank Card",
                 true,
@@ -307,7 +307,7 @@ public class CardOrganizer {
         cardList.add(jalMileageBank);
 
 
-        PointsRewardCard sceneMovieCard = new PointsRewardCard(
+        PointsReward sceneMovieCard = new PointsReward(
                 "Cineplex",
                 "Scene",
                 true,
@@ -319,7 +319,7 @@ public class CardOrganizer {
         cardList.add(sceneMovieCard);
     }
     public void createStampRewardCard() {
-        StampRewardCard wholeFoodsCard = new StampRewardCard("Whole Foods",
+        StampReward wholeFoodsCard = new StampReward("Whole Foods",
                 "Buy 10 rotisserie chickens get one FREE!",
                 true,
                 "Stamp card that allows redemption, upon completion, for a chicken",
@@ -349,7 +349,7 @@ public class CardOrganizer {
     }
     public void createTransitCard() {
 
-        TransitCard helloKittyTransitCard = new TransitCard(
+        Transit helloKittyTransitCard = new Transit(
                 "Suica",
                 "ICOCA",
                 true,
@@ -359,7 +359,7 @@ public class CardOrganizer {
                 new IssueAndExpiryDate("00/00","00/00"));
         cardList.add(helloKittyTransitCard);
 
-        TransitCard londonOysterTransitCard = new TransitCard(
+        Transit londonOysterTransitCard = new Transit(
                 "Transport for London",
                 "Oyster",
                 true,
@@ -369,7 +369,7 @@ public class CardOrganizer {
                 new IssueAndExpiryDate("00/00","00/00"));
         cardList.add(londonOysterTransitCard);
 
-        TransitCard japanEndlessDiscoveryPrimaryTransitCard = new TransitCard(
+        Transit japanEndlessDiscoveryPrimaryTransitCard = new Transit(
                 "Suica",
                 "Japan Endless Discovery",
                 true,
@@ -379,7 +379,7 @@ public class CardOrganizer {
                 new IssueAndExpiryDate("00/00","00/00"));
         cardList.add(japanEndlessDiscoveryPrimaryTransitCard);
 
-        TransitCard japanEndlessDiscoverySecondaryTransitCard = new TransitCard(
+        Transit japanEndlessDiscoverySecondaryTransitCard = new Transit(
                 "Suica",
                 "Japan Endless Discovery",
                 true,

@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author Tommy
  * @version 2019
  */
-public class TransitCard extends Card implements PaymentMethod {
+public class Transit extends Card implements PaymentMethod {
 
     private static final int VALID_JAPAN_TRANSIT_CARD_NUMBER_LENGTH = 17;
     private static final int VALID_LONDON_TRANSIT_CARD_NUMBER_LENGTH = 12;
@@ -29,8 +29,8 @@ public class TransitCard extends Card implements PaymentMethod {
      * @param issueAndExpiryDate an IssueAndExpiryDate
      * @throws IllegalArgumentException an Exception
      * */
-    public TransitCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                       double accountBalance, String transitCardNumber, IssueAndExpiryDate issueAndExpiryDate)
+    public Transit(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                   double accountBalance, String transitCardNumber, IssueAndExpiryDate issueAndExpiryDate)
             throws IllegalArgumentException {
         super(organizationName, cardName, cardLogo, cardDescription);
 
@@ -131,7 +131,7 @@ public class TransitCard extends Card implements PaymentMethod {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TransitCard that = (TransitCard) o;
+        Transit that = (Transit) o;
         return Double.compare(that.accountBalance, accountBalance) == 0 &&
                 Objects.equals(transitCardNumber, that.transitCardNumber) &&
                 Objects.equals(issueAndExpiryDate, that.issueAndExpiryDate);

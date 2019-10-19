@@ -1,6 +1,6 @@
 package ca.bcit.comp2522.assignments.a2.Test;
 
-import ca.bcit.comp2522.assignments.a2.MembershipCard;
+import ca.bcit.comp2522.assignments.a2.Membership;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -8,40 +8,40 @@ import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
-public class MembershipCardTest {
+public class MembershipTest {
 
-    private MembershipCard defaultMembershipCard;
+    private Membership defaultMembership;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
-        defaultMembershipCard = new MembershipCard("name", "cardname", true,
+        defaultMembership = new Membership("name", "cardname", true,
                 "description", "Vip");
     }
 
     @Test
     public void testGetMembershipLevel() {
-        assertEquals("Vip", defaultMembershipCard.getMembershipLevel());
+        assertEquals("Vip", defaultMembership.getMembershipLevel());
     }
 
     @Test
     public void testSetMembershipLevel() {
-        defaultMembershipCard.setMembershipLevel("level");
+        defaultMembership.setMembershipLevel("level");
     }
 
     @Test
     public void testIncorrectMembershipLevelThrowsException() {
         thrown.expect(IllegalArgumentException.class);
-        MembershipCard test = new MembershipCard("name", "cardname", true,
+        Membership test = new Membership("name", "cardname", true,
                 "description", "  ");
     }
 
     @Test
     public void testNullMembershipLevelThrowsException() {
         thrown.expect(IllegalArgumentException.class);
-        MembershipCard test = new MembershipCard("name", "cardname", true,
+        Membership test = new Membership("name", "cardname", true,
                 "description", null);
     }
 }

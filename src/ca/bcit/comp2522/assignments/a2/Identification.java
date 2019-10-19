@@ -10,7 +10,7 @@ import java.util.Objects;
  * @author Aiman Ismail
  * @version 2019
  */
-public class IdentificationCard extends Card {
+public class Identification extends Card {
 
     private String identificationNumber;
     private IssueAndExpiryDate issueAndExpiryDate;
@@ -27,7 +27,7 @@ public class IdentificationCard extends Card {
      * @param newIssueAndExpiryDate a IssueAndExpiryDate
      * @param newName a Name
      */
-    public IdentificationCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription, String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate, Name newName) {
+    public Identification(String organizationName, String cardName, Boolean cardLogo, String cardDescription, String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate, Name newName) {
         super(organizationName, cardName, cardLogo, cardDescription);
         if (newIDNumber == null) {
             throw new IllegalArgumentException("A Card's Identification Number cannot be null.");
@@ -132,7 +132,7 @@ public class IdentificationCard extends Card {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        IdentificationCard that = (IdentificationCard) o;
+        Identification that = (Identification) o;
         return identificationNumber.equals(that.identificationNumber) &&
                 issueAndExpiryDate.equals(that.issueAndExpiryDate) &&
                 ownerName.equals(that.ownerName);

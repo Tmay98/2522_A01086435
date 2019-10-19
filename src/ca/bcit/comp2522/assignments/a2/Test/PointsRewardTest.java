@@ -2,7 +2,7 @@ package ca.bcit.comp2522.assignments.a2.Test;
 
 import ca.bcit.comp2522.assignments.a2.IssueAndExpiryDate;
 import ca.bcit.comp2522.assignments.a2.Name;
-import ca.bcit.comp2522.assignments.a2.PointsRewardCard;
+import ca.bcit.comp2522.assignments.a2.PointsReward;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,16 +10,16 @@ import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
-public class PointsRewardCardTest {
+public class PointsRewardTest {
 
-    private PointsRewardCard defaultPointsAndRewardCard;
+    private PointsReward defaultPointsAndRewardCard;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
-        defaultPointsAndRewardCard = new PointsRewardCard("name",
+        defaultPointsAndRewardCard = new PointsReward("name",
                 "cardname",
                 true,
                 "description",
@@ -51,7 +51,7 @@ public class PointsRewardCardTest {
     @Test
     public void testInvalidPointsThrowsException() {
         thrown.expect(IllegalArgumentException.class);
-        PointsRewardCard test = new PointsRewardCard("name",
+        PointsReward test = new PointsReward("name",
                 "cardname",
                 true,
                 "description",

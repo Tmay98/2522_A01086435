@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aiman Ismail
  * @version 2019
  */
-public class MembershipCard extends Card {
+public class Membership extends Card {
 
     private String membershipLevel;
 
@@ -22,8 +22,8 @@ public class MembershipCard extends Card {
      * @param cardDescription a String
      * @param membershipLevel a String
      */
-    public MembershipCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                          String membershipLevel) {
+    public Membership(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                      String membershipLevel) {
         super(organizationName, cardName, cardLogo, cardDescription);
 
         if (membershipLevel == null  || membershipLevel.trim().length() == 0) {
@@ -64,7 +64,7 @@ public class MembershipCard extends Card {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MembershipCard that = (MembershipCard) o;
+        Membership that = (Membership) o;
         return Objects.equals(membershipLevel, that.membershipLevel);
     }
 

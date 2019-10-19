@@ -1,24 +1,22 @@
 package ca.bcit.comp2522.assignments.a2.Test;
 
 import ca.bcit.comp2522.assignments.a2.ContactInformation;
-import ca.bcit.comp2522.assignments.a2.PersonalBusinessCard;
+import ca.bcit.comp2522.assignments.a2.PersonalBusiness;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.junit.Assert.*;
+public class PersonalBusinessTest {
 
-public class PersonalBusinessCardTest {
-
-    private PersonalBusinessCard defaultPersonalBusinessCard;
+    private PersonalBusiness defaultPersonalBusiness;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
-        defaultPersonalBusinessCard = new PersonalBusinessCard("name",
+        defaultPersonalBusiness = new PersonalBusiness("name",
                 "cardname",
                 true,
                 "description",
@@ -31,7 +29,7 @@ public class PersonalBusinessCardTest {
     @Test
     public void testInvalidContactInfoThrowsException() {
         thrown.expect(IllegalArgumentException.class);
-        PersonalBusinessCard test = new PersonalBusinessCard("name",
+        PersonalBusiness test = new PersonalBusiness("name",
                 "cardname",
                 true,
                 "description",

@@ -1,6 +1,6 @@
 package ca.bcit.comp2522.assignments.a2.Test;
 
-import ca.bcit.comp2522.assignments.a2.IdentificationCard;
+import ca.bcit.comp2522.assignments.a2.Identification;
 import ca.bcit.comp2522.assignments.a2.IssueAndExpiryDate;
 import ca.bcit.comp2522.assignments.a2.Name;
 import org.junit.Before;
@@ -10,16 +10,16 @@ import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
-public class IdentificationCardTest {
+public class IdentificationTest {
 
-    private IdentificationCard defaultIdentificationCard;
+    private Identification defaultIdentificationCard;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
-        defaultIdentificationCard = new IdentificationCard("orgname", "cardname", true,
+        defaultIdentificationCard = new Identification("orgname", "cardname", true,
                 "description", "123123",
                 new IssueAndExpiryDate("02/02/02", "04/04/04"),
                 new Name("t", "m", "l"));
@@ -39,7 +39,7 @@ public class IdentificationCardTest {
     @Test
     public void testInvalidIdentificationNumberThrowsException() {
         thrown.expect(IllegalArgumentException.class);
-        IdentificationCard test = new IdentificationCard("orgname", "cardname", true,
+        Identification test = new Identification("orgname", "cardname", true,
                 "description", " ",
                 new IssueAndExpiryDate("02/02/02", "04/04/04"),
                 new Name("t", "m", "l"));
@@ -48,7 +48,7 @@ public class IdentificationCardTest {
     @Test
     public void testNullIdentificationNumberThrowsException() {
         thrown.expect(IllegalArgumentException.class);
-        IdentificationCard test = new IdentificationCard("orgname", "cardname", true,
+        Identification test = new Identification("orgname", "cardname", true,
                 "description", null,
                 new IssueAndExpiryDate("02/02/02", "04/04/04"),
                 new Name("t", "m", "l"));
@@ -57,7 +57,7 @@ public class IdentificationCardTest {
     @Test
     public void testNullNameThrowsException() {
         thrown.expect(IllegalArgumentException.class);
-        IdentificationCard test = new IdentificationCard("orgname", "cardname", true,
+        Identification test = new Identification("orgname", "cardname", true,
                 "description", "123123",
                 new IssueAndExpiryDate("02/02/02", "04/04/04"),
                 null);
@@ -66,7 +66,7 @@ public class IdentificationCardTest {
     @Test
     public void testNullIssueAndExpiryDateThrowsException() {
         thrown.expect(IllegalArgumentException.class);
-        IdentificationCard test = new IdentificationCard("orgname", "cardname", true,
+        Identification test = new Identification("orgname", "cardname", true,
                 "description", "123123",
                 null,
                 new Name("t", "m", "l"));
