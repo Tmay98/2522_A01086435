@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 
 public class CardOrganizer {
@@ -12,28 +13,11 @@ public class CardOrganizer {
     }
 
     public void createAdditionalIdentificationCards() {
-        //ubc Graduate card
-        IdentificationCard graduateUniversityOfBritishColumbiaCard = new AdditionalIdentification(
-                "UBC",
-                "Graduate",
-                true,
-                "This card is issued to a Graduate from UBC",
-                "12345678",
-                new IssueAndExpiryDate("02/05/14", "08/31/17"),
-                new Name("Christopher", "G","Thompson") );
-        //gov't sin card
-        IdentificationCard govermentSocialInsuranceNumberCard = new AdditionalIdentification(
-                "Employment and Immigration Canada",
-                "Social Insurance Number",
-                true,
-                "This card contains a unique social insurance number that is issued to a Canadian citizen or permanent resident.",
-                "589 588 141",
-                new IssueAndExpiryDate("00/00/00", "00/00/00"),
-                new Name("Christopher", "G", "Thompson"));
+
 
     }
     public void createBusinessCards() {
-        //danbo restaurant todo stamps reward
+        //Danbo Restaurant Card
         BusinessCard danboRestaurantCard = new BusinessCard(
                 "Danbo",
                 "Danbo",
@@ -56,7 +40,7 @@ public class CardOrganizer {
                 "A business card for Lucky Camera Shop",
                 new ContactInformation("0333547898", "N/A", "10:00 A.M. to 8:00 P.M."),
                 "160-0022 3-3-9 Shinjuku Shinjuku-ku Tokyo Japan");
-        // legendary boot company
+        // Legendary Boot company
         BusinessCard legendaryBootCompany = new BusinessCard(
                 "Legendary Boot Company",
                 "Legendary Boot Company",
@@ -65,11 +49,31 @@ public class CardOrganizer {
                 new ContactInformation("9154125541", "bob@legendarybootco.com", "N/A"),
                 "El Paso, Texas");
 
+        // BCIT Mary Wilson
+        BusinessCard maryWilsonBusinessCard = new BusinessCard(
+                "BCIT",
+                "Business Card",
+                true,
+                "Business Card for Mary Wilson",
+                new ContactInformation("6044328929", "mwilson5@bcit.ca", "N/A"),
+                "3700 Willingdon Avenue, Burnaby B.C., Canada, V5G 3H2");
+
     }
     public void createDiscountRewardCard() {
-
-        // dispenary discount
-        DiscountRewardCard dispenaryDiscountCard = new DiscountRewardCard("The Dispensary", "Sorry For the Inconvenience", true, "A apology card with a discount", 10);
+        // MR RED CAFE
+        DiscountRewardCard mrRedCafe = new DiscountRewardCard(
+                "Mr Red Cafe",
+                "Quintessence of Vietnamese Cuisine",
+                true,
+                "A Discount Card for Mr Red Cafe",
+                10);
+        // Dispensary discount
+        DiscountRewardCard dispensaryDiscountCard = new DiscountRewardCard(
+                "The Dispensary",
+                "Sorry For the Inconvenience",
+                true,
+                "A apology card with a discount",
+                10);
     }
     public void createIdentificationCards() {
         // student card
@@ -107,25 +111,81 @@ public class CardOrganizer {
                 "79683",
                 new IssueAndExpiryDate("00/00/00", "06/18"),
                 new Name("Christopher", "G", "Thompson"));
+
+        // MEC
+        IdentificationCard mecCard = new IdentificationCard("Mountain Equipment CO-OP",
+                "MEC Card",
+                true,
+                "A Identification Card for MEC",
+                "16800004",
+                new IssueAndExpiryDate("00/00/00", "00/00/00"),
+                new Name("Christopher", "G", "Thompson"));
+        //ubc Graduate card
+        IdentificationCard graduateUniversityOfBritishColumbiaCard = new IdentificationCard(
+                "UBC",
+                "Graduate",
+                true,
+                "This card is issued to a Graduate from UBC",
+                "12345678",
+                new IssueAndExpiryDate("02/05/14", "08/31/17"),
+                new Name("Christopher", "G","Thompson") );
+        //gov't sin card
+        IdentificationCard govermentSocialInsuranceNumberCard = new IdentificationCard(
+                "Employment and Immigration Canada",
+                "Social Insurance Number",
+                true,
+                "This card contains a unique social insurance number that is issued to a Canadian citizen or permanent resident.",
+                "589 588 141",
+                new IssueAndExpiryDate("00/00/00", "00/00/00"),
+                new Name("Christopher", "G", "Thompson"));
     }
     public void createInsuranceCard() {
         //manulife card
     }
     public void createMembershipCard() {
         //bank of poland
+        MembershipCard debitCardBankOfPoland = new MembershipCard(
+                "Phony Credit Cards",
+                "Bank of Poland Gold Card - The peasants card.",
+                true, "A phony, novelty bank card.",
+                "Standard");
         //independent flixx
+        MembershipCard independentFlixxCard = new MembershipCard(
+                "Independent Flixx Inc.",
+                "Membership Card",
+                true,
+                "A membership to a Independent Flixx Inc.",
+                "Standard");
         // lego vip card
-        // mec todo include id#
-        // MR RED CAFE
-        // Fairmont President's Club
-        // Black Bond Books membership card
+        MembershipCard legoCard = new MembershipCard(
+                "Lego",
+                "VIP Program",
+                true,
+                "A VIP Card for Lego",
+                "Standard");
 
-        // hmart todo serial / id number
+
+        // Fairmont President's Club
+        MembershipCard fairmontClubCard = new MembershipCard("Fairmont",
+                "Fairmont President's Club",
+                true,
+                "A membership card for Fairmont",
+                "Standard");
+
+        // Black Bond Books membership card
+        MembershipCard blackBondBooksCard = new MembershipCard(
+                "Black Bond Books",
+                "Readers Club Card",
+                true,
+                "Membership card to Black Bond Books.",
+                "Standard");
+
+        // H Mart
         MembershipCard hmartDiscountCard = new MembershipCard("H Mart", "Savings Card", true, "A membership card for H Mart", "Standard");
 
     }
     public void createPersonalBusinessCard() {
-        // bcit mary wilson
+
         // FLower By Michael Park
         PersonalBusinessCard flowersByMichaelPark = new PersonalBusinessCard(
                 "Flowers By Michael",
@@ -138,8 +198,24 @@ public class CardOrganizer {
 
     }
     public void createPointsRewardCard() {
-        //air miles todo includes id#
+        //Air Miles Card
+        PointsRewardCard airMilesCard = new PointsRewardCard(
+                "Air Miles",
+                "Air Miles Travel Card",
+                true,
+                "A Points Card for Air Miles",
+                "82224440163",
+                new IssueAndExpiryDate("00/00/00","06/94"),
+                new Name("Christopher", "G", "Thompson"),
+                1337);
         // plum rewards todo serial
+        PointsRewardCard plumRewardsCard = new PointsRewardCard(
+                "Plum",
+                "Plum Rewards, Enrich Your Life",
+                true,
+                "A Rewards Plum Card",
+                "500028606142", new IssueAndExpiryDate("00/00/00","00/00/00"),
+                new Name("Christopher", "G", "Thompson"), 1337);
         // sunroute club point card edy todo serial
         // aeroplan todo serial
         // JAL mileage bank //todo serial id number
