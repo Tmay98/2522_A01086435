@@ -55,7 +55,7 @@ public class CardOrganizer {
     }
     public void createBusinessCards() {
 
-        BusinessCard danboRestaurantCard = new BusinessCard(
+        Business danboRestaurantCard = new Business(
                 "Danbo",
                 "Danbo",
                 true,
@@ -64,7 +64,7 @@ public class CardOrganizer {
                 "1333 Robson St., Vancouver, BC V6E 1C6");
         cardList.add(danboRestaurantCard);
 
-        BusinessCard kanzandoArt = new BusinessCard("Kanzando",
+        Business kanzandoArt = new Business("Kanzando",
                 "OldArtKanzando",
                 true,
                 "A business card for art.",
@@ -72,7 +72,7 @@ public class CardOrganizer {
                 "Japanese Kanji address");
         cardList.add(kanzandoArt);
 
-        BusinessCard luckyCameraShop = new BusinessCard("Lucky",
+        Business luckyCameraShop = new Business("Lucky",
                 "LuckyCameraShop",
                 true,
                 "A business card for Lucky Camera Shop",
@@ -80,7 +80,7 @@ public class CardOrganizer {
                 "160-0022 3-3-9 Shinjuku Shinjuku-ku Tokyo Japan");
         cardList.add(luckyCameraShop);
 
-        BusinessCard legendaryBootCompany = new BusinessCard(
+        Business legendaryBootCompany = new Business(
                 "Legendary Boot Company",
                 "Legendary Boot Company",
                 true,
@@ -89,7 +89,7 @@ public class CardOrganizer {
                 "El Paso, Texas");
         cardList.add(legendaryBootCompany);
 
-        BusinessCard maryWilsonBusinessCard = new BusinessCard(
+        Business maryWilsonBusinessCard = new Business(
                 "BCIT",
                 "Business Card",
                 true,

@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aiman
  * @version 2019
  */
-public class BusinessCard extends Card {
+public class Business extends Card {
 
     private ContactInformation contactInformation;
     private String address;
@@ -24,8 +24,8 @@ public class BusinessCard extends Card {
      * @param contactInformation ContactInformation
      * @param address a String
      */
-    public BusinessCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
-                        ContactInformation contactInformation, String address) {
+    public Business(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
+                    ContactInformation contactInformation, String address) {
         super(organizationName, cardName, cardLogo, cardDescription);
         if (contactInformation == null) {
             throw new IllegalArgumentException("Invalid contact info");
@@ -81,7 +81,7 @@ public class BusinessCard extends Card {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        BusinessCard that = (BusinessCard) o;
+        Business that = (Business) o;
         return Objects.equals(contactInformation, that.contactInformation) &&
                 Objects.equals(address, that.address);
     }

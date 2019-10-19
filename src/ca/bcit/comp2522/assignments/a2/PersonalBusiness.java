@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aiman Ismail
  * @version 2019
  */
-public class PersonalBusiness extends BusinessCard {
+public class PersonalBusiness extends Business {
 
     private ContactInformation personalContactInformation;
 

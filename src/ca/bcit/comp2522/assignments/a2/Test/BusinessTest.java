@@ -1,6 +1,6 @@
 package ca.bcit.comp2522.assignments.a2.Test;
 
-import ca.bcit.comp2522.assignments.a2.BusinessCard;
+import ca.bcit.comp2522.assignments.a2.Business;
 import ca.bcit.comp2522.assignments.a2.ContactInformation;
 import org.junit.Before;
 import org.junit.Rule;
@@ -9,16 +9,16 @@ import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
-public class BusinessCardTest {
+public class BusinessTest {
 
-    private BusinessCard defaultBusinessCard;
+    private Business defaultBusinessCard;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
-        defaultBusinessCard = new BusinessCard("eorgeio",
+        defaultBusinessCard = new Business("eorgeio",
                 "eerger",
                 true,
                 "description",
