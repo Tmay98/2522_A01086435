@@ -13,9 +13,9 @@ public class StampRewardCard extends Card implements PaymentMethod {
      * @param cardName         a String
      * @param cardLogo         a Boolean
      * @param cardDescription  a String
-     * @param maxStamps an int
-     * @param currentStamps an int
-     * @param reward a String
+     * @param maxStamps        an int
+     * @param currentStamps    an int
+     * @param reward           a String
      */
     public StampRewardCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription,
                            int maxStamps, int currentStamps, String reward) {
