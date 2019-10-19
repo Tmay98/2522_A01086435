@@ -29,7 +29,7 @@ public class IdentificationCard extends Card {
      */
     public IdentificationCard(String organizationName, String cardName, Boolean cardLogo, String cardDescription, String newIDNumber, IssueAndExpiryDate newIssueAndExpiryDate, Name newName) {
         super(organizationName, cardName, cardLogo, cardDescription);
-        if(newIDNumber==null) {
+        if (newIDNumber == null) {
             throw new IllegalArgumentException("A Card's Identification Number cannot be null.");
         }
         if (!isAlphaNumeric(newIDNumber)) {
@@ -37,7 +37,11 @@ public class IdentificationCard extends Card {
         } else {
             this.identificationNumber = newIDNumber;
         }
-        this.issueAndExpiryDate = newIssueAndExpiryDate;
+        if (newIssueAndExpiryDate == null) {
+            throw new IllegalArgumentException(("Issue and expiry date is null"));
+        } else {
+            this.issueAndExpiryDate = newIssueAndExpiryDate;
+        }
         if (newName == null) {
             throw new IllegalArgumentException("Card Owner Name is Null");
         } else {
