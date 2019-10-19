@@ -56,8 +56,8 @@ public class InsuranceCard extends AdditionalIdentification {
 
     @Override
     public String toString() {
-        return "InsuranceCard{" +
-                "planNumber='" + planNumber + '\'' +
+        return "InsuranceCard{" + "\n" +
+                "planNumber=" + planNumber + "\n" +
                 '}' + super.toString();
     }
 

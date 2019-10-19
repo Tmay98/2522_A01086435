@@ -138,10 +138,10 @@ public class Name {
 
     @Override
     public String toString() {
-        return "Name{" +
-                "firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
+        return "{" +
+                "firstName=" + firstName +
+                ", middleName=" + middleName +
+                ", lastName=" + lastName +
                 '}';
     }
 }

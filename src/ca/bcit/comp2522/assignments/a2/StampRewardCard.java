@@ -110,10 +110,10 @@ public class StampRewardCard extends Card implements PaymentMethod {
 
     @Override
     public String toString() {
-        return "StampRewardCard{" +
-                "maxStamps=" + maxStamps +
-                ", currentStamps=" + currentStamps +
-                ", reward='" + reward + '\'' +
+        return "StampRewardCard{" + "\n" +
+                "maxStamps=" + maxStamps + "\n" +
+                "currentStamps=" + currentStamps + "\n" +
+                "reward=" + reward  + "\n" +
                 '}' + super.toString();
     }
 

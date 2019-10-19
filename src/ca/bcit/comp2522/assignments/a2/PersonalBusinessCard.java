@@ -47,8 +47,8 @@ public class PersonalBusinessCard extends BusinessCard {
 
     @Override
     public String toString() {
-        return "PersonalBusinessCard{" +
-                "personalContactInformation=" + personalContactInformation +
+        return "PersonalBusinessCard{" + "\n" +
+                "personalContactInformation=" + personalContactInformation + "\n" +
                 '}' + super.toString();
     }
 

@@ -58,8 +58,8 @@ public class DiscountRewardCard extends Card implements PaymentMethod {
 
     @Override
     public String toString() {
-        return "DiscountRewardCard{" +
-                "discountAmount=" + discountAmount +
+        return "DiscountRewardCard{" + "\n" +
+                "discountAmount=" + discountAmount + "\n" +
                 '}' + super.toString();
     }
 

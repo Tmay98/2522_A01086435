@@ -105,11 +105,11 @@ public class ContactInformation {
 
     @Override
     public String toString() {
-        return "ContactInformation{" +
-                "phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", operatingHours='" + operatingHours + '\'' +
-                '}' + super.toString();
+        return "{" +
+                "phoneNumber=" + phoneNumber +
+                ", email=" + email +
+                ", operatingHours=" + operatingHours +
+                '}';
     }
 
     @Override

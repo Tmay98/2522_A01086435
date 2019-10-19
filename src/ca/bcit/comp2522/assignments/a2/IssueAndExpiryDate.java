@@ -78,9 +78,9 @@ public class IssueAndExpiryDate {
 
     @Override
     public String toString() {
-        return "IssueAndExpiryDate{" +
-                "issueDate='" + issueDate + '\'' +
-                ", expiryDate='" + expiryDate + '\'' +
+        return "{" +
+                "issueDate=" + issueDate +
+                ", expiryDate=" + expiryDate +
                 '}';
     }
 

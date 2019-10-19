@@ -93,11 +93,11 @@ public abstract class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "organizationName='" + organizationName + '\'' +
-                ", cardName='" + cardName + '\'' +
-                ", cardDescription='" + cardDescription + '\'' +
-                ", cardLogo=" + cardLogo +
+        return "Card{" + "\n" +
+                "organizationName=" + organizationName + "\n" +
+                "cardName=" + cardName + "\n" +
+                "cardDescription=" + cardDescription + "\n" +
+                "cardLogo=" + cardLogo + "\n" +
                 '}';
     }
 

@@ -69,9 +69,9 @@ public class BusinessCard extends Card {
 
     @Override
     public String toString() {
-        return "BusinessCard{" +
-                "contactInformation=" + contactInformation +
-                ", address='" + address + '\'' +
+        return "BusinessCard{" + "\n" +
+                "contactInformation=" + contactInformation + "\n" +
+                "address=" + address + "\n" +
                 '}' + super.toString();
     }
 

@@ -120,10 +120,10 @@ public class TransitCard extends Card implements PaymentMethod {
 
     @Override
     public String toString() {
-        return "TransitCard{" +
-                "accountBalance=" + accountBalance +
-                ", transitCardNumber='" + transitCardNumber + '\'' +
-                ", issueAndExpiryDate=" + issueAndExpiryDate +
+        return "TransitCard{" + "\n" +
+                "accountBalance=" + accountBalance + "\n" +
+                "transitCardNumber=" + transitCardNumber  + "\n" +
+                "issueAndExpiryDate=" + issueAndExpiryDate + "\n" +
                 '}' + super.toString();
     }
 

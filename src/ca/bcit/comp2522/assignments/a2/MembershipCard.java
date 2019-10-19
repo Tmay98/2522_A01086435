@@ -55,8 +55,8 @@ public class MembershipCard extends Card {
 
     @Override
     public String toString() {
-        return "MembershipCard{" +
-                "membershipLevel='" + membershipLevel + '\'' +
+        return "MembershipCard{" + "\n" +
+                "membershipLevel=" + membershipLevel + "\n" +
                 '}' + super.toString();
     }
 

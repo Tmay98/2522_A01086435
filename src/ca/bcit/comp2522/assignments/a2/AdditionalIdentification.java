@@ -65,8 +65,8 @@ public class AdditionalIdentification extends IdentificationCard {
 
     @Override
     public String toString() {
-        return "AdditionalIdentification{" +
-                "secondIDNumber='" + secondIDNumber + '\'' +
+        return "AdditionalIdentification{" + "\n" +
+                "secondIDNumber=" + secondIDNumber + "\n" +
                 '}' + super.toString();
     }
 

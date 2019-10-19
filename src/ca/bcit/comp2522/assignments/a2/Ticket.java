@@ -43,8 +43,8 @@ public class Ticket extends Card {
 
     @Override
     public String toString() {
-        return "Ticket{" +
-                "ticketPrice=" + ticketPrice +
+        return "Ticket{" + "\n" +
+                "ticketPrice=" + ticketPrice + "\n" +
                 '}' + super.toString();
     }
 }

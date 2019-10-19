@@ -145,10 +145,10 @@ public class IdentificationCard extends Card {
 
     @Override
     public String toString() {
-        return "IdentificationCard{" +
-                "identificationNumber='" + identificationNumber + '\'' +
-                ", issueAndExpiryDate=" + issueAndExpiryDate +
-                ", ownerName=" + ownerName +
-                '}';
+        return "IdentificationCard{" + "\n" +
+                "identificationNumber=" + identificationNumber + "\n" +
+                "issueAndExpiryDate=" + issueAndExpiryDate + "\n" +
+                "ownerName=" + ownerName + "\n" +
+                '}' + super.toString();
     }
 }

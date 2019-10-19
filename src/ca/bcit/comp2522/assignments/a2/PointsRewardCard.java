@@ -73,9 +73,9 @@ public class PointsRewardCard extends IdentificationCard implements PaymentMetho
 
     @Override
     public String toString() {
-        return "PointsRewardCard{" +
-                "points=" + points +
-                ", ownerName=" + ownerName +
+        return "PointsRewardCard{" + "\n" +
+                "points=" + points + "\n" +
+                "ownerName=" + ownerName + "\n" +
                 '}' + super.toString();
     }
 
