@@ -11,7 +11,7 @@ import java.util.Objects;
 public class TransitCard extends Card implements PaymentMethod {
 
     private static final int VALID_JAPAN_TRANSIT_CARD_NUMBER_LENGTH = 17;
-    private static final int VALID_LONDON_TRANSIT_CARD_NUMBER_LENGTH = 8;
+    private static final int VALID_LONDON_TRANSIT_CARD_NUMBER_LENGTH = 12;
 
     private double accountBalance;
     private String transitCardNumber;

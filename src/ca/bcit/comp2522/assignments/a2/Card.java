@@ -25,12 +25,12 @@ public abstract class Card {
      * @param cardDescription a String
      */
     public Card(String organizationName, String cardName, Boolean cardLogo, String cardDescription) {
-        if (organizationName == null  || organizationName.trim().length() == 0 || !isAlpha(organizationName)) {
+        if (organizationName == null  || organizationName.trim().length() == 0) {
             throw new IllegalArgumentException("Invalid organization name");
         } else {
             this.organizationName = formatName(organizationName);
         }
-        if (cardName == null  || cardName.trim().length() == 0 || !isAlpha(cardName)) {
+        if (cardName == null  || cardName.trim().length() == 0) {
             throw new IllegalArgumentException("Invalid card name");
         } else {
             this.cardName = formatName(cardName);
