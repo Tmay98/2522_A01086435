@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents a Card.
  *
@@ -87,5 +89,31 @@ public abstract class Card {
 
     public boolean isAlpha(String name) {
         return name.matches("[a-zA-Z]*");
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "organizationName='" + organizationName + '\'' +
+                ", cardName='" + cardName + '\'' +
+                ", cardDescription='" + cardDescription + '\'' +
+                ", cardLogo=" + cardLogo +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return Objects.equals(organizationName, card.organizationName) &&
+                Objects.equals(cardName, card.cardName) &&
+                Objects.equals(cardDescription, card.cardDescription) &&
+                Objects.equals(cardLogo, card.cardLogo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(organizationName, cardName, cardDescription, cardLogo);
     }
 }

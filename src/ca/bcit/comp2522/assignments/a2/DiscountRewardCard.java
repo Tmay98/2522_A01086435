@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 public class DiscountRewardCard extends Card implements PaymentMethod {
 
     private int discountAmount;
@@ -52,5 +54,25 @@ public class DiscountRewardCard extends Card implements PaymentMethod {
     @Override
     public void payment(int amount) {
        System.out.println("You got a" + amount + "% discount");
+    }
+
+    @Override
+    public String toString() {
+        return "DiscountRewardCard{" +
+                "discountAmount=" + discountAmount +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DiscountRewardCard that = (DiscountRewardCard) o;
+        return discountAmount == that.discountAmount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(discountAmount);
     }
 }

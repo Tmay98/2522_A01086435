@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents a PointsRewardCard.
  *
@@ -67,5 +69,28 @@ public class PointsRewardCard extends IdentificationCard implements PaymentMetho
         } else {
             System.out.println("You dont have enough points!");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "PointsRewardCard{" +
+                "points=" + points +
+                ", ownerName=" + ownerName +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        PointsRewardCard that = (PointsRewardCard) o;
+        return points == that.points &&
+                Objects.equals(ownerName, that.ownerName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), points, ownerName);
     }
 }

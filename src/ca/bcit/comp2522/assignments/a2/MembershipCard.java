@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents a MembershipCard.
  *
@@ -49,5 +51,25 @@ public class MembershipCard extends Card {
         if (!(membershipLevel == null  || membershipLevel.trim().length() == 0)) {
             this.membershipLevel = formatName(membershipLevel);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "MembershipCard{" +
+                "membershipLevel='" + membershipLevel + '\'' +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MembershipCard that = (MembershipCard) o;
+        return Objects.equals(membershipLevel, that.membershipLevel);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(membershipLevel);
     }
 }

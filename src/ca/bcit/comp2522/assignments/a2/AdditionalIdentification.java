@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents a two-layer identification card called AdditionalIdentification.
  *
@@ -59,5 +61,26 @@ public class AdditionalIdentification extends IdentificationCard {
      */
     public String getIdentificationNumber() {
         return secondIDNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "AdditionalIdentification{" +
+                "secondIDNumber='" + secondIDNumber + '\'' +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        AdditionalIdentification that = (AdditionalIdentification) o;
+        return Objects.equals(secondIDNumber, that.secondIDNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), secondIDNumber);
     }
 }

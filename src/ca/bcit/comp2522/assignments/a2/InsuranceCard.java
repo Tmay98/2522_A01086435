@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents an Insurance Card.
  *
@@ -50,6 +52,27 @@ public class InsuranceCard extends AdditionalIdentification {
      */
     public String getPlanNumber() {
         return planNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "InsuranceCard{" +
+                "planNumber='" + planNumber + '\'' +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        InsuranceCard that = (InsuranceCard) o;
+        return Objects.equals(planNumber, that.planNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), planNumber);
     }
 }
 

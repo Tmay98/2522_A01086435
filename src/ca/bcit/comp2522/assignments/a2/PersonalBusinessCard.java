@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents a Personal Business Card.
  *
@@ -41,5 +43,25 @@ public class PersonalBusinessCard extends BusinessCard {
      */
     public ContactInformation getOwnerContactInformation() {
         return personalContactInformation;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonalBusinessCard{" +
+                "personalContactInformation=" + personalContactInformation +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonalBusinessCard that = (PersonalBusinessCard) o;
+        return Objects.equals(personalContactInformation, that.personalContactInformation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personalContactInformation);
     }
 }

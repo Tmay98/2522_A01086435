@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents issue and expiry dates of a card.
  *
@@ -72,5 +74,27 @@ public class IssueAndExpiryDate {
         if (expiryDate.matches("\\d{2}/\\d{2}/\\d{2}|\\d{2}/\\d{2}")) {
             this.expiryDate = expiryDate;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "IssueAndExpiryDate{" +
+                "issueDate='" + issueDate + '\'' +
+                ", expiryDate='" + expiryDate + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IssueAndExpiryDate that = (IssueAndExpiryDate) o;
+        return Objects.equals(issueDate, that.issueDate) &&
+                Objects.equals(expiryDate, that.expiryDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(issueDate, expiryDate);
     }
 }

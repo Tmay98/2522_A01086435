@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents a Transit Card.
  *
@@ -114,5 +116,29 @@ public class TransitCard extends Card implements PaymentMethod {
         } else {
             System.out.println("You dont have" + amount + "in your account");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "TransitCard{" +
+                "accountBalance=" + accountBalance +
+                ", transitCardNumber='" + transitCardNumber + '\'' +
+                ", issueAndExpiryDate=" + issueAndExpiryDate +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransitCard that = (TransitCard) o;
+        return Double.compare(that.accountBalance, accountBalance) == 0 &&
+                Objects.equals(transitCardNumber, that.transitCardNumber) &&
+                Objects.equals(issueAndExpiryDate, that.issueAndExpiryDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountBalance, transitCardNumber, issueAndExpiryDate);
     }
 }

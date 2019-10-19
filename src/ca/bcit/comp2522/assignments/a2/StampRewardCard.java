@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 public class StampRewardCard extends Card implements PaymentMethod {
 
     private int maxStamps;
@@ -104,5 +106,29 @@ public class StampRewardCard extends Card implements PaymentMethod {
             System.out.println("You got " + amount + "Stamps. You received" + getReward());
             setCurrentStamps(0);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "StampRewardCard{" +
+                "maxStamps=" + maxStamps +
+                ", currentStamps=" + currentStamps +
+                ", reward='" + reward + '\'' +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StampRewardCard that = (StampRewardCard) o;
+        return maxStamps == that.maxStamps &&
+                currentStamps == that.currentStamps &&
+                Objects.equals(reward, that.reward);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maxStamps, currentStamps, reward);
     }
 }

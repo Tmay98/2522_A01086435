@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.Objects;
+
 /**
  * Represents a Business Card.
  *
@@ -63,5 +65,28 @@ public class BusinessCard extends Card {
         if (!(address == null || address.trim().length() == 0)) {
             this.address = address;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "BusinessCard{" +
+                "contactInformation=" + contactInformation +
+                ", address='" + address + '\'' +
+                '}' + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        BusinessCard that = (BusinessCard) o;
+        return Objects.equals(contactInformation, that.contactInformation) &&
+                Objects.equals(address, that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), contactInformation, address);
     }
 }

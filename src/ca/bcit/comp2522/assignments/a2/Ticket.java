@@ -40,4 +40,11 @@ public class Ticket extends Card {
             this.ticketPrice = ticketPrice;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketPrice=" + ticketPrice +
+                '}' + super.toString();
+    }
 }
