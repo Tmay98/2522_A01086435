@@ -39,7 +39,9 @@ public class DiscountRewardCard extends Card implements PaymentMethod {
      * @param discountAmount an int
      */
     public void setDiscountAmount(int discountAmount) {
-        this.discountAmount = discountAmount;
+        if (discountAmount > 0) {
+            this.discountAmount = discountAmount;
+        }
     }
 
     /**
