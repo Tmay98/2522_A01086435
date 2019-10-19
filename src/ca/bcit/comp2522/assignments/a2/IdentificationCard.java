@@ -88,6 +88,7 @@ public class IdentificationCard extends Card {
     }
 
     /**
+     * Return identificationNumber as a String.
      *
      * @return a String
      */
@@ -96,6 +97,7 @@ public class IdentificationCard extends Card {
     }
 
     /**
+     * Return issueAndExpiryDate as a IssueAndExpiryDate.
      *
      * @return a IssueAndExpiryDate
      */
@@ -116,7 +118,7 @@ public class IdentificationCard extends Card {
      * Returns a boolean after verifying a Regex pattern.
      *
      * @param idString as a boolean
-     * @return
+     * @return boolean
      */
     public boolean isAlphaNumeric(String idString) {
             return idString.matches("[a-zA-Z0-9_\\-]*");
