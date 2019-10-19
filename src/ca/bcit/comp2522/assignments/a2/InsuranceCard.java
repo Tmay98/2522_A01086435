@@ -26,5 +26,30 @@ public class InsuranceCard extends AdditionalIdentification {
             this.planNumber = planNumber;
         }
     }
+
+    /**
+     * Set the identification number of a card.
+     *
+     * @param newPlanNumber a String
+     */
+    public void setPlanNumber(String newPlanNumber) {
+        if (newPlanNumber == null) {
+            throw new IllegalArgumentException("A Card's Plan Number cannot be null.");
+        }
+        if (!isAlphaNumeric(newPlanNumber)) {
+            throw new IllegalArgumentException("Card Plan Number has illegal characters.");
+        } else {
+            this.planNumber = newPlanNumber;
+        }
+    }
+
+    /**
+     * Return secondIDNumber as a String.
+     *
+     * @return a String
+     */
+    public String getPlanNumber() {
+        return planNumber;
+    }
 }
 
