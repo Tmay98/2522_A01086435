@@ -21,7 +21,15 @@ public class CardOrganizer {
         cardOrganizer.createStampRewardCard();
         cardOrganizer.createTicket();
         cardOrganizer.createTransitCard();
+        cardOrganizer.printCards();
         System.out.println(cardOrganizer.cardList.size());
+    }
+
+    public void printCards() {
+        for (Card card : this.cardList) {
+            System.out.println(card.toString());
+            System.out.println();
+        }
     }
 
     public void createAdditionalIdentificationCards() {
