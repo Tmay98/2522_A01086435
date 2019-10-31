@@ -106,6 +106,7 @@ public class SelfPortrait extends Application {
         leftLeg.setStrokeWidth(8);
 
         Rectangle leftFoot = new Rectangle(101, 235, 20, 6);
+        leftFoot.setFill(Color.GRAY);
 
         return new Group(leftLeg, leftFoot);
     }
@@ -115,11 +116,26 @@ public class SelfPortrait extends Application {
         rightLeg.setStrokeWidth(8);
 
         Rectangle rightFoot = new Rectangle(101, 235, 20, 6);
+        rightFoot.setFill(Color.GRAY);
 
         Group fullRightLeg = new Group(rightLeg, rightFoot);
         fullRightLeg.setTranslateX(-50);
         fullRightLeg.setScaleX(-1);
         return fullRightLeg;
+    }
+
+    private Group createBody() {
+        Rectangle body = new Rectangle(57.5, 100, 45, 85);
+        body.setFill(Color.rgb(83, 72, 11));
+
+        Rectangle letterTop = new Rectangle(10, 120, 20, 5);
+        letterTop.getTransforms().add(new Shear(0.5, 0));
+        letterTop.setFill(Color.BLACK);
+
+        Rectangle letterBottom = new Rectangle(78, 125, 5, 20);
+        letterBottom.setFill(Color.BLACK);
+
+        return new Group(body, letterTop, letterBottom);
     }
 
     /**
@@ -139,8 +155,7 @@ public class SelfPortrait extends Application {
         Group hair = createHair();
 
         // Creating body
-        Rectangle body = new Rectangle(57.5, 100, 45, 85);
-        body.setFill(Color.rgb(83, 72, 11));
+        Group body = createBody();
 
         // Creating left arm
         Group leftArm = createLeftArm();
