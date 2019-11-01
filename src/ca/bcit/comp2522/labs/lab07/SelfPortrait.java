@@ -1,8 +1,11 @@
 package ca.bcit.comp2522.labs.lab07;
 
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
@@ -139,7 +142,7 @@ public class SelfPortrait extends Application {
     }
 
     /**
-     * Creates and displays a self portrait of myself.
+     * Creates and displays a self portrait of myself with a background and painting.
      *
      * @param primaryStage contains the Scene
      */
@@ -152,7 +155,7 @@ public class SelfPortrait extends Application {
         // creating painting
         Rectangle frame = new Rectangle(90, 100, 100, 60);
         frame.setFill(Color.TRANSPARENT);
-        frame.setStrokeWidth(2);
+        frame.setStrokeWidth(4);
         frame.setStroke(Color.BURLYWOOD);
 
         Line wireLeft = new Line(90, 100, 140, 50);
@@ -163,6 +166,15 @@ public class SelfPortrait extends Application {
         nail.setFill(Color.GRAY);
 
         Group painting = new Group(frame, wireLeft, wireRight, nail);
+
+        // Creating image
+        Image image = new Image("image1.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(96);
+        imageView.setFitHeight(56);
+        imageView.setX(92);
+        imageView.setY(102);
+        Group imageGroup = new Group(imageView);
 
         // Creating face
         Group face = createFace();
@@ -195,7 +207,7 @@ public class SelfPortrait extends Application {
         tommy.setTranslateY(50);
 
         // creating root
-        Group root = new Group(ground, painting, tommy);
+        Group root = new Group(ground, painting, imageGroup, tommy);
         Scene scene = new Scene(root, 500, 350, Color.LIGHTBLUE);
 
         primaryStage.setTitle("Tommy");
@@ -204,10 +216,7 @@ public class SelfPortrait extends Application {
     }
 
     /**
-     * Launches the JavaFX application.  We still need a main method in our
-     * JavaFX applications.  The main method must do one thing.  Pass
-     * the command line arguments (args) to the launch method inherited from
-     * the Application class.
+     * Launches the JavaFX application.
      *
      * @param args command line arguments
      */
