@@ -1,7 +1,6 @@
 package ca.bcit.comp2522.labs.lab07;
 
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -14,8 +13,19 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Shear;
 import javafx.stage.Stage;
 
+/**
+ *Creates a Self portrait of myself with a background and painting.
+ *
+ * @author Tommy May
+ * @version 2019
+ */
 public class SelfPortrait extends Application {
 
+    /**
+     * Creates and returns a group for my face.
+     *
+     * @return a Group
+     */
     private Group createFace() {
         Ellipse head = new Ellipse(80, 70, 30, 36);
         head.setFill(Color.TAN);
@@ -30,6 +40,11 @@ public class SelfPortrait extends Application {
         return new Group(head, rightEye, leftEye, mouth);
     }
 
+    /**
+     * Creates and returns a group for my glasses.
+     *
+     * @return a Group
+     */
     private Group createGlasses() {
         Line left = new Line(54, 52, 62, 58);
         Rectangle leftRim = new Rectangle(62, 53, 16, 14);
@@ -53,6 +68,11 @@ public class SelfPortrait extends Application {
         return new Group(leftHalf, rightHalf, center);
     }
 
+    /**
+     * Creates and returns a group for my hair.
+     *
+     * @return a Group
+     */
     private Group createHair() {
         Rectangle hairpiece = new Rectangle(50, 20, 20, 10);
         hairpiece.getTransforms().add(new Shear(0.6, 0.2));
@@ -72,6 +92,11 @@ public class SelfPortrait extends Application {
         return new Group(hairpiece, hairpiece2, hairpiece3);
     }
 
+    /**
+     * Creates and returns a group for my left arm.
+     *
+     * @return a Group
+     */
     private Group createLeftArm() {
         Line leftArm1 = new Line(100, 110, 115, 130);
         leftArm1.setStrokeWidth(8);
@@ -88,6 +113,11 @@ public class SelfPortrait extends Application {
         return new Group(leftArm1, leftArm2, leftHand);
     }
 
+    /**
+     * Creates and returns a group for my right arm.
+     *
+     * @return a Group
+     */
     private Group createRightArm() {
         Line rightArm1 = new Line(60, 110, 45, 130);
         rightArm1.setStrokeWidth(8);
@@ -104,6 +134,11 @@ public class SelfPortrait extends Application {
         return new Group(rightArm1, rightArm2, rightHand);
     }
 
+    /**
+     * Creates and returns a group for my left leg.
+     *
+     * @return a Group
+     */
     private Group createLeftLeg() {
         Line leftLeg = new Line(95, 185, 105, 235);
         leftLeg.setStrokeWidth(8);
@@ -114,6 +149,11 @@ public class SelfPortrait extends Application {
         return new Group(leftLeg, leftFoot);
     }
 
+    /**
+     * Creates and returns a group for my right leg.
+     *
+     * @return a Group
+     */
     private Group createRightLeg() {
         Line rightLeg = new Line(95, 185, 105, 235);
         rightLeg.setStrokeWidth(8);
@@ -127,6 +167,11 @@ public class SelfPortrait extends Application {
         return fullRightLeg;
     }
 
+    /**
+     * Creates and returns a group for my body.
+     *
+     * @return a Group
+     */
     private Group createBody() {
         Rectangle body = new Rectangle(57.5, 100, 45, 85);
         body.setFill(Color.rgb(83, 72, 11));
@@ -142,17 +187,26 @@ public class SelfPortrait extends Application {
     }
 
     /**
-     * Creates and displays a self portrait of myself with a background and painting.
+     * Creates and returns a group for an image.
      *
-     * @param primaryStage contains the Scene
+     * @return a Group
      */
-    public void start(Stage primaryStage) {
+    private Group createImage() {
+        Image image = new Image("image1.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(96);
+        imageView.setFitHeight(56);
+        imageView.setX(92);
+        imageView.setY(102);
+        return new Group(imageView);
+    }
 
-        // Creating background
-        Rectangle ground = new Rectangle(0, 250, 500, 100);
-        ground.setFill(Color.BURLYWOOD);
-
-        // creating painting
+    /**
+     * Creates and returns a group for the painting frame.
+     *
+     * @return a Group
+     */
+    private Group createPainting() {
         Rectangle frame = new Rectangle(90, 100, 100, 60);
         frame.setFill(Color.TRANSPARENT);
         frame.setStrokeWidth(4);
@@ -165,16 +219,24 @@ public class SelfPortrait extends Application {
         Circle nail = new Circle(140, 50, 5);
         nail.setFill(Color.GRAY);
 
-        Group painting = new Group(frame, wireLeft, wireRight, nail);
+        return new Group(frame, wireLeft, wireRight, nail);
+    }
+    /**
+     * Creates and displays a self portrait of myself with a background and painting.
+     *
+     * @param primaryStage contains the Scene
+     */
+    public void start(Stage primaryStage) {
+
+        // Creating background
+        Rectangle ground = new Rectangle(0, 250, 500, 100);
+        ground.setFill(Color.BURLYWOOD);
+
+        // creating painting
+        Group painting = createPainting();
 
         // Creating image
-        Image image = new Image("image1.png");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(96);
-        imageView.setFitHeight(56);
-        imageView.setX(92);
-        imageView.setY(102);
-        Group imageGroup = new Group(imageView);
+        Group imageGroup = createImage();
 
         // Creating face
         Group face = createFace();
