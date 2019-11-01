@@ -145,6 +145,25 @@ public class SelfPortrait extends Application {
      */
     public void start(Stage primaryStage) {
 
+        // Creating background
+        Rectangle ground = new Rectangle(0, 250, 500, 100);
+        ground.setFill(Color.BURLYWOOD);
+
+        // creating painting
+        Rectangle frame = new Rectangle(90, 100, 100, 60);
+        frame.setFill(Color.TRANSPARENT);
+        frame.setStrokeWidth(2);
+        frame.setStroke(Color.BURLYWOOD);
+
+        Line wireLeft = new Line(90, 100, 140, 50);
+
+        Line wireRight = new Line(190, 100, 140, 50);
+
+        Circle nail = new Circle(140, 50, 5);
+        nail.setFill(Color.GRAY);
+
+        Group painting = new Group(frame, wireLeft, wireRight, nail);
+
         // Creating face
         Group face = createFace();
 
@@ -176,7 +195,7 @@ public class SelfPortrait extends Application {
         tommy.setTranslateY(50);
 
         // creating root
-        Group root = new Group(tommy);
+        Group root = new Group(ground, painting, tommy);
         Scene scene = new Scene(root, 500, 350, Color.LIGHTBLUE);
 
         primaryStage.setTitle("Tommy");
