@@ -46,19 +46,9 @@ public class SelfPortrait extends Application {
      * @return a Group
      */
     private Group createGlasses() {
-        Line left = new Line(54, 52, 62, 58);
-        Rectangle leftRim = new Rectangle(62, 53, 16, 14);
-        leftRim.setFill(Color.TRANSPARENT);
-        leftRim.setStroke(Color.BLACK);
-        leftRim.setStrokeWidth(1);
-        Group leftHalf = new Group(left, leftRim);
+        Group leftHalf = createGlassesRim();
 
-        Line right = new Line(54, 52, 62, 58);
-        Rectangle rightRim = new Rectangle(62, 53, 16, 14);
-        rightRim.setFill(Color.TRANSPARENT);
-        rightRim.setStroke(Color.BLACK);
-        rightRim.setStrokeWidth(1);
-        Group rightHalf = new Group(right, rightRim);
+        Group rightHalf = createGlassesRim();
         rightHalf.setScaleX(-1);
         rightHalf.setTranslateX(27);
 
@@ -66,6 +56,20 @@ public class SelfPortrait extends Application {
         center.setStrokeWidth(2);
 
         return new Group(leftHalf, rightHalf, center);
+    }
+
+    /**
+     * Creates one rim for glasses.
+     *
+     * @return a Group
+     */
+    private Group createGlassesRim() {
+        Line line = new Line(54, 52, 62, 58);
+        Rectangle rim = new Rectangle(62, 53, 16, 14);
+        rim.setFill(Color.TRANSPARENT);
+        rim.setStroke(Color.BLACK);
+        rim.setStrokeWidth(1);
+        return new Group(line, rim);
     }
 
     /**
