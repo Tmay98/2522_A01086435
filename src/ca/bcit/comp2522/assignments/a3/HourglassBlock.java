@@ -13,6 +13,8 @@ public class HourglassBlock extends Block {
      */
     public static final int numberOfSections = 3;
 
-    private void createSections(){};
+    private void createSections(){
+        
+    };
     private void blockColour(String colourOne, String colourTwo, String colourThree){};
 }

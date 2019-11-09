@@ -13,6 +13,8 @@ public class PinwheelBlock extends Block {
      */
     public static final int numberOfSections = 2;
 
-    private void createSections(){};
+    private void createSections(){
+
+    };
     private void blockColour(String colourOne, String colourTwo){};
 }

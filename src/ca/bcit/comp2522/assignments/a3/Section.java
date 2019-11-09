@@ -9,8 +9,20 @@ import javafx.scene.Group;
  */
 
 public class Section {
-    private Group section;
     private String colour;
+
+    private Polygon triangle = new Polygon(
+            0, 0,
+            60, 60,
+            20, 40,
+    );
+
+    private Rectangle rectangle = new Rectangle(
+            0, 0,
+            40, 40,
+    );
+
+    
 
     private void setColour(String colour){};
 }
