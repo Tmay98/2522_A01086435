@@ -17,17 +17,17 @@ public class HourglassBlock extends Block {
     private void createSections() {
         // Group 1 //
         Polygon largeTriangle1 = createTriangle();
-        largeTriangle1.setTranslateX(halfBlockLength);
+        largeTriangle1.setTranslateX(HALF_BLOCK_LENGTH);
 
         Polygon largeTriangle2 = createTriangle();
-        largeTriangle2.setTranslateY(50);
-        largeTriangle2.setRotate(rotate180);
+        largeTriangle2.setTranslateY(HALF_BLOCK_LENGTH);
+        largeTriangle2.setRotate(STRAIGHT_ANGLE);
 
         // Group 2 //
         Polygon largeTriangle3 = createTriangle();
-        largeTriangle3.setTranslateX(halfBlockLength);
-        largeTriangle3.setTranslateY(halfBlockLength);
-        largeTriangle3.setRotate(rotate90);
+        largeTriangle3.setTranslateX(HALF_BLOCK_LENGTH);
+        largeTriangle3.setTranslateY(HALF_BLOCK_LENGTH);
+        largeTriangle3.setRotate(RIGHT_ANGLE);
 
 
 

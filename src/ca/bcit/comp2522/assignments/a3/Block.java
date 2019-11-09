@@ -14,27 +14,31 @@ public class Block {
     /**
      * Rotational value of half of a right angle.
      */
-    public static final int halfRightAngle = 45;
+    public static final int HALF_RIGHT_ANGLE = 45;
     /**
      * Rotational value of a right angle.
      */
-    public static final int rightAngle = 90;
+    public static final int RIGHT_ANGLE = 90;
     /**
      * Rotational value of a straight angle.
      */
-    public static final int straightAngle = 180;
+    public static final int STRAIGHT_ANGLE = 180;
+    /**
+     * Rotational value of a reflex angle.
+     */
+    public static final int REFLEX_ANGLE = 270;
     /**
      * A fourth of the total block length.
      */
-    public static final int oneFourthBlockLength = 25;
+    public static final int ONE_FOURTH_BLOCK = 25;
     /**
      * Half of the total block length.
      */
-    public static final int halfBlockLength = 50;
+    public static final int HALF_BLOCK_LENGTH = 50;
     /**
      * Length of a block.
      */
-    public static final int fullBlockLength = 100;
+    public static final int FULL_BLOCK_LENGTH = 100;
 
     private void createSections(){};
     private void blockColour(){};
@@ -47,9 +51,9 @@ public class Block {
      */
     public Polygon createTriangle() {
         return new Polygon(
-                50, 0,
-                0, 50,
-                100, 50
+                HALF_BLOCK_LENGTH, 0,
+                0, HALF_BLOCK_LENGTH,
+                FULL_BLOCK_LENGTH, HALF_BLOCK_LENGTH
         );
     }
     /**
@@ -60,7 +64,7 @@ public class Block {
     public Rectangle createSquare() {
         return new Rectangle(
                 0, 0,
-                50, 50
+                HALF_BLOCK_LENGTH, HALF_BLOCK_LENGTH
         );
     }
     /**
@@ -69,10 +73,10 @@ public class Block {
      * @return  parallelogram a Rectangle
      */
     public Rectangle createParallelogram() {
-        Rectangle parallelogram = new Rectangle(0, 0, 100, 50);
+        Rectangle parallelogram = new Rectangle(0, 0, FULL_BLOCK_LENGTH, HALF_BLOCK_LENGTH);
 
         Shear parallelogramPivot = new Shear();
-        parallelogramPivot.setPivotY(45);
+        parallelogramPivot.setPivotY(HALF_RIGHT_ANGLE);
         parallelogram.getTransforms().add(parallelogramPivot);
 
         return parallelogram;
