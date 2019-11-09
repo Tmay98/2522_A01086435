@@ -23,6 +23,19 @@ public class Block {
      * Rotational value of a 180 degree angle.
      */
     public static final int rotate180 = 180;
+    /**
+     * A fourth of the total block length.
+     */
+    public static final int oneFourthBlockLength = 25;
+    /**
+     * Half of the total block length.
+     */
+    public static final int halfBlockLength = 50;
+    /**
+     * Length of a block.
+     */
+    public static final int fullBlockLength = 100;
+
     private void createSections(){};
     private void blockColour(){};
 
