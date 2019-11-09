@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a3;
 
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -17,15 +18,55 @@ public class PinwheelBlock extends Block {
      * Number of geometrical sections sharing the same shape and colour.
      */
     public static final int numberOfSections = 2;
-    private ArrayList<Polygon> colourGroup1 = new ArrayList<>();
-    private ArrayList<Polygon> colourGroup2 = new ArrayList<>();
-    private Group block = new Group();
+    public static final int polygonsInSection = 4;
 
+    private ArrayList<Polygon> colourGroup1;
+    private ArrayList<Polygon> colourGroup2;
+    private Group block;
+
+    /**
+     * Instantiates an object of type PinwheelBlock.
+     */
+    public PinwheelBlock() {
+        colourGroup1 = new ArrayList<>();
+        colourGroup2 = new ArrayList<>();
+        block = new Group();
+        createSections();
+        createBlock();
+    }
+
+    /**
+     * Creates the sections needed for the pinwheel block.
+     */
     public void createSections() {
         //create group 1
-        Section section = new Section();
-        Polygon poly = section.createtriangle();
-        colourGroup1.add(poly);
+        for(int i = 0; i < polygonsInSection; i++) {
+            colourGroup1.add(createTriangle());
+        }
+
+        //create group 2
+        for (int i = 0; i < polygonsInSection; i++) {
+            colourGroup2.add(createTriangle());
+            colourGroup2.get(i).setScaleX(-1);
+            colourGroup2.get(i).setScaleY(-1);
+            colourGroup2.get(i).setFill(Color.RED);
+        }
+
+        setColourGroup(colourGroup1);
+        setColourGroup(colourGroup2);
+
+    }
+
+    private void setColourGroup(ArrayList<Polygon> colourGroup) {
+        colourGroup.get(1).setRotate(90);
+        colourGroup.get(1).setTranslateX(50);
+
+        colourGroup.get(2).setRotate(180);
+        colourGroup.get(2).setTranslateY(50);
+        colourGroup.get(2).setTranslateX(50);
+
+        colourGroup.get(3).setRotate(270);
+        colourGroup.get(3).setTranslateY(50);
     }
 
     public void createBlock() {
