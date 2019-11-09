@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.Group;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 
 /**
  * A geometrical section in a block.
@@ -11,15 +13,17 @@ import javafx.scene.Group;
 public class Section {
     private String colour;
 
-    private Polygon triangle = new Polygon(
-            0, 0,
-            60, 60,
-            20, 40,
-    );
+    public Polygon createtriangle() {
+        return new Polygon(
+                50, 0,
+                0, 50,
+                100, 50
+        );
+    }
 
     private Rectangle rectangle = new Rectangle(
             0, 0,
-            40, 40,
+            40, 40
     );
 
     
