@@ -13,21 +13,23 @@ public class HourglassBlock extends Block {
      * Number of geometrical sections sharing the same shape and colour.
      */
     public static final int numberOfSections = 3;
-    /**
-     * Number of large triangles in a Hourglass patterned block.
-     */
-    public static final int numberOfLargeTrianglesPerGroup = 2;
 
     private void createSections() {
-        int rotation = 0;
-        int translationX = 50;
-        int translationY = 0;
+        // Group 1 //
+        Polygon largeTriangle1 = createTriangle();
+        largeTriangle1.setTranslateX(halfBlockLength);
 
-        // Group 1 of large triangles
-        for (int i = 0; i < numberOfLargeTrianglesPerGroup; i ++) {
-            Polygon largeTriangle = createTriangle();
+        Polygon largeTriangle2 = createTriangle();
+        largeTriangle2.setTranslateY(50);
+        largeTriangle2.setRotate(rotate180);
 
-        }
+        // Group 2 //
+        Polygon largeTriangle3 = createTriangle();
+        largeTriangle3.setTranslateX(halfBlockLength);
+        largeTriangle3.setTranslateY(halfBlockLength);
+        largeTriangle3.setRotate(rotate90);
+
+
 
     };
     private void blockColour(String colourOne, String colourTwo, String colourThree){};

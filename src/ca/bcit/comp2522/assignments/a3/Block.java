@@ -12,17 +12,17 @@ import javafx.scene.transform.Shear;
 
 public class Block {
     /**
-     * Rotational value of a 45 degree angle.
+     * Rotational value of half of a right angle.
      */
-    public static final int rotate45 = 45;
+    public static final int halfRightAngle = 45;
     /**
-     * Rotational value of a 90 degree angle.
+     * Rotational value of a right angle.
      */
-    public static final int rotate90 = 90;
+    public static final int rightAngle = 90;
     /**
-     * Rotational value of a 180 degree angle.
+     * Rotational value of a straight angle.
      */
-    public static final int rotate180 = 180;
+    public static final int straightAngle = 180;
     /**
      * A fourth of the total block length.
      */
