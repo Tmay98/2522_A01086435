@@ -11,6 +11,18 @@ import javafx.scene.transform.Shear;
  */
 
 public class Block {
+    /**
+     * Rotational value of a 45 degree angle.
+     */
+    public static final int rotate45 = 45;
+    /**
+     * Rotational value of a 90 degree angle.
+     */
+    public static final int rotate90 = 90;
+    /**
+     * Rotational value of a 180 degree angle.
+     */
+    public static final int rotate180 = 180;
     private void createSections(){};
     private void blockColour(){};
 

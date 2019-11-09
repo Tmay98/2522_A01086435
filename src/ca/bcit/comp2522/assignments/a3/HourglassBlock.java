@@ -14,13 +14,19 @@ public class HourglassBlock extends Block {
      */
     public static final int numberOfSections = 3;
     /**
-     * Number of triangles in a Hourglass patterned block.
+     * Number of large triangles in a Hourglass patterned block.
      */
-    public static final int numberOfTriangles = 12;
+    public static final int numberOfLargeTrianglesPerGroup = 2;
 
-    private void createSections(){
-        for (int i = 0; i < numberOfTriangles; i ++){
-            ;
+    private void createSections() {
+        int rotation = 0;
+        int translationX = 50;
+        int translationY = 0;
+
+        // Group 1 of large triangles
+        for (int i = 0; i < numberOfLargeTrianglesPerGroup; i ++) {
+            Polygon largeTriangle = createTriangle();
+
         }
 
     };
