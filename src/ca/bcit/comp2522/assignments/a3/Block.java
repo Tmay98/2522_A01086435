@@ -47,9 +47,9 @@ public class Block {
      */
     public Polygon createTriangle() {
         return new Polygon(
-                50, 0,
+                0, 0,
                 0, 50,
-                100, 50
+                50, 50
         );
     }
     /**
