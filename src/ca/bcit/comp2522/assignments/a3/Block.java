@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a3;
-import java.util.ArrayList;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Shear;
 
 /**
  * A block of fabric in a quilt.
@@ -9,7 +11,6 @@ import java.util.ArrayList;
  */
 
 public class Block {
-    private ArrayList<Section> sections;
     private void createSections(){};
     private void blockColour(){};
 
@@ -40,14 +41,14 @@ public class Block {
     /**
      * Instantiates a parallelogram.
      *
-     * @return  paralleogram a Rectangle
+     * @return  parallelogram a Rectangle
      */
     public Rectangle createParallelogram() {
         Rectangle parallelogram = new Rectangle(0, 0, 100, 50);
 
-        Shear paralellogramPivot = new Shear();
-        paralellogramPivot.setPivotY(45);
-        parallelogram.getTransforms().add(paralellogramPivot);
+        Shear parallelogramPivot = new Shear();
+        parallelogramPivot.setPivotY(45);
+        parallelogram.getTransforms().add(parallelogramPivot);
 
         return parallelogram;
     }

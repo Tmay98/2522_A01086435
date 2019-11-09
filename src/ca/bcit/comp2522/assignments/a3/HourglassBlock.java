@@ -1,4 +1,5 @@
 package ca.bcit.comp2522.assignments.a3;
+import javafx.scene.shape.Polygon;
 
 /**
  * A quilt block with a hourglass shaped pattern.
@@ -19,10 +20,8 @@ public class HourglassBlock extends Block {
 
     private void createSections(){
         for (int i = 0; i < numberOfTriangles; i ++){
-            Polygon triangle =
+            ;
         }
-
-        colourGroup1.add(poly);
 
     };
     private void blockColour(String colourOne, String colourTwo, String colourThree){};
