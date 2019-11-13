@@ -1,4 +1,5 @@
 package ca.bcit.comp2522.assignments.a3;
+import javafx.scene.Group;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -55,37 +56,10 @@ public class Block {
      */
     public static final double QUARTER_RATIO = 0.25;
 
-    private void createSections() {};
-    private void blockColour() {};
-
-    /**
-     * Instantiates a given number of triangles in an ArrayList.
-     *
-     * @param numberOfTriangles an int
-     * @return instantiated triangles an ArrayList
-     */
-    protected ArrayList<Polygon> createTriangles(int numberOfTriangles) {
-        ArrayList<Polygon> triangles = new ArrayList<>();
-        for (int i = 0; i < numberOfTriangles; i++) {
-            Polygon triangle = createTriangle();
-            triangles.add(triangle);
-        }
-        return triangles;
-    }
-
-    /**
-     * Sets both of the X and Y scale by a given ratio.
-     *
-     * @param <T> a Shape
-     * @param shape a Shape
-     * @param ratio a Double
-     * @return shape a Shape
-     */
-    protected <T extends Shape> T setScaleXY(T shape, double ratio) {
-        shape.setScaleX(ratio);
-        shape.setScaleY(ratio);
-        return shape;
-    }
+    private void createSections() { };
+    private void blockColour() { };
+    private void createBlock() { };
+    private void translateSections() { };
 
     /**
      * Instantiates a 90 degree triangle.
@@ -123,5 +97,48 @@ public class Block {
         parallelogram.getTransforms().add(parallelogramPivot);
 
         return parallelogram;
+    }
+
+    /**
+     * Instantiates a given number of triangles in an ArrayList.
+     *
+     * @param numberOfTriangles an int
+     * @return an ArrayList of instantiated triangles an ArrayList
+     */
+    protected ArrayList<Polygon> createTriangles(int numberOfTriangles) {
+        ArrayList<Polygon> triangles = new ArrayList<>();
+        for (int i = 0; i < numberOfTriangles; i++) {
+            Polygon triangle = createTriangle();
+            triangles.add(triangle);
+        }
+        return triangles;
+    }
+
+    /**
+     * Sets both of the X and Y scale by a given ratio.
+     *
+     * @param <T> a Shape
+     * @param shape a Shape
+     * @param ratio a Double
+     * @return shape a Shape
+     */
+    protected <T extends Shape> T setScaleXY(T shape, double ratio) {
+        shape.setScaleX(ratio);
+        shape.setScaleY(ratio);
+        return shape;
+    }
+
+    /**
+     * Populates a Group with members of an ArrayList.
+     *
+     * @param group a Group
+     * @param list an ArrayList
+     * @param <T> a Shape
+     */
+    protected <T extends Shape> void populateGroup(Group group,
+                                                   ArrayList<T> list) {
+        for (T shape : list) {
+            group.getChildren().add(shape);
+        }
     }
 }

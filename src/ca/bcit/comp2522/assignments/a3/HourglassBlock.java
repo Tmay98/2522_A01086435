@@ -20,17 +20,22 @@ public class HourglassBlock extends Block {
      * Number of small triangles in a Hourglass block.
      */
     private static final int NUMBER_OF_SMALL_TRIANGLES = 8;
+    /**
+     * Number of small triangles in a colour section 2 in an Hourglass block.
+     */
+    private static final int NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO = 2;
 
-    private ArrayList<Polygon> colourGroup1;
-    private ArrayList<Polygon> colourGroup2;
-    private ArrayList<Polygon> colourGroup3;
+    private ArrayList<Polygon> colourGroup1 = new ArrayList<>();
+    private ArrayList<Polygon> colourGroup2 = new ArrayList<>();;
+    private ArrayList<Polygon> colourGroup3 = new ArrayList<>();;
 
     private Group block;
 
-
-    public void createSections() {
-        ArrayList<Polygon> largeTriangles = createTriangles(NUMBER_OF_LARGE_TRIANGLES);
-        ArrayList<Polygon> smallTriangles = createTriangles(NUMBER_OF_SMALL_TRIANGLES);
+    private void createSections() {
+        ArrayList<Polygon> largeTriangles = createTriangles(
+                NUMBER_OF_LARGE_TRIANGLES);
+        ArrayList<Polygon> smallTriangles = createTriangles(
+                NUMBER_OF_SMALL_TRIANGLES);
 
         // Rotating large triangles //
         int largeTriangleRotation = 0;
@@ -46,14 +51,33 @@ public class HourglassBlock extends Block {
             }
         }
 
-        for (Polygon polygon : colourGroup1) {
-            block.getChildren().add(polygon);
-        }
+        // Rotating small triangles //
+        int smallTriangleRotation = HALF_RIGHT_ANGLE;
+        for (Polygon smallTriangle : smallTriangles) {
+            smallTriangleRotation += RIGHT_ANGLE;
+            smallTriangle.setRotate(smallTriangleRotation);
 
-        for (Polygon polygon : colourGroup2) {
-            block.getChildren().add(polygon);
+            if (smallTriangles.indexOf(smallTriangle) % EVEN_NUMBER != 0) {
+                colourGroup1.add(smallTriangle);
+            } else if (smallTriangles.indexOf(smallTriangle)
+                    <= NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO) {
+                colourGroup2.add(smallTriangle);
+            } else {
+                colourGroup3.add(smallTriangle);
+            }
         }
     };
+
+    private void translateSections() {
+
+    }
+
+    public void createBlock() {
+        populateGroup(block, colourGroup1);
+        populateGroup(block, colourGroup2);
+        populateGroup(block, colourGroup3);
+    }
+
 
 
     private void blockColour(String colourOne, String colourTwo, String colourThree){};
