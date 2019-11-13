@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.transform.Shear;
 
 /**
@@ -30,7 +31,7 @@ public class Block {
     /**
      * A fourth of the total block length.
      */
-    public static final int ONE_FOURTH_BLOCK = 25;
+    public static final int QUARTER_BLOCK_LENGTH = 25;
     /**
      * Half of the total block length.
      */
@@ -39,9 +40,31 @@ public class Block {
      * Length of a block.
      */
     public static final int FULL_BLOCK_LENGTH = 100;
+    /**
+     * Half of a full ratio.
+     */
+    public static final double HALF_RATIO = 0.5;
+    /**
+     * Quarter of a full ratio.
+     */
+    public static final double QUARTER_RATIO = 0.25;
 
-    private void createSections(){};
-    private void blockColour(){};
+    /**
+     * Sets both of the X and Y scale by a given ratio.
+     *
+     * @param <T> a Shape
+     * @param shape a Shape
+     * @param ratio a Double
+     * @return shape a Shape
+     */
+    private <T extends Shape> T setScaleXY(T shape, double ratio) {
+        shape.setScaleX(ratio);
+        shape.setScaleY(ratio);
+        return shape;
+    }
+
+    private void createSections() {};
+    private void blockColour() {};
 
 
     /**
