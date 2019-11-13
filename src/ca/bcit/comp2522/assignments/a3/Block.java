@@ -15,6 +15,10 @@ import java.util.ArrayList;
 
 public class Block {
     /**
+     * Value of a number used to check for even numbers in a modulo operation.
+     */
+    public static final int EVEN_NUMBER = 2;
+    /**
      * Rotational value of half of a right angle.
      */
     public static final int HALF_RIGHT_ANGLE = 45;
@@ -51,20 +55,6 @@ public class Block {
      */
     public static final double QUARTER_RATIO = 0.25;
 
-    /**
-     * Sets both of the X and Y scale by a given ratio.
-     *
-     * @param <T> a Shape
-     * @param shape a Shape
-     * @param ratio a Double
-     * @return shape a Shape
-     */
-    protected <T extends Shape> T setScaleXY(T shape, double ratio) {
-        shape.setScaleX(ratio);
-        shape.setScaleY(ratio);
-        return shape;
-    }
-
     private void createSections() {};
     private void blockColour() {};
 
@@ -81,6 +71,20 @@ public class Block {
             triangles.add(triangle);
         }
         return triangles;
+    }
+
+    /**
+     * Sets both of the X and Y scale by a given ratio.
+     *
+     * @param <T> a Shape
+     * @param shape a Shape
+     * @param ratio a Double
+     * @return shape a Shape
+     */
+    protected <T extends Shape> T setScaleXY(T shape, double ratio) {
+        shape.setScaleX(ratio);
+        shape.setScaleY(ratio);
+        return shape;
     }
 
     /**

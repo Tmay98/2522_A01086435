@@ -19,15 +19,15 @@ public class QuiltProgram extends Application {
     private Scene scene;
 
     public void start(Stage primaryStage) {
-        Section section = new Section();
+        HourglassBlock block = new HourglassBlock();
+        block.createSections();
+
         PinwheelBlock test = new PinwheelBlock();
-        test.createSections();
-        test.createBlock();
         Rectangle ground = new Rectangle(0, 250, 500, 100);
         ground.setFill(Color.BURLYWOOD);
 
         // creating root
-        Group root = new Group(test.getBlock());
+        Group root = new Group(block.getBlock());
         Scene scene = new Scene(root, 500, 350, Color.LIGHTBLUE);
 
         primaryStage.setTitle("Tommy");
