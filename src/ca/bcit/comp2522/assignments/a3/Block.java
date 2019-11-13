@@ -4,6 +4,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Shear;
 
+import java.util.ArrayList;
+
 /**
  * A block of fabric in a quilt.
  *
@@ -57,7 +59,7 @@ public class Block {
      * @param ratio a Double
      * @return shape a Shape
      */
-    private <T extends Shape> T setScaleXY(T shape, double ratio) {
+    protected <T extends Shape> T setScaleXY(T shape, double ratio) {
         shape.setScaleX(ratio);
         shape.setScaleY(ratio);
         return shape;
@@ -66,6 +68,20 @@ public class Block {
     private void createSections() {};
     private void blockColour() {};
 
+    /**
+     * Instantiates a given number of triangles in an ArrayList.
+     *
+     * @param numberOfTriangles an int
+     * @return instantiated triangles an ArrayList
+     */
+    private ArrayList<Polygon> createShapes(int numberOfTriangles) {
+        ArrayList<Polygon> triangles = new ArrayList<>();
+        for (int i = 0; i < numberOfTriangles; i++) {
+            Polygon triangle = createTriangle();
+            triangles.add(triangle);
+        }
+        return triangles;
+    }
 
     /**
      * Instantiates a 90 degree triangle.

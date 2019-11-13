@@ -1,6 +1,8 @@
 package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.shape.Polygon;
 
+import java.util.ArrayList;
+
 /**
  * A quilt block with a hourglass shaped pattern.
  *
@@ -10,11 +12,33 @@ import javafx.scene.shape.Polygon;
 
 public class HourglassBlock extends Block {
     /**
-     * Number of geometrical sections sharing the same shape and colour.
+     * Number of large triangles in a Hourglass block.
      */
-    public static final int numberOfSections = 3;
+    private static final int NUMBER_OF_LARGE_TRIANGLES = 4;
+
+    private ArrayList<Polygon> colourGroup1;
+    private ArrayList<Polygon> colourGroup2;
+    private ArrayList<Polygon> colourGroup3;
+
+    private ArrayList<Polygon> createLargeTriangles(int numberOfTriangles) {
+        ArrayList<Polygon> largeTriangles = new ArrayList<>();
+        for (int i = 0; i < numberOfTriangles; i++) {
+            Polygon triangle = createTriangle();
+            largeTriangles.add(triangle);
+        }
+        return largeTriangles;
+    }
 
     private void createSections() {
+        ArrayList<Polygon> largeTriangles = createLargeTriangles(NUMBER_OF_LARGE_TRIANGLES);
+
+
+
+
+
+
+
+
         // Group 1 //
         Polygon groupOneLargeTriangle1 = createTriangle();
         groupOneLargeTriangle1.setTranslateX(HALF_BLOCK_LENGTH);
@@ -24,28 +48,24 @@ public class HourglassBlock extends Block {
         groupOneLargeTriangle2.setRotate(STRAIGHT_ANGLE);
 
         Polygon groupOneSmallTriangle1 = createTriangle();
-        groupOneSmallTriangle1.setScaleX(HALF_RATIO);
-        groupOneSmallTriangle1.setScaleY(HALF_RATIO);
+        setScaleXY(groupOneSmallTriangle1, HALF_RATIO);
         groupOneSmallTriangle1.setTranslateX(HALF_BLOCK_LENGTH);
         groupOneSmallTriangle1.setRotate(REFLEX_ANGLE + HALF_RIGHT_ANGLE);
 
         Polygon groupOneSmallTriangle2 = createTriangle();
-        groupOneSmallTriangle2.setScaleX(HALF_RATIO);
-        groupOneSmallTriangle2.setScaleY(HALF_RATIO);
+        setScaleXY(groupOneSmallTriangle2, HALF_RATIO);
         groupOneSmallTriangle2.setTranslateX(HALF_BLOCK_LENGTH);
         groupOneSmallTriangle2.setTranslateY(QUARTER_BLOCK_LENGTH);
         groupOneSmallTriangle2.setRotate(RIGHT_ANGLE + HALF_RIGHT_ANGLE);
 
         Polygon groupOneSmallTriangle3 = createTriangle();
-        groupOneSmallTriangle3.setScaleX(HALF_RATIO);
-        groupOneSmallTriangle3.setScaleY(HALF_RATIO);
+        setScaleXY(groupOneSmallTriangle3, HALF_RATIO);
         groupOneSmallTriangle3.setTranslateX(HALF_BLOCK_LENGTH);
         groupOneSmallTriangle3.setTranslateY(HALF_BLOCK_LENGTH);
         groupOneSmallTriangle3.setRotate(REFLEX_ANGLE + HALF_RIGHT_ANGLE);
 
         Polygon groupOneSmallTriangle4 = createTriangle();
-        groupOneSmallTriangle4.setScaleX(HALF_RATIO);
-        groupOneSmallTriangle4.setScaleY(HALF_RATIO);
+        setScaleXY(groupOneSmallTriangle4, HALF_RATIO);
         groupOneSmallTriangle4.setTranslateX(HALF_BLOCK_LENGTH);
         groupOneSmallTriangle4.setTranslateY(HALF_BLOCK_LENGTH + QUARTER_BLOCK_LENGTH);
         groupOneSmallTriangle4.setRotate(RIGHT_ANGLE + HALF_RIGHT_ANGLE);
@@ -59,6 +79,10 @@ public class HourglassBlock extends Block {
 
         Polygon groupTwoLargeTriangle2 = createTriangle();
         groupTwoLargeTriangle2.setRotate(REFLEX_ANGLE);
+
+        Polygon groupTwoSmallTriangle1 = createTriangle();
+        setScaleXY(groupTwoLargeTriangle1, HALF_RATIO);
+
 
     };
     private void blockColour(String colourOne, String colourTwo, String colourThree){};
