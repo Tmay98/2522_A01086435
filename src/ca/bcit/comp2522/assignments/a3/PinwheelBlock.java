@@ -17,8 +17,12 @@ public class PinwheelBlock extends Block {
     /**
      * Number of geometrical sections sharing the same shape and colour.
      */
-    public static final int numberOfSections = 2;
-    public static final int polygonsInSection = 4;
+    public static final int NUMBER_OF_SECTIONS = 2;
+
+    /**
+     * Number of polygons in each section.
+     */
+    public static final int POLYGONS_IN_SECTION = 4;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -40,12 +44,12 @@ public class PinwheelBlock extends Block {
      */
     public void createSections() {
         //create group 1
-        for(int i = 0; i < polygonsInSection; i++) {
+        for(int i = 0; i < POLYGONS_IN_SECTION; i++) {
             colourGroup1.add(createTriangle());
         }
 
         //create group 2
-        for (int i = 0; i < polygonsInSection; i++) {
+        for (int i = 0; i < POLYGONS_IN_SECTION; i++) {
             colourGroup2.add(createTriangle());
             colourGroup2.get(i).setScaleX(-1);
             colourGroup2.get(i).setScaleY(-1);
@@ -69,7 +73,7 @@ public class PinwheelBlock extends Block {
         colourGroup.get(3).setTranslateY(50);
     }
 
-    public void createBlock() {
+    private void createBlock() {
         for (Polygon polygon : colourGroup1) {
             block.getChildren().add(polygon);
         }
