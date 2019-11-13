@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -66,6 +67,9 @@ public class HourglassBlock extends Block {
             } else {
                 colourGroup3.add(smallTriangle);
             }
+        }
+        for (Polygon polygon : colourGroup1) {
+            polygon.setFill(Color.RED);
         }
 
         translateSections(colourGroup1);
