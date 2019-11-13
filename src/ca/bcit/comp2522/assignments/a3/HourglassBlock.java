@@ -20,17 +20,9 @@ public class HourglassBlock extends Block {
     private ArrayList<Polygon> colourGroup2;
     private ArrayList<Polygon> colourGroup3;
 
-    private ArrayList<Polygon> createLargeTriangles(int numberOfTriangles) {
-        ArrayList<Polygon> largeTriangles = new ArrayList<>();
-        for (int i = 0; i < numberOfTriangles; i++) {
-            Polygon triangle = createTriangle();
-            largeTriangles.add(triangle);
-        }
-        return largeTriangles;
-    }
 
     private void createSections() {
-        ArrayList<Polygon> largeTriangles = createLargeTriangles(NUMBER_OF_LARGE_TRIANGLES);
+        ArrayList<Polygon> largeTriangles = createTriangles(NUMBER_OF_LARGE_TRIANGLES);
 
 
 
