@@ -74,7 +74,7 @@ public class Block {
      * @param numberOfTriangles an int
      * @return instantiated triangles an ArrayList
      */
-    private ArrayList<Polygon> createShapes(int numberOfTriangles) {
+    private ArrayList<Polygon> createTriangles(int numberOfTriangles) {
         ArrayList<Polygon> triangles = new ArrayList<>();
         for (int i = 0; i < numberOfTriangles; i++) {
             Polygon triangle = createTriangle();
