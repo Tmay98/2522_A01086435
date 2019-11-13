@@ -68,9 +68,12 @@ public class Block {
      */
     public Polygon createTriangle() {
         return new Polygon(
-                HALF_BLOCK_LENGTH, 0,
-                0, HALF_BLOCK_LENGTH,
-                FULL_BLOCK_LENGTH, HALF_BLOCK_LENGTH
+                HALF_BLOCK_LENGTH,
+                0,
+                0,
+                HALF_BLOCK_LENGTH,
+                FULL_BLOCK_LENGTH,
+                HALF_BLOCK_LENGTH
         );
     }
     /**
@@ -90,7 +93,11 @@ public class Block {
      * @return  parallelogram a Rectangle
      */
     public Rectangle createParallelogram() {
-        Rectangle parallelogram = new Rectangle(0, 0, FULL_BLOCK_LENGTH, HALF_BLOCK_LENGTH);
+        Rectangle parallelogram = new Rectangle(
+                0,
+                0,
+                FULL_BLOCK_LENGTH,
+                HALF_BLOCK_LENGTH);
 
         Shear parallelogramPivot = new Shear();
         parallelogramPivot.setPivotY(HALF_RIGHT_ANGLE);
@@ -120,12 +127,22 @@ public class Block {
      * @param <T> a Shape
      * @param shape a Shape
      * @param ratio a Double
-     * @return shape a Shape
      */
-    protected <T extends Shape> T setScaleXY(T shape, double ratio) {
+    protected <T extends Shape> void setScaleXY(T shape, double ratio) {
         shape.setScaleX(ratio);
         shape.setScaleY(ratio);
-        return shape;
+    }
+
+    /**
+     * Translates the shape by X and Y by a given ratio.
+     *
+     * @param <T> a Shape
+     * @param shape a Shape
+     * @param ratio a Double
+     */
+    protected <T extends Shape> void setTranslateXY(T shape, double ratio) {
+        shape.setTranslateX(ratio);
+        shape.setTranslateY(ratio);
     }
 
     /**
@@ -135,8 +152,9 @@ public class Block {
      * @param list an ArrayList
      * @param <T> a Shape
      */
-    protected <T extends Shape> void populateGroup(Group group,
-                                                   ArrayList<T> list) {
+    protected <T extends Shape> void populateGroup(
+            Group group,
+            ArrayList<T> list) {
         for (T shape : list) {
             group.getChildren().add(shape);
         }

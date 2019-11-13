@@ -40,8 +40,8 @@ public class HourglassBlock extends Block {
         // Rotating large triangles //
         int largeTriangleRotation = 0;
         for (Polygon largeTriangle : largeTriangles) {
-            largeTriangleRotation += RIGHT_ANGLE;
             largeTriangle.setRotate(largeTriangleRotation);
+            largeTriangleRotation += RIGHT_ANGLE;
 
             // Adding large triangles to colour group //
             if (largeTriangles.indexOf(largeTriangle) % EVEN_NUMBER == 0) {
@@ -54,6 +54,7 @@ public class HourglassBlock extends Block {
         // Rotating small triangles //
         int smallTriangleRotation = HALF_RIGHT_ANGLE;
         for (Polygon smallTriangle : smallTriangles) {
+            setScaleXY(smallTriangle, HALF_RATIO);
             smallTriangleRotation += RIGHT_ANGLE;
             smallTriangle.setRotate(smallTriangleRotation);
 
@@ -66,9 +67,23 @@ public class HourglassBlock extends Block {
                 colourGroup3.add(smallTriangle);
             }
         }
+
+        translateSections(colourGroup1);
     };
 
-    private void translateSections() {
+    private void translateSections(
+            ArrayList<Polygon> sectionList1) {
+
+        // Group 1 //
+        setTranslateXY(sectionList1.get(1), HALF_BLOCK_LENGTH);
+            for (int i = 2; i < sectionList1.size(); i++) {
+                sectionList1.get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
+            }
+            sectionList1.get(3).setTranslateY(
+                    HALF_BLOCK_LENGTH
+                  + QUARTER_BLOCK_LENGTH);
+            sectionList1.get(4).setTranslateY(QUARTER_BLOCK_LENGTH);
+            sectionList1.get(5).setTranslateY(HALF_BLOCK_LENGTH);
 
     }
 
