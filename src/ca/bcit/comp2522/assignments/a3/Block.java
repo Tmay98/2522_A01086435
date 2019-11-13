@@ -68,11 +68,11 @@ public class Block {
      */
     public Polygon createTriangle() {
         return new Polygon(
-                HALF_BLOCK_LENGTH,
                 0,
                 0,
+                0,
                 HALF_BLOCK_LENGTH,
-                FULL_BLOCK_LENGTH,
+                HALF_BLOCK_LENGTH,
                 HALF_BLOCK_LENGTH
         );
     }

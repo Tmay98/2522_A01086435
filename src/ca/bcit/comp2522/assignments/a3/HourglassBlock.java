@@ -30,9 +30,9 @@ public class HourglassBlock extends Block {
     private ArrayList<Polygon> colourGroup2 = new ArrayList<>();;
     private ArrayList<Polygon> colourGroup3 = new ArrayList<>();;
 
-    private Group block;
+    private Group block = new Group();
 
-    private void createSections() {
+    public void createSections() {
         ArrayList<Polygon> largeTriangles = createTriangles(
                 NUMBER_OF_LARGE_TRIANGLES);
         ArrayList<Polygon> smallTriangles = createTriangles(

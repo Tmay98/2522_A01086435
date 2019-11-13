@@ -1,5 +1,8 @@
 package ca.bcit.comp2522.assignments.a3;
 
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -180,30 +183,23 @@ public class QuiltProgram {
         StackPane titlePane = new StackPane(title);
         titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
 
-        ToggleGroup group = new ToggleGroup();
-        RadioButton singleButton = new RadioButton("Single Block");
-        RadioButton multiButton = new RadioButton("Multi Block");
-        singleButton.setToggleGroup(group);
-        multiButton.setToggleGroup(group);
-        singleButton.setOnAction((event) -> createSingleQuilt());
-        multiButton.setOnAction((event) -> createMultiQuilt());
-        singleButton.setScaleX(2);
-        singleButton.setScaleY(2);
-        multiButton.setScaleX(2);
-        multiButton.setScaleY(2);
-
-        Separator separator = new Separator();
-
-        Label buttonLabel = new Label("select block type");
-        buttonLabel.setScaleX(1.8);
-        buttonLabel.setScaleY(1.8);
-
+        // Creating choice box for block selection.
+        String[] selections = {"Pinwheel", "Hourglass"};
+        ChoiceBox choice = new ChoiceBox<String>();
+        choice.getItems().addAll(selections);
+        choice.getSelectionModel().selectFirst();
+        choice.setOnAction((event) -> {
+            if (choice.getValue().equals("Pinwheel")) {
+                System.out.println("hello");
+            }
+        });
         Button nextSceneButton = new Button("Next");
         nextSceneButton.setOnAction((event) -> stage.setScene(scenes.get(0)));
+
         VBox selectorControls =
-                new VBox(buttonLabel, singleButton, multiButton, separator, nextSceneButton);
+                new VBox(choice, nextSceneButton);
         selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        selectorControls.setSpacing(25);
+        selectorControls.setSpacing(20);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(titlePane);

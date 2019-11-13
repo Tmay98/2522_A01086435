@@ -1,6 +1,8 @@
 package ca.bcit.comp2522.assignments.a3;
 
 import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -14,18 +16,19 @@ public class QuiltProgramDriver extends Application {
     public void start(Stage primaryStage) {
         // testing
 
-//        primaryStage.setTitle("T");
-//        HourglassBlock hblock = new HourglassBlock();
-//        hblock.createSections();
-//        Group test = hblock.getBlock();
-//        Scene sc = new Scene(test, 800, 600);
-//        primaryStage.setScene(sc);
-//        primaryStage.show();
+        primaryStage.setTitle("T");
+        HourglassBlock hblock = new HourglassBlock();
+        hblock.createSections();
+        hblock.createBlock();
+        Group test = hblock.getBlock();
+        Scene sc = new Scene(test, 800, 600);
+        primaryStage.setScene(sc);
+        primaryStage.show();
 
         // Create first scene
-        QuiltProgram quiltProgram = new QuiltProgram(primaryStage);
-        quiltProgram.getStage().setTitle("Quilt Program");
-        quiltProgram.getStage().setScene(quiltProgram.getScenes().get(0));
-        quiltProgram.getStage().show();
+//        QuiltProgram quiltProgram = new QuiltProgram(primaryStage);
+//        quiltProgram.getStage().setTitle("Quilt Program");
+//        quiltProgram.getStage().setScene(quiltProgram.getScenes().get(0));
+//        quiltProgram.getStage().show();
     }
 }
