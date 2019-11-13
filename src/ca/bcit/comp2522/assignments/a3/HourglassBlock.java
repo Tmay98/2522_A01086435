@@ -45,7 +45,7 @@ public class HourglassBlock extends Block {
             largeTriangleRotation += RIGHT_ANGLE;
 
             // Adding large triangles to colour group //
-            if (largeTriangles.indexOf(largeTriangle) % EVEN_NUMBER == 0) {
+            if (largeTriangles.indexOf(largeTriangle) % EVEN_NUMBER != 0) {
                 colourGroup1.add(largeTriangle);
             } else {
                 colourGroup2.add(largeTriangle);
@@ -59,7 +59,7 @@ public class HourglassBlock extends Block {
             smallTriangleRotation += RIGHT_ANGLE;
             smallTriangle.setRotate(smallTriangleRotation);
 
-            if (smallTriangles.indexOf(smallTriangle) % EVEN_NUMBER != 0) {
+            if (smallTriangles.indexOf(smallTriangle) % EVEN_NUMBER == 0) {
                 colourGroup1.add(smallTriangle);
             } else if (smallTriangles.indexOf(smallTriangle)
                     <= NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO) {
