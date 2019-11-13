@@ -17,12 +17,7 @@ public class PinwheelBlock extends Block {
     /**
      * Number of geometrical sections sharing the same shape and colour.
      */
-    public static final int NUMBER_OF_SECTIONS = 2;
-
-    /**
-     * Number of polygons in each section.
-     */
-    public static final int POLYGONS_IN_SECTION = 4;
+    private static final int NUMBER_OF_TRIANGLES_PER_SECTION = 4;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -42,38 +37,38 @@ public class PinwheelBlock extends Block {
     /**
      * Creates the sections needed for the pinwheel block.
      */
-    public void createSections() {
+    private void createSections() {
         //create group 1
-        for(int i = 0; i < POLYGONS_IN_SECTION; i++) {
+        for (int i = 0; i < NUMBER_OF_TRIANGLES_PER_SECTION; i++) {
             colourGroup1.add(createTriangle());
         }
 
         //create group 2
-        for (int i = 0; i < POLYGONS_IN_SECTION; i++) {
+        for (int i = 0; i < NUMBER_OF_TRIANGLES_PER_SECTION; i++) {
             colourGroup2.add(createTriangle());
             colourGroup2.get(i).setScaleX(-1);
             colourGroup2.get(i).setScaleY(-1);
             colourGroup2.get(i).setFill(Color.RED);
         }
 
-        setColourGroup(colourGroup1);
-        setColourGroup(colourGroup2);
+        translateSections(colourGroup1);
+        translateSections(colourGroup2);
 
     }
 
-    private void setColourGroup(ArrayList<Polygon> colourGroup) {
-        colourGroup.get(1).setRotate(90);
-        colourGroup.get(1).setTranslateX(50);
+    private void translateSections(ArrayList<Polygon> colourGroup) {
+        colourGroup.get(1).setRotate(RIGHT_ANGLE);
+        colourGroup.get(1).setTranslateX(HALF_BLOCK_LENGTH);
 
-        colourGroup.get(2).setRotate(180);
-        colourGroup.get(2).setTranslateY(50);
-        colourGroup.get(2).setTranslateX(50);
+        colourGroup.get(2).setRotate(STRAIGHT_ANGLE);
+        colourGroup.get(2).setTranslateY(HALF_BLOCK_LENGTH);
+        colourGroup.get(2).setTranslateX(HALF_BLOCK_LENGTH);
 
-        colourGroup.get(3).setRotate(270);
-        colourGroup.get(3).setTranslateY(50);
+        colourGroup.get(3).setRotate(REFLEX_ANGLE);
+        colourGroup.get(3).setTranslateY(HALF_BLOCK_LENGTH);
     }
 
-    private void createBlock() {
+    public void createBlock() {
         for (Polygon polygon : colourGroup1) {
             block.getChildren().add(polygon);
         }
