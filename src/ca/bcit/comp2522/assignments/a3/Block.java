@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.Group;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -57,9 +58,10 @@ public class Block {
     public static final double QUARTER_RATIO = 0.25;
 
     private void createSections() { };
-    private void blockColour() { };
     private void createBlock() { };
     private void translateSections() { };
+    public void blockColour(Paint paint, int group) { };
+    public Group getBlock() { return new Group(); };
 
     /**
      * Instantiates a 90 degree triangle.

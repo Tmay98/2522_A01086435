@@ -62,7 +62,10 @@ public class Quilt {
         this.columns = columns;
     }
 
-    private void addBlock(Block block){};
-    private void removeBlock(Block block){};
-    public void createQuilt(){};
+    public void addBlock(Block block) {
+        this.blocks.add(block);
+    }
+
+    private void removeBlock(Block block) {};
+    public void createQuilt() {};
 }

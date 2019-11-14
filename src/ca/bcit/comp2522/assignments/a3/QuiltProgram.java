@@ -1,7 +1,6 @@
 package ca.bcit.comp2522.assignments.a3;
 
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
+import javafx.css.Selector;
 import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
 /**
@@ -25,6 +25,8 @@ public class QuiltProgram {
     private ArrayList<Scene> scenes;
     private int blockSize;
     private Stage stage;
+    private ChoiceBox choice;
+    private Block tempBlock;
 
     /**
      * Constructs an object of type QuiltProgram.
@@ -36,6 +38,8 @@ public class QuiltProgram {
         this.quilt = new Quilt();
         this.stage = stage;
         this.scenes = new ArrayList<>();
+        this.choice = new ChoiceBox<String>();
+        this.tempBlock = new PinwheelBlock();
         createSceneOne();
         createSceneTwo();
     }
@@ -182,26 +186,46 @@ public class QuiltProgram {
 
         StackPane titlePane = new StackPane(title);
         titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
+        BorderPane borderPane = new BorderPane();
 
         // Creating choice box for block selection.
-        String[] selections = {"Pinwheel", "Hourglass"};
-        ChoiceBox choice = new ChoiceBox<String>();
+        String[] selections = {"PinWheel", "HourGlass", "TwistedFourStar"};
+        choice = new ChoiceBox<String>();
         choice.getItems().addAll(selections);
         choice.getSelectionModel().selectFirst();
         choice.setOnAction((event) -> {
-            if (choice.getValue().equals("Pinwheel")) {
-                System.out.println("hello");
+            if (choice.getValue().equals("PinWheel")) {
+                System.out.println("set pinwheel");
+                tempBlock = new PinwheelBlock();
+            } else if (choice.getValue().equals("HourGlass")) {
+                System.out.println("set hourglass");
+                tempBlock = new HourglassBlock();
+            } else if (choice.getValue().equals("TwistedFourStar")) {
+                System.out.println("set TwistedFourStar");
             }
+            borderPane.setCenter(tempBlock.getBlock());
         });
+
+        // Create add block to Quilt button
+        Button addBlockButton = new Button("Add Block");
+        addBlockButton.setOnAction((event) -> {
+            quilt.addBlock(tempBlock);
+        });
+
+        ColorPicker colorPicker = new ColorPicker();
+        colorPicker.setOnAction((event) -> {
+            tempBlock.blockColour(colorPicker.getValue(), 1);
+        });
+
+        // create next scene button
         Button nextSceneButton = new Button("Next");
         nextSceneButton.setOnAction((event) -> stage.setScene(scenes.get(0)));
 
+        // create selector controls
         VBox selectorControls =
-                new VBox(choice, nextSceneButton);
+                new VBox(choice, addBlockButton, colorPicker, nextSceneButton);
         selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
         selectorControls.setSpacing(20);
-
-        BorderPane borderPane = new BorderPane();
         borderPane.setTop(titlePane);
         borderPane.setLeft(selectorControls);
 

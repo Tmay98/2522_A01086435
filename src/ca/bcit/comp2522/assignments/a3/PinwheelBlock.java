@@ -2,6 +2,7 @@ package ca.bcit.comp2522.assignments.a3;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -90,6 +91,15 @@ public class PinwheelBlock extends Block {
         return block;
     }
 
-    private void blockColour(String colourOne, String colourTwo){};
-
+    public void blockColour(Paint colour, int groupNumber) {
+        if (groupNumber == 1) {
+            for (Polygon polygon : colourGroup1) {
+                polygon.setFill(colour);
+            }
+        } else if (groupNumber == 2) {
+            for (Polygon polygon : colourGroup2) {
+                polygon.setFill(colour);
+            }
+        }
+    }
 }
