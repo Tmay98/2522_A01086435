@@ -101,8 +101,6 @@ public class HourglassBlock extends Block {
         sectionList3.get(0).setTranslateY(QUARTER_BLOCK_LENGTH);
         sectionList3.get(1).setTranslateX(HALF_BLOCK_LENGTH);
         sectionList3.get(1).setTranslateY(QUARTER_BLOCK_LENGTH);
-
-
         }
 
     public void createBlock() {
@@ -111,9 +109,21 @@ public class HourglassBlock extends Block {
         populateGroup(block, colourGroup3);
     }
 
-
-
-    private void blockColour(String colourOne, String colourTwo, String colourThree){};
+    /**
+     * Sets the colour of the colour groups using hex values.
+     *
+     * @param colourOne a String
+     * @param colourTwo a String
+     * @param colourThree a String
+     */
+    public void blockColour(
+            String colourOne,
+            String colourTwo,
+            String colourThree) {
+        Color groupOneColour = Color.web(colourOne, 1.0);
+        Color groupTwoColour = Color.web(colourTwo, 1.0);
+        Color groupThreeColour = Color.web(colourThree, 1.0);
+    };
 
     public Group getBlock() {
         return block;
