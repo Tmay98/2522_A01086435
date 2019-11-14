@@ -32,7 +32,10 @@ public class HourglassBlock extends Block {
 
     private Group block = new Group();
 
-    public void createSections() {
+    /**
+     * Generates the sections in an hourglass block.
+     */
+    private void createSections() {
         ArrayList<Polygon> largeTriangles = createTriangles(
                 NUMBER_OF_LARGE_TRIANGLES);
         ArrayList<Polygon> smallTriangles = createTriangles(
@@ -75,6 +78,12 @@ public class HourglassBlock extends Block {
         translateSections(colourGroup1, colourGroup2, colourGroup3);
     };
 
+    /**
+     * Translates the sections in an hourglass block.
+     * @param sectionList1 an ArrayList of polygons
+     * @param sectionList2 an ArrayList of polygons
+     * @param sectionList3 an ArrayList of polygons
+     */
     private void translateSections(
             ArrayList<Polygon> sectionList1,
             ArrayList<Polygon> sectionList2,
@@ -103,19 +112,16 @@ public class HourglassBlock extends Block {
         sectionList3.get(1).setTranslateY(QUARTER_BLOCK_LENGTH);
         }
 
-    public void createBlock() {
+    /**
+     * Populates a single block with coloured groups of sections.
+     */
+    private void createBlock() {
         populateGroup(block, colourGroup1);
         populateGroup(block, colourGroup2);
         populateGroup(block, colourGroup3);
     }
 
-    /**
-     * Sets the colour of the colour groups using hex values.
-     *
-     * @param colourOne a String
-     * @param colourTwo a String
-     * @param colourThree a String
-     */
+
     public void blockColour(
             String colourOne,
             String colourTwo,
@@ -125,6 +131,10 @@ public class HourglassBlock extends Block {
         Color groupThreeColour = Color.web(colourThree, 1.0);
     };
 
+    /**
+     * Returns the block.
+     * @return block a Group
+     */
     public Group getBlock() {
         return block;
     }

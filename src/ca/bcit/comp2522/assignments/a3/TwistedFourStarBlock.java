@@ -1,5 +1,10 @@
 package ca.bcit.comp2522.assignments.a3;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
+
+import java.util.ArrayList;
+
 /**
  * A quilt block with a twisted star pattern divided into four sections.
  *
@@ -8,14 +13,13 @@ package ca.bcit.comp2522.assignments.a3;
  */
 
 public class TwistedFourStarBlock extends Block {
-    /**
-     * Number of geometrical sections sharing the same shape and colour.
-     */
-    public static final int numberOfSections = 4;
+
+
+    private ArrayList<Polygon> colourGroup1 = new ArrayList<>();
+    private ArrayList<Polygon> colourGroup2 = new ArrayList<>();;
+    private ArrayList<Polygon> colourGroup3 = new ArrayList<>();;
+
 
     void createSections(){};
-    void blockColour(String colourOne,
-                     String colourTwo,
-                     String colourThree,
-                     String colourFour){};
+    void blockColour() {};
 }
