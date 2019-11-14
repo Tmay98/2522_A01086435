@@ -26,11 +26,25 @@ public class HourglassBlock extends Block {
      */
     private static final int NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE = 4;
 
-    private ArrayList<Polygon> colourGroup1 = new ArrayList<>();
-    private ArrayList<Polygon> colourGroup2 = new ArrayList<>();;
-    private ArrayList<Polygon> colourGroup3 = new ArrayList<>();;
+    private ArrayList<Polygon> colourGroup1;
+    private ArrayList<Polygon> colourGroup2;;
+    private ArrayList<Polygon> colourGroup3;;
 
-    private Group block = new Group();
+    private Group block;
+
+    /**
+     * Generates a block with an hourglass pattern.
+     */
+    public HourglassBlock() {
+        colourGroup1 = new ArrayList<>();
+        colourGroup2 = new ArrayList<>();
+        colourGroup3 = new ArrayList<>();
+
+        block = new Group();
+        createSections();
+        translateSections();
+        createBlock();
+    }
 
     /**
      * Generates the sections in an hourglass block.
@@ -74,42 +88,34 @@ public class HourglassBlock extends Block {
         for (Polygon polygon : colourGroup1) {
             polygon.setFill(Color.RED);
         }
-
-        translateSections(colourGroup1, colourGroup2, colourGroup3);
     };
 
     /**
      * Translates the sections in an hourglass block.
-     * @param sectionList1 an ArrayList of polygons
-     * @param sectionList2 an ArrayList of polygons
-     * @param sectionList3 an ArrayList of polygons
      */
-    private void translateSections(
-            ArrayList<Polygon> sectionList1,
-            ArrayList<Polygon> sectionList2,
-            ArrayList<Polygon> sectionList3) {
+    private void translateSections() {
 
         // Group 1 large triangles //
-        setTranslateXY(sectionList1.get(1), HALF_BLOCK_LENGTH);
+        setTranslateXY(colourGroup1.get(1), HALF_BLOCK_LENGTH);
         // Group 1 small triangles //
-        for (int i = 2; i < sectionList1.size(); i++) {
-            sectionList1.get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
+        for (int i = 2; i < colourGroup1.size(); i++) {
+            colourGroup1.get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
             }
-        sectionList1.get(4).setTranslateY(HALF_BLOCK_LENGTH);
-        sectionList1.get(5).setTranslateY(HALF_BLOCK_LENGTH);
+        colourGroup1.get(4).setTranslateY(HALF_BLOCK_LENGTH);
+        colourGroup1.get(5).setTranslateY(HALF_BLOCK_LENGTH);
 
         // Group 2 large triangles //
-        sectionList2.get(0).setTranslateY(HALF_BLOCK_LENGTH);
-        sectionList2.get(1).setTranslateX(HALF_BLOCK_LENGTH);
+        colourGroup2.get(0).setTranslateY(HALF_BLOCK_LENGTH);
+        colourGroup2.get(1).setTranslateX(HALF_BLOCK_LENGTH);
         // Group 2 small triangles //
-        sectionList2.get(2).setTranslateY(QUARTER_BLOCK_LENGTH);
-        sectionList2.get(2).setTranslateX(HALF_BLOCK_LENGTH);
-        sectionList2.get(3).setTranslateY(QUARTER_BLOCK_LENGTH);
+        colourGroup2.get(2).setTranslateY(QUARTER_BLOCK_LENGTH);
+        colourGroup2.get(2).setTranslateX(HALF_BLOCK_LENGTH);
+        colourGroup2.get(3).setTranslateY(QUARTER_BLOCK_LENGTH);
 
         // Group 3 //
-        sectionList3.get(0).setTranslateY(QUARTER_BLOCK_LENGTH);
-        sectionList3.get(1).setTranslateX(HALF_BLOCK_LENGTH);
-        sectionList3.get(1).setTranslateY(QUARTER_BLOCK_LENGTH);
+        colourGroup3.get(0).setTranslateY(QUARTER_BLOCK_LENGTH);
+        colourGroup3.get(1).setTranslateX(HALF_BLOCK_LENGTH);
+        colourGroup3.get(1).setTranslateY(QUARTER_BLOCK_LENGTH);
         }
 
     /**
@@ -120,7 +126,6 @@ public class HourglassBlock extends Block {
         populateGroup(block, colourGroup2);
         populateGroup(block, colourGroup3);
     }
-
 
     public void blockColour(
             String colourOne,
