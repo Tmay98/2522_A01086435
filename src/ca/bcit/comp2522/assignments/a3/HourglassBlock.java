@@ -55,7 +55,7 @@ public class HourglassBlock extends Block {
         // Rotating small triangles //
         int smallTriangleRotation = HALF_RIGHT_ANGLE;
         for (Polygon smallTriangle : smallTriangles) {
-            setScaleXY(smallTriangle, HALF_RATIO);
+            setScaleXY(smallTriangle, TWO_THIRDS_RATIO);
             smallTriangleRotation += RIGHT_ANGLE;
             smallTriangle.setRotate(smallTriangleRotation);
 
@@ -83,10 +83,7 @@ public class HourglassBlock extends Block {
             for (int i = 2; i < sectionList1.size(); i++) {
                 sectionList1.get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
             }
-            sectionList1.get(3).setTranslateY(
-                    HALF_BLOCK_LENGTH
-                  + QUARTER_BLOCK_LENGTH);
-            sectionList1.get(4).setTranslateY(QUARTER_BLOCK_LENGTH);
+            sectionList1.get(4).setTranslateY(HALF_BLOCK_LENGTH);
             sectionList1.get(5).setTranslateY(HALF_BLOCK_LENGTH);
 
     }

@@ -46,11 +46,14 @@ public class Block {
     /**
      * Length of a block.
      */
-    public static final int FULL_BLOCK_LENGTH = 100;
+    public static final int FULL_BLOCK_LENGTH = 100;    /**
+     * Two-thirds of a full ratio..
+     */
+    public static final double TWO_THIRDS_RATIO = 0.70;
     /**
      * Half of a full ratio.
      */
-    public static final double HALF_RATIO = 0.5;
+    public static final double HALF_RATIO = 0.50;
     /**
      * Quarter of a full ratio.
      */
