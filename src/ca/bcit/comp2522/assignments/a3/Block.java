@@ -108,7 +108,6 @@ public class Block {
 
         return parallelogram;
     }
-
     /**
      * Instantiates a given number of triangles in an ArrayList.
      *
@@ -122,6 +121,21 @@ public class Block {
             triangles.add(triangle);
         }
         return triangles;
+    }
+    /**
+     * Instantiates a given number of parallelograms in an ArrayList.
+     *
+     * @param numberOfParallelograms an int
+     * @return an ArrayList of instantiated parallelograms an ArrayList
+     */
+    protected ArrayList<Rectangle> createParallelograms(
+            int numberOfParallelograms) {
+        ArrayList<Rectangle> parallelograms = new ArrayList<>();
+        for (int i = 0; i < numberOfParallelograms; i++) {
+            Rectangle parallelogram = createParallelogram();
+            parallelograms.add(parallelogram);
+        }
+        return parallelograms;
     }
 
     /**

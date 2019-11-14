@@ -27,9 +27,9 @@ public class HourglassBlock extends Block {
     private static final int NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE = 4;
 
     private ArrayList<Polygon> colourGroup1;
-    private ArrayList<Polygon> colourGroup2;;
-    private ArrayList<Polygon> colourGroup3;;
-
+    private ArrayList<Polygon> colourGroup2;
+    private ArrayList<Polygon> colourGroup3;
+    private ArrayList<Polygon> colourGroup4;
     private Group block;
 
     /**
@@ -39,6 +39,7 @@ public class HourglassBlock extends Block {
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
+        colourGroup4 = new ArrayList<>();
 
         block = new Group();
         createSections();
@@ -55,9 +56,9 @@ public class HourglassBlock extends Block {
         ArrayList<Polygon> smallTriangles = createTriangles(
                 NUMBER_OF_SMALL_TRIANGLES);
 
-        // Rotating large triangles //
         int largeTriangleRotation = 0;
         for (Polygon largeTriangle : largeTriangles) {
+            // Rotating large triangles  //
             largeTriangle.setRotate(largeTriangleRotation);
             largeTriangleRotation += RIGHT_ANGLE;
 
@@ -69,9 +70,9 @@ public class HourglassBlock extends Block {
             }
         }
 
-        // Rotating small triangles //
         int smallTriangleRotation = HALF_RIGHT_ANGLE;
         for (Polygon smallTriangle : smallTriangles) {
+            // Rotating small triangles //
             setScaleXY(smallTriangle, TWO_THIRDS_RATIO);
             smallTriangleRotation += RIGHT_ANGLE;
             smallTriangle.setRotate(smallTriangleRotation);
