@@ -23,11 +23,13 @@ public class PinwheelBlock extends Block {
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
     private Group block;
+    private double scaleFactor;
 
     /**
      * Instantiates an object of type PinwheelBlock.
      */
-    public PinwheelBlock() {
+    public PinwheelBlock(double scaleFactor) {
+        this.scaleFactor = scaleFactor;
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         block = new Group();
@@ -38,7 +40,7 @@ public class PinwheelBlock extends Block {
     /**
      * Creates the sections needed for the pinwheel block.
      */
-    private void createSections() {
+    public void createSections() {
         //create group 1
         for (int i = 0; i < NUMBER_OF_TRIANGLES_PER_SECTION; i++) {
             colourGroup1.add(createTriangle());
@@ -84,11 +86,43 @@ public class PinwheelBlock extends Block {
     }
 
     public ArrayList<Polygon> getColourGroup2() {
-        return colourGroup1;
+        return colourGroup2;
     }
 
     public Group getBlock() {
-        return block;
+        Group blk = new Group();
+        for (Polygon polygon : colourGroup1) {
+            blk.getChildren().add(polygon);
+        }
+
+        for (Polygon polygon : colourGroup2) {
+            blk.getChildren().add(polygon);
+        }
+
+        // fix block position based on scalefactor of quilt
+        blk.setScaleX(scaleFactor);
+        blk.setScaleY(scaleFactor);
+        double translateAmount = Math.abs(1 - scaleFactor) * 50;
+        if (scaleFactor < 1) {
+            blk.setTranslateX(-translateAmount);
+        } else {
+            blk.setTranslateX(translateAmount);
+        }
+
+        return blk;
+    }
+
+    public Group getBlockUnscaled() {
+        Group blk = new Group();
+        for (Polygon polygon : colourGroup1) {
+            blk.getChildren().add(polygon);
+        }
+
+        for (Polygon polygon : colourGroup2) {
+            blk.getChildren().add(polygon);
+        }
+
+        return blk;
     }
 
     public void blockColour(Paint colour, int groupNumber) {

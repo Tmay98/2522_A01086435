@@ -63,8 +63,16 @@ public class Block {
     private void createSections() { };
     private void createBlock() { };
     private void translateSections() { };
+
     public void blockColour(Paint paint, int group) { };
-    public Group getBlock() { return new Group(); };
+
+    public Group getBlock() {
+        return new Group();
+    }
+
+    public Group getBlockUnscaled() {
+        return new Group();
+    }
 
     /**
      * Instantiates a 90 degree triangle.
