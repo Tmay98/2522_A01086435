@@ -1,8 +1,5 @@
 package ca.bcit.comp2522.assignments.a3;
 
-import ca.bcit.comp2522.lectures.week02.printingAndConcatenation.Geometry;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -25,6 +22,8 @@ public class QuiltProgram {
     private Stage stage;
     private ChoiceBox choice;
     private Block selectedDesign;
+    private BorderPane borderPane;
+    private ArrayList<ColorPicker> colorPickers;
 
     /**
      * Constructs an object of type QuiltProgram.
@@ -36,6 +35,8 @@ public class QuiltProgram {
         this.stage = stage;
         this.scenes = new ArrayList<>();
         this.choice = new ChoiceBox<String>();
+        this.borderPane = new BorderPane();
+        this.colorPickers = new ArrayList<>();
         createSceneOne();
         createSceneTwo();
     }
@@ -81,12 +82,12 @@ public class QuiltProgram {
         selectorControls.setSpacing(20);
 
         // create borderPane
-        BorderPane borderPane = new BorderPane();
-        borderPane.setTop(titlePane);
-        borderPane.setLeft(selectorControls);
+        BorderPane borderPaneSceneOne = new BorderPane();
+        borderPaneSceneOne.setTop(titlePane);
+        borderPaneSceneOne.setLeft(selectorControls);
 
         // add first scene to ArrayList
-        scenes.add(new Scene(borderPane, 1000, 800));
+        scenes.add(new Scene(borderPaneSceneOne, 1000, 800));
     }
 
     /**
@@ -183,9 +184,75 @@ public class QuiltProgram {
 
         StackPane titlePane = new StackPane(title);
         titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
-        BorderPane borderPane = new BorderPane();
 
         // Creating choice box for block selection.
+        createDesignChoiceBox();
+
+        // Add choice label
+        Label choiceLabel = new Label("Select Design");
+        choiceLabel.setScaleX(1.8);
+        choiceLabel.setScaleY(1.8);
+
+        // add colour pickers label
+        Label colourPickerLabel = new Label("Select colours");
+        colourPickerLabel.setScaleX(1.8);
+        colourPickerLabel.setScaleY(1.8);
+
+        // add colour pickers
+        createColourPickers();
+
+        // create next scene button
+        Button nextSceneButton = new Button("Next");
+        nextSceneButton.setOnAction((event) -> stage.setScene(scenes.get(2)));
+
+        // create selector controls
+        VBox selectorControls =
+                new VBox(choiceLabel, choice, colourPickerLabel,
+                        colorPickers.get(0), colorPickers.get(1),
+                        colorPickers.get(2), colorPickers.get(3),
+                        nextSceneButton);
+        selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
+        selectorControls.setSpacing(20);
+
+        // create quilt group
+        Label quiltLabel = new Label("Quilt");
+        quiltLabel.setFont(new Font("Arial", 35));
+        VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
+
+        // set border panes
+        borderPane.setTop(titlePane);
+        borderPane.setLeft(selectorControls);
+        borderPane.setRight(quiltGroup);
+
+        // add first scene to ArrayList
+        scenes.add(new Scene(borderPane, 1000, 800));
+    }
+
+    /**
+     * Creates all the colour pickers for scene 2.
+     */
+    private void createColourPickers() {
+        for (int i = 0; i < 4; i++) {
+            colorPickers.add(new ColorPicker());
+        }
+        colorPickers.get(0).setOnAction((event) -> {
+            selectedDesign.blockColour(colorPickers.get(0).getValue(), 1);
+        });
+        colorPickers.get(1).setOnAction((event) -> {
+            selectedDesign.blockColour(colorPickers.get(1).getValue(), 2);
+        });
+        colorPickers.get(2).setOnAction((event) -> {
+            selectedDesign.blockColour(colorPickers.get(2).getValue(), 3);
+        });
+        colorPickers.get(3).setOnAction((event) -> {
+            selectedDesign.blockColour(colorPickers.get(3).getValue(), 4);
+        });
+    }
+
+    /**
+     * Creates the drop down for selecting designs for a block.
+     */
+    private void createDesignChoiceBox() {
         String[] selections = {"PinWheel", "HourGlass", "TwistedFourStar"};
         choice = new ChoiceBox<String>();
         choice.getItems().addAll(selections);
@@ -201,49 +268,13 @@ public class QuiltProgram {
                 selectedDesign = new HourglassBlock();
                 System.out.println("set TwistedFourStar");
             }
-            borderPane.setCenter(selectedDesign.getBlockUnscaled());
+            this.borderPane.setCenter(selectedDesign.getBlockUnscaled());
         });
-
-        // Add choice label
-        Label choiceLabel = new Label("Select Design");
-        choiceLabel.setScaleX(1.8);
-        choiceLabel.setScaleY(1.8);
-
-        // add colour pickers label
-        Label colourPickerLabel = new Label("Select colours");
-        colourPickerLabel.setScaleX(1.8);
-        colourPickerLabel.setScaleY(1.8);
-
-        // add colour pickers
-        ColorPicker colorPicker = new ColorPicker();
-        colorPicker.setOnAction((event) -> {
-            selectedDesign.blockColour(colorPicker.getValue(), 1);
-        });
-
-        // create next scene button
-        Button nextSceneButton = new Button("Next");
-        nextSceneButton.setOnAction((event) -> stage.setScene(scenes.get(2)));
-
-        // create selector controls
-        VBox selectorControls =
-                new VBox(choiceLabel, choice, colourPickerLabel, colorPicker, nextSceneButton);
-        selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        selectorControls.setSpacing(20);
-
-        // create quilt group
-        Label quiltLabel = new Label("Your current quilt");
-        quiltLabel.setFont(new Font("Arial", 35));
-        VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
-
-        // set borderpanes
-        borderPane.setTop(titlePane);
-        borderPane.setLeft(selectorControls);
-        borderPane.setRight(quiltGroup);
-
-        // add first scene to ArrayList
-        scenes.add(new Scene(borderPane, 1000, 800));
     }
 
+    /**
+     * Initializes the quilts grid to selected rows and columns.
+     */
     public void initializeGrid() {
         int numCols = quilt.getColumns();
         int numRows = quilt.getRows();
@@ -267,6 +298,12 @@ public class QuiltProgram {
         quilt.getQuiltGrid().setGridLinesVisible(true);
     }
 
+    /**
+     * Adds the pane to the grid at spot colIndex, rowIndex.
+     *
+     * @param colIndex an int
+     * @param rowIndex an int
+     */
     private void addPane(int colIndex, int rowIndex) {
         Pane pane = new Pane();
         quilt.getQuiltGrid().add(pane, colIndex, rowIndex);
