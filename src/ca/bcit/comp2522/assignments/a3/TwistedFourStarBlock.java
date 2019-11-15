@@ -16,17 +16,14 @@ import java.util.ArrayList;
 
 public class TwistedFourStarBlock extends Block {
     /**
-     * Number of small triangles in a twisted star block.
+     * Number of small triangles in a single section of a twisted star block.
      */
-    private static final int NUMBER_OF_TRIANGLES = 16;
-    /**
-     * Number of parallelograms in a twisted star block.
-     */
-    private static final int NUMBER_OF_PARALLELOGRAMS = 8;
+    private static final int NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE = 3;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
-    private ArrayList<Polygon> colourGroup3;
+    private ArrayList<Rectangle> colourGroup3;
+    private ArrayList<Rectangle> colourGroup4;
     private Group block;
     /**
      * Generates a block with a twisted star pattern.
@@ -35,6 +32,7 @@ public class TwistedFourStarBlock extends Block {
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
+        colourGroup4 = new ArrayList<>();
 
         block = new Group();
         createSections();
@@ -45,10 +43,30 @@ public class TwistedFourStarBlock extends Block {
      * Generates the sections in a twisted star patterned block.
      */
     private void createSections() {
+        // Group 1 //
+        colourGroup1 = createTriangles(NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE);
+        for (Polygon triangle : colourGroup1){
+            setScaleXY(triangle, HALF_TRIANGLE_RATIO);
+        }
+        colourGroup1.get(3).setRotate(STRAIGHT_ANGLE);
 
+        // Group 2 //
+        colourGroup2 = createTriangles(1);
+        colourGroup2.get(0).setRotate(STRAIGHT_ANGLE);
+
+        // Group 3 //
+        colourGroup3 = createParallelograms(1);
+        colourGroup3.get(0).setRotate(-HALF_RIGHT_ANGLE);
+
+        // Group 4 //
+        colourGroup4 = createParallelograms(1);
+        colourGroup4.get(0).setRotate(-HALF_RIGHT_ANGLE);
 
     };
-    private void translateSections() {};
+    private void translateSections() {
+        colourGroup1.get(1).setTranslateX(HALF_BLOCK_LENGTH);
+        setTranslateXY(colourGroup1.get(2), HALF_BLOCK_LENGTH);
+    };
     private void createBlock(){};
     private void blockColour() {};
 }

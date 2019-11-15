@@ -48,9 +48,9 @@ public class Block {
      * Length of a block.
      */
     public static final int FULL_BLOCK_LENGTH = 100;    /**
-     * Two-thirds of a full ratio..
+     * Ratio of half of a triangle.
      */
-    public static final double TWO_THIRDS_RATIO = 0.70;
+    public static final double HALF_TRIANGLE_RATIO = 0.707;
     /**
      * Half of a full ratio.
      */
@@ -113,7 +113,7 @@ public class Block {
                 HALF_BLOCK_LENGTH);
 
         Shear parallelogramPivot = new Shear();
-        parallelogramPivot.setPivotY(HALF_RIGHT_ANGLE);
+        parallelogramPivot.setPivotX(HALF_RIGHT_ANGLE);
         parallelogram.getTransforms().add(parallelogramPivot);
 
         return parallelogram;

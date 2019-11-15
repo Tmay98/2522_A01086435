@@ -73,7 +73,7 @@ public class HourglassBlock extends Block {
         int smallTriangleRotation = HALF_RIGHT_ANGLE;
         for (Polygon smallTriangle : smallTriangles) {
             // Rotating small triangles //
-            setScaleXY(smallTriangle, TWO_THIRDS_RATIO);
+            setScaleXY(smallTriangle, HALF_TRIANGLE_RATIO);
             smallTriangleRotation += RIGHT_ANGLE;
             smallTriangle.setRotate(smallTriangleRotation);
 
