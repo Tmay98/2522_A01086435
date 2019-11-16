@@ -73,7 +73,7 @@ public class PinwheelBlock extends Block {
 
     public void createBlock() {
         createSections();
-        
+
         for (Polygon polygon : colourGroup1) {
             block.getChildren().add(polygon);
         }

@@ -47,10 +47,15 @@ public class Block {
     /**
      * Length of a block.
      */
-    public static final int FULL_BLOCK_LENGTH = 100;    /**
+    public static final int FULL_BLOCK_LENGTH = 100;
+    /**
      * Ratio of half of a triangle.
      */
     public static final double HALF_TRIANGLE_RATIO = 0.707;
+    /**
+     * Ratio of quarter of a triangle.
+     */
+    public static final double QUARTER_TRIANGLE_RATIO = 0.35;
     /**
      * Half of a full ratio.
      */
@@ -182,6 +187,7 @@ public class Block {
     protected <T extends Shape> void populateGroup(
             Group group,
             ArrayList<T> list) {
+
         for (T shape : list) {
             group.getChildren().add(shape);
         }
