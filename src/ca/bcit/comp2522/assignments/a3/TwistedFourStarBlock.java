@@ -3,7 +3,6 @@ package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
@@ -26,8 +25,8 @@ public class TwistedFourStarBlock extends Block {
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
-    private ArrayList<Rectangle> colourGroup3;
-    private ArrayList<Rectangle> colourGroup4;
+    private ArrayList<Polygon> colourGroup3;
+    private ArrayList<Polygon> colourGroup4;
     private Group block;
     /**
      * Generates a block with a twisted star pattern.
@@ -49,53 +48,71 @@ public class TwistedFourStarBlock extends Block {
         // Group 1 //
         colourGroup1 = createTriangles(NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE);
         for (Polygon triangle : colourGroup1) {
+            triangle.setFill(Color.BLUE);
             setScaleXY(triangle, QUARTER_TRIANGLE_RATIO);
+            rescaleTriangleCoordinates(triangle);
+            triangle.setRotate(RIGHT_ANGLE);
         }
-        colourGroup1.get(2).setRotate(STRAIGHT_ANGLE);
+        colourGroup1.get(2).setRotate(STRAIGHT_ANGLE + RIGHT_ANGLE);
 
         // Group 2 //
         colourGroup2 = createTriangles(1);
-        colourGroup2.get(0).setRotate(STRAIGHT_ANGLE);
+        colourGroup2.get(0).setRotate(STRAIGHT_ANGLE + RIGHT_ANGLE);
         setScaleXY(colourGroup2.get(0), QUARTER_TRIANGLE_RATIO);
 
         // Group 3 //
         colourGroup3 = createParallelograms(1);
-        colourGroup3.get(0).setRotate(-HALF_RIGHT_ANGLE);
-        setScaleXY(colourGroup3.get(0), HALF_RATIO);
 
         // Group 4 //
         colourGroup4 = createParallelograms(1);
-        colourGroup4.get(0).setRotate(-HALF_RIGHT_ANGLE);
-        setScaleXY(colourGroup4.get(0), HALF_RATIO);
 
     };
 
+    /**
+     * Rescales coordinates for triangles that have been rescaled.
+     * @param triangle a Polygon
+     */
+    private void rescaleTriangleCoordinates(Polygon triangle) {
+        triangle.setTranslateX(
+                -(QUARTER_BLOCK_LENGTH
+                        - QUARTER_BLOCK_LENGTH / 2.0));
+        triangle.setTranslateY(-QUARTER_BLOCK_LENGTH / 2.0);
+    }
+    /**
+     * Translates the sections in an twisted star block.
+     */
     private void translateSections() {
         // Group 1 //
-        colourGroup1.get(1).setTranslateX(QUARTER_BLOCK_LENGTH);
-        setTranslateXY(colourGroup1.get(2), QUARTER_BLOCK_LENGTH);
+        colourGroup1.get(1).setTranslateX(QUARTER_BLOCK_LENGTH / 2.0);
+        setTranslateXY(colourGroup1.get(2), QUARTER_BLOCK_LENGTH / 2.0);
 
         // Group 2 //
-        colourGroup2.get(0).setTranslateY(QUARTER_BLOCK_LENGTH);
+        setTranslateXY(colourGroup2.get(0), QUARTER_BLOCK_LENGTH);
+        colourGroup2.get(0).setTranslateY(QUARTER_BLOCK_LENGTH / 2.0);
+        colourGroup2.get(0).setTranslateX(-QUARTER_BLOCK_LENGTH / 2.0);
 
         // Group 4 //
         colourGroup4.get(0).setTranslateX(QUARTER_BLOCK_LENGTH);
     };
-
+    /**
+     * Populates a single block with coloured groups of sections.
+     * @return a group of coloured sections a Group
+     */
     private Group createBlockQuarters() {
         createSections();
         translateSections();
-        Group quarterBlock = new Group();
+        Group quarterBlocks = new Group();
 
-        populateGroup(quarterBlock, colourGroup1);
-        populateGroup(quarterBlock, colourGroup2);
-        populateGroup(quarterBlock, colourGroup3);
-        populateGroup(quarterBlock, colourGroup4);
+        populateGroup(quarterBlocks, colourGroup1);
+        populateGroup(quarterBlocks, colourGroup2);
+        populateGroup(quarterBlocks, colourGroup3);
+        populateGroup(quarterBlocks, colourGroup4);
 
-        quarterBlock.setTranslateX(HALF_BLOCK_LENGTH);
-        return quarterBlock;
+        return quarterBlocks;
     }
-
+    /**
+     * Populates a block with quarter sections.
+     */
     private void createBlock() {
         ArrayList<Group> quarterSections = new ArrayList<>();
         int quarterSectionRotation = 0;
@@ -117,6 +134,10 @@ public class TwistedFourStarBlock extends Block {
         }
     };
 
+    /**
+     * Returns the block.
+     * @return block a Block
+     */
     public Group getBlock() {
         return this.block;
     }

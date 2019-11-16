@@ -49,14 +49,6 @@ public class Block {
      */
     public static final int FULL_BLOCK_LENGTH = 100;
     /**
-     * Ratio of half of a triangle.
-     */
-    public static final double HALF_TRIANGLE_RATIO = 0.707;
-    /**
-     * Ratio of quarter of a triangle.
-     */
-    public static final double QUARTER_TRIANGLE_RATIO = 0.35;
-    /**
      * Half of a full ratio.
      */
     public static final double HALF_RATIO = 0.50;
@@ -64,6 +56,14 @@ public class Block {
      * Quarter of a full ratio.
      */
     public static final double QUARTER_RATIO = 0.25;
+    /**
+     * Ratio of half of a triangle.
+     */
+    public static final double HALF_TRIANGLE_RATIO = 0.707;
+    /**
+     * Ratio of quarter of a triangle.
+     */
+    public static final double QUARTER_TRIANGLE_RATIO = 0.49;
 
     private void createSections() { };
     private void createBlock() { };
@@ -110,18 +110,17 @@ public class Block {
      *
      * @return  parallelogram a Rectangle
      */
-    public Rectangle createParallelogram() {
-        Rectangle parallelogram = new Rectangle(
+    public Polygon createParallelogram() {
+        return new Polygon(
                 0,
+                HALF_BLOCK_LENGTH,
                 0,
-                FULL_BLOCK_LENGTH,
-                HALF_BLOCK_LENGTH);
-
-        Shear parallelogramPivot = new Shear();
-        parallelogramPivot.setPivotX(HALF_RIGHT_ANGLE);
-        parallelogram.getTransforms().add(parallelogramPivot);
-
-        return parallelogram;
+                QUARTER_BLOCK_LENGTH,
+                QUARTER_BLOCK_LENGTH,
+                0,
+                QUARTER_BLOCK_LENGTH,
+                QUARTER_BLOCK_LENGTH
+        );
     }
     /**
      * Instantiates a given number of triangles in an ArrayList.
@@ -143,11 +142,11 @@ public class Block {
      * @param numberOfParallelograms an int
      * @return an ArrayList of instantiated parallelograms an ArrayList
      */
-    protected ArrayList<Rectangle> createParallelograms(
+    protected ArrayList<Polygon> createParallelograms(
             int numberOfParallelograms) {
-        ArrayList<Rectangle> parallelograms = new ArrayList<>();
+        ArrayList<Polygon> parallelograms = new ArrayList<>();
         for (int i = 0; i < numberOfParallelograms; i++) {
-            Rectangle parallelogram = createParallelogram();
+            Polygon parallelogram = createParallelogram();
             parallelograms.add(parallelogram);
         }
         return parallelograms;

@@ -89,9 +89,6 @@ public class HourglassBlock extends Block {
             polygon.setFill(Color.RED);
         }
     }
-
-    ;
-
     /**
      * Translates the sections in an hourglass block.
      */
@@ -119,7 +116,6 @@ public class HourglassBlock extends Block {
         colourGroup3.get(1).setTranslateX(HALF_BLOCK_LENGTH);
         colourGroup3.get(1).setTranslateY(QUARTER_BLOCK_LENGTH);
     }
-
     /**
      * Populates a single block with coloured groups of sections.
      */
