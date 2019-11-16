@@ -2,8 +2,6 @@ package ca.bcit.comp2522.assignments.a3;
 
 import javafx.scene.layout.GridPane;
 
-import java.util.ArrayList;
-
 /**
  * Quilt.
  *
@@ -11,6 +9,11 @@ import java.util.ArrayList;
  * @version 2019
  */
 public class Quilt {
+    /**
+     * Size of the quilt on the screen.
+     */
+    public static final double QUILT_SIZE = 600;
+
     private int rows;
     private int columns;
     private GridPane quiltGrid;
@@ -62,10 +65,9 @@ public class Quilt {
 
     /**
      * Sets the block length scaling factor.
-     *
      */
     public void setCellSize() {
-        this.cellSize = 600 / Math.max(rows, columns);
+        this.cellSize = QUILT_SIZE / Math.max(rows, columns);
     }
 
     /**
@@ -76,7 +78,4 @@ public class Quilt {
     public void setColumns(int columns) {
         this.columns = columns;
     }
-
-    private void removeBlock(Block block) {};
-    public void createQuilt() {};
 }

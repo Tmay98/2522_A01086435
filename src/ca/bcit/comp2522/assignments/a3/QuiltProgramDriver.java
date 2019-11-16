@@ -23,17 +23,17 @@ public class QuiltProgramDriver extends Application {
 //        primaryStage.setScene(sc);
 //        primaryStage.show();
 
-        primaryStage.setTitle("T");
-        TwistedFourStarBlock hblock = new TwistedFourStarBlock();
-        Group test = hblock.getBlock();
-        Scene sc = new Scene(test, 800, 600);
-        primaryStage.setScene(sc);
-        primaryStage.show();
+//        primaryStage.setTitle("T");
+//        SquareGridBlock hblock = new SquareGridBlock(1);
+//        Group test = hblock.getBlock();
+//        Scene sc = new Scene(test, 800, 600);
+//        primaryStage.setScene(sc);
+//        primaryStage.show();
 
         // Create first scene
-//        QuiltProgram quiltProgram = new QuiltProgram(primaryStage);
-//        quiltProgram.getStage().setTitle("Quilt Program");
-//        quiltProgram.getStage().setScene(quiltProgram.getScenes().get(0));
-//        quiltProgram.getStage().show();
+        QuiltProgram quiltProgram = new QuiltProgram(primaryStage);
+        quiltProgram.getStage().setTitle("Quilt Program");
+        quiltProgram.getStage().setScene(quiltProgram.getScenes().get(0));
+        quiltProgram.getStage().show();
     }
 }
