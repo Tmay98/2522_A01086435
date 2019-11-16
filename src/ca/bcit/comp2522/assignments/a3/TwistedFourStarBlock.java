@@ -51,7 +51,7 @@ public class TwistedFourStarBlock extends Block {
         for (Polygon triangle : colourGroup1) {
             setScaleXY(triangle, QUARTER_TRIANGLE_RATIO);
         }
-        colourGroup1.get(3).setRotate(STRAIGHT_ANGLE);
+        colourGroup1.get(2).setRotate(STRAIGHT_ANGLE);
 
         // Group 2 //
         colourGroup2 = createTriangles(1);
@@ -116,6 +116,10 @@ public class TwistedFourStarBlock extends Block {
             block.getChildren().add(group);
         }
     };
+
+    public Group getBlock() {
+        return this.block;
+    }
 
     private void blockColour() {};
 }
