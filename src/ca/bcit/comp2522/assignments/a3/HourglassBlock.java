@@ -42,8 +42,6 @@ public class HourglassBlock extends Block {
         colourGroup4 = new ArrayList<>();
 
         block = new Group();
-        createSections();
-        translateSections();
         createBlock();
     }
 
@@ -123,6 +121,9 @@ public class HourglassBlock extends Block {
      * Populates a single block with coloured groups of sections.
      */
     private void createBlock() {
+        createSections();
+        translateSections();
+
         populateGroup(block, colourGroup1);
         populateGroup(block, colourGroup2);
         populateGroup(block, colourGroup3);

@@ -16,6 +16,10 @@ import java.util.ArrayList;
 
 public class TwistedFourStarBlock extends Block {
     /**
+     * Number of times a similar pattern is repeated in a twisted star block.
+     */
+    private static final int NUMBER_OF_QUARTERS_IN_BLOCK = 4;
+    /**
      * Number of small triangles in a single section of a twisted star block.
      */
     private static final int NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE = 3;
@@ -25,6 +29,7 @@ public class TwistedFourStarBlock extends Block {
     private ArrayList<Rectangle> colourGroup3;
     private ArrayList<Rectangle> colourGroup4;
     private Group block;
+    private Group quarterBlock;
     /**
      * Generates a block with a twisted star pattern.
      */
@@ -35,6 +40,7 @@ public class TwistedFourStarBlock extends Block {
         colourGroup4 = new ArrayList<>();
 
         block = new Group();
+        quarterBlock = new Group();
         createSections();
         translateSections();
         createBlock();
@@ -45,7 +51,7 @@ public class TwistedFourStarBlock extends Block {
     private void createSections() {
         // Group 1 //
         colourGroup1 = createTriangles(NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE);
-        for (Polygon triangle : colourGroup1){
+        for (Polygon triangle : colourGroup1) {
             setScaleXY(triangle, HALF_TRIANGLE_RATIO);
         }
         colourGroup1.get(3).setRotate(STRAIGHT_ANGLE);
@@ -64,9 +70,29 @@ public class TwistedFourStarBlock extends Block {
 
     };
     private void translateSections() {
+        // Group 1 //
         colourGroup1.get(1).setTranslateX(HALF_BLOCK_LENGTH);
         setTranslateXY(colourGroup1.get(2), HALF_BLOCK_LENGTH);
+
+        // Group 2 //
+        colourGroup2.get(0).setTranslateY(HALF_BLOCK_LENGTH);
+
+        // Group 4 //
+        colourGroup4.get(0).setTranslateX(HALF_BLOCK_LENGTH);
     };
-    private void createBlock(){};
+
+    private void createBlockQuarters() {
+        populateGroup(quarterBlock, colourGroup1);
+        populateGroup(quarterBlock, colourGroup2);
+        populateGroup(quarterBlock, colourGroup3);
+        populateGroup(quarterBlock, colourGroup4);
+    }
+
+    private void createBlock() {
+        for (int i = 0; i < NUMBER_OF_QUARTERS_IN_BLOCK; i++) {
+            createBlockQuarters();
+        }
+
+    };
     private void blockColour() {};
 }

@@ -33,7 +33,7 @@ public class PinwheelBlock extends Block {
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         block = new Group();
-        createSections();
+
         createBlock();
     }
 
@@ -72,6 +72,8 @@ public class PinwheelBlock extends Block {
     }
 
     public void createBlock() {
+        createSections();
+        
         for (Polygon polygon : colourGroup1) {
             block.getChildren().add(polygon);
         }
