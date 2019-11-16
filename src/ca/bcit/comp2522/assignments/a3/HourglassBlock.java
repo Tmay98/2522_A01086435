@@ -35,6 +35,8 @@ public class HourglassBlock extends Block {
 
     /**
      * Generates a block with an hourglass pattern.
+     *
+     * @param scaleFactor a double
      */
     public HourglassBlock(double scaleFactor) {
         this.scaleFactor = scaleFactor;

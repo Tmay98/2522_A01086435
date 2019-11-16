@@ -27,6 +27,8 @@ public class PinwheelBlock extends Block {
 
     /**
      * Instantiates an object of type PinwheelBlock.
+     *
+     * @param scaleFactor a double
      */
     public PinwheelBlock(double scaleFactor) {
         this.scaleFactor = scaleFactor;
@@ -90,6 +92,11 @@ public class PinwheelBlock extends Block {
         return colourGroup2;
     }
 
+    /**
+     * Returns the scaled block.
+     *
+     * @return blk
+     */
     public Group getBlock() {
         Group blk = new Group();
         for (Polygon polygon : colourGroup1) {
@@ -113,6 +120,11 @@ public class PinwheelBlock extends Block {
         return blk;
     }
 
+    /**
+     * Returns the block unscaled.
+     *
+     * @return blk
+     */
     public Group getBlockUnscaled() {
         Group blk = new Group();
         for (Polygon polygon : colourGroup1) {
@@ -126,6 +138,12 @@ public class PinwheelBlock extends Block {
         return blk;
     }
 
+    /**
+     * Colours colourgroup of given number to the given paint.
+     *
+     * @param colour a Paint
+     * @param groupNumber a groupNumber
+     */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
             for (Polygon polygon : colourGroup1) {
