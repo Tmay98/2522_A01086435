@@ -24,9 +24,7 @@ public class QuiltProgramDriver extends Application {
 //        primaryStage.show();
 
 //        primaryStage.setTitle("T");
-//        HourglassBlock hblock = new HourglassBlock();
-//        hblock.createSections();
-//        hblock.createBlock();
+//        TwistedFourStarBlock hblock = new TwistedFourStarBlock();
 //        Group test = hblock.getBlock();
 //        Scene sc = new Scene(test, 800, 600);
 //        primaryStage.setScene(sc);
