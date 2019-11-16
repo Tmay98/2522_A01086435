@@ -31,14 +31,13 @@ public class QuiltProgram {
      * @param stage a Stage
      */
     public QuiltProgram(Stage stage) {
-        this.quilt = new Quilt();
+        this.quilt = new SingleBlockQuilt();
         this.stage = stage;
         this.scenes = new ArrayList<>();
         this.choice = new ChoiceBox<String>();
         this.borderPane = new BorderPane();
         this.colorPickers = new ArrayList<>();
         createSceneOne();
-        createSceneTwo();
     }
 
     /**
@@ -129,8 +128,16 @@ public class QuiltProgram {
             this.quilt.setColumns(columnsSpinner.getValue());
             this.quilt.setRows(rowsSpinner.getValue());
             this.quilt.setCellSize();
-            initializeGrid();
-            stage.setScene(scenes.get(1));
+            // create multi block or single block scene depending on quilt type.
+            if (quilt instanceof MultiBlockQuilt) {
+                initializeGridMultiQuilt();
+                createSceneTwo();
+                stage.setScene(scenes.get(1));
+            } else {
+                initializeGridSingleQuilt();
+                createSceneThree();
+                stage.setScene(scenes.get(1));
+            }
         });
 
         // Add spinners to VBox and return
@@ -175,7 +182,8 @@ public class QuiltProgram {
     }
 
     /**
-     * Creates the second scene and adds it to the scenes ArrayList.
+     * Creates the second scene and adds it to the scenes ArrayList
+     * for creating a multi quilt.
      */
     private void createSceneTwo() {
         Text title = new Text("Scene two");
@@ -203,7 +211,7 @@ public class QuiltProgram {
 
         // create next scene button
         Button nextSceneButton = new Button("Next");
-        nextSceneButton.setOnAction((event) -> stage.setScene(scenes.get(2)));
+        nextSceneButton.setOnAction((event) -> stage.setScene(scenes.get(1)));
 
         // create selector controls
         VBox selectorControls =
@@ -229,11 +237,98 @@ public class QuiltProgram {
     }
 
     /**
+     * Creates the second scene and adds it to the scenes ArrayList
+     * for creating a single quilt.
+     */
+    private void createSceneThree() {
+        Text title = new Text("Scene three");
+        title.setFont(Font.font(30));
+        title.setFill(Color.RED);
+
+        StackPane titlePane = new StackPane(title);
+        titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
+
+        // Creating choice box for block selection.
+        createDesignChoiceBox();
+
+        // Add choice label
+        Label choiceLabel = new Label("Select Design");
+        choiceLabel.setScaleX(1.8);
+        choiceLabel.setScaleY(1.8);
+
+        // add colour pickers label
+        Label colourPickerLabel = new Label("Select colours");
+        colourPickerLabel.setScaleX(1.8);
+        colourPickerLabel.setScaleY(1.8);
+
+        // add colour pickers
+        createColourPickers();
+
+        // create next scene button
+        Button nextSceneButton = new Button("Next");
+        nextSceneButton.setOnAction((event) -> fillSingleQuiltGrid());
+
+        // create selector controls
+        VBox selectorControls =
+                new VBox(choiceLabel, choice, colourPickerLabel,
+                        colorPickers.get(0), colorPickers.get(1),
+                        colorPickers.get(2), colorPickers.get(3),
+                        nextSceneButton);
+        selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
+        selectorControls.setSpacing(20);
+
+        // create quilt group
+        Label quiltLabel = new Label("Quilt");
+        quiltLabel.setFont(new Font("Arial", 35));
+        VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
+
+        // set border panes
+        borderPane.setTop(titlePane);
+        borderPane.setLeft(selectorControls);
+        borderPane.setRight(quiltGroup);
+
+        // add first scene to ArrayList
+        scenes.add(new Scene(borderPane, 1000, 800));
+    }
+
+    /**
+     * Fills in the quilt with the selected blocks colours.
+     */
+    private void fillSingleQuiltGrid() {
+        for (int i = 0; i < quilt.getColumns(); i++) {
+            for (int j = 0; j < quilt.getRows(); j++) {
+                Block tempBlock = createBlockOfSelectedType();
+                this.quilt.getQuiltGrid().add(tempBlock.getBlock(), i, j);
+            }
+        }
+    }
+
+    private Block createBlockOfSelectedType() {
+        Block tempBlock;
+        if (selectedDesign instanceof PinwheelBlock) {
+            tempBlock =  new PinwheelBlock(quilt.getCellSize() / 100);
+        } else if (selectedDesign instanceof HourglassBlock) {
+            tempBlock =  new HourglassBlock(quilt.getCellSize() / 100);
+        } else if (selectedDesign instanceof TwistedFourStarBlock) {
+            tempBlock =  new TwistedFourStarBlock();
+        } else if (selectedDesign instanceof SquareGridBlock) {
+            tempBlock =  new SquareGridBlock();
+        } else {
+            tempBlock = new RandomSquareBlock();
+        }
+        tempBlock.blockColour(colorPickers.get(0).getValue(), 1);
+        tempBlock.blockColour(colorPickers.get(1).getValue(), 2);
+        tempBlock.blockColour(colorPickers.get(2).getValue(), 3);
+        tempBlock.blockColour(colorPickers.get(3).getValue(), 4);
+        return tempBlock;
+    }
+
+    /**
      * Creates all the colour pickers for scene 2.
      */
     private void createColourPickers() {
         for (int i = 0; i < 4; i++) {
-            colorPickers.add(new ColorPicker());
+            colorPickers.add(new ColorPicker(Color.BLACK));
         }
         colorPickers.get(0).setOnAction((event) -> {
             selectedDesign.blockColour(colorPickers.get(0).getValue(), 1);
@@ -263,19 +358,30 @@ public class QuiltProgram {
             if (choice.getValue().equals("PinWheel")) {
                 selectedDesign = new PinwheelBlock(quilt.getCellSize() / 100);
             } else if (choice.getValue().equals("HourGlass")) {
-                selectedDesign = new HourglassBlock();
+                selectedDesign = new HourglassBlock(quilt.getCellSize() / 100);
             } else if (choice.getValue().equals("TwistedFourStar")) {
-                selectedDesign = new HourglassBlock();
+                selectedDesign = new HourglassBlock(quilt.getCellSize() / 100);
                 System.out.println("set TwistedFourStar");
             }
+            setDesignInitialColour();
             this.borderPane.setCenter(selectedDesign.getBlockUnscaled());
         });
     }
 
     /**
-     * Initializes the quilts grid to selected rows and columns.
+     * Initializes all the selected block designs colours.
      */
-    public void initializeGrid() {
+    private void setDesignInitialColour() {
+        selectedDesign.blockColour(colorPickers.get(0).getValue(), 1);
+        selectedDesign.blockColour(colorPickers.get(1).getValue(), 2);
+        selectedDesign.blockColour(colorPickers.get(2).getValue(), 3);
+        selectedDesign.blockColour(colorPickers.get(3).getValue(), 4);
+    }
+
+    /**
+     * Initializes the multi quilts grid to selected rows and columns.
+     */
+    public void initializeGridMultiQuilt() {
         int numCols = quilt.getColumns();
         int numRows = quilt.getRows();
         quilt.setCellSize();
@@ -299,6 +405,33 @@ public class QuiltProgram {
     }
 
     /**
+     * Initializes the single quilts grid to selected rows and columns.
+     */
+    public void initializeGridSingleQuilt() {
+        int numCols = quilt.getColumns();
+        int numRows = quilt.getRows();
+        quilt.setCellSize();
+        double cellSize = quilt.getCellSize();
+        for (int i = 0; i < numCols; i++) {
+            ColumnConstraints colConstraints = new ColumnConstraints(cellSize);
+            quilt.getQuiltGrid().getColumnConstraints().add(colConstraints);
+        }
+
+        for (int i = 0; i < numRows; i++) {
+            RowConstraints rowConstraints = new RowConstraints(cellSize);
+            quilt.getQuiltGrid().getRowConstraints().add(rowConstraints);
+        }
+
+        for (int i = 0; i < numCols; i++) {
+            for (int j = 0; j < numRows; j++) {
+                Pane pane = new Pane();
+                quilt.getQuiltGrid().add(pane, i, j);
+            }
+        }
+        quilt.getQuiltGrid().setGridLinesVisible(true);
+    }
+
+    /**
      * Adds the pane to the grid at spot colIndex, rowIndex.
      *
      * @param colIndex an int
@@ -308,8 +441,8 @@ public class QuiltProgram {
         Pane pane = new Pane();
         quilt.getQuiltGrid().add(pane, colIndex, rowIndex);
         pane.setOnMouseClicked(e -> {
-            quilt.getQuiltGrid().add(selectedDesign.getBlock(), colIndex, rowIndex);
-            choice.getSelectionModel().clearSelection();
+            Block tempBlock = createBlockOfSelectedType();
+            quilt.getQuiltGrid().add(tempBlock.getBlock(), colIndex, rowIndex);
         });
     }
 

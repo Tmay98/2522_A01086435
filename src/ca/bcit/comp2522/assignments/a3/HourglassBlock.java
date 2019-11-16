@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -29,17 +30,17 @@ public class HourglassBlock extends Block {
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
     private ArrayList<Polygon> colourGroup3;
-    private ArrayList<Polygon> colourGroup4;
     private Group block;
+    private double scaleFactor;
 
     /**
      * Generates a block with an hourglass pattern.
      */
-    public HourglassBlock() {
+    public HourglassBlock(double scaleFactor) {
+        this.scaleFactor = scaleFactor;
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
-        colourGroup4 = new ArrayList<>();
 
         block = new Group();
         createBlock();
@@ -87,7 +88,9 @@ public class HourglassBlock extends Block {
         for (Polygon polygon : colourGroup1) {
             polygon.setFill(Color.RED);
         }
-    };
+    }
+
+    ;
 
     /**
      * Translates the sections in an hourglass block.
@@ -99,7 +102,7 @@ public class HourglassBlock extends Block {
         // Group 1 small triangles //
         for (int i = 2; i < colourGroup1.size(); i++) {
             colourGroup1.get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
-            }
+        }
         colourGroup1.get(4).setTranslateY(HALF_BLOCK_LENGTH);
         colourGroup1.get(5).setTranslateY(HALF_BLOCK_LENGTH);
 
@@ -115,7 +118,7 @@ public class HourglassBlock extends Block {
         colourGroup3.get(0).setTranslateY(QUARTER_BLOCK_LENGTH);
         colourGroup3.get(1).setTranslateX(HALF_BLOCK_LENGTH);
         colourGroup3.get(1).setTranslateY(QUARTER_BLOCK_LENGTH);
-        }
+    }
 
     /**
      * Populates a single block with coloured groups of sections.
@@ -129,20 +132,57 @@ public class HourglassBlock extends Block {
         populateGroup(block, colourGroup3);
     }
 
-    public void blockColour(
-            String colourOne,
-            String colourTwo,
-            String colourThree) {
-        Color groupOneColour = Color.web(colourOne, 1.0);
-        Color groupTwoColour = Color.web(colourTwo, 1.0);
-        Color groupThreeColour = Color.web(colourThree, 1.0);
-    };
-
-    /**
-     * Returns the block.
-     * @return block a Group
-     */
     public Group getBlock() {
-        return block;
+        Group blk = new Group();
+        for (Polygon polygon : colourGroup1) {
+            blk.getChildren().add(polygon);
+        }
+        for (Polygon polygon : colourGroup2) {
+            blk.getChildren().add(polygon);
+        }
+        for (Polygon polygon : colourGroup3) {
+            blk.getChildren().add(polygon);
+        }
+        // fix block position based on scalefactor of quilt
+        blk.setScaleX(scaleFactor);
+        blk.setScaleY(scaleFactor);
+        double translateAmount = Math.abs(1 - scaleFactor) * 50;
+        if (scaleFactor < 1) {
+            blk.setTranslateX(-translateAmount);
+        } else {
+            blk.setTranslateX(translateAmount);
+        }
+
+        return blk;
+    }
+
+    public Group getBlockUnscaled() {
+        Group blk = new Group();
+        for (Polygon polygon : colourGroup1) {
+            blk.getChildren().add(polygon);
+        }
+        for (Polygon polygon : colourGroup2) {
+            blk.getChildren().add(polygon);
+        }
+        for (Polygon polygon : colourGroup3) {
+            blk.getChildren().add(polygon);
+        }
+        return blk;
+    }
+
+    public void blockColour(Paint colour, int groupNumber) {
+        if (groupNumber == 1) {
+            for (Polygon polygon : colourGroup1) {
+                polygon.setFill(colour);
+            }
+        } else if (groupNumber == 2) {
+            for (Polygon polygon : colourGroup2) {
+                polygon.setFill(colour);
+            }
+        } else if (groupNumber == 3) {
+            for (Polygon polygon : colourGroup3) {
+                polygon.setFill(colour);
+            }
+        }
     }
 }
