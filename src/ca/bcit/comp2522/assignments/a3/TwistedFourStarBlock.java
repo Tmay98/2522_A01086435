@@ -197,7 +197,7 @@ public class TwistedFourStarBlock extends Block {
 
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
-            for (Polygon poly : colourGroup2) {
+            for (Polygon poly : colourGroup1) {
                 poly.setFill(colour);
             }
         } else if (groupNumber == 2) {
