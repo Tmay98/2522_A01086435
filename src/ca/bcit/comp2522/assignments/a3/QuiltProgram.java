@@ -112,7 +112,7 @@ public class QuiltProgram {
      * for creating a multi quilt.
      */
     private void createSceneMultiQuilt() {
-        Text title = new Text("Scene two");
+        Text title = new Text("Create a multi block quilt");
         title.setFont(Font.font(TITLE_FONT_SIZE));
         title.setFill(Color.RED);
 
@@ -136,8 +136,11 @@ public class QuiltProgram {
         createColourPickers();
 
         // create next scene button
-        Button nextSceneButton = new Button("Next");
-        nextSceneButton.setOnAction((event) -> stage.setScene(scenes.get(1)));
+        Button nextSceneButton = new Button("Finalize quilt design");
+        nextSceneButton.setOnAction((event) -> {
+            createSceneFinal();
+            stage.setScene(scenes.get(2));
+        });
 
         // create selector controls
         VBox selectorControls =
@@ -190,16 +193,24 @@ public class QuiltProgram {
         // add colour pickers
         createColourPickers();
 
-        // create next scene button
-        Button createQuiltButton = new Button("Create Quilt with selected block");
+        // create quilt button
+        Button createQuiltButton = new Button("Create Quilt");
         createQuiltButton.setOnAction((event) -> fillSingleQuiltGrid());
+
+
+        // create next scene button
+        Button nextSceneButton = new Button("Finalize quilt design");
+        nextSceneButton.setOnAction((event) -> {
+            createSceneFinal();
+            stage.setScene(scenes.get(2));
+        });
 
         // create selector controls
         VBox selectorControls =
                 new VBox(choiceLabel, choice, colourPickerLabel,
                         colorPickers.get(0), colorPickers.get(1),
                         colorPickers.get(2), colorPickers.get(3),
-                        createQuiltButton);
+                        createQuiltButton, nextSceneButton);
         selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
         selectorControls.setSpacing(BUTTON_SPACING);
 
@@ -215,6 +226,53 @@ public class QuiltProgram {
 
         // add first scene to ArrayList
         scenes.add(new Scene(borderPane, SCENE_WIDTH, SCENE_HEIGHT));
+    }
+
+    private void createSceneFinal() {
+        Text title = new Text("Final Quilt");
+        title.setFont(Font.font(TITLE_FONT_SIZE));
+        title.setFill(Color.RED);
+
+        StackPane titlePane = new StackPane(title);
+        titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
+
+        // create quilt group
+        Label quiltLabel = new Label("Quilt");
+        quiltLabel.setFont(new Font("Arial", TITLE_FONT_SIZE));
+        VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
+
+        // create reset button
+        Button resetButton = new Button("Create a new quilt");
+        resetButton.setOnAction((actionEvent -> {
+            this.quilt = new SingleBlockQuilt();
+            this.scenes = new ArrayList<>();
+            this.choice = new ChoiceBox<String>();
+            this.borderPane = new BorderPane();
+            this.colorPickers = new ArrayList<>();
+            createSceneOne();
+            this.stage.setScene(this.scenes.get(0));
+            this.stage.show();
+        }));
+
+        // create reset button label
+        Label resetLabel = new Label("Create a new quilt");
+        resetLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        resetLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+
+        // create selector controls
+        VBox resetControls =
+                new VBox(resetLabel, resetButton);
+        resetControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
+        resetControls.setSpacing(BUTTON_SPACING);
+
+        // set border panes
+        BorderPane finalScenePane = new BorderPane();
+        finalScenePane.setTop(titlePane);
+        finalScenePane.setCenter(quiltGroup);
+        finalScenePane.setLeft(resetControls);
+
+        // add first scene to ArrayList
+        scenes.add(new Scene(finalScenePane, SCENE_WIDTH, SCENE_HEIGHT));
     }
 
     /**
@@ -337,7 +395,7 @@ public class QuiltProgram {
         } else if (selectedDesign instanceof SquareGridBlock) {
             tempBlock =  new SquareGridBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else {
-            tempBlock = new RandomSquareBlock();
+            tempBlock = new RandomSquareBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
         }
         tempBlock.blockColour(colorPickers.get(0).getValue(), 1);
         tempBlock.blockColour(colorPickers.get(1).getValue(), 2);
@@ -388,7 +446,7 @@ public class QuiltProgram {
             } else if (choice.getValue().equals("SquareGrid")) {
                 selectedDesign = new SquareGridBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("RandomSquare")) {
-                selectedDesign = new SquareGridBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+                selectedDesign = new RandomSquareBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
             }
             setDesignInitialColour();
             this.borderPane.setCenter(selectedDesign.getBlockUnscaled());
