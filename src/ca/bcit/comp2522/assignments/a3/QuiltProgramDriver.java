@@ -13,6 +13,27 @@ import javafx.stage.Stage;
  */
 public class QuiltProgramDriver extends Application {
 
+    private Stage primaryStage;
+    private QuiltProgram quiltProgram;
+
+    /**
+     * Returns the primary stage.
+     *
+     * @return primaryStage
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    /**
+     * Returns the quilt program.
+     *
+     * @return quiltProgram
+     */
+    public QuiltProgram getQuiltProgram() {
+        return quiltProgram;
+    }
+
     public void start(Stage primaryStage) {
         // testing
 
@@ -24,16 +45,17 @@ public class QuiltProgramDriver extends Application {
 //        primaryStage.show();
 
 //        primaryStage.setTitle("T");
-//        SquareGridBlock hblock = new SquareGridBlock(1);
+//        TwistedFourStarBlock hblock = new TwistedFourStarBlock(1);
 //        Group test = hblock.getBlock();
 //        Scene sc = new Scene(test, 800, 600);
 //        primaryStage.setScene(sc);
 //        primaryStage.show();
 
         // Create first scene
-        QuiltProgram quiltProgram = new QuiltProgram(primaryStage);
-        quiltProgram.getStage().setTitle("Quilt Program");
-        quiltProgram.getStage().setScene(quiltProgram.getScenes().get(0));
-        quiltProgram.getStage().show();
+        this.primaryStage = primaryStage;
+        this.quiltProgram = new QuiltProgram(primaryStage);
+        this.quiltProgram.getStage().setTitle("Quilt Program");
+        this.quiltProgram.getStage().setScene(quiltProgram.getScenes().get(0));
+        this.quiltProgram.getStage().show();
     }
 }

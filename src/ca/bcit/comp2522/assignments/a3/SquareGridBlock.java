@@ -90,14 +90,6 @@ public class SquareGridBlock extends Block {
         }
     }
 
-    public ArrayList<Rectangle> getColourGroup1() {
-        return colourGroup1;
-    }
-
-    public ArrayList<Rectangle> getColourGroup2() {
-        return colourGroup2;
-    }
-
     /**
      * Returns the scaled block.
      *

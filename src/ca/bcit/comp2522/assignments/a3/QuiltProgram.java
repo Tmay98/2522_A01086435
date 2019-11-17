@@ -17,6 +17,15 @@ import java.util.ArrayList;
  * @version 2019
  */
 public class QuiltProgram {
+    public static final double LABEL_FONT_SIZE_SCALE = 1.8;
+    public static final int CONVERT_TO_PERCENT = 100;
+    public static final int INT_SPINNER_MAX_VALUE = 50;
+    public static final int INT_SPINNER_INITIAL_VALUE = 5;
+    public static final int BUTTON_SPACING = 20;
+    public static final int SCENE_WIDTH = 1000;
+    public static final int SCENE_HEIGHT = 800;
+    public static final int TITLE_FONT_SIZE = 30;
+
     private Quilt quilt;
     private ArrayList<Scene> scenes;
     private Stage stage;
@@ -50,6 +59,15 @@ public class QuiltProgram {
     }
 
     /**
+     * Returns the quilt.
+     *
+     * @return quilt
+     */
+    public Quilt getQuilt() {
+        return quilt;
+    }
+
+    /**
      * returns the scenes ArrayList.
      *
      * @return scenes
@@ -63,7 +81,7 @@ public class QuiltProgram {
      */
     private void createSceneOne() {
         Text title = new Text("Quilt settings");
-        title.setFont(Font.font(30));
+        title.setFont(Font.font(TITLE_FONT_SIZE));
         title.setFill(Color.RED);
         StackPane titlePane = new StackPane(title);
         titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
@@ -78,7 +96,7 @@ public class QuiltProgram {
         VBox selectorControls =
                 new VBox(buttons, spinners);
         selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        selectorControls.setSpacing(20);
+        selectorControls.setSpacing(BUTTON_SPACING);
 
         // create borderPane
         BorderPane borderPaneSceneOne = new BorderPane();
@@ -86,7 +104,7 @@ public class QuiltProgram {
         borderPaneSceneOne.setLeft(selectorControls);
 
         // add first scene to ArrayList
-        scenes.add(new Scene(borderPaneSceneOne, 1000, 800));
+        scenes.add(new Scene(borderPaneSceneOne, SCENE_WIDTH, SCENE_HEIGHT));
     }
 
     /**
@@ -95,7 +113,7 @@ public class QuiltProgram {
      */
     private void createSceneMultiQuilt() {
         Text title = new Text("Scene two");
-        title.setFont(Font.font(30));
+        title.setFont(Font.font(TITLE_FONT_SIZE));
         title.setFill(Color.RED);
 
         StackPane titlePane = new StackPane(title);
@@ -106,13 +124,13 @@ public class QuiltProgram {
 
         // Add choice label
         Label choiceLabel = new Label("Select Design");
-        choiceLabel.setScaleX(1.8);
-        choiceLabel.setScaleY(1.8);
+        choiceLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        choiceLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
 
         // add colour pickers label
         Label colourPickerLabel = new Label("Select colours");
-        colourPickerLabel.setScaleX(1.8);
-        colourPickerLabel.setScaleY(1.8);
+        colourPickerLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        colourPickerLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
 
         // add colour pickers
         createColourPickers();
@@ -128,11 +146,11 @@ public class QuiltProgram {
                         colorPickers.get(2), colorPickers.get(3),
                         nextSceneButton);
         selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        selectorControls.setSpacing(20);
+        selectorControls.setSpacing(BUTTON_SPACING);
 
         // create quilt group
         Label quiltLabel = new Label("Quilt");
-        quiltLabel.setFont(new Font("Arial", 35));
+        quiltLabel.setFont(new Font("Arial", TITLE_FONT_SIZE));
         VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
 
         // set border panes
@@ -141,7 +159,7 @@ public class QuiltProgram {
         borderPane.setRight(quiltGroup);
 
         // add first scene to ArrayList
-        scenes.add(new Scene(borderPane, 1000, 800));
+        scenes.add(new Scene(borderPane, SCENE_WIDTH, SCENE_HEIGHT));
     }
 
     /**
@@ -149,8 +167,8 @@ public class QuiltProgram {
      * for creating a single quilt.
      */
     private void createSceneSingleQuilt() {
-        Text title = new Text("Scene three");
-        title.setFont(Font.font(30));
+        Text title = new Text("Create a single block quilt");
+        title.setFont(Font.font(TITLE_FONT_SIZE));
         title.setFill(Color.RED);
 
         StackPane titlePane = new StackPane(title);
@@ -161,13 +179,13 @@ public class QuiltProgram {
 
         // Add choice label
         Label choiceLabel = new Label("Select Design");
-        choiceLabel.setScaleX(1.8);
-        choiceLabel.setScaleY(1.8);
+        choiceLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        choiceLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
 
         // add colour pickers label
         Label colourPickerLabel = new Label("Select colours");
-        colourPickerLabel.setScaleX(1.8);
-        colourPickerLabel.setScaleY(1.8);
+        colourPickerLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        colourPickerLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
 
         // add colour pickers
         createColourPickers();
@@ -183,11 +201,11 @@ public class QuiltProgram {
                         colorPickers.get(2), colorPickers.get(3),
                         createQuiltButton);
         selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        selectorControls.setSpacing(20);
+        selectorControls.setSpacing(BUTTON_SPACING);
 
         // create quilt group
         Label quiltLabel = new Label("Quilt");
-        quiltLabel.setFont(new Font("Arial", 35));
+        quiltLabel.setFont(new Font("Arial", TITLE_FONT_SIZE));
         VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
 
         // set border panes
@@ -196,7 +214,7 @@ public class QuiltProgram {
         borderPane.setRight(quiltGroup);
 
         // add first scene to ArrayList
-        scenes.add(new Scene(borderPane, 1000, 800));
+        scenes.add(new Scene(borderPane, SCENE_WIDTH, SCENE_HEIGHT));
     }
 
     /**
@@ -208,29 +226,29 @@ public class QuiltProgram {
         // Add integer spinner for selecting number of blocks
         SpinnerValueFactory.IntegerSpinnerValueFactory svf1 =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        1, 100, 5);
+                        1, INT_SPINNER_MAX_VALUE, INT_SPINNER_INITIAL_VALUE);
         SpinnerValueFactory.IntegerSpinnerValueFactory svf2 =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        1, 100, 5);
+                        1, INT_SPINNER_MAX_VALUE, INT_SPINNER_INITIAL_VALUE);
         SpinnerValueFactory.IntegerSpinnerValueFactory svf3 =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        1, 100, 5);
+                        1, INT_SPINNER_MAX_VALUE, INT_SPINNER_INITIAL_VALUE);
         Spinner<Integer> blockSizeSpinner = new Spinner<>(svf1);
         Spinner<Integer> rowsSpinner = new Spinner<>(svf2);
         Spinner<Integer> columnsSpinner = new Spinner<>(svf3);
 
         // add labels for integer spinners
         Label blockSizeLabel = new Label("Block size (cm)");
-        blockSizeLabel.setScaleX(1.8);
-        blockSizeLabel.setScaleY(1.8);
+        blockSizeLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        blockSizeLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
 
         Label columnsLabel = new Label("Select Columns");
-        columnsLabel.setScaleX(1.8);
-        columnsLabel.setScaleY(1.8);
+        columnsLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        columnsLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
 
         Label rowsLabel = new Label("Select Rows");
-        rowsLabel.setScaleX(1.8);
-        rowsLabel.setScaleY(1.8);
+        rowsLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        rowsLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
 
         // add next scene button
         Button nextSceneButton = new Button("Next");
@@ -255,7 +273,7 @@ public class QuiltProgram {
                 columnsLabel, columnsSpinner,
                 blockSizeLabel, blockSizeSpinner,
                 nextSceneButton);
-        spinners.setSpacing(20);
+        spinners.setSpacing(BUTTON_SPACING);
         return spinners;
     }
 
@@ -282,12 +300,12 @@ public class QuiltProgram {
 
         // add radio buttons label
         Label buttonLabel = new Label("select block type");
-        buttonLabel.setScaleX(1.8);
-        buttonLabel.setScaleY(1.8);
+        buttonLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        buttonLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
 
         // add to VBox and return
         VBox buttons = new VBox(buttonLabel, singleButton, multiButton);
-        buttons.setSpacing(20);
+        buttons.setSpacing(BUTTON_SPACING);
         return buttons;
     }
 
@@ -311,13 +329,13 @@ public class QuiltProgram {
     private Block createBlockOfSelectedType() {
         Block tempBlock;
         if (selectedDesign instanceof PinwheelBlock) {
-            tempBlock =  new PinwheelBlock(quilt.getCellSize() / 100);
+            tempBlock =  new PinwheelBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else if (selectedDesign instanceof HourglassBlock) {
-            tempBlock =  new HourglassBlock(quilt.getCellSize() / 100);
+            tempBlock =  new HourglassBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else if (selectedDesign instanceof TwistedFourStarBlock) {
-            tempBlock =  new TwistedFourStarBlock();
+            tempBlock =  new TwistedFourStarBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else if (selectedDesign instanceof SquareGridBlock) {
-            tempBlock =  new SquareGridBlock(quilt.getCellSize() / 100);
+            tempBlock =  new SquareGridBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else {
             tempBlock = new RandomSquareBlock();
         }
@@ -353,7 +371,8 @@ public class QuiltProgram {
      * Creates the drop down for selecting designs for a block.
      */
     private void createDesignChoiceBox() {
-        String[] selections = {"PinWheel", "HourGlass", "TwistedFourStar", "SquareGrid", "RandomSquare"};
+        String[] selections = {"PinWheel", "HourGlass",
+                "TwistedFourStar", "SquareGrid", "RandomSquare"};
         choice = new ChoiceBox<String>();
         choice.getItems().addAll(selections);
         choice.setOnAction((event) -> {
@@ -361,15 +380,15 @@ public class QuiltProgram {
                 return;
             }
             if (choice.getValue().equals("PinWheel")) {
-                selectedDesign = new PinwheelBlock(quilt.getCellSize() / 100);
+                selectedDesign = new PinwheelBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("HourGlass")) {
-                selectedDesign = new HourglassBlock(quilt.getCellSize() / 100);
+                selectedDesign = new HourglassBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("TwistedFourStar")) {
-                selectedDesign = new HourglassBlock(quilt.getCellSize() / 100);
+                selectedDesign = new TwistedFourStarBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("SquareGrid")) {
-                selectedDesign = new SquareGridBlock(quilt.getCellSize() / 100);
+                selectedDesign = new SquareGridBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("RandomSquare")) {
-                selectedDesign = new SquareGridBlock(quilt.getCellSize() / 100);
+                selectedDesign = new SquareGridBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
             }
             setDesignInitialColour();
             this.borderPane.setCenter(selectedDesign.getBlockUnscaled());
@@ -389,20 +408,10 @@ public class QuiltProgram {
     /**
      * Initializes the multi quilts grid to selected rows and columns.
      */
-    public void initializeGridMultiQuilt() {
+    private void initializeGridMultiQuilt() {
         int numCols = quilt.getColumns();
         int numRows = quilt.getRows();
-        quilt.setCellSize();
-        double cellSize = quilt.getCellSize();
-        for (int i = 0; i < numCols; i++) {
-            ColumnConstraints colConstraints = new ColumnConstraints(cellSize);
-            quilt.getQuiltGrid().getColumnConstraints().add(colConstraints);
-        }
-
-        for (int i = 0; i < numRows; i++) {
-            RowConstraints rowConstraints = new RowConstraints(cellSize);
-            quilt.getQuiltGrid().getRowConstraints().add(rowConstraints);
-        }
+        createQuiltCells(numCols, numRows);
 
         for (int i = 0; i < numCols; i++) {
             for (int j = 0; j < numRows; j++) {
@@ -415,9 +424,21 @@ public class QuiltProgram {
     /**
      * Initializes the single quilts grid to selected rows and columns.
      */
-    public void initializeGridSingleQuilt() {
+    private void initializeGridSingleQuilt() {
         int numCols = quilt.getColumns();
         int numRows = quilt.getRows();
+        createQuiltCells(numCols, numRows);
+
+        for (int i = 0; i < numCols; i++) {
+            for (int j = 0; j < numRows; j++) {
+                Pane pane = new Pane();
+                quilt.getQuiltGrid().add(pane, i, j);
+            }
+        }
+        quilt.getQuiltGrid().setGridLinesVisible(true);
+    }
+
+    private void createQuiltCells(int numCols, int numRows) {
         quilt.setCellSize();
         double cellSize = quilt.getCellSize();
         for (int i = 0; i < numCols; i++) {
@@ -429,14 +450,6 @@ public class QuiltProgram {
             RowConstraints rowConstraints = new RowConstraints(cellSize);
             quilt.getQuiltGrid().getRowConstraints().add(rowConstraints);
         }
-
-        for (int i = 0; i < numCols; i++) {
-            for (int j = 0; j < numRows; j++) {
-                Pane pane = new Pane();
-                quilt.getQuiltGrid().add(pane, i, j);
-            }
-        }
-        quilt.getQuiltGrid().setGridLinesVisible(true);
     }
 
     /**

@@ -65,10 +65,6 @@ public class Block {
      */
     public static final double QUARTER_TRIANGLE_RATIO = 0.49;
 
-    private void createSections() { };
-    private void createBlock() { };
-    private void translateSections() { };
-
     public void blockColour(Paint paint, int group) { };
 
     public Group getBlock() {
