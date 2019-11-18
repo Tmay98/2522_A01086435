@@ -32,10 +32,10 @@ public class TwistedFourStarBlock extends Block {
      */
     public static final int COLOUR_GROUPS_IN_BLOCK = 4;
 
-    private ArrayList<Polygon> tempGroup1;
-    private ArrayList<Polygon> tempGroup2;
-    private ArrayList<Polygon> tempGroup3;
-    private ArrayList<Polygon> tempGroup4;
+    private ArrayList<Polygon> quarterSection1;
+    private ArrayList<Polygon> quarterSection2;
+    private ArrayList<Polygon> quarterSection3;
+    private ArrayList<Polygon> quarterSection4;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -52,10 +52,10 @@ public class TwistedFourStarBlock extends Block {
     public TwistedFourStarBlock(double scaleFactor) {
         super(scaleFactor);
         quarterSections = new ArrayList<>();
-        tempGroup1 = new ArrayList<>();
-        tempGroup2 = new ArrayList<>();
-        tempGroup3 = new ArrayList<>();
-        tempGroup4 = new ArrayList<>();
+        quarterSection1 = new ArrayList<>();
+        quarterSection2 = new ArrayList<>();
+        quarterSection3 = new ArrayList<>();
+        quarterSection4 = new ArrayList<>();
 
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
@@ -106,25 +106,25 @@ public class TwistedFourStarBlock extends Block {
      */
     private void createSections() {
         // Group 1 //
-        tempGroup1 = createTriangles(NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE);
-        for (Polygon triangle : tempGroup1) {
+        quarterSection1 = createTriangles(NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE);
+        for (Polygon triangle : quarterSection1) {
             triangle.setFill(Color.BLUE);
             setScaleXY(triangle, QUARTER_TRIANGLE_RATIO);
             rescaleTriangleCoordinates(triangle);
             triangle.setRotate(RIGHT_ANGLE);
         }
-        tempGroup1.get(2).setRotate(STRAIGHT_ANGLE + RIGHT_ANGLE);
+        quarterSection1.get(2).setRotate(STRAIGHT_ANGLE + RIGHT_ANGLE);
 
         // Group 2 //
-        tempGroup2 = createTriangles(1);
-        tempGroup2.get(0).setRotate(STRAIGHT_ANGLE + RIGHT_ANGLE);
-        setScaleXY(tempGroup2.get(0), QUARTER_TRIANGLE_RATIO);
+        quarterSection2 = createTriangles(1);
+        quarterSection2.get(0).setRotate(STRAIGHT_ANGLE + RIGHT_ANGLE);
+        setScaleXY(quarterSection2.get(0), QUARTER_TRIANGLE_RATIO);
 
         // Group 3 //
-        tempGroup3 = createParallelograms(PARALLELOGRAMS_IN_QUARTER_SECTION);
+        quarterSection3 = createParallelograms(PARALLELOGRAMS_IN_QUARTER_SECTION);
 
         // Group 4 //
-        tempGroup4 = createParallelograms(PARALLELOGRAMS_IN_QUARTER_SECTION);
+        quarterSection4 = createParallelograms(PARALLELOGRAMS_IN_QUARTER_SECTION);
 
     }
 
@@ -144,16 +144,16 @@ public class TwistedFourStarBlock extends Block {
      */
     private void translateSections() {
         // Group 1 //
-        tempGroup1.get(1).setTranslateX(QUARTER_BLOCK_LENGTH / 2.0);
-        setTranslateXY(tempGroup1.get(2), QUARTER_BLOCK_LENGTH / 2.0);
+        quarterSection1.get(1).setTranslateX(QUARTER_BLOCK_LENGTH / 2.0);
+        setTranslateXY(quarterSection1.get(2), QUARTER_BLOCK_LENGTH / 2.0);
 
         // Group 2 //
-        setTranslateXY(tempGroup2.get(0), QUARTER_BLOCK_LENGTH);
-        tempGroup2.get(0).setTranslateY(QUARTER_BLOCK_LENGTH / 2.0);
-        tempGroup2.get(0).setTranslateX(-QUARTER_BLOCK_LENGTH / 2.0);
+        setTranslateXY(quarterSection2.get(0), QUARTER_BLOCK_LENGTH);
+        quarterSection2.get(0).setTranslateY(QUARTER_BLOCK_LENGTH / 2.0);
+        quarterSection2.get(0).setTranslateX(-QUARTER_BLOCK_LENGTH / 2.0);
 
         // Group 4 //
-        tempGroup4.get(0).setTranslateX(QUARTER_BLOCK_LENGTH);
+        quarterSection4.get(0).setTranslateX(QUARTER_BLOCK_LENGTH);
     }
 
     /**
@@ -166,15 +166,15 @@ public class TwistedFourStarBlock extends Block {
         translateSections();
         Group quarterBlocks = new Group();
 
-        populateGroup(quarterBlocks, tempGroup1);
-        populateGroup(quarterBlocks, tempGroup2);
-        populateGroup(quarterBlocks, tempGroup3);
-        populateGroup(quarterBlocks, tempGroup4);
+        populateGroup(quarterBlocks, quarterSection1);
+        populateGroup(quarterBlocks, quarterSection2);
+        populateGroup(quarterBlocks, quarterSection3);
+        populateGroup(quarterBlocks, quarterSection4);
 
-        colourGroup1.addAll(tempGroup1);
-        colourGroup2.addAll(tempGroup2);
-        colourGroup3.addAll(tempGroup3);
-        colourGroup4.addAll(tempGroup4);
+        colourGroup1.addAll(quarterSection1);
+        colourGroup2.addAll(quarterSection2);
+        colourGroup3.addAll(quarterSection3);
+        colourGroup4.addAll(quarterSection4);
 
         return quarterBlocks;
     }
