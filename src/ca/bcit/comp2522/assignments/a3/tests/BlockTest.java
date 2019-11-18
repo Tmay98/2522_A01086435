@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class blockTest {
+public class BlockTest {
 
     private Block testBlock;
     private double testScaleFactor = 50;

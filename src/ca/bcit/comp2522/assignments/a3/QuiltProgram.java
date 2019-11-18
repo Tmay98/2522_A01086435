@@ -32,43 +32,43 @@ public class QuiltProgram {
     /**
      * Label scale amount.
      */
-    private static final double LABEL_FONT_SIZE_SCALE = 1.8;
+    public static final double LABEL_FONT_SIZE_SCALE = 1.8;
     /**
      * Number for conversion to a percentage.
      */
-    private static final int CONVERT_TO_PERCENT = 100;
+    public static final int CONVERT_TO_PERCENT = 100;
     /**
      * Spinner max value.
      */
-    private static final int INT_SPINNER_MAX_VALUE = 50;
+    public static final int INT_SPINNER_MAX_VALUE = 50;
     /**
      * Initial value of spinner.
      */
-    private static final int INT_SPINNER_INITIAL_VALUE = 5;
+    public static final int INT_SPINNER_INITIAL_VALUE = 5;
     /**
      * Pixel spaces between buttons.
      */
-    private static final int BUTTON_SPACING = 20;
+    public static final int BUTTON_SPACING = 20;
     /**
      * Width of a scene.
      */
-    private static final int SCENE_WIDTH = 1000;
+    public static final int SCENE_WIDTH = 1000;
     /**
      * Height of a scene.
      */
-    private static final int SCENE_HEIGHT = 800;
+    public static final int SCENE_HEIGHT = 800;
     /**
      * Size of the font in the GUI.
      */
-    private static final int TITLE_FONT_SIZE = 30;
+    public static final int TITLE_FONT_SIZE = 30;
     /**
      * Number of colour pickers.
      */
-    private static final int NUMBER_OF_COLOUR_PICKERS = 4;
+    public static final int NUMBER_OF_COLOUR_PICKERS = 4;
     /**
      * Initial value for block size spinner.
      */
-    private static final int BLOCK_SIZE_SPINNER_INITIAL_VALUE = 50;
+    public static final int BLOCK_SIZE_SPINNER_INITIAL_VALUE = 50;
 
     private Quilt quilt;
     private ArrayList<Scene> scenes;
@@ -84,7 +84,7 @@ public class QuiltProgram {
      *
      * @param stage a Stage
      */
-    QuiltProgram(Stage stage) {
+    public QuiltProgram(Stage stage) {
         this.quilt = new Quilt();
         this.stage = stage;
         this.scenes = new ArrayList<>();
