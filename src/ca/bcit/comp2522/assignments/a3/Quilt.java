@@ -31,6 +31,10 @@ public class Quilt {
         this.columns = 0;
         this.cellSize = CELL_SIZE;
         this.quiltGrid = new GridPane();
+        quiltGrid.setMinWidth(QUILT_SIZE);
+        quiltGrid.setMaxWidth(QUILT_SIZE);
+        quiltGrid.setMinHeight(QUILT_SIZE);
+        quiltGrid.setMaxHeight(QUILT_SIZE);
     }
     /**
      * Returns the grid pane of a quilt.

@@ -87,6 +87,7 @@ public class QuiltProgram {
         this.borderPane = new BorderPane();
         this.choice = new ChoiceBox<>();
         this.colorPickers = new ArrayList<>();
+        this.quiltType = "SingleQuilt";
         createSceneOne();
     }
 
