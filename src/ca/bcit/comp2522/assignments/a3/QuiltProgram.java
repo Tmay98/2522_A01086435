@@ -17,51 +17,42 @@ import java.util.ArrayList;
  * @version 2019
  */
 public class QuiltProgram {
-
     /**
-     * Constant for Label scale amount.
+     * Label scale amount.
      */
-    public static final double LABEL_FONT_SIZE_SCALE = 1.8;
-
+    private static final double LABEL_FONT_SIZE_SCALE = 1.8;
     /**
-     * Constant to convert to a percentage.
+     * Number for conversion to a percentage.
      */
-    public static final int CONVERT_TO_PERCENT = 100;
-
+    private static final int CONVERT_TO_PERCENT = 100;
     /**
-     * Constant for int spinners max value.
+     * Spinner max value.
      */
-    public static final int INT_SPINNER_MAX_VALUE = 50;
-
+    private static final int INT_SPINNER_MAX_VALUE = 50;
     /**
-     * Constant for int spinners initial value.
+     * Initial value of spinner.
      */
-    public static final int INT_SPINNER_INITIAL_VALUE = 5;
-
+    private static final int INT_SPINNER_INITIAL_VALUE = 5;
     /**
-     * Constant for button spacing.
+     * Pixel spaces between buttons.
      */
-    public static final int BUTTON_SPACING = 20;
-
+    private static final int BUTTON_SPACING = 20;
     /**
-     * Constant for scenes width.
+     * Width of a scene.
      */
-    public static final int SCENE_WIDTH = 1000;
-
+    private static final int SCENE_WIDTH = 1000;
     /**
-     * Constant for scenes height.
+     * Height of a scene.
      */
-    public static final int SCENE_HEIGHT = 800;
-
+    private static final int SCENE_HEIGHT = 800;
     /**
-     * Constant for title font size.
+     * Size of the font in the GUI.
      */
-    public static final int TITLE_FONT_SIZE = 30;
-
+    private static final int TITLE_FONT_SIZE = 30;
     /**
-     * Constant for number of colour pickers
+     * Number of colour pickers.
      */
-    public static final int NUMBER_OF_COLOUR_PICKERS = 4;
+    private static final int NUMBER_OF_COLOUR_PICKERS = 4;
 
     private Quilt quilt;
     private ArrayList<Scene> scenes;
@@ -77,7 +68,7 @@ public class QuiltProgram {
      *
      * @param stage a Stage
      */
-    public QuiltProgram(Stage stage) {
+    QuiltProgram(Stage stage) {
         this.quilt = new Quilt();
         this.stage = stage;
         this.scenes = new ArrayList<>();
@@ -90,39 +81,49 @@ public class QuiltProgram {
     /**
      * Returns the stage.
      *
-     * @return stage
+     * @return stage a Stage object
      */
-    public Stage getStage() {
+    private Stage getStage() {
         return stage;
     }
-
     /**
      * Returns the quilt.
      *
-     * @return quilt
+     * @return quilt a Quilt object
      */
-    public Quilt getQuilt() {
+    private Quilt getQuilt() {
         return quilt;
+    }
+    /**
+     * Returns the ArrayList of scenes.
+     *
+     * @return scenes an ArrayList
+     */
+    private ArrayList<Scene> getScenes() {
+        return scenes;
     }
 
     /**
-     * returns the scenes ArrayList.
-     *
-     * @return scenes
+     * Create a title pane.
+     * @param titleText a String
+     * @return titlePane a StackPane object
      */
-    public ArrayList<Scene> getScenes() {
-        return scenes;
+    private StackPane createTitlePane(String titleText) {
+        Text title = new Text(titleText);
+        title.setFont(Font.font(TITLE_FONT_SIZE));
+        title.setFill(Color.RED);
+
+        StackPane titlePane = new StackPane(title);
+        titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
+
+        return titlePane;
     }
 
     /**
      * Creates the first scene and adds it to the scenes ArrayList.
      */
     private void createSceneOne() {
-        Text title = new Text("Quilt settings");
-        title.setFont(Font.font(TITLE_FONT_SIZE));
-        title.setFill(Color.RED);
-        StackPane titlePane = new StackPane(title);
-        titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
+        StackPane titlePane = createTitlePane("Quilt Settings");
 
         // create radio buttons
         VBox buttons = createRadioButtonGroup();
@@ -144,18 +145,12 @@ public class QuiltProgram {
         // add first scene to ArrayList
         scenes.add(new Scene(borderPaneSceneOne, SCENE_WIDTH, SCENE_HEIGHT));
     }
-
     /**
      * Creates the second scene and adds it to the scenes ArrayList
      * for creating a multi quilt.
      */
     private void createSceneMultiQuilt() {
-        Text title = new Text("Create a multi block quilt");
-        title.setFont(Font.font(TITLE_FONT_SIZE));
-        title.setFill(Color.RED);
-
-        StackPane titlePane = new StackPane(title);
-        titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
+        StackPane titlePane = createTitlePane("Create a multi-patterned quilt");
 
         // Creating choice box for block selection.
         createDesignChoiceBox();
@@ -208,12 +203,7 @@ public class QuiltProgram {
      * for creating a single quilt.
      */
     private void createSceneSingleQuilt() {
-        Text title = new Text("Create a single block quilt");
-        title.setFont(Font.font(TITLE_FONT_SIZE));
-        title.setFill(Color.RED);
-
-        StackPane titlePane = new StackPane(title);
-        titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
+        StackPane titlePane = createTitlePane("Create a single patterned quilt");
 
         // Creating choice box for block selection.
         createDesignChoiceBox();
