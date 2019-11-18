@@ -209,19 +209,19 @@ public class TwistedFourStarBlock extends Block {
      */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
-            for (Polygon poly : colourGroup1) {
+            for (Polygon poly : getColourGroup1()) {
                 poly.setFill(colour);
             }
         } else if (groupNumber == 2) {
-            for (Polygon poly : colourGroup2) {
+            for (Polygon poly : getColourGroup2()) {
                 poly.setFill(colour);
             }
         } else if (groupNumber == COLOUR_GROUPS_IN_BLOCK - 1) {
-            for (Polygon poly : colourGroup3) {
+            for (Polygon poly : getColourGroup3()) {
                 poly.setFill(colour);
             }
         } else if (groupNumber == COLOUR_GROUPS_IN_BLOCK) {
-            for (Polygon poly : colourGroup4) {
+            for (Polygon poly : getColourGroup4()) {
                 poly.setFill(colour);
             }
         }

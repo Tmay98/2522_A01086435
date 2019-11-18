@@ -62,13 +62,13 @@ public class RandomSquareBlock extends Block {
         //create group 1
         for (int i = 0; i < NUM_ROWS; i++) {
             for (int j = 0; j < NUM_COLS; j += 2) {
-                super.addNewSquare(colourGroup1, i, j);
+                super.addNewSquare(getColourGroup1(), i, j);
             }
         }
         //create group 2
         for (int i = 0; i < NUM_ROWS; i++) {
             for (int j = 1; j < NUM_COLS; j += 2) {
-                super.addNewSquare(colourGroup2, i, j);
+                super.addNewSquare(getColourGroup2(), i, j);
             }
         }
     }
@@ -77,8 +77,8 @@ public class RandomSquareBlock extends Block {
      */
     private void createBlock() {
         createSections();
-        populateGroup(getBlock(), colourGroup1);
-        populateGroup(getBlock(), colourGroup2);
+        populateGroup(getBlock(), getColourGroup1());
+        populateGroup(getBlock(), getColourGroup2());
     }
     /**
      * Sets the colour of the sections in a block.
@@ -87,11 +87,11 @@ public class RandomSquareBlock extends Block {
      */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
-            for (Rectangle rect : colourGroup1) {
+            for (Rectangle rect : getColourGroup1()) {
                 rect.setFill(colour);
             }
         } else if (groupNumber == 2) {
-            for (Rectangle rect : colourGroup2) {
+            for (Rectangle rect : getColourGroup2()) {
                 rect.setFill(colour);
             }
         }

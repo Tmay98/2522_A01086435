@@ -61,13 +61,13 @@ public class SquareGridBlock extends Block {
         //create group 1
         for (int i = 0; i < NUM_ROWS; i++) {
             for (int j = i % 2; j < NUM_COLS; j += 2) {
-                addNewSquare(colourGroup1, i, j);
+                addNewSquare(getColourGroup1(), i, j);
             }
         }
         //create group 2
         for (int i = 0; i < NUM_ROWS; i++) {
             for (int j = (i + 1) % 2; j < NUM_COLS; j += 2) {
-                addNewSquare(colourGroup2, i, j);
+                addNewSquare(getColourGroup2(), i, j);
             }
         }
     }
@@ -77,8 +77,8 @@ public class SquareGridBlock extends Block {
     private void createBlock() {
         createSections();
 
-        populateGroup(getBlock(), colourGroup1);
-        populateGroup(getBlock(), colourGroup2);
+        populateGroup(getBlock(), getColourGroup1());
+        populateGroup(getBlock(), getColourGroup2());
     }
     /**
      * Sets the colour of the sections in a block.
@@ -87,11 +87,11 @@ public class SquareGridBlock extends Block {
      */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
-            for (Rectangle rect : colourGroup1) {
+            for (Rectangle rect : getColourGroup1()) {
                 rect.setFill(colour);
             }
         } else if (groupNumber == 2) {
-            for (Rectangle rect : colourGroup2) {
+            for (Rectangle rect : getColourGroup2()) {
                 rect.setFill(colour);
             }
         }
