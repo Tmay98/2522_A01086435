@@ -33,6 +33,7 @@ public class QuiltProgram {
     private Block selectedDesign;
     private BorderPane borderPane;
     private ArrayList<ColorPicker> colorPickers;
+    private String quiltType;
 
     /**
      * Constructs an object of type QuiltProgram.
@@ -40,7 +41,7 @@ public class QuiltProgram {
      * @param stage a Stage
      */
     public QuiltProgram(Stage stage) {
-        this.quilt = new SingleBlockQuilt();
+        this.quilt = new Quilt();
         this.stage = stage;
         this.scenes = new ArrayList<>();
         this.choice = new ChoiceBox<String>();
@@ -244,7 +245,7 @@ public class QuiltProgram {
         // create reset button
         Button resetButton = new Button("Create a new quilt");
         resetButton.setOnAction((actionEvent -> {
-            this.quilt = new SingleBlockQuilt();
+            this.quilt = new Quilt();
             this.scenes = new ArrayList<>();
             this.choice = new ChoiceBox<String>();
             this.borderPane = new BorderPane();
@@ -315,7 +316,7 @@ public class QuiltProgram {
             this.quilt.setRows(rowsSpinner.getValue());
             this.quilt.setCellSize();
             // create multi block or single block scene depending on quilt type.
-            if (quilt instanceof MultiBlockQuilt) {
+            if (quiltType.equals("MultiQuilt")) {
                 initializeGridMultiQuilt();
                 createSceneMultiQuilt();
                 stage.setScene(scenes.get(1));
@@ -353,8 +354,8 @@ public class QuiltProgram {
         multiButton.setToggleGroup(blockType);
 
         // set onclick events
-        singleButton.setOnAction((event) -> createSingleQuilt());
-        multiButton.setOnAction((event) -> createMultiQuilt());
+        singleButton.setOnAction((event) -> this.quiltType = "SingleQuilt");
+        multiButton.setOnAction((event) -> this.quiltType = "MultiQuilt");
 
         // add radio buttons label
         Label buttonLabel = new Label("select block type");
@@ -523,21 +524,5 @@ public class QuiltProgram {
             Block tempBlock = createBlockOfSelectedType();
             quilt.getQuiltGrid().add(tempBlock.getBlock(), colIndex, rowIndex);
         });
-    }
-
-    /**
-     * Creates a singleQuilt.
-     */
-    private void createSingleQuilt() {
-        this.quilt = null;
-        this.quilt = new SingleBlockQuilt();
-    }
-
-    /**
-     * Creates a multiQuilt.
-     */
-    private void createMultiQuilt() {
-        this.quilt = null;
-        this.quilt = new MultiBlockQuilt();
     }
 }
