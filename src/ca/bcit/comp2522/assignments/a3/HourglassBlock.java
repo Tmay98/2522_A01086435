@@ -102,12 +102,12 @@ public class HourglassBlock extends Block {
             smallTriangle.setRotate(smallTriangleRotation);
 
             if (smallTriangles.indexOf(smallTriangle) % 2 == 0) {
-                colourGroup1.add(smallTriangle);
+                getColourGroup1().add(smallTriangle);
             } else if (smallTriangles.indexOf(smallTriangle)
                     <= SMALL_TRIANGLES_IN_SECTION_ONE) {
-                colourGroup2.add(smallTriangle);
+                getColourGroup2().add(smallTriangle);
             } else {
-                colourGroup3.add(smallTriangle);
+                getColourGroup3().add(smallTriangle);
             }
         }
         for (Polygon polygon : colourGroup1) {
@@ -120,31 +120,31 @@ public class HourglassBlock extends Block {
     private void translateSections() {
 
         // Group 1 large triangles //
-        setTranslateXY(colourGroup1.get(1), HALF_BLOCK_LENGTH);
+        setTranslateXY(getColourGroup1().get(1), HALF_BLOCK_LENGTH);
         // Group 1 small triangles //
-        for (int i = 2; i < colourGroup1.size(); i++) {
-            colourGroup1.get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
+        for (int i = 2; i < getColourGroup1().size(); i++) {
+            getColourGroup1().get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
         }
-        colourGroup1.get(SMALL_TRIANGLES_IN_SECTION_ONE)
+        getColourGroup1().get(SMALL_TRIANGLES_IN_SECTION_ONE)
                 .setTranslateY(HALF_BLOCK_LENGTH);
-        colourGroup1.get(SMALL_TRIANGLES_IN_SECTION_ONE + 1)
+        getColourGroup1().get(SMALL_TRIANGLES_IN_SECTION_ONE + 1)
                 .setTranslateY(HALF_BLOCK_LENGTH);
 
         // Group 2 large triangles //
-        colourGroup2.get(0).setTranslateY(HALF_BLOCK_LENGTH);
-        colourGroup2.get(1).setTranslateX(HALF_BLOCK_LENGTH);
+        getColourGroup2().get(0).setTranslateY(HALF_BLOCK_LENGTH);
+        getColourGroup2().get(1).setTranslateX(HALF_BLOCK_LENGTH);
         // Group 2 small triangles //
-        colourGroup2.get(SMALL_TRIANGLES_IN_SECTION_TWO)
+        getColourGroup2().get(SMALL_TRIANGLES_IN_SECTION_TWO)
                 .setTranslateY(QUARTER_BLOCK_LENGTH);
-        colourGroup2.get(SMALL_TRIANGLES_IN_SECTION_TWO)
+        getColourGroup2().get(SMALL_TRIANGLES_IN_SECTION_TWO)
                 .setTranslateX(HALF_BLOCK_LENGTH);
-        colourGroup2.get(SMALL_TRIANGLES_IN_SECTION_TWO + 1)
+        getColourGroup2().get(SMALL_TRIANGLES_IN_SECTION_TWO + 1)
                 .setTranslateY(QUARTER_BLOCK_LENGTH);
 
         // Group 3 //
-        colourGroup3.get(0).setTranslateY(QUARTER_BLOCK_LENGTH);
-        colourGroup3.get(1).setTranslateX(HALF_BLOCK_LENGTH);
-        colourGroup3.get(1).setTranslateY(QUARTER_BLOCK_LENGTH);
+        getColourGroup3().get(0).setTranslateY(QUARTER_BLOCK_LENGTH);
+        getColourGroup3().get(1).setTranslateX(HALF_BLOCK_LENGTH);
+        getColourGroup3().get(1).setTranslateY(QUARTER_BLOCK_LENGTH);
     }
     /**
      * Populates a single block with coloured groups of sections.
@@ -153,9 +153,9 @@ public class HourglassBlock extends Block {
         createSections();
         translateSections();
 
-        populateGroup(getBlock(), colourGroup1);
-        populateGroup(getBlock(), colourGroup2);
-        populateGroup(getBlock(), colourGroup3);
+        populateGroup(getBlock(), getColourGroup1());
+        populateGroup(getBlock(), getColourGroup2());
+        populateGroup(getBlock(), getColourGroup3());
     }
     /**
      * Sets the colour of the sections in a block.
@@ -164,15 +164,15 @@ public class HourglassBlock extends Block {
      */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
-            for (Polygon polygon : colourGroup1) {
+            for (Polygon polygon : getColourGroup1()) {
                 polygon.setFill(colour);
             }
         } else if (groupNumber == 2) {
-            for (Polygon polygon : colourGroup2) {
+            for (Polygon polygon : getColourGroup2()) {
                 polygon.setFill(colour);
             }
         } else if (groupNumber == COLOUR_GROUPS_IN_HOURGLASS_BLOCK) {
-            for (Polygon polygon : colourGroup3) {
+            for (Polygon polygon : getColourGroup3()) {
                 polygon.setFill(colour);
             }
         }

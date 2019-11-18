@@ -1,10 +1,8 @@
 package ca.bcit.comp2522.assignments.a3.tests;
 
-import ca.bcit.comp2522.assignments.a3.Block;
 import ca.bcit.comp2522.assignments.a3.HourglassBlock;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -45,6 +43,11 @@ public class HourglassTest {
     }
 
     @Test
+    public void colourGroupsInHourglassBLockConstantIsCorrect() {
+        assertEquals(testBlock.COLOUR_GROUPS_IN_HOURGLASS_BLOCK, 3, 0.0);
+    }
+
+    @Test
     public void colourGroup1HasCorrectNumberOfTriangles() {
         assertEquals(testBlock.getColourGroup1().size(), 6, 0.0);
     }
@@ -66,6 +69,7 @@ public class HourglassTest {
             assertEquals(tri.getFill(), Color.BLUE);
         }
     }
+
     @Test
     public void blockColourSetsColourCorrectlyForGroup2() {
         testBlock.blockColour(Color.BLUE, 2);

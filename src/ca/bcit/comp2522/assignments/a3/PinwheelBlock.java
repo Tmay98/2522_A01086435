@@ -17,11 +17,11 @@ public class PinwheelBlock extends Block {
     /**
      * Number of geometrical sections sharing the same shape and colour.
      */
-    private static final int TRIANGLES_PER_SECTION = 4;
+    public static final int TRIANGLES_PER_SECTION = 4;
     /**
      * Number of triangles per section that require rotation.
      */
-    private static final int TRIANGLES_TO_ROTATE_PER_SECTION = 3;
+    public static final int TRIANGLES_TO_ROTATE_PER_SECTION = 3;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -31,11 +31,25 @@ public class PinwheelBlock extends Block {
      *
      * @param scaleFactor a double
      */
-    PinwheelBlock(double scaleFactor) {
+    public PinwheelBlock(double scaleFactor) {
         super(scaleFactor);
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         createBlock();
+    }
+    /**
+     * Returns colourGroup1.
+     * @return colourGroup1 an ArrayList
+     */
+    public ArrayList<Polygon> getColourGroup1() {
+        return colourGroup1;
+    }
+    /**
+     * Returns colourGroup2.
+     * @return colourGroup2 an ArrayList
+     */
+    public ArrayList<Polygon> getColourGroup2() {
+        return colourGroup2;
     }
     /**
      * Generates the sections needed for the pinwheel block.
@@ -43,19 +57,19 @@ public class PinwheelBlock extends Block {
     private void createSections() {
         //create group 1
         for (int i = 0; i < TRIANGLES_PER_SECTION; i++) {
-            colourGroup1.add(createTriangle());
+            getColourGroup1().add(createTriangle());
         }
 
         //create group 2
         for (int i = 0; i < TRIANGLES_PER_SECTION; i++) {
-            colourGroup2.add(createTriangle());
-            colourGroup2.get(i).setScaleX(-1);
-            colourGroup2.get(i).setScaleY(-1);
-            colourGroup2.get(i).setFill(Color.RED);
+            getColourGroup2().add(createTriangle());
+            getColourGroup2().get(i).setScaleX(-1);
+            getColourGroup2().get(i).setScaleY(-1);
+            getColourGroup2().get(i).setFill(Color.RED);
         }
 
-        translateSections(colourGroup1);
-        translateSections(colourGroup2);
+        translateSections(getColourGroup1());
+        translateSections(getColourGroup2());
 
     }
     /**
@@ -82,8 +96,8 @@ public class PinwheelBlock extends Block {
     private void createBlock() {
         createSections();
 
-        populateGroup(getBlock(), colourGroup1);
-        populateGroup(getBlock(), colourGroup2);
+        populateGroup(getBlock(), getColourGroup1());
+        populateGroup(getBlock(), getColourGroup2());
     }
     /**
      * Sets the colour of the sections in a block.
@@ -92,11 +106,11 @@ public class PinwheelBlock extends Block {
      */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
-            for (Polygon polygon : colourGroup1) {
+            for (Polygon polygon : getColourGroup1()) {
                 polygon.setFill(colour);
             }
         } else if (groupNumber == 2) {
-            for (Polygon polygon : colourGroup2) {
+            for (Polygon polygon : getColourGroup2()) {
                 polygon.setFill(colour);
             }
         }
