@@ -1,14 +1,7 @@
 package ca.bcit.comp2522.assignments.a3;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Pane;
@@ -405,14 +398,8 @@ public class QuiltProgram {
     private VBox createRadioButtonGroup() {
         // radio buttons for single or multi block quilt
         ToggleGroup blockType = new ToggleGroup();
-        RadioButton singleButton = new RadioButton("Single Block");
-        RadioButton multiButton = new RadioButton("Multi Block");
-        singleButton.setScaleX(2);
-        singleButton.setScaleY(2);
-        multiButton.setScaleX(2);
-        multiButton.setScaleY(2);
-        singleButton.setToggleGroup(blockType);
-        multiButton.setToggleGroup(blockType);
+        RadioButton singleButton = createRadioButton("SingleBlock", blockType);
+        RadioButton multiButton = createRadioButton("MultiBlock", blockType);
 
         // set onclick events
         singleButton.setOnAction((event) -> this.quiltType = "SingleQuilt");
@@ -425,6 +412,21 @@ public class QuiltProgram {
         VBox buttons = new VBox(buttonLabel, singleButton, multiButton);
         buttons.setSpacing(BUTTON_SPACING);
         return buttons;
+    }
+
+    /**
+     * Creates a radio button and adds it to the given ToggleGroup.
+     *
+     * @param s a string
+     * @param group a ToggleGroup
+     * @return button a RadioButton
+     */
+    private RadioButton createRadioButton(String s, ToggleGroup group) {
+        RadioButton button = new RadioButton(s);
+        button.setScaleX(2);
+        button.setScaleY(2);
+        button.setToggleGroup(group);
+        return button;
     }
 
     /**
