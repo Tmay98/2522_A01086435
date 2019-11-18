@@ -85,7 +85,7 @@ public class TwistedFourStarBlock extends Block {
         // Group 4 //
         tempGroup4 = createParallelograms(PARALLELOGRAMS_IN_QUARTER_SECTION);
 
-    };
+    }
 
     /**
      * Rescales coordinates for triangles that have been rescaled.
@@ -113,7 +113,7 @@ public class TwistedFourStarBlock extends Block {
 
         // Group 4 //
         tempGroup4.get(0).setTranslateX(QUARTER_BLOCK_LENGTH);
-    };
+    }
 
     /**
      * Populates a single block with coloured groups of sections.
@@ -160,7 +160,7 @@ public class TwistedFourStarBlock extends Block {
         for (Group group : quarterSections) {
             getBlock().getChildren().add(group);
         }
-    };
+    }
 
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
