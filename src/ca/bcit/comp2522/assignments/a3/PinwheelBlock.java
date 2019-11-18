@@ -1,6 +1,5 @@
 package ca.bcit.comp2522.assignments.a3;
 
-import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
