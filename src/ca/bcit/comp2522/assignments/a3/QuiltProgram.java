@@ -169,28 +169,6 @@ public class QuiltProgram {
     }
 
     /**
-     * Creates a quilt group.
-     *
-     * @param title a StackPane object
-     * @param controls a VBox object
-     */
-    private void createQuiltGroup(StackPane title, VBox controls) {
-        Label quiltLabel = new Label("Quilt");
-        quiltLabel.setFont(new Font("Arial", TITLE_FONT_SIZE));
-        VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
-
-        // set border panes
-        BorderPane quiltBorderPane = setBorderPaneSettings(
-                title,
-                controls
-        );
-        quiltBorderPane.setRight(quiltGroup);
-
-        // add first scene to ArrayList
-        scenes.add(new Scene(quiltBorderPane, SCENE_WIDTH, SCENE_HEIGHT));
-    }
-
-    /**
      * Creates button to go to the final scene.
      *
      * @return nextSceneButton
@@ -379,7 +357,7 @@ public class QuiltProgram {
         resetButton.setOnAction((actionEvent -> {
             this.quilt = new Quilt();
             this.scenes = new ArrayList<>();
-            this.choice = new ChoiceBox<String>();
+            this.choice = new ChoiceBox<>();
             this.borderPane = new BorderPane();
             this.colorPickers = new ArrayList<>();
             createSceneOne();
@@ -553,7 +531,7 @@ public class QuiltProgram {
     private void createDesignChoiceBox() {
         String[] selections = {"PinWheel", "HourGlass",
                 "TwistedFourStar", "SquareGrid", "RandomSquare"};
-        choice = new ChoiceBox<String>();
+        choice = new ChoiceBox<>();
         choice.getItems().addAll(selections);
         choice.setOnAction((event) -> {
             if (choice.getSelectionModel().isEmpty()) {
