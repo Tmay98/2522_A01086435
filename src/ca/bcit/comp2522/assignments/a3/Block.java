@@ -55,7 +55,7 @@ public class Block {
     /**
      * The value of an object scaled by half.
      */
-    public static final double HALF_SCALE = 0.5;
+    public static final double HALF_RATIO = 0.5;
 
     private Group block;
     private double scaleFactor;
@@ -200,8 +200,8 @@ public class Block {
      */
     public void addNewSquare(ArrayList<Rectangle> group, int i, int j) {
         Rectangle square = createSquare();
-        square.setScaleX(HALF_SCALE);
-        square.setScaleY(HALF_SCALE);
+        square.setScaleX(HALF_RATIO);
+        square.setScaleY(HALF_RATIO);
         square.setTranslateX(
                 j * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
         square.setTranslateY(

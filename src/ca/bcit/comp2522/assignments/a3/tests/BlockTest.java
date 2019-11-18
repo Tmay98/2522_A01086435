@@ -76,7 +76,7 @@ public class BlockTest {
 
     @Test
     public void halfScaleConstantIsCorrect() {
-        assertEquals(Block.HALF_SCALE, 0.5, 0.0);
+        assertEquals(Block.HALF_RATIO, 0.5, 0.0);
     }
 
     @Test
@@ -146,7 +146,7 @@ public class BlockTest {
     public void addSquareIsScaledCorrectly() {
         ArrayList<Rectangle> testRectangleArray = new ArrayList<>();
         testBlock.addNewSquare(testRectangleArray, 5, 5);
-        assertEquals(testRectangleArray.get(0).getScaleX(), Block.HALF_SCALE, 0.0);
+        assertEquals(testRectangleArray.get(0).getScaleX(), Block.HALF_RATIO, 0.0);
     }
 
     @Test
