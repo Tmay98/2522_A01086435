@@ -15,17 +15,25 @@ import java.util.ArrayList;
 
 public class HourglassBlock extends Block {
     /**
-     * Number of large triangles in a Hourglass block.
+     * Number of large triangles in a hourglass block.
      */
     private static final int NUMBER_OF_LARGE_TRIANGLES = 4;
     /**
-     * Number of small triangles in a Hourglass block.
+     * Number of small triangles in a hourglass block.
      */
     private static final int NUMBER_OF_SMALL_TRIANGLES = 8;
     /**
-     * Number of small triangles in a colour section 2 in an Hourglass block.
+     * Number of colour groups in an hourglass block.
+     */
+    private static final int NUMBER_OF_COLOUR_GROUPS_IN_HOURGLASS_BLOCK = 3;
+    /**
+     * Number of small triangles in colour section 1 in an hourglass block.
      */
     private static final int NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE = 4;
+    /**
+     * Number of small triangles in colour section 2 in an hourglass block.
+     */
+    private static final int NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO = 2;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -38,7 +46,7 @@ public class HourglassBlock extends Block {
      *
      * @param scaleFactor a double
      */
-    HourglassBlock(double scaleFactor) {
+    public HourglassBlock(double scaleFactor) {
         this.scaleFactor = scaleFactor;
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
@@ -47,7 +55,6 @@ public class HourglassBlock extends Block {
         block = new Group();
         createBlock();
     }
-
     /**
      * Generates the sections in an hourglass block.
      */
@@ -74,7 +81,7 @@ public class HourglassBlock extends Block {
         int smallTriangleRotation = HALF_RIGHT_ANGLE;
         for (Polygon smallTriangle : smallTriangles) {
             // Rotating small triangles //
-            setScaleXY(smallTriangle, HALF_TRIANGLE_RATIO);
+            super.setScaleXY(smallTriangle, HALF_TRIANGLE_RATIO);
             smallTriangleRotation += RIGHT_ANGLE;
             smallTriangle.setRotate(smallTriangleRotation);
 
@@ -102,16 +109,21 @@ public class HourglassBlock extends Block {
         for (int i = 2; i < colourGroup1.size(); i++) {
             colourGroup1.get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
         }
-        colourGroup1.get(4).setTranslateY(HALF_BLOCK_LENGTH);
-        colourGroup1.get(5).setTranslateY(HALF_BLOCK_LENGTH);
+        colourGroup1.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE)
+                .setTranslateY(HALF_BLOCK_LENGTH);
+        colourGroup1.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE + 1)
+                .setTranslateY(HALF_BLOCK_LENGTH);
 
         // Group 2 large triangles //
         colourGroup2.get(0).setTranslateY(HALF_BLOCK_LENGTH);
         colourGroup2.get(1).setTranslateX(HALF_BLOCK_LENGTH);
         // Group 2 small triangles //
-        colourGroup2.get(2).setTranslateY(QUARTER_BLOCK_LENGTH);
-        colourGroup2.get(2).setTranslateX(HALF_BLOCK_LENGTH);
-        colourGroup2.get(3).setTranslateY(QUARTER_BLOCK_LENGTH);
+        colourGroup2.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO)
+                .setTranslateY(QUARTER_BLOCK_LENGTH);
+        colourGroup2.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO)
+                .setTranslateX(HALF_BLOCK_LENGTH);
+        colourGroup2.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO + 1)
+                .setTranslateY(QUARTER_BLOCK_LENGTH);
 
         // Group 3 //
         colourGroup3.get(0).setTranslateY(QUARTER_BLOCK_LENGTH);
@@ -134,20 +146,10 @@ public class HourglassBlock extends Block {
      * @return blk a Group
      */
     public Group getBlockUnscaled() {
-        Group blk = new Group();
-        for (Polygon polygon : colourGroup1) {
-            blk.getChildren().add(polygon);
-        }
-        for (Polygon polygon : colourGroup2) {
-            blk.getChildren().add(polygon);
-        }
-        for (Polygon polygon : colourGroup3) {
-            blk.getChildren().add(polygon);
-        }
-        return blk;
+        return block;
     }
     /**
-     * Returns an scaled block.
+     * Returns a block without scaling.
      * @return blk a Group
      */
     public Group getBlock() {
@@ -165,7 +167,6 @@ public class HourglassBlock extends Block {
 
         return blk;
     }
-
     /**
      * Sets the colour of the sections in a block.
      * @param colour a Paint object
@@ -180,7 +181,7 @@ public class HourglassBlock extends Block {
             for (Polygon polygon : colourGroup2) {
                 polygon.setFill(colour);
             }
-        } else if (groupNumber == 3) {
+        } else if (groupNumber == NUMBER_OF_COLOUR_GROUPS_IN_HOURGLASS_BLOCK) {
             for (Polygon polygon : colourGroup3) {
                 polygon.setFill(colour);
             }
