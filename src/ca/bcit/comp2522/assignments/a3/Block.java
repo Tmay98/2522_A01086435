@@ -19,51 +19,45 @@ public class Block {
     /**
      * Rotational value of half of a right angle.
      */
-    static final int HALF_RIGHT_ANGLE = 45;
+    public static final int HALF_RIGHT_ANGLE = 45;
     /**
      * Rotational value of a right angle.
      */
-    static final int RIGHT_ANGLE = 90;
+    public static final int RIGHT_ANGLE = 90;
     /**
      * Rotational value of a straight angle.
      */
-    static final int STRAIGHT_ANGLE = 180;
+    public static final int STRAIGHT_ANGLE = 180;
     /**
      * Rotational value of a reflex angle.
      */
-    static final int REFLEX_ANGLE = 270;
+    public static final int REFLEX_ANGLE = 270;
     /**
      * A fourth of the total block length.
      */
-    static final int QUARTER_BLOCK_LENGTH = 25;
+    public static final int QUARTER_BLOCK_LENGTH = 25;
     /**
      * Half of the total block length.
      */
-    static final int HALF_BLOCK_LENGTH = 50;
+    public static final int HALF_BLOCK_LENGTH = 50;
     /**
      * Ratio of half of a triangle.
      */
-    static final double HALF_TRIANGLE_RATIO = 0.707;
+    public static final double HALF_TRIANGLE_RATIO = 0.707;
     /**
      * Ratio of quarter of a triangle.
      */
-    static final double QUARTER_TRIANGLE_RATIO = 0.49;
+    public static final double QUARTER_TRIANGLE_RATIO = 0.49;
     /**
      * The length of a square in a block.
      */
-    private static final int SQUARE_LENGTH = 25;
+    public  static final int SQUARE_LENGTH = 25;
     /**
      * The value of an object scaled by half.
      */
-    private static final double HALF_SCALE = 0.5;
+    public static final double HALF_SCALE = 0.5;
 
-    /**
-     * A block of fabric in a quilt.
-     */
     private Group block;
-    /**
-     * Scale factor for each block.
-     */
     private double scaleFactor;
 
 
@@ -76,7 +70,13 @@ public class Block {
         this.block = new Group();
         this.scaleFactor = scaleFactor;
     }
-
+    /**
+     * Returns the scale factor of the block.
+     * @return scaleFactor a double
+     */
+    public double getScaleFactor() {
+        return scaleFactor;
+    }
     /**
      * Returns the block Group.
      *
@@ -104,7 +104,7 @@ public class Block {
      *
      * @return blk a Group
      */
-    Group getBlockScaled() {
+    protected Group getBlockScaled() {
         Group blk = getBlockUnscaled();
 
         // fix block position based on scale factor of quilt
@@ -124,7 +124,7 @@ public class Block {
      *
      * @return new Polygon a Polygon
      */
-    Polygon createTriangle() {
+    public Polygon createTriangle() {
         return new Polygon(
                 0,
                 0,
@@ -139,7 +139,7 @@ public class Block {
      *
      * @return  new rectangle a Rectangle
      */
-    Rectangle createSquare() {
+    public Rectangle createSquare() {
         return new Rectangle(
                 0, 0,
                 HALF_BLOCK_LENGTH, HALF_BLOCK_LENGTH
@@ -168,7 +168,7 @@ public class Block {
      * @param numberOfTriangles an int
      * @return an ArrayList of instantiated triangles an ArrayList
      */
-    ArrayList<Polygon> createTriangles(int numberOfTriangles) {
+    protected ArrayList<Polygon> createTriangles(int numberOfTriangles) {
         ArrayList<Polygon> triangles = new ArrayList<>();
         for (int i = 0; i < numberOfTriangles; i++) {
             Polygon triangle = createTriangle();
@@ -182,7 +182,7 @@ public class Block {
      * @param numberOfParallelograms an int
      * @return an ArrayList of instantiated parallelograms an ArrayList
      */
-    ArrayList<Polygon> createParallelograms(
+    protected ArrayList<Polygon> createParallelograms(
             int numberOfParallelograms) {
         ArrayList<Polygon> parallelograms = new ArrayList<>();
         for (int i = 0; i < numberOfParallelograms; i++) {
@@ -198,7 +198,7 @@ public class Block {
      * @param i an int
      * @param j an int
      */
-    void addNewSquare(ArrayList<Rectangle> group, int i, int j) {
+    protected void addNewSquare(ArrayList<Rectangle> group, int i, int j) {
         Rectangle square = createSquare();
         square.setScaleX(HALF_SCALE);
         square.setScaleY(HALF_SCALE);
@@ -227,7 +227,7 @@ public class Block {
      * @param shape a Shape
      * @param ratio a Double
      */
-    <T extends Shape> void setTranslateXY(T shape, double ratio) {
+    protected <T extends Shape> void setTranslateXY(T shape, double ratio) {
         shape.setTranslateX(ratio);
         shape.setTranslateY(ratio);
     }
@@ -238,7 +238,7 @@ public class Block {
      * @param list an ArrayList
      * @param <T> a Shape
      */
-    <T extends Shape> void populateGroup(
+    protected <T extends Shape> void populateGroup(
             Group group,
             ArrayList<T> list) {
 
