@@ -18,7 +18,11 @@ public class PinwheelBlock extends Block {
     /**
      * Number of geometrical sections sharing the same shape and colour.
      */
-    private static final int NUMBER_OF_TRIANGLES_PER_SECTION = 4;
+    private static final int TRIANGLES_PER_SECTION = 4;
+    /**
+     * Number of triangles per section that require rotation.
+     */
+    private static final int TRIANGLES_TO_ROTATE_PER_SECTION = 3;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -37,18 +41,17 @@ public class PinwheelBlock extends Block {
         block = new Group();
         createBlock();
     }
-
     /**
-     * Creates the sections needed for the pinwheel block.
+     * Generates the sections needed for the pinwheel block.
      */
-    public void createSections() {
+    private void createSections() {
         //create group 1
-        for (int i = 0; i < NUMBER_OF_TRIANGLES_PER_SECTION; i++) {
+        for (int i = 0; i < TRIANGLES_PER_SECTION; i++) {
             colourGroup1.add(createTriangle());
         }
 
         //create group 2
-        for (int i = 0; i < NUMBER_OF_TRIANGLES_PER_SECTION; i++) {
+        for (int i = 0; i < TRIANGLES_PER_SECTION; i++) {
             colourGroup2.add(createTriangle());
             colourGroup2.get(i).setScaleX(-1);
             colourGroup2.get(i).setScaleY(-1);
@@ -59,7 +62,11 @@ public class PinwheelBlock extends Block {
         translateSections(colourGroup2);
 
     }
-
+    /**
+     * Translates the sections in a pinwheel block.
+     *
+     * @param colourGroup an ArrayList
+     */
     private void translateSections(ArrayList<Polygon> colourGroup) {
         colourGroup.get(1).setRotate(RIGHT_ANGLE);
         colourGroup.get(1).setTranslateX(HALF_BLOCK_LENGTH);
@@ -68,78 +75,22 @@ public class PinwheelBlock extends Block {
         colourGroup.get(2).setTranslateY(HALF_BLOCK_LENGTH);
         colourGroup.get(2).setTranslateX(HALF_BLOCK_LENGTH);
 
-        colourGroup.get(3).setRotate(REFLEX_ANGLE);
-        colourGroup.get(3).setTranslateY(HALF_BLOCK_LENGTH);
+        colourGroup.get(TRIANGLES_TO_ROTATE_PER_SECTION)
+                .setRotate(REFLEX_ANGLE);
+        colourGroup.get(TRIANGLES_TO_ROTATE_PER_SECTION)
+                .setTranslateY(HALF_BLOCK_LENGTH);
     }
-
-    public void createBlock() {
+    /**
+     * Populates a single block with coloured groups of sections.
+     */
+    private void createBlock() {
         createSections();
 
-        for (Polygon polygon : colourGroup1) {
-            block.getChildren().add(polygon);
-        }
-
-        for (Polygon polygon : colourGroup2) {
-            block.getChildren().add(polygon);
-        }
+        populateGroup(block, colourGroup1);
+        populateGroup(block, colourGroup2);
     }
-
-    public ArrayList<Polygon> getColourGroup1() {
-       return colourGroup1;
-    }
-
-    public ArrayList<Polygon> getColourGroup2() {
-        return colourGroup2;
-    }
-
     /**
-     * Returns the scaled block.
-     *
-     * @return blk
-     */
-    public Group getBlock() {
-        Group blk = new Group();
-        for (Polygon polygon : colourGroup1) {
-            blk.getChildren().add(polygon);
-        }
-
-        for (Polygon polygon : colourGroup2) {
-            blk.getChildren().add(polygon);
-        }
-
-        // fix block position based on scalefactor of quilt
-        blk.setScaleX(scaleFactor);
-        blk.setScaleY(scaleFactor);
-        double translateAmount = Math.abs(1 - scaleFactor) * 50;
-        if (scaleFactor < 1) {
-            blk.setTranslateX(-translateAmount);
-        } else {
-            blk.setTranslateX(translateAmount);
-        }
-
-        return blk;
-    }
-
-    /**
-     * Returns the block unscaled.
-     *
-     * @return blk
-     */
-    public Group getBlockUnscaled() {
-        Group blk = new Group();
-        for (Polygon polygon : colourGroup1) {
-            blk.getChildren().add(polygon);
-        }
-
-        for (Polygon polygon : colourGroup2) {
-            blk.getChildren().add(polygon);
-        }
-
-        return blk;
-    }
-
-    /**
-     * Colours colourgroup of given number to the given paint.
+     * Colours colour group of given number to the given paint.
      *
      * @param colour a Paint
      * @param groupNumber a groupNumber

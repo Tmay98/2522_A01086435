@@ -48,16 +48,49 @@ public class Block {
      */
     public static final double QUARTER_TRIANGLE_RATIO = 0.49;
 
+    /**
+     * A block of fabric in a quilt.
+     */
+    Group block;
+    /**
+     * Scale factor for each block.
+     */
+    protected double scaleFactor;
+
+
+    /**
+     * Selects a colour for a colour section.
+     * @param paint a Paint object
+     * @param group an integer
+     */
     public void blockColour(Paint paint, int group) { };
-
-    public Group getBlock() {
-        return new Group();
-    }
-
+    /**
+     * Returns an unscaled block.
+     *
+     * @return block a Group
+     */
     public Group getBlockUnscaled() {
-        return new Group();
-    }
+        return block; }
+    /**
+     * Returns a scaled block.
+     *
+     * @return blk a Group
+     */
+    public Group getBlock() {
+        Group blk = getBlockUnscaled();
 
+        // fix block position based on scale factor of quilt
+        blk.setScaleX(scaleFactor);
+        blk.setScaleY(scaleFactor);
+        double translateAmount = Math.abs(1 - scaleFactor) * HALF_BLOCK_LENGTH;
+        if (scaleFactor < 1) {
+            blk.setTranslateX(-translateAmount);
+        } else {
+            blk.setTranslateX(translateAmount);
+        }
+
+        return blk;
+    }
     /**
      * Generates a 90 degree triangle.
      *
@@ -167,4 +200,5 @@ public class Block {
             group.getChildren().add(shape);
         }
     }
+
 }

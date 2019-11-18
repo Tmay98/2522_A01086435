@@ -17,29 +17,27 @@ public class HourglassBlock extends Block {
     /**
      * Number of large triangles in a hourglass block.
      */
-    private static final int NUMBER_OF_LARGE_TRIANGLES = 4;
+    private static final int LARGE_TRIANGLES_IN_HOURGLASS_BLOCK = 4;
     /**
      * Number of small triangles in a hourglass block.
      */
-    private static final int NUMBER_OF_SMALL_TRIANGLES = 8;
+    private static final int SMALL_TRIANGLES_IN_HOURGLASS_BLOCK = 8;
     /**
      * Number of colour groups in an hourglass block.
      */
-    private static final int NUMBER_OF_COLOUR_GROUPS_IN_HOURGLASS_BLOCK = 3;
+    private static final int COLOUR_GROUPS_IN_HOURGLASS_BLOCK = 3;
     /**
      * Number of small triangles in colour section 1 in an hourglass block.
      */
-    private static final int NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE = 4;
+    private static final int SMALL_TRIANGLES_IN_SECTION_ONE = 4;
     /**
      * Number of small triangles in colour section 2 in an hourglass block.
      */
-    private static final int NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO = 2;
+    private static final int SMALL_TRIANGLES_IN_SECTION_TWO = 2;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
     private ArrayList<Polygon> colourGroup3;
-    private Group block;
-    private double scaleFactor;
 
     /**
      * Generates a block with an hourglass pattern.
@@ -60,9 +58,9 @@ public class HourglassBlock extends Block {
      */
     private void createSections() {
         ArrayList<Polygon> largeTriangles = createTriangles(
-                NUMBER_OF_LARGE_TRIANGLES);
+                LARGE_TRIANGLES_IN_HOURGLASS_BLOCK);
         ArrayList<Polygon> smallTriangles = createTriangles(
-                NUMBER_OF_SMALL_TRIANGLES);
+                SMALL_TRIANGLES_IN_HOURGLASS_BLOCK);
 
         int largeTriangleRotation = 0;
         for (Polygon largeTriangle : largeTriangles) {
@@ -88,7 +86,7 @@ public class HourglassBlock extends Block {
             if (smallTriangles.indexOf(smallTriangle) % 2 == 0) {
                 colourGroup1.add(smallTriangle);
             } else if (smallTriangles.indexOf(smallTriangle)
-                    <= NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE) {
+                    <= SMALL_TRIANGLES_IN_SECTION_ONE) {
                 colourGroup2.add(smallTriangle);
             } else {
                 colourGroup3.add(smallTriangle);
@@ -99,7 +97,7 @@ public class HourglassBlock extends Block {
         }
     }
     /**
-     * Translates the sections in an hourglass block.
+     * Translates the sections in a hourglass block.
      */
     private void translateSections() {
 
@@ -109,20 +107,20 @@ public class HourglassBlock extends Block {
         for (int i = 2; i < colourGroup1.size(); i++) {
             colourGroup1.get(i).setTranslateX(QUARTER_BLOCK_LENGTH);
         }
-        colourGroup1.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE)
+        colourGroup1.get(SMALL_TRIANGLES_IN_SECTION_ONE)
                 .setTranslateY(HALF_BLOCK_LENGTH);
-        colourGroup1.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE + 1)
+        colourGroup1.get(SMALL_TRIANGLES_IN_SECTION_ONE + 1)
                 .setTranslateY(HALF_BLOCK_LENGTH);
 
         // Group 2 large triangles //
         colourGroup2.get(0).setTranslateY(HALF_BLOCK_LENGTH);
         colourGroup2.get(1).setTranslateX(HALF_BLOCK_LENGTH);
         // Group 2 small triangles //
-        colourGroup2.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO)
+        colourGroup2.get(SMALL_TRIANGLES_IN_SECTION_TWO)
                 .setTranslateY(QUARTER_BLOCK_LENGTH);
-        colourGroup2.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO)
+        colourGroup2.get(SMALL_TRIANGLES_IN_SECTION_TWO)
                 .setTranslateX(HALF_BLOCK_LENGTH);
-        colourGroup2.get(NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_TWO + 1)
+        colourGroup2.get(SMALL_TRIANGLES_IN_SECTION_TWO + 1)
                 .setTranslateY(QUARTER_BLOCK_LENGTH);
 
         // Group 3 //
@@ -142,32 +140,6 @@ public class HourglassBlock extends Block {
         populateGroup(block, colourGroup3);
     }
     /**
-     * Returns an unscaled block.
-     * @return blk a Group
-     */
-    public Group getBlockUnscaled() {
-        return block;
-    }
-    /**
-     * Returns a block without scaling.
-     * @return blk a Group
-     */
-    public Group getBlock() {
-        Group blk = getBlockUnscaled();
-
-        // fix block position based on scale factor of quilt
-        blk.setScaleX(scaleFactor);
-        blk.setScaleY(scaleFactor);
-        double translateAmount = Math.abs(1 - scaleFactor) * HALF_BLOCK_LENGTH;
-        if (scaleFactor < 1) {
-            blk.setTranslateX(-translateAmount);
-        } else {
-            blk.setTranslateX(translateAmount);
-        }
-
-        return blk;
-    }
-    /**
      * Sets the colour of the sections in a block.
      * @param colour a Paint object
      * @param groupNumber an integer
@@ -181,7 +153,7 @@ public class HourglassBlock extends Block {
             for (Polygon polygon : colourGroup2) {
                 polygon.setFill(colour);
             }
-        } else if (groupNumber == NUMBER_OF_COLOUR_GROUPS_IN_HOURGLASS_BLOCK) {
+        } else if (groupNumber == COLOUR_GROUPS_IN_HOURGLASS_BLOCK) {
             for (Polygon polygon : colourGroup3) {
                 polygon.setFill(colour);
             }
