@@ -45,6 +45,21 @@ public class HourglassTest {
     }
 
     @Test
+    public void colourGroup1HasCorrectNumberOfTriangles() {
+        assertEquals(testBlock.getColourGroup1().size(), 6, 0.0);
+    }
+
+    @Test
+    public void colourGroup2HasCorrectNumberOfTriangles() {
+        assertEquals(testBlock.getColourGroup2().size(), 4, 0.0);
+    }
+
+    @Test
+    public void colourGroup3HasCorrectNumberOfTriangles() {
+        assertEquals(testBlock.getColourGroup3().size(), 2, 0.0);
+    }
+
+    @Test
     public void blockColourSetsColourCorrectlyForGroup1() {
         testBlock.blockColour(Color.BLUE, 1);
         for (Polygon tri : testBlock.getColourGroup1()) {
