@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -47,6 +48,14 @@ public class Block {
      * Ratio of quarter of a triangle.
      */
     static final double QUARTER_TRIANGLE_RATIO = 0.49;
+    /**
+     * The length of a square in a block.
+     */
+    private static final int SQUARE_LENGTH = 25;
+    /**
+     * The value of an object scaled by half.
+     */
+    private static final double HALF_SCALE = 0.5;
 
     /**
      * A block of fabric in a quilt.
@@ -181,6 +190,24 @@ public class Block {
             parallelograms.add(parallelogram);
         }
         return parallelograms;
+    }
+
+    /**
+     * Adds a scaled square to a group.
+     * @param group a Group
+     * @param i an int
+     * @param j an int
+     */
+    void addNewSquare(ArrayList<Rectangle> group, int i, int j) {
+        Rectangle square = createSquare();
+        square.setScaleX(HALF_SCALE);
+        square.setScaleY(HALF_SCALE);
+        square.setTranslateX(
+                j * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
+        square.setTranslateY(
+                i * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
+        square.setFill(Color.RED);
+        group.add(square);
     }
     /**
      * Sets both of the X and Y scale by a given ratio.

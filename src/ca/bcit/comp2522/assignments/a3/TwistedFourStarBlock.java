@@ -27,6 +27,10 @@ public class TwistedFourStarBlock extends Block {
      * Number of parallelograms per quarter section of a twisted star block.
      */
     private static final int PARALLELOGRAMS_IN_QUARTER_SECTION = 1;
+    /**
+     * Number of coloured sections in a twisted star block
+     */
+    private static final int COLOUR_GROUPS_IN_BLOCK = 4;
 
     private ArrayList<Polygon> tempGroup1;
     private ArrayList<Polygon> tempGroup2;
@@ -161,7 +165,11 @@ public class TwistedFourStarBlock extends Block {
             getBlock().getChildren().add(group);
         }
     }
-
+    /**
+     * Sets the colour of the sections in a block.
+     * @param colour a Paint object
+     * @param groupNumber an int
+     */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
             for (Polygon poly : colourGroup1) {
@@ -171,11 +179,11 @@ public class TwistedFourStarBlock extends Block {
             for (Polygon poly : colourGroup2) {
                 poly.setFill(colour);
             }
-        } else if (groupNumber == 3) {
+        } else if (groupNumber == COLOUR_GROUPS_IN_BLOCK - 1) {
             for (Polygon poly : colourGroup3) {
                 poly.setFill(colour);
             }
-        } else if (groupNumber == 4) {
+        } else if (groupNumber == COLOUR_GROUPS_IN_BLOCK) {
             for (Polygon poly : colourGroup4) {
                 poly.setFill(colour);
             }

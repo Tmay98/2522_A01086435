@@ -86,10 +86,9 @@ public class PinwheelBlock extends Block {
         populateGroup(getBlock(), colourGroup2);
     }
     /**
-     * Colours colour group of given number to the given paint.
-     *
-     * @param colour a Paint
-     * @param groupNumber a groupNumber
+     * Sets the colour of the sections in a block.
+     * @param colour a Paint object
+     * @param groupNumber an int
      */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
