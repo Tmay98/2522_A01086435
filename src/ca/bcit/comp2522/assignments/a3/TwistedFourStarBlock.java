@@ -18,19 +18,19 @@ public class TwistedFourStarBlock extends Block {
     /**
      * Number of times a similar pattern is repeated in a twisted star block.
      */
-    private static final int NUMBER_OF_QUARTERS_IN_BLOCK = 4;
+    public static final int NUMBER_OF_QUARTERS_IN_BLOCK = 4;
     /**
      * Number of small triangles in a single section of a twisted star block.
      */
-    private static final int NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE = 3;
+    public static final int NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE = 3;
     /**
      * Number of parallelograms per quarter section of a twisted star block.
      */
-    private static final int PARALLELOGRAMS_IN_QUARTER_SECTION = 1;
+    public static final int PARALLELOGRAMS_IN_QUARTER_SECTION = 1;
     /**
      * Number of coloured sections in a twisted star block
      */
-    private static final int COLOUR_GROUPS_IN_BLOCK = 4;
+    public static final int COLOUR_GROUPS_IN_BLOCK = 4;
 
     private ArrayList<Polygon> tempGroup1;
     private ArrayList<Polygon> tempGroup2;
@@ -49,7 +49,7 @@ public class TwistedFourStarBlock extends Block {
      *
      * @param scaleFactor a double
      */
-    TwistedFourStarBlock(double scaleFactor) {
+    public TwistedFourStarBlock(double scaleFactor) {
         super(scaleFactor);
         quarterSections = new ArrayList<>();
         tempGroup1 = new ArrayList<>();
@@ -64,6 +64,43 @@ public class TwistedFourStarBlock extends Block {
 
         createBlock();
     }
+
+    /**
+     * Returns colourGroup1.
+     *
+     * @return colourGroup1
+     */
+    public ArrayList<Polygon> getColourGroup1() {
+        return colourGroup1;
+    }
+
+    /**
+     * Returns colourGroup2.
+     *
+     * @return colourGroup2
+     */
+    public ArrayList<Polygon> getColourGroup2() {
+        return colourGroup2;
+    }
+
+    /**
+     * Returns colourGroup3.
+     *
+     * @return colourGroup3
+     */
+    public ArrayList<Polygon> getColourGroup3() {
+        return colourGroup3;
+    }
+
+    /**
+     * Returns colourGroup4.
+     *
+     * @return colourGroup4
+     */
+    public ArrayList<Polygon> getColourGroup4() {
+        return colourGroup4;
+    }
+
     /**
      * Generates the sections in a twisted star patterned block.
      */
