@@ -411,6 +411,27 @@ public class QuiltProgram {
         Label rowsLabel = createLabel("Select Rows");
 
         // add next scene button
+        Button nextSceneButton =
+                getSecondSceneButton(rowsSpinner, columnsSpinner);
+
+        // Add spinners to VBox and return
+        VBox spinners = new VBox(rowsLabel, rowsSpinner,
+                columnsLabel, columnsSpinner,
+                blockSizeLabel, blockSizeSpinner,
+                nextSceneButton);
+        spinners.setSpacing(BUTTON_SPACING);
+        return spinners;
+    }
+
+    /**
+     * Creates and returns the second scene button.
+     * 
+     * @param rowsSpinner a Spinner
+     * @param columnsSpinner a Spinner
+     * @return a Button
+     */
+    private Button getSecondSceneButton(Spinner<Integer> rowsSpinner,
+                                        Spinner<Integer> columnsSpinner) {
         Button nextSceneButton = new Button("Next");
         nextSceneButton.setOnAction((event) -> {
             this.quilt.setColumns(columnsSpinner.getValue());
@@ -427,14 +448,7 @@ public class QuiltProgram {
                 stage.setScene(scenes.get(1));
             }
         });
-
-        // Add spinners to VBox and return
-        VBox spinners = new VBox(rowsLabel, rowsSpinner,
-                columnsLabel, columnsSpinner,
-                blockSizeLabel, blockSizeSpinner,
-                nextSceneButton);
-        spinners.setSpacing(BUTTON_SPACING);
-        return spinners;
+        return nextSceneButton;
     }
 
     /**
