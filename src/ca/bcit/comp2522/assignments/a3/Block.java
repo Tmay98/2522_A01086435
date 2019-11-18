@@ -51,11 +51,11 @@ public class Block {
     /**
      * A block of fabric in a quilt.
      */
-    private Group block;
+    protected Group block;
     /**
      * Scale factor for each block.
      */
-    private double scaleFactor;
+    protected double scaleFactor;
 
 
     /**

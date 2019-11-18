@@ -40,8 +40,6 @@ public class TwistedFourStarBlock extends Block {
 
     private ArrayList<Group> quarterSections;
 
-    private Group block;
-
     /**
      * Generates a block with a twisted star pattern.
      *
@@ -59,6 +57,7 @@ public class TwistedFourStarBlock extends Block {
         colourGroup3 = new ArrayList<>();
         colourGroup4 = new ArrayList<>();
         block = new Group();
+        this.scaleFactor = scaleFactor;
 
         createBlock();
     }

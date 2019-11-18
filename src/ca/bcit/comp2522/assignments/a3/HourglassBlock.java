@@ -39,18 +39,16 @@ public class HourglassBlock extends Block {
     private ArrayList<Polygon> colourGroup2;
     private ArrayList<Polygon> colourGroup3;
 
-    private Group block;
-
     /**
      * Generates a block with an hourglass pattern.
      *
      * @param scaleFactor a double
      */
     HourglassBlock(double scaleFactor) {
+        this.scaleFactor = scaleFactor;
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
-
         block = new Group();
         createBlock();
     }

@@ -23,7 +23,6 @@ public class PinwheelBlock extends Block {
      * Number of triangles per section that require rotation.
      */
     private static final int TRIANGLES_TO_ROTATE_PER_SECTION = 3;
-    private Group block;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -38,6 +37,7 @@ public class PinwheelBlock extends Block {
         colourGroup2 = new ArrayList<>();
         block = new Group();
         createBlock();
+        this.scaleFactor = scaleFactor;
     }
     /**
      * Generates the sections needed for the pinwheel block.
