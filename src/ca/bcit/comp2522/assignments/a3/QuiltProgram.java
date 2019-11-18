@@ -83,7 +83,7 @@ public class QuiltProgram {
      *
      * @return stage a Stage object
      */
-    private Stage getStage() {
+    public Stage getStage() {
         return stage;
     }
     /**
@@ -91,7 +91,7 @@ public class QuiltProgram {
      *
      * @return quilt a Quilt object
      */
-    private Quilt getQuilt() {
+    public Quilt getQuilt() {
         return quilt;
     }
     /**
@@ -99,7 +99,7 @@ public class QuiltProgram {
      *
      * @return scenes an ArrayList
      */
-    private ArrayList<Scene> getScenes() {
+    public ArrayList<Scene> getScenes() {
         return scenes;
     }
 
