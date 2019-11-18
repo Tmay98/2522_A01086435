@@ -59,11 +59,11 @@ public class Block {
     }
 
     /**
-     * Instantiates a 90 degree triangle.
+     * Generates a 90 degree triangle.
      *
      * @return new Polygon a Polygon
      */
-    public Polygon createTriangle() {
+    protected Polygon createTriangle() {
         return new Polygon(
                 0,
                 0,
@@ -74,22 +74,22 @@ public class Block {
         );
     }
     /**
-     * Instantiates a square.
+     * Generates a square.
      *
      * @return  new rectangle a Rectangle
      */
-    public Rectangle createSquare() {
+    protected Rectangle createSquare() {
         return new Rectangle(
                 0, 0,
                 HALF_BLOCK_LENGTH, HALF_BLOCK_LENGTH
         );
     }
     /**
-     * Instantiates a parallelogram.
+     * Generates a parallelogram.
      *
      * @return  parallelogram a Rectangle
      */
-    public Polygon createParallelogram() {
+    protected Polygon createParallelogram() {
         return new Polygon(
                 0,
                 HALF_BLOCK_LENGTH,
@@ -102,7 +102,7 @@ public class Block {
         );
     }
     /**
-     * Instantiates a given number of triangles in an ArrayList.
+     * Generates a given number of triangles in an ArrayList.
      *
      * @param numberOfTriangles an int
      * @return an ArrayList of instantiated triangles an ArrayList
@@ -130,7 +130,6 @@ public class Block {
         }
         return parallelograms;
     }
-
     /**
      * Sets both of the X and Y scale by a given ratio.
      *
@@ -142,7 +141,6 @@ public class Block {
         shape.setScaleX(ratio);
         shape.setScaleY(ratio);
     }
-
     /**
      * Translates the shape by X and Y by a given ratio.
      *
@@ -154,7 +152,6 @@ public class Block {
         shape.setTranslateX(ratio);
         shape.setTranslateY(ratio);
     }
-
     /**
      * Populates a Group with members of an ArrayList.
      *
