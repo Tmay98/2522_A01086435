@@ -1,11 +1,8 @@
 package ca.bcit.comp2522.assignments.a3;
 
-import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import org.w3c.dom.css.Rect;
 
 import java.util.ArrayList;
 
@@ -28,6 +25,8 @@ public class SquareGridBlock extends Block {
 
     private static final int SQUARE_LENGTH = 25;
 
+    private static final double HALF_SCALE = 0.5;
+
     private ArrayList<Rectangle> colourGroup1;
     private ArrayList<Rectangle> colourGroup2;
 
@@ -46,36 +45,34 @@ public class SquareGridBlock extends Block {
     /**
      * Creates the sections needed for the pinwheel block.
      */
-    public void createSections() {
+    private void createSections() {
         //create group 1
-        int currentBlockIndex = 0;
         for (int i = 0; i < NUM_ROWS; i++) {
             for (int j = i % 2; j < NUM_COLS; j += 2) {
-                colourGroup1.add(createSquare());
-                colourGroup1.get(currentBlockIndex).setScaleX(0.5);
-                colourGroup1.get(currentBlockIndex).setScaleY(0.5);
-                colourGroup1.get(currentBlockIndex).setTranslateX(j * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
-                colourGroup1.get(currentBlockIndex).setTranslateY(i * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
-                colourGroup1.get(currentBlockIndex).setFill(Color.RED);
-                currentBlockIndex++;
+                addNewSquare(colourGroup1, i, j);
             }
         }
-
         //create group 2
-        currentBlockIndex = 0;
         for (int i = 0; i < NUM_ROWS; i++) {
             for (int j = (i + 1) % 2; j < NUM_COLS; j += 2) {
-                colourGroup2.add(createSquare());
-                colourGroup2.get(currentBlockIndex).setScaleX(0.5);
-                colourGroup2.get(currentBlockIndex).setScaleY(0.5);
-                colourGroup2.get(currentBlockIndex).setTranslateX(j * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
-                colourGroup2.get(currentBlockIndex).setTranslateY(i * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
-                currentBlockIndex++;
+                addNewSquare(colourGroup2, i, j);
             }
         }
     }
 
-    public void createBlock() {
+    private void addNewSquare(ArrayList<Rectangle> group, int i, int j) {
+        Rectangle square = createSquare();
+        square.setScaleX(HALF_SCALE);
+        square.setScaleY(HALF_SCALE);
+        square.setTranslateX(
+                j * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
+        square.setTranslateY(
+                i * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
+        square.setFill(Color.RED);
+        group.add(square);
+    }
+
+    private void createBlock() {
         createSections();
 
         for (Rectangle rect : colourGroup1) {
