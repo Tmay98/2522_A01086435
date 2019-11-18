@@ -133,8 +133,8 @@ public class QuiltProgram {
 
     /**
      * Sets the style and spacing for controls.
+     *
      * @param controls a VBox object
-     * @return controls a VBox object
      */
     private void setControlSettings(VBox controls) {
         controls.setStyle("-fx-padding: 40px 45px; "
@@ -143,7 +143,8 @@ public class QuiltProgram {
     }
 
     /**
-     * Sets the buttons and title for a border
+     * Sets the buttons and title for a border.
+     *
      * @param titlePane a StackPane object
      * @param selectorControls a VBox object
      * @return borderPane scene a BorderPane object
@@ -152,7 +153,7 @@ public class QuiltProgram {
             StackPane titlePane,
             VBox selectorControls) {
         setControlSettings(selectorControls);
-
+        borderPane = new BorderPane();
         borderPane.setTop(titlePane);
         borderPane.setLeft(selectorControls);
 
@@ -182,6 +183,7 @@ public class QuiltProgram {
         // add first scene to ArrayList
         scenes.add(new Scene(borderPaneSceneOne, SCENE_WIDTH, SCENE_HEIGHT));
     }
+
     /**
      * Creates the second scene and adds it to the scenes ArrayList
      * for creating a multi quilt.
@@ -194,14 +196,10 @@ public class QuiltProgram {
         createDesignChoiceBox();
 
         // Add choice label
-        Label choiceLabel = new Label("Select Design");
-        choiceLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        choiceLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label choiceLabel = createLabel("Select Design");
 
         // add colour pickers label
-        Label colourPickerLabel = new Label("Select colours");
-        colourPickerLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        colourPickerLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label colourPickerLabel = createLabel("Select colours");
 
         // add colour pickers
         createColourPickers();
@@ -215,25 +213,30 @@ public class QuiltProgram {
 
         // create selector controls
         VBox selectorControls =
-                new VBox(choiceLabel, choice, colourPickerLabel,
-                        colorPickers.get(0), colorPickers.get(1),
-                        colorPickers.get(2), colorPickers.get(3),
-                        nextSceneButton);
-
+                new VBox(choiceLabel, choice, colourPickerLabel);
+        for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
+            selectorControls.getChildren().add(colorPickers.get(i));
+        }
+        selectorControls.getChildren().add(nextSceneButton);
         // create quilt group
+        BorderPane borderPaneMultiQuilt = createQuiltBorderPane(titlePane, selectorControls);
+
+        // add scene to ArrayList
+        scenes.add(new Scene(borderPaneMultiQuilt, SCENE_WIDTH, SCENE_HEIGHT));
+    }
+
+    private BorderPane createQuiltBorderPane(StackPane titlePane, VBox selectorControls) {
         Label quiltLabel = new Label("Quilt");
         quiltLabel.setFont(new Font("Arial", TITLE_FONT_SIZE));
         VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
 
         // set border panes
-        BorderPane borderPane = setBorderPaneSettings(
+        BorderPane borderPaneMultiQuilt = setBorderPaneSettings(
                 titlePane,
                 selectorControls
         );
-        borderPane.setRight(quiltGroup);
-
-        // add first scene to ArrayList
-        scenes.add(new Scene(borderPane, SCENE_WIDTH, SCENE_HEIGHT));
+        borderPaneMultiQuilt.setRight(quiltGroup);
+        return borderPaneMultiQuilt;
     }
 
     /**
@@ -248,14 +251,10 @@ public class QuiltProgram {
         createDesignChoiceBox();
 
         // Add choice label
-        Label choiceLabel = new Label("Select Design");
-        choiceLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        choiceLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label choiceLabel = createLabel("Select Design");
 
         // add colour pickers label
-        Label colourPickerLabel = new Label("Select colours");
-        colourPickerLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        colourPickerLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label colourPickerLabel = createLabel("Select colours");
 
         // add colour pickers
         createColourPickers();
@@ -282,30 +281,24 @@ public class QuiltProgram {
         selectorControls.getChildren().add(nextSceneButton);
 
         // create quilt group
-        Label quiltLabel = new Label("Quilt");
-        quiltLabel.setFont(new Font("Arial", TITLE_FONT_SIZE));
-        VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
-
-        // create borderPane
-        BorderPane borderPane = setBorderPaneSettings(
-                titlePane,
-                selectorControls
-        );
-        borderPane.setRight(quiltGroup);
+        BorderPane borderPaneSingleQuilt = createQuiltBorderPane(titlePane, selectorControls);
 
         // add first scene to ArrayList
-        scenes.add(new Scene(borderPane, SCENE_WIDTH, SCENE_HEIGHT));
+        scenes.add(new Scene(borderPaneSingleQuilt, SCENE_WIDTH, SCENE_HEIGHT));
+    }
+
+    private Label createLabel(String s) {
+        Label choiceLabel = new Label(s);
+        choiceLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
+        choiceLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        return choiceLabel;
     }
 
     /**
      * Creates the final scene to view the complete quilt.
      */
     private void createSceneFinal() {
-        Text title = new Text("Final Quilt");
-        title.setFont(Font.font(TITLE_FONT_SIZE));
-        title.setFill(Color.RED);
-
-        StackPane titlePane = new StackPane(title);
+        StackPane titlePane = createTitlePane("Final Quilt");
 
         // create quilt group
         Label quiltLabel = new Label("Quilt");
@@ -326,9 +319,7 @@ public class QuiltProgram {
         }));
 
         // create reset button label
-        Label resetLabel = new Label("Create a new quilt");
-        resetLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        resetLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label resetLabel = createLabel("Create a new quilt");
 
         // create selector controls
         VBox resetControls =
@@ -366,17 +357,11 @@ public class QuiltProgram {
         Spinner<Integer> columnsSpinner = new Spinner<>(svf3);
 
         // add labels for integer spinners
-        Label blockSizeLabel = new Label("Block size (cm)");
-        blockSizeLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        blockSizeLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label blockSizeLabel = createLabel("Block size (cm)");
 
-        Label columnsLabel = new Label("Select Columns");
-        columnsLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        columnsLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label columnsLabel = createLabel("Select Columns");
 
-        Label rowsLabel = new Label("Select Rows");
-        rowsLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        rowsLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label rowsLabel = createLabel("Select Rows");
 
         // add next scene button
         Button nextSceneButton = new Button("Next");
@@ -427,9 +412,7 @@ public class QuiltProgram {
         multiButton.setOnAction((event) -> this.quiltType = "MultiQuilt");
 
         // add radio buttons label
-        Label buttonLabel = new Label("select block type");
-        buttonLabel.setScaleX(LABEL_FONT_SIZE_SCALE);
-        buttonLabel.setScaleY(LABEL_FONT_SIZE_SCALE);
+        Label buttonLabel = createLabel("select block type");
 
         // add to VBox and return
         VBox buttons = new VBox(buttonLabel, singleButton, multiButton);
