@@ -45,11 +45,10 @@ public class HourglassBlock extends Block {
      * @param scaleFactor a double
      */
     HourglassBlock(double scaleFactor) {
-        this.scaleFactor = scaleFactor;
+        super(scaleFactor);
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
-        block = new Group();
         createBlock();
     }
     /**
@@ -134,9 +133,9 @@ public class HourglassBlock extends Block {
         createSections();
         translateSections();
 
-        populateGroup(block, colourGroup1);
-        populateGroup(block, colourGroup2);
-        populateGroup(block, colourGroup3);
+        populateGroup(getBlock(), colourGroup1);
+        populateGroup(getBlock(), colourGroup2);
+        populateGroup(getBlock(), colourGroup3);
     }
     /**
      * Sets the colour of the sections in a block.

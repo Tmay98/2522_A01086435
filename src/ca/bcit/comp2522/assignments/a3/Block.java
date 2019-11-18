@@ -51,12 +51,31 @@ public class Block {
     /**
      * A block of fabric in a quilt.
      */
-    protected Group block;
+    private Group block;
     /**
      * Scale factor for each block.
      */
-    protected double scaleFactor;
+    private double scaleFactor;
 
+
+    /**
+     * Block constructor.
+     *
+     * @param scaleFactor a double
+     */
+    public Block(double scaleFactor) {
+        this.block = new Group();
+        this.scaleFactor = scaleFactor;
+    }
+
+    /**
+     * Returns the block Group.
+     *
+     * @return block
+     */
+    public Group getBlock() {
+        return this.block;
+    }
 
     /**
      * Selects a colour for a colour section.
@@ -76,7 +95,7 @@ public class Block {
      *
      * @return blk a Group
      */
-    Group getBlock() {
+    Group getBlockScaled() {
         Group blk = getBlockUnscaled();
 
         // fix block position based on scale factor of quilt

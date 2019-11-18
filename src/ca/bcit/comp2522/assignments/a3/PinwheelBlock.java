@@ -33,11 +33,10 @@ public class PinwheelBlock extends Block {
      * @param scaleFactor a double
      */
     PinwheelBlock(double scaleFactor) {
+        super(scaleFactor);
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
-        block = new Group();
         createBlock();
-        this.scaleFactor = scaleFactor;
     }
     /**
      * Generates the sections needed for the pinwheel block.
@@ -84,8 +83,8 @@ public class PinwheelBlock extends Block {
     private void createBlock() {
         createSections();
 
-        populateGroup(block, colourGroup1);
-        populateGroup(block, colourGroup2);
+        populateGroup(getBlock(), colourGroup1);
+        populateGroup(getBlock(), colourGroup2);
     }
     /**
      * Colours colour group of given number to the given paint.

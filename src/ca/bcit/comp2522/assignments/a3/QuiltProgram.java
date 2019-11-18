@@ -417,7 +417,7 @@ public class QuiltProgram {
         for (int i = 0; i < quilt.getColumns(); i++) {
             for (int j = 0; j < quilt.getRows(); j++) {
                 Block tempBlock = createBlockOfSelectedType();
-                this.quilt.getQuiltGrid().add(tempBlock.getBlock(), i, j);
+                this.quilt.getQuiltGrid().add(tempBlock.getBlockScaled(), i, j);
             }
         }
     }
@@ -564,7 +564,7 @@ public class QuiltProgram {
         quilt.getQuiltGrid().add(pane, colIndex, rowIndex);
         pane.setOnMouseClicked(e -> {
             Block tempBlock = createBlockOfSelectedType();
-            quilt.getQuiltGrid().add(tempBlock.getBlock(), colIndex, rowIndex);
+            quilt.getQuiltGrid().add(tempBlock.getBlockScaled(), colIndex, rowIndex);
         });
     }
 }

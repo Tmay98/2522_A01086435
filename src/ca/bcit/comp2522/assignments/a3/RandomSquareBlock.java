@@ -35,10 +35,9 @@ public class RandomSquareBlock extends Block {
      * @param scaleFactor a double
      */
     public RandomSquareBlock(double scaleFactor) {
-        this.scaleFactor = scaleFactor;
+        super(scaleFactor);
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
-        block = new Group();
         createBlock();
     }
 
@@ -78,11 +77,11 @@ public class RandomSquareBlock extends Block {
         createSections();
 
         for (Rectangle rect : colourGroup1) {
-            block.getChildren().add(rect);
+            getBlock().getChildren().add(rect);
         }
 
         for (Rectangle rect : colourGroup2) {
-            block.getChildren().add(rect);
+            getBlock().getChildren().add(rect);
         }
     }
 

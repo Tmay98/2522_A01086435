@@ -46,6 +46,7 @@ public class TwistedFourStarBlock extends Block {
      * @param scaleFactor a double
      */
     TwistedFourStarBlock(double scaleFactor) {
+        super(scaleFactor);
         quarterSections = new ArrayList<>();
         tempGroup1 = new ArrayList<>();
         tempGroup2 = new ArrayList<>();
@@ -56,8 +57,6 @@ public class TwistedFourStarBlock extends Block {
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
         colourGroup4 = new ArrayList<>();
-        block = new Group();
-        this.scaleFactor = scaleFactor;
 
         createBlock();
     }
@@ -167,7 +166,7 @@ public class TwistedFourStarBlock extends Block {
         quarterSections.get(2).setTranslateY(HALF_BLOCK_LENGTH);
 
         for (Group group : quarterSections) {
-            block.getChildren().add(group);
+            getBlock().getChildren().add(group);
         }
     };
 
