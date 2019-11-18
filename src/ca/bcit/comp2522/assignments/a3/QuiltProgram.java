@@ -205,27 +205,32 @@ public class QuiltProgram {
         createColourPickers();
 
         // create next scene button
-        Button nextSceneButton = new Button("Finalize quilt design");
-        nextSceneButton.setOnAction((event) -> {
-            createSceneFinal();
-            stage.setScene(scenes.get(2));
-        });
+        Button nextSceneButton = createFinalSceneButton();
 
         // create selector controls
-        VBox selectorControls =
-                new VBox(choiceLabel, choice, colourPickerLabel);
-        for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
-            selectorControls.getChildren().add(colorPickers.get(i));
-        }
-        selectorControls.getChildren().add(nextSceneButton);
+        VBox selectorControls = createSelectorControls(choiceLabel,
+                colourPickerLabel,
+                nextSceneButton);
+
         // create quilt group
-        BorderPane borderPaneMultiQuilt = createQuiltBorderPane(titlePane, selectorControls);
+        BorderPane borderPaneMultiQuilt =
+                createQuiltBorderPane(titlePane, selectorControls);
 
         // add scene to ArrayList
         scenes.add(new Scene(borderPaneMultiQuilt, SCENE_WIDTH, SCENE_HEIGHT));
     }
 
-    private BorderPane createQuiltBorderPane(StackPane titlePane, VBox selectorControls) {
+    private Button createFinalSceneButton() {
+        Button nextSceneButton = new Button("Finalize quilt design");
+        nextSceneButton.setOnAction((event) -> {
+            createSceneFinal();
+            stage.setScene(scenes.get(2));
+        });
+        return nextSceneButton;
+    }
+
+    private BorderPane createQuiltBorderPane(StackPane titlePane,
+                                             VBox selectorControls) {
         Label quiltLabel = new Label("Quilt");
         quiltLabel.setFont(new Font("Arial", TITLE_FONT_SIZE));
         VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
@@ -265,26 +270,35 @@ public class QuiltProgram {
 
 
         // create next scene button
-        Button nextSceneButton = new Button("Finalize quilt design");
-        nextSceneButton.setOnAction((event) -> {
-            createSceneFinal();
-            stage.setScene(scenes.get(2));
-        });
+        Button nextSceneButton = createFinalSceneButton();
 
+        // create selector controls.
+        VBox selectorControls = createSelectorControls(choiceLabel,
+                colourPickerLabel,
+                createQuiltButton,
+                nextSceneButton);
+
+        // create quilt group
+        BorderPane borderPaneSingleQuilt =
+                createQuiltBorderPane(titlePane, selectorControls);
+
+        // add first scene to ArrayList
+        scenes.add(new Scene(borderPaneSingleQuilt, SCENE_WIDTH, SCENE_HEIGHT));
+    }
+
+    private VBox createSelectorControls(Label choiceLabel,
+                                        Label colourPickerLabel,
+                                        Button... buttons) {
         // create selector controls
         VBox selectorControls =
                 new VBox(choiceLabel, choice, colourPickerLabel);
         for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
             selectorControls.getChildren().add(colorPickers.get(i));
         }
-        selectorControls.getChildren().add(createQuiltButton);
-        selectorControls.getChildren().add(nextSceneButton);
-
-        // create quilt group
-        BorderPane borderPaneSingleQuilt = createQuiltBorderPane(titlePane, selectorControls);
-
-        // add first scene to ArrayList
-        scenes.add(new Scene(borderPaneSingleQuilt, SCENE_WIDTH, SCENE_HEIGHT));
+        for (Button button : buttons) {
+            selectorControls.getChildren().add(button);
+        }
+        return selectorControls;
     }
 
     private Label createLabel(String s) {
