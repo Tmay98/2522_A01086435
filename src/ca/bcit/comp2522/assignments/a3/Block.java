@@ -33,13 +33,13 @@ public class Block {
      */
     public static final int REFLEX_ANGLE = 270;
     /**
-     * A fourth of the total block length.
-     */
-    public static final int QUARTER_BLOCK_LENGTH = 25;
-    /**
      * Half of the total block length.
      */
     public static final int HALF_BLOCK_LENGTH = 50;
+    /**
+     * A fourth of the total block length.
+     */
+    public static final int QUARTER_BLOCK_LENGTH = 25;
     /**
      * Ratio of half of a triangle.
      */
