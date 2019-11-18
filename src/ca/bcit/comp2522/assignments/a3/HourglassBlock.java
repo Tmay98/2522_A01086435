@@ -38,7 +38,7 @@ public class HourglassBlock extends Block {
      *
      * @param scaleFactor a double
      */
-    public HourglassBlock(double scaleFactor) {
+    HourglassBlock(double scaleFactor) {
         this.scaleFactor = scaleFactor;
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
@@ -64,7 +64,7 @@ public class HourglassBlock extends Block {
             largeTriangleRotation += RIGHT_ANGLE;
 
             // Adding large triangles to colour group //
-            if (largeTriangles.indexOf(largeTriangle) % EVEN_NUMBER != 0) {
+            if (largeTriangles.indexOf(largeTriangle) % 2 != 0) {
                 colourGroup1.add(largeTriangle);
             } else {
                 colourGroup2.add(largeTriangle);
@@ -78,7 +78,7 @@ public class HourglassBlock extends Block {
             smallTriangleRotation += RIGHT_ANGLE;
             smallTriangle.setRotate(smallTriangleRotation);
 
-            if (smallTriangles.indexOf(smallTriangle) % EVEN_NUMBER == 0) {
+            if (smallTriangles.indexOf(smallTriangle) % 2 == 0) {
                 colourGroup1.add(smallTriangle);
             } else if (smallTriangles.indexOf(smallTriangle)
                     <= NUMBER_OF_SMALL_TRIANGLES_IN_SECTION_ONE) {
@@ -129,31 +129,10 @@ public class HourglassBlock extends Block {
         populateGroup(block, colourGroup2);
         populateGroup(block, colourGroup3);
     }
-
-    public Group getBlock() {
-        Group blk = new Group();
-        for (Polygon polygon : colourGroup1) {
-            blk.getChildren().add(polygon);
-        }
-        for (Polygon polygon : colourGroup2) {
-            blk.getChildren().add(polygon);
-        }
-        for (Polygon polygon : colourGroup3) {
-            blk.getChildren().add(polygon);
-        }
-        // fix block position based on scalefactor of quilt
-        blk.setScaleX(scaleFactor);
-        blk.setScaleY(scaleFactor);
-        double translateAmount = Math.abs(1 - scaleFactor) * 50;
-        if (scaleFactor < 1) {
-            blk.setTranslateX(-translateAmount);
-        } else {
-            blk.setTranslateX(translateAmount);
-        }
-
-        return blk;
-    }
-
+    /**
+     * Returns an unscaled block.
+     * @return blk a Group
+     */
     public Group getBlockUnscaled() {
         Group blk = new Group();
         for (Polygon polygon : colourGroup1) {
@@ -167,7 +146,31 @@ public class HourglassBlock extends Block {
         }
         return blk;
     }
+    /**
+     * Returns an scaled block.
+     * @return blk a Group
+     */
+    public Group getBlock() {
+        Group blk = getBlockUnscaled();
 
+        // fix block position based on scale factor of quilt
+        blk.setScaleX(scaleFactor);
+        blk.setScaleY(scaleFactor);
+        double translateAmount = Math.abs(1 - scaleFactor) * HALF_BLOCK_LENGTH;
+        if (scaleFactor < 1) {
+            blk.setTranslateX(-translateAmount);
+        } else {
+            blk.setTranslateX(translateAmount);
+        }
+
+        return blk;
+    }
+
+    /**
+     * Sets the colour of the sections in a block.
+     * @param colour a Paint object
+     * @param groupNumber an integer
+     */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
             for (Polygon polygon : colourGroup1) {

@@ -4,7 +4,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.transform.Shear;
 
 import java.util.ArrayList;
 
@@ -16,10 +15,6 @@ import java.util.ArrayList;
  */
 
 public class Block {
-    /**
-     * Value of a number used to check for even numbers in a modulo operation.
-     */
-    public static final int EVEN_NUMBER = 2;
     /**
      * Rotational value of half of a right angle.
      */
@@ -44,18 +39,6 @@ public class Block {
      * Half of the total block length.
      */
     public static final int HALF_BLOCK_LENGTH = 50;
-    /**
-     * Length of a block.
-     */
-    public static final int FULL_BLOCK_LENGTH = 100;
-    /**
-     * Half of a full ratio.
-     */
-    public static final double HALF_RATIO = 0.50;
-    /**
-     * Quarter of a full ratio.
-     */
-    public static final double QUARTER_RATIO = 0.25;
     /**
      * Ratio of half of a triangle.
      */
