@@ -120,6 +120,35 @@ public class QuiltProgram {
     }
 
     /**
+     * Sets the style and spacing for controls.
+     * @param controls a VBox object
+     * @return controls a VBox object
+     */
+    private VBox setControlSettings(VBox controls) {
+        controls.setStyle("-fx-padding: 40px 45px; "
+                        + "-fx-background-color: skyblue");
+        controls.setSpacing(BUTTON_SPACING);
+
+        return controls;
+    }
+    /**
+     * Sets the buttons and title for a border
+     * @param titlePane a StackPane object
+     * @param selectorControls a VBox object
+     * @return borderPane scene a BorderPane object
+     */
+    private BorderPane setBorderPaneSettings(
+            StackPane titlePane,
+            VBox selectorControls) {
+        setControlSettings(selectorControls);
+
+        borderPane.setTop(titlePane);
+        borderPane.setLeft(selectorControls);
+
+        return borderPane;
+    }
+
+    /**
      * Creates the first scene and adds it to the scenes ArrayList.
      */
     private void createSceneOne() {
@@ -131,16 +160,13 @@ public class QuiltProgram {
         // create spinners
         VBox spinners = createIntegerSpinnersGroup();
 
-        // add selector controls to vbox
-        VBox selectorControls =
-                new VBox(buttons, spinners);
-        selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        selectorControls.setSpacing(BUTTON_SPACING);
+        VBox selectorControls = new VBox(buttons, spinners);
 
         // create borderPane
-        BorderPane borderPaneSceneOne = new BorderPane();
-        borderPaneSceneOne.setTop(titlePane);
-        borderPaneSceneOne.setLeft(selectorControls);
+        BorderPane borderPaneSceneOne = setBorderPaneSettings(
+                titlePane,
+                selectorControls
+        );
 
         // add first scene to ArrayList
         scenes.add(new Scene(borderPaneSceneOne, SCENE_WIDTH, SCENE_HEIGHT));
@@ -150,7 +176,8 @@ public class QuiltProgram {
      * for creating a multi quilt.
      */
     private void createSceneMultiQuilt() {
-        StackPane titlePane = createTitlePane("Create a multi-patterned quilt");
+        StackPane titlePane = createTitlePane(
+                "Create a multi-patterned quilt");
 
         // Creating choice box for block selection.
         createDesignChoiceBox();
@@ -181,8 +208,6 @@ public class QuiltProgram {
                         colorPickers.get(0), colorPickers.get(1),
                         colorPickers.get(2), colorPickers.get(3),
                         nextSceneButton);
-        selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        selectorControls.setSpacing(BUTTON_SPACING);
 
         // create quilt group
         Label quiltLabel = new Label("Quilt");
@@ -190,8 +215,10 @@ public class QuiltProgram {
         VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
 
         // set border panes
-        borderPane.setTop(titlePane);
-        borderPane.setLeft(selectorControls);
+        BorderPane borderPane = setBorderPaneSettings(
+                titlePane,
+                selectorControls
+        );
         borderPane.setRight(quiltGroup);
 
         // add first scene to ArrayList
@@ -203,7 +230,8 @@ public class QuiltProgram {
      * for creating a single quilt.
      */
     private void createSceneSingleQuilt() {
-        StackPane titlePane = createTitlePane("Create a single patterned quilt");
+        StackPane titlePane = createTitlePane(
+                "Create a single patterned quilt");
 
         // Creating choice box for block selection.
         createDesignChoiceBox();
@@ -241,17 +269,17 @@ public class QuiltProgram {
         }
         selectorControls.getChildren().add(createQuiltButton);
         selectorControls.getChildren().add(nextSceneButton);
-        selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        selectorControls.setSpacing(BUTTON_SPACING);
 
         // create quilt group
         Label quiltLabel = new Label("Quilt");
         quiltLabel.setFont(new Font("Arial", TITLE_FONT_SIZE));
         VBox quiltGroup = new VBox(quiltLabel, quilt.getQuiltGrid());
 
-        // set border panes
-        borderPane.setTop(titlePane);
-        borderPane.setLeft(selectorControls);
+        // create borderPane
+        BorderPane borderPane = setBorderPaneSettings(
+                titlePane,
+                selectorControls
+        );
         borderPane.setRight(quiltGroup);
 
         // add first scene to ArrayList
@@ -267,7 +295,6 @@ public class QuiltProgram {
         title.setFill(Color.RED);
 
         StackPane titlePane = new StackPane(title);
-        titlePane.setStyle("-fx-padding: 20px; -fx-background-color: black");
 
         // create quilt group
         Label quiltLabel = new Label("Quilt");
@@ -295,14 +322,13 @@ public class QuiltProgram {
         // create selector controls
         VBox resetControls =
                 new VBox(resetLabel, resetButton);
-        resetControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
-        resetControls.setSpacing(BUTTON_SPACING);
 
         // set border panes
-        BorderPane finalScenePane = new BorderPane();
-        finalScenePane.setTop(titlePane);
+        BorderPane finalScenePane = setBorderPaneSettings(
+                titlePane,
+                resetControls
+        );
         finalScenePane.setCenter(quiltGroup);
-        finalScenePane.setLeft(resetControls);
 
         // add first scene to ArrayList
         scenes.add(new Scene(finalScenePane, SCENE_WIDTH, SCENE_HEIGHT));
@@ -420,15 +446,20 @@ public class QuiltProgram {
     private Block createBlockOfSelectedType() {
         Block tempBlock;
         if (selectedDesign instanceof PinwheelBlock) {
-            tempBlock =  new PinwheelBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+            tempBlock =  new PinwheelBlock(
+                    quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else if (selectedDesign instanceof HourglassBlock) {
-            tempBlock =  new HourglassBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+            tempBlock =  new HourglassBlock(
+                    quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else if (selectedDesign instanceof TwistedFourStarBlock) {
-            tempBlock =  new TwistedFourStarBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+            tempBlock =  new TwistedFourStarBlock(
+                    quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else if (selectedDesign instanceof SquareGridBlock) {
-            tempBlock =  new SquareGridBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+            tempBlock =  new SquareGridBlock(
+                    quilt.getCellSize() / CONVERT_TO_PERCENT);
         } else {
-            tempBlock = new RandomSquareBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+            tempBlock = new RandomSquareBlock(
+                    quilt.getCellSize() / CONVERT_TO_PERCENT);
         }
 
         for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
@@ -449,7 +480,8 @@ public class QuiltProgram {
 
     private void setColourPickerOnAction(int i) {
         colorPickers.get(i).setOnAction((event) -> {
-            selectedDesign.blockColour(colorPickers.get(i).getValue(), i + 1);
+            selectedDesign.blockColour(
+                    colorPickers.get(i).getValue(), i + 1);
         });
     }
 
@@ -466,15 +498,20 @@ public class QuiltProgram {
                 return;
             }
             if (choice.getValue().equals("PinWheel")) {
-                selectedDesign = new PinwheelBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+                selectedDesign = new PinwheelBlock(
+                        quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("HourGlass")) {
-                selectedDesign = new HourglassBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+                selectedDesign = new HourglassBlock(
+                        quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("TwistedFourStar")) {
-                selectedDesign = new TwistedFourStarBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+                selectedDesign = new TwistedFourStarBlock(
+                        quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("SquareGrid")) {
-                selectedDesign = new SquareGridBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+                selectedDesign = new SquareGridBlock(
+                        quilt.getCellSize() / CONVERT_TO_PERCENT);
             } else if (choice.getValue().equals("RandomSquare")) {
-                selectedDesign = new RandomSquareBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
+                selectedDesign = new RandomSquareBlock(
+                        quilt.getCellSize() / CONVERT_TO_PERCENT);
             }
             setDesignInitialColour();
             this.borderPane.setCenter(selectedDesign.getBlockUnscaled());
@@ -486,7 +523,8 @@ public class QuiltProgram {
      */
     private void setDesignInitialColour() {
         for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
-            selectedDesign.blockColour(colorPickers.get(i).getValue(), i + 1);
+            selectedDesign.blockColour(
+                    colorPickers.get(i).getValue(), i + 1);
         }
     }
 
