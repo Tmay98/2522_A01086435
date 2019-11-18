@@ -9,7 +9,7 @@ import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BlockTest {
 

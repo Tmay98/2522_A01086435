@@ -82,7 +82,7 @@ public class Block {
      *
      * @return block
      */
-    public Group getBlock() {
+    Group getBlock() {
         return this.block;
     }
 
@@ -104,7 +104,7 @@ public class Block {
      *
      * @return blk a Group
      */
-    protected Group getBlockScaled() {
+    Group getBlockScaled() {
         Group blk = getBlockUnscaled();
 
         // fix block position based on scale factor of quilt
@@ -238,7 +238,7 @@ public class Block {
      * @param list an ArrayList
      * @param <T> a Shape
      */
-    protected <T extends Shape> void populateGroup(
+    <T extends Shape> void populateGroup(
             Group group,
             ArrayList<T> list) {
 
