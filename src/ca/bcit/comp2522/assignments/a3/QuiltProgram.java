@@ -17,14 +17,51 @@ import java.util.ArrayList;
  * @version 2019
  */
 public class QuiltProgram {
+
+    /**
+     * Constant for Label scale amount.
+     */
     public static final double LABEL_FONT_SIZE_SCALE = 1.8;
+
+    /**
+     * Constant to convert to a percentage.
+     */
     public static final int CONVERT_TO_PERCENT = 100;
+
+    /**
+     * Constant for int spinners max value.
+     */
     public static final int INT_SPINNER_MAX_VALUE = 50;
+
+    /**
+     * Constant for int spinners initial value.
+     */
     public static final int INT_SPINNER_INITIAL_VALUE = 5;
+
+    /**
+     * Constant for button spacing.
+     */
     public static final int BUTTON_SPACING = 20;
+
+    /**
+     * Constant for scenes width.
+     */
     public static final int SCENE_WIDTH = 1000;
+
+    /**
+     * Constant for scenes height.
+     */
     public static final int SCENE_HEIGHT = 800;
+
+    /**
+     * Constant for title font size.
+     */
     public static final int TITLE_FONT_SIZE = 30;
+
+    /**
+     * Constant for number of colour pickers
+     */
+    public static final int NUMBER_OF_COLOUR_PICKERS = 4;
 
     private Quilt quilt;
     private ArrayList<Scene> scenes;
@@ -208,10 +245,12 @@ public class QuiltProgram {
 
         // create selector controls
         VBox selectorControls =
-                new VBox(choiceLabel, choice, colourPickerLabel,
-                        colorPickers.get(0), colorPickers.get(1),
-                        colorPickers.get(2), colorPickers.get(3),
-                        createQuiltButton, nextSceneButton);
+                new VBox(choiceLabel, choice, colourPickerLabel);
+        for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
+            selectorControls.getChildren().add(colorPickers.get(i));
+        }
+        selectorControls.getChildren().add(createQuiltButton);
+        selectorControls.getChildren().add(nextSceneButton);
         selectorControls.setStyle("-fx-padding: 40px 45px; " + "-fx-background-color: skyblue");
         selectorControls.setSpacing(BUTTON_SPACING);
 
@@ -401,10 +440,10 @@ public class QuiltProgram {
         } else {
             tempBlock = new RandomSquareBlock(quilt.getCellSize() / CONVERT_TO_PERCENT);
         }
-        tempBlock.blockColour(colorPickers.get(0).getValue(), 1);
-        tempBlock.blockColour(colorPickers.get(1).getValue(), 2);
-        tempBlock.blockColour(colorPickers.get(2).getValue(), 3);
-        tempBlock.blockColour(colorPickers.get(3).getValue(), 4);
+
+        for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
+            tempBlock.blockColour(colorPickers.get(i).getValue(), i + 1);
+        }
         return tempBlock;
     }
 
@@ -412,20 +451,15 @@ public class QuiltProgram {
      * Creates all the colour pickers for scene 2.
      */
     private void createColourPickers() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
             colorPickers.add(new ColorPicker(Color.BLACK));
+            setColourPickerOnAction(i);
         }
-        colorPickers.get(0).setOnAction((event) -> {
-            selectedDesign.blockColour(colorPickers.get(0).getValue(), 1);
-        });
-        colorPickers.get(1).setOnAction((event) -> {
-            selectedDesign.blockColour(colorPickers.get(1).getValue(), 2);
-        });
-        colorPickers.get(2).setOnAction((event) -> {
-            selectedDesign.blockColour(colorPickers.get(2).getValue(), 3);
-        });
-        colorPickers.get(3).setOnAction((event) -> {
-            selectedDesign.blockColour(colorPickers.get(3).getValue(), 4);
+    }
+
+    private void setColourPickerOnAction(int i) {
+        colorPickers.get(i).setOnAction((event) -> {
+            selectedDesign.blockColour(colorPickers.get(i).getValue(), i + 1);
         });
     }
 
@@ -461,10 +495,9 @@ public class QuiltProgram {
      * Initializes all the selected block designs colours.
      */
     private void setDesignInitialColour() {
-        selectedDesign.blockColour(colorPickers.get(0).getValue(), 1);
-        selectedDesign.blockColour(colorPickers.get(1).getValue(), 2);
-        selectedDesign.blockColour(colorPickers.get(2).getValue(), 3);
-        selectedDesign.blockColour(colorPickers.get(3).getValue(), 4);
+        for (int i = 0; i < NUMBER_OF_COLOUR_PICKERS; i++) {
+            selectedDesign.blockColour(colorPickers.get(i).getValue(), i + 1);
+        }
     }
 
     /**
