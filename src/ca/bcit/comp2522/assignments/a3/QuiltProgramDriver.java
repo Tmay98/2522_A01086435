@@ -1,8 +1,6 @@
 package ca.bcit.comp2522.assignments.a3;
 
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -12,27 +10,6 @@ import javafx.stage.Stage;
  * @version 2019
  */
 public class QuiltProgramDriver extends Application {
-
-    private Stage primaryStage;
-    private QuiltProgram quiltProgram;
-
-    /**
-     * Returns the primary stage.
-     *
-     * @return primaryStage
-     */
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    /**
-     * Returns the quilt program.
-     *
-     * @return quiltProgram
-     */
-    public QuiltProgram getQuiltProgram() {
-        return quiltProgram;
-    }
 
     public void start(Stage primaryStage) {
         // testing
@@ -52,10 +29,9 @@ public class QuiltProgramDriver extends Application {
 //        primaryStage.show();
 
         // Create first scene
-        this.primaryStage = primaryStage;
-        this.quiltProgram = new QuiltProgram(primaryStage);
-        this.quiltProgram.getStage().setTitle("Quilt Program");
-        this.quiltProgram.getStage().setScene(quiltProgram.getScenes().get(0));
-        this.quiltProgram.getStage().show();
+        QuiltProgram quiltProgram = new QuiltProgram(primaryStage);
+        quiltProgram.getStage().setTitle("Quilt Program");
+        quiltProgram.getStage().setScene(quiltProgram.getScenes().get(0));
+        quiltProgram.getStage().show();
     }
 }

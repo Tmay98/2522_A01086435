@@ -130,18 +130,10 @@ public class TwistedFourStarBlock extends Block {
         populateGroup(quarterBlocks, tempGroup3);
         populateGroup(quarterBlocks, tempGroup4);
 
-        for (Polygon poly : tempGroup1) {
-            colourGroup1.add(poly);
-        }
-        for (Polygon poly : tempGroup2) {
-            colourGroup2.add(poly);
-        }
-        for (Polygon poly : tempGroup3) {
-            colourGroup3.add(poly);
-        }
-        for (Polygon poly : tempGroup4) {
-            colourGroup4.add(poly);
-        }
+        colourGroup1.addAll(tempGroup1);
+        colourGroup2.addAll(tempGroup2);
+        colourGroup3.addAll(tempGroup3);
+        colourGroup4.addAll(tempGroup4);
 
         return quarterBlocks;
     }
