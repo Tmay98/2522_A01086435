@@ -23,6 +23,7 @@ public class PinwheelBlock extends Block {
      * Number of triangles per section that require rotation.
      */
     private static final int TRIANGLES_TO_ROTATE_PER_SECTION = 3;
+    private Group block;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -32,8 +33,7 @@ public class PinwheelBlock extends Block {
      *
      * @param scaleFactor a double
      */
-    public PinwheelBlock(double scaleFactor) {
-        this.scaleFactor = scaleFactor;
+    PinwheelBlock(double scaleFactor) {
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         block = new Group();

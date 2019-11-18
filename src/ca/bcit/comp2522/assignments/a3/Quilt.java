@@ -12,7 +12,11 @@ public class Quilt {
     /**
      * Size of the quilt on the screen.
      */
-    public static final double QUILT_SIZE = 600;
+    private static final double QUILT_SIZE = 600;
+    /**
+     * Pixel size of a cell.
+     */
+    private static final int CELL_SIZE = 100;
 
     private int rows;
     private int columns;
@@ -22,60 +26,63 @@ public class Quilt {
     /**
      * Constructs an object of type Quilt.
      */
-    public Quilt() {
+    Quilt() {
         this.rows = 0;
         this.columns = 0;
-        this.cellSize = 100;
+        this.cellSize = CELL_SIZE;
         this.quiltGrid = new GridPane();
     }
-
-    public GridPane getQuiltGrid() {
+    /**
+     * Returns the grid pane of a quilt.
+     * @return quiltGrid a GridPane
+     */
+    GridPane getQuiltGrid() {
         return this.quiltGrid;
     }
 
-    public double getCellSize() {
+    /**
+     * Returns the cell size of a quilt.
+     * @return cellSize a double
+     */
+    double getCellSize() {
         return this.cellSize;
     }
     /**
-     * returns the number of rows in the quilt.
+     * Returns the number of rows in the quilt.
      *
-     * @return rows
+     * @return rows an int
      */
-    public int getRows() {
+    int getRows() {
         return rows;
     }
-
     /**
-     * returns the number of columns in the quilt.
+     * Returns the number of columns in the quilt.
      *
-     * @return columns
+     * @return columns an int
      */
-    public int getColumns() {
+    int getColumns() {
         return columns;
     }
-
     /**
      * Sets the number of rows in the quilt.
      *
      * @param rows an int
      */
-    public void setRows(int rows) {
+    void setRows(int rows) {
         this.rows = rows;
     }
-
     /**
      * Sets the block length scaling factor.
      */
-    public void setCellSize() {
+    void setCellSize() {
         this.cellSize = QUILT_SIZE / Math.max(rows, columns);
     }
-
     /**
      * Sets the number of columns in the quilt.
      *
      * @param columns an int
      */
-    public void setColumns(int columns) {
+    void setColumns(int columns) {
         this.columns = columns;
     }
 }

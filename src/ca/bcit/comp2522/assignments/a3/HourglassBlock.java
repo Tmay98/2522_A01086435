@@ -39,13 +39,14 @@ public class HourglassBlock extends Block {
     private ArrayList<Polygon> colourGroup2;
     private ArrayList<Polygon> colourGroup3;
 
+    private Group block;
+
     /**
      * Generates a block with an hourglass pattern.
      *
      * @param scaleFactor a double
      */
-    public HourglassBlock(double scaleFactor) {
-        this.scaleFactor = scaleFactor;
+    HourglassBlock(double scaleFactor) {
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
@@ -142,7 +143,7 @@ public class HourglassBlock extends Block {
     /**
      * Sets the colour of the sections in a block.
      * @param colour a Paint object
-     * @param groupNumber an integer
+     * @param groupNumber an int
      */
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {

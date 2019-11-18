@@ -23,6 +23,10 @@ public class TwistedFourStarBlock extends Block {
      * Number of small triangles in a single section of a twisted star block.
      */
     private static final int NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE = 3;
+    /**
+     * Number of parallelograms per quarter section of a twisted star block.
+     */
+    private static final int PARALLELOGRAMS_IN_QUARTER_SECTION = 1;
 
     private ArrayList<Polygon> tempGroup1;
     private ArrayList<Polygon> tempGroup2;
@@ -36,10 +40,14 @@ public class TwistedFourStarBlock extends Block {
 
     private ArrayList<Group> quarterSections;
 
+    private Group block;
+
     /**
      * Generates a block with a twisted star pattern.
+     *
+     * @param scaleFactor a double
      */
-    public TwistedFourStarBlock(double scaleFactor) {
+    TwistedFourStarBlock(double scaleFactor) {
         quarterSections = new ArrayList<>();
         tempGroup1 = new ArrayList<>();
         tempGroup2 = new ArrayList<>();
@@ -50,7 +58,6 @@ public class TwistedFourStarBlock extends Block {
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
         colourGroup4 = new ArrayList<>();
-        this.scaleFactor = scaleFactor;
         block = new Group();
 
         createBlock();
@@ -75,10 +82,10 @@ public class TwistedFourStarBlock extends Block {
         setScaleXY(tempGroup2.get(0), QUARTER_TRIANGLE_RATIO);
 
         // Group 3 //
-        tempGroup3 = createParallelograms(1);
+        tempGroup3 = createParallelograms(PARALLELOGRAMS_IN_QUARTER_SECTION);
 
         // Group 4 //
-        tempGroup4 = createParallelograms(1);
+        tempGroup4 = createParallelograms(PARALLELOGRAMS_IN_QUARTER_SECTION);
 
     };
 
