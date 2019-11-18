@@ -16,23 +16,23 @@ public class HourglassBlock extends Block {
     /**
      * Number of large triangles in a hourglass block.
      */
-    private static final int LARGE_TRIANGLES_IN_HOURGLASS_BLOCK = 4;
+    public static final int LARGE_TRIANGLES_IN_HOURGLASS_BLOCK = 4;
     /**
      * Number of small triangles in a hourglass block.
      */
-    private static final int SMALL_TRIANGLES_IN_HOURGLASS_BLOCK = 8;
+    public static final int SMALL_TRIANGLES_IN_HOURGLASS_BLOCK = 8;
     /**
      * Number of colour groups in an hourglass block.
      */
-    private static final int COLOUR_GROUPS_IN_HOURGLASS_BLOCK = 3;
+    public static final int COLOUR_GROUPS_IN_HOURGLASS_BLOCK = 3;
     /**
      * Number of small triangles in colour section 1 in an hourglass block.
      */
-    private static final int SMALL_TRIANGLES_IN_SECTION_ONE = 4;
+    public static final int SMALL_TRIANGLES_IN_SECTION_ONE = 4;
     /**
      * Number of small triangles in colour section 2 in an hourglass block.
      */
-    private static final int SMALL_TRIANGLES_IN_SECTION_TWO = 2;
+    public static final int SMALL_TRIANGLES_IN_SECTION_TWO = 2;
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
@@ -43,12 +43,33 @@ public class HourglassBlock extends Block {
      *
      * @param scaleFactor a double
      */
-    HourglassBlock(double scaleFactor) {
+    public HourglassBlock(double scaleFactor) {
         super(scaleFactor);
         colourGroup1 = new ArrayList<>();
         colourGroup2 = new ArrayList<>();
         colourGroup3 = new ArrayList<>();
         createBlock();
+    }
+    /**
+     * Returns colourGroup1.
+     * @return colourGroup1 an ArrayList
+     */
+    public ArrayList<Polygon> getColourGroup1() {
+        return colourGroup1;
+    }
+    /**
+     * Returns colourGroup2.
+     * @return colourGroup2 an ArrayList
+     */
+    public ArrayList<Polygon> getColourGroup2() {
+        return colourGroup2;
+    }
+    /**
+     * Returns colourGroup3.
+     * @return colourGroup3 an ArrayList
+     */
+    public ArrayList<Polygon> getColourGroup3() {
+        return colourGroup3;
     }
     /**
      * Generates the sections in an hourglass block.
