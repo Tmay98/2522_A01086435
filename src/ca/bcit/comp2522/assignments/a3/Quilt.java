@@ -31,6 +31,10 @@ public class Quilt {
         this.columns = 0;
         this.cellSize = CELL_SIZE;
         this.quiltGrid = new GridPane();
+        quiltGrid.setMaxWidth(QUILT_SIZE);
+        quiltGrid.setMaxHeight(QUILT_SIZE);
+        quiltGrid.setMinHeight(QUILT_SIZE);
+        quiltGrid.setMinWidth(QUILT_SIZE);
     }
     /**
      * Returns the grid pane of a quilt.
@@ -73,9 +77,15 @@ public class Quilt {
     }
     /**
      * Sets the block length scaling factor.
+     *
+     * @param cellSize a double
      */
-    void setCellSize() {
-        this.cellSize = QUILT_SIZE / Math.max(rows, columns);
+    void setCellSize(double cellSize) {
+        double maxCellSize = QUILT_SIZE / Math.max(rows, columns);
+        this.cellSize = cellSize;
+        if (cellSize > maxCellSize) {
+            this.cellSize = maxCellSize;
+        }
     }
     /**
      * Sets the number of columns in the quilt.

@@ -65,6 +65,10 @@ public class QuiltProgram {
      * Number of colour pickers.
      */
     private static final int NUMBER_OF_COLOUR_PICKERS = 4;
+    /**
+     * Initial value for block size spinner.
+     */
+    private static final int BLOCK_SIZE_SPINNER_INITIAL_VALUE = 50;
 
     private Quilt quilt;
     private ArrayList<Scene> scenes;
@@ -87,6 +91,7 @@ public class QuiltProgram {
         this.borderPane = new BorderPane();
         this.choice = new ChoiceBox<>();
         this.colorPickers = new ArrayList<>();
+        this.quiltType = "SingleQuilt";
         createSceneOne();
     }
 
@@ -392,13 +397,16 @@ public class QuiltProgram {
         // Add integer spinner for selecting number of blocks
         SpinnerValueFactory.IntegerSpinnerValueFactory svf1 =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        1, INT_SPINNER_MAX_VALUE, INT_SPINNER_INITIAL_VALUE);
+                        1, INT_SPINNER_MAX_VALUE,
+                        BLOCK_SIZE_SPINNER_INITIAL_VALUE);
         SpinnerValueFactory.IntegerSpinnerValueFactory svf2 =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        1, INT_SPINNER_MAX_VALUE, INT_SPINNER_INITIAL_VALUE);
+                        1, INT_SPINNER_MAX_VALUE,
+                        INT_SPINNER_INITIAL_VALUE);
         SpinnerValueFactory.IntegerSpinnerValueFactory svf3 =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        1, INT_SPINNER_MAX_VALUE, INT_SPINNER_INITIAL_VALUE);
+                        1, INT_SPINNER_MAX_VALUE,
+                        INT_SPINNER_INITIAL_VALUE);
         Spinner<Integer> blockSizeSpinner = new Spinner<>(svf1);
         Spinner<Integer> rowsSpinner = new Spinner<>(svf2);
         Spinner<Integer> columnsSpinner = new Spinner<>(svf3);
@@ -412,7 +420,8 @@ public class QuiltProgram {
 
         // add next scene button
         Button nextSceneButton =
-                getSecondSceneButton(rowsSpinner, columnsSpinner);
+                getSecondSceneButton(rowsSpinner,
+                        columnsSpinner, blockSizeSpinner);
 
         // Add spinners to VBox and return
         VBox spinners = new VBox(rowsLabel, rowsSpinner,
@@ -428,15 +437,17 @@ public class QuiltProgram {
      *
      * @param rowsSpinner a Spinner
      * @param columnsSpinner a Spinner
+     * @param blockSizeSpinner a Spinner
      * @return a Button
      */
     private Button getSecondSceneButton(Spinner<Integer> rowsSpinner,
-                                        Spinner<Integer> columnsSpinner) {
+                                        Spinner<Integer> columnsSpinner,
+                                        Spinner<Integer> blockSizeSpinner) {
         Button nextSceneButton = new Button("Next");
         nextSceneButton.setOnAction((event) -> {
             this.quilt.setColumns(columnsSpinner.getValue());
             this.quilt.setRows(rowsSpinner.getValue());
-            this.quilt.setCellSize();
+            this.quilt.setCellSize(blockSizeSpinner.getValue());
             // create multi block or single block scene depending on quilt type.
             if (quiltType.equals("MultiQuilt")) {
                 initializeGridMultiQuilt();
@@ -622,7 +633,6 @@ public class QuiltProgram {
      * @param numRows an int
      */
     private void createQuiltCells(int numCols, int numRows) {
-        quilt.setCellSize();
         double cellSize = quilt.getCellSize();
         for (int i = 0; i < numCols; i++) {
             ColumnConstraints colConstraints = new ColumnConstraints(cellSize);
