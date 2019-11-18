@@ -36,6 +36,25 @@ public class RandomSquareBlock extends Block {
         colourGroup2 = new ArrayList<>();
         createBlock();
     }
+
+    /**
+     * Returns colourGroup1.
+     *
+     * @return colourGroup1
+     */
+    public ArrayList<Rectangle> getColourGroup1() {
+        return colourGroup1;
+    }
+
+    /**
+     * Returns colourGroup2.
+     *
+     * @return colourGroup2
+     */
+    public ArrayList<Rectangle> getColourGroup2() {
+        return colourGroup2;
+    }
+
     /**
      * Creates the sections needed for the Random square block.
      */

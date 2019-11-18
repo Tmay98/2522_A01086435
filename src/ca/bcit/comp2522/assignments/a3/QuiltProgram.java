@@ -425,7 +425,7 @@ public class QuiltProgram {
 
     /**
      * Creates and returns the second scene button.
-     * 
+     *
      * @param rowsSpinner a Spinner
      * @param columnsSpinner a Spinner
      * @return a Button

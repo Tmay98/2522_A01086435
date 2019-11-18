@@ -16,14 +16,32 @@ public class SquareGridBlock extends Block {
     /**
      * Number of rows in a random square block.
      */
-    private static final int NUM_ROWS = 4;
+    public static final int NUM_ROWS = 4;
     /**
      * Number of columns in a random square block.
      */
-    private static final int NUM_COLS = 4;
+    public static final int NUM_COLS = 4;
 
     private ArrayList<Rectangle> colourGroup1;
     private ArrayList<Rectangle> colourGroup2;
+
+    /**
+     * Returns colourGroup1.
+     *
+     * @return colourGroup1
+     */
+    public ArrayList<Rectangle> getColourGroup1() {
+        return colourGroup1;
+    }
+
+    /**
+     * Returns colourGroup2.
+     *
+     * @return colourGroup2
+     */
+    public ArrayList<Rectangle> getColourGroup2() {
+        return colourGroup2;
+    }
 
     /**
      * Instantiates an object of type SquareGridBlock.
