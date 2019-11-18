@@ -98,14 +98,7 @@ public class QuiltProgram {
     public Stage getStage() {
         return stage;
     }
-    /**
-     * Returns the quilt.
-     *
-     * @return quilt a Quilt object
-     */
-    public Quilt getQuilt() {
-        return quilt;
-    }
+
     /**
      * Returns the ArrayList of scenes.
      *
@@ -486,6 +479,11 @@ public class QuiltProgram {
         }
     }
 
+    /**
+     * Sets a colour picker of given index onAction.
+     *
+     * @param i an int
+     */
     private void setColourPickerOnAction(int i) {
         colorPickers.get(i).setOnAction((event) -> {
             selectedDesign.blockColour(
