@@ -44,7 +44,7 @@ public class TwistedFourStarBlockTest {
     }
 
     @Test
-    public void testColouGroupsInBlockConstantIsCorrect() {
+    public void testColourGroupsInBlockConstantIsCorrect() {
         assertEquals(TwistedFourStarBlock.COLOUR_GROUPS_IN_BLOCK, 4, 0.0);
     }
 
