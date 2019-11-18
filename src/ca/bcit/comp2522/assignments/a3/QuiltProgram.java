@@ -229,6 +229,9 @@ public class QuiltProgram {
         scenes.add(new Scene(borderPane, SCENE_WIDTH, SCENE_HEIGHT));
     }
 
+    /**
+     * Creates the final scene to view the complete quilt.
+     */
     private void createSceneFinal() {
         Text title = new Text("Final Quilt");
         title.setFont(Font.font(TITLE_FONT_SIZE));
@@ -497,6 +500,12 @@ public class QuiltProgram {
         quilt.getQuiltGrid().setGridLinesVisible(true);
     }
 
+    /**
+     * Creates the quilts grid cells.
+     *
+     * @param numCols an int
+     * @param numRows an int
+     */
     private void createQuiltCells(int numCols, int numRows) {
         quilt.setCellSize();
         double cellSize = quilt.getCellSize();
