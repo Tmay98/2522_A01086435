@@ -12,11 +12,11 @@ public class Quilt {
     /**
      * Size of the quilt on the screen.
      */
-    private static final double QUILT_SIZE = 600;
+    public static final double QUILT_SIZE = 600;
     /**
      * Pixel size of a cell.
      */
-    private static final int CELL_SIZE = 100;
+    public static final int CELL_SIZE = 100;
 
     private int rows;
     private int columns;
@@ -26,7 +26,7 @@ public class Quilt {
     /**
      * Constructs an object of type Quilt.
      */
-    Quilt() {
+    public Quilt() {
         this.rows = 0;
         this.columns = 0;
         this.cellSize = CELL_SIZE;
@@ -40,7 +40,7 @@ public class Quilt {
      * Returns the grid pane of a quilt.
      * @return quiltGrid a GridPane
      */
-    GridPane getQuiltGrid() {
+    public GridPane getQuiltGrid() {
         return this.quiltGrid;
     }
 
@@ -48,7 +48,7 @@ public class Quilt {
      * Returns the cell size of a quilt.
      * @return cellSize a double
      */
-    double getCellSize() {
+    public double getCellSize() {
         return this.cellSize;
     }
     /**
@@ -56,7 +56,7 @@ public class Quilt {
      *
      * @return rows an int
      */
-    int getRows() {
+    public int getRows() {
         return rows;
     }
     /**
@@ -64,7 +64,7 @@ public class Quilt {
      *
      * @return columns an int
      */
-    int getColumns() {
+    public int getColumns() {
         return columns;
     }
     /**
@@ -72,7 +72,7 @@ public class Quilt {
      *
      * @param rows an int
      */
-    void setRows(int rows) {
+    public void setRows(int rows) {
         this.rows = rows;
     }
     /**
@@ -80,7 +80,7 @@ public class Quilt {
      *
      * @param cellSize a double
      */
-    void setCellSize(double cellSize) {
+    public void setCellSize(double cellSize) {
         double maxCellSize = QUILT_SIZE / Math.max(rows, columns);
         this.cellSize = cellSize;
         if (cellSize > maxCellSize) {
@@ -92,7 +92,7 @@ public class Quilt {
      *
      * @param columns an int
      */
-    void setColumns(int columns) {
+    public void setColumns(int columns) {
         this.columns = columns;
     }
 }
