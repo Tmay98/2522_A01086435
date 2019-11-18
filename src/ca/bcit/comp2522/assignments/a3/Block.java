@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @version 2019
  */
 
-public class Block {
+public abstract class Block {
     /**
      * Rotational value of half of a right angle.
      */
@@ -60,7 +60,12 @@ public class Block {
     private Group block;
     private double scaleFactor;
 
-
+    /**
+     * Selects a colour for a colour section.
+     * @param paint a Paint object
+     * @param group an int
+     */
+    public abstract void blockColour(Paint paint, int group);
     /**
      * Block constructor.
      *
@@ -82,30 +87,16 @@ public class Block {
      *
      * @return block
      */
-    Group getBlock() {
+    public Group getBlock() {
         return this.block;
     }
-
-    /**
-     * Selects a colour for a colour section.
-     * @param paint a Paint object
-     * @param group an int
-     */
-    public void blockColour(Paint paint, int group) { };
-    /**
-     * Returns an unscaled block.
-     *
-     * @return block a Group
-     */
-    Group getBlockUnscaled() {
-        return block; }
     /**
      * Returns a scaled block.
      *
      * @return blk a Group
      */
-    Group getBlockScaled() {
-        Group blk = getBlockUnscaled();
+    public Group getBlockScaled() {
+        Group blk = getBlock();
 
         // fix block position based on scale factor of quilt
         blk.setScaleX(scaleFactor);
