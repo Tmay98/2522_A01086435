@@ -1,12 +1,14 @@
 package ca.bcit.comp2522.assignments.a3.tests;
 
 import ca.bcit.comp2522.assignments.a3.Block;
+import javafx.scene.Group;
+import javafx.scene.shape.Rectangle;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import javax.swing.GroupLayout;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -84,10 +86,99 @@ public class blockTest {
     }
 
     @Test
+    public void createTriangleLengthIsHalfBlockLength() {
+        assertEquals(testBlock.createTriangle().getPoints().get(4), testBlock.HALF_BLOCK_LENGTH, 0.0);
+    }
+
+    @Test
     public void createTriangleReturnsPolygonWithSixCoordinates() {
         assertEquals(testBlock.createTriangle().getPoints().size(), 6, 0.0);
     }
 
-    
+    @Test
+    public void createSquareStartsAtCoordinateZero() {
+        assertEquals(testBlock.createSquare().getX(), 0, 0.0);
+    }
 
+    @Test
+    public void createSquareHeightIsHalfBlockLength() {
+        assertEquals(testBlock.createSquare().getHeight(), testBlock.HALF_BLOCK_LENGTH, 0.0);
+    }
+
+    @Test
+    public void createSquareWidthIsHalfBlockLength() {
+        assertEquals(testBlock.createSquare().getWidth(), testBlock.HALF_BLOCK_LENGTH, 0.0);
+    }
+
+    @Test
+    public void createParallelogramReturnsPolygonWithEightCoordinates() {
+        assertEquals(testBlock.createParallelogram().getPoints().size(), 8, 0.0);
+    }
+
+    @Test
+    public void createParallelogramWidthIsHalfBlockLength() {
+        assertEquals(testBlock.createParallelogram().getPoints().get(1), testBlock.HALF_BLOCK_LENGTH, 0.0);
+    }
+
+    @Test
+    public void createParallelogramHeightIsQuarterBlockLength() {
+        assertEquals(testBlock.createParallelogram().getPoints().get(3), testBlock.QUARTER_BLOCK_LENGTH, 0.0);
+    }
+
+    @Test
+    public void createTrianglesCreatesCorrectNumberOfTriangles() {
+        assertEquals(testBlock.createTriangles(10).size(), 10, 0.0 );
+    }
+
+    @Test
+    public void createParallelogramsCreatesCorrectNumberOfParallelograms() {
+        assertEquals(testBlock.createParallelograms(10).size(), 10, 0.0 );
+    }
+
+    @Test
+    public void addSquareAddsSquareToGroupCorrectly() {
+        ArrayList<Rectangle> testRectangleArray = new ArrayList<>();
+        testBlock.addNewSquare(testRectangleArray, 5, 5);
+        assertEquals(testRectangleArray.size(), 1, 0.0);
+
+    }
+
+    @Test
+    public void addSquareIsScaledCorrectly() {
+        ArrayList<Rectangle> testRectangleArray = new ArrayList<>();
+        testBlock.addNewSquare(testRectangleArray, 5, 5);
+        assertEquals(testRectangleArray.get(0).getScaleX(), testBlock.HALF_SCALE, 0.0);
+    }
+
+    @Test
+    public void setScaleXYSetsXScaleCorrectly() {
+        Rectangle testSquare = testBlock.createSquare();
+        testBlock.setScaleXY(testSquare, 10.0);
+
+        assertEquals(testSquare.getScaleX(), 10.0, 0.0);
+    }
+
+    @Test
+    public void setScaleXYSetsYScaleCorrectly() {
+        Rectangle testSquare = testBlock.createSquare();
+        testBlock.setScaleXY(testSquare, 10.0);
+
+        assertEquals(testSquare.getScaleY(), 10.0, 0.0);
+    }
+
+    @Test
+    public void setTranslateXYSetsXTranslateCorrectly() {
+        Rectangle testSquare = testBlock.createSquare();
+        testBlock.setTranslateXY(testSquare, 10.0);
+
+        assertEquals(testSquare.getTranslateX(), 10.0, 0.0);
+    }
+
+    @Test
+    public void setTranslateXYSetsYTranslateCorrectly() {
+        Rectangle testSquare = testBlock.createSquare();
+        testBlock.setTranslateXY(testSquare, 10.0);
+
+        assertEquals(testSquare.getTranslateY(), 10.0, 0.0);
+    }
 }

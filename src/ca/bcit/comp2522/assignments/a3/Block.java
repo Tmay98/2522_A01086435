@@ -150,7 +150,7 @@ public class Block {
      *
      * @return  parallelogram a Rectangle
      */
-    private Polygon createParallelogram() {
+    public Polygon createParallelogram() {
         return new Polygon(
                 0,
                 HALF_BLOCK_LENGTH,
@@ -168,7 +168,7 @@ public class Block {
      * @param numberOfTriangles an int
      * @return an ArrayList of instantiated triangles an ArrayList
      */
-    protected ArrayList<Polygon> createTriangles(int numberOfTriangles) {
+    public ArrayList<Polygon> createTriangles(int numberOfTriangles) {
         ArrayList<Polygon> triangles = new ArrayList<>();
         for (int i = 0; i < numberOfTriangles; i++) {
             Polygon triangle = createTriangle();
@@ -182,7 +182,7 @@ public class Block {
      * @param numberOfParallelograms an int
      * @return an ArrayList of instantiated parallelograms an ArrayList
      */
-    protected ArrayList<Polygon> createParallelograms(
+    public ArrayList<Polygon> createParallelograms(
             int numberOfParallelograms) {
         ArrayList<Polygon> parallelograms = new ArrayList<>();
         for (int i = 0; i < numberOfParallelograms; i++) {
@@ -198,7 +198,7 @@ public class Block {
      * @param i an int
      * @param j an int
      */
-    protected void addNewSquare(ArrayList<Rectangle> group, int i, int j) {
+    public void addNewSquare(ArrayList<Rectangle> group, int i, int j) {
         Rectangle square = createSquare();
         square.setScaleX(HALF_SCALE);
         square.setScaleY(HALF_SCALE);
@@ -216,7 +216,7 @@ public class Block {
      * @param shape a Shape
      * @param ratio a Double
      */
-    <T extends Shape> void setScaleXY(T shape, double ratio) {
+    public <T extends Shape> void setScaleXY(T shape, double ratio) {
         shape.setScaleX(ratio);
         shape.setScaleY(ratio);
     }
@@ -227,7 +227,7 @@ public class Block {
      * @param shape a Shape
      * @param ratio a Double
      */
-    protected <T extends Shape> void setTranslateXY(T shape, double ratio) {
+    public <T extends Shape> void setTranslateXY(T shape, double ratio) {
         shape.setTranslateX(ratio);
         shape.setTranslateY(ratio);
     }
