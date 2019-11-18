@@ -26,8 +26,6 @@ public class PinwheelBlock extends Block {
 
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
-    private Group block;
-    private double scaleFactor;
 
     /**
      * Instantiates an object of type PinwheelBlock.

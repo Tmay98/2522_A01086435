@@ -28,8 +28,6 @@ public class RandomSquareBlock extends Block {
 
     private ArrayList<Rectangle> colourGroup1;
     private ArrayList<Rectangle> colourGroup2;
-    private Group block;
-    private double scaleFactor;
 
     /**
      * Instantiates an object of type PinwheelBlock.
@@ -86,52 +84,6 @@ public class RandomSquareBlock extends Block {
         for (Rectangle rect : colourGroup2) {
             block.getChildren().add(rect);
         }
-    }
-
-    /**
-     * Returns the scaled block.
-     *
-     * @return blk
-     */
-    public Group getBlock() {
-        Group blk = new Group();
-        for (Rectangle rect : colourGroup1) {
-            blk.getChildren().add(rect);
-        }
-
-        for (Rectangle rect : colourGroup2) {
-            blk.getChildren().add(rect);
-        }
-
-        // fix block position based on scalefactor of quilt
-        blk.setScaleX(scaleFactor);
-        blk.setScaleY(scaleFactor);
-        double translateAmount = Math.abs(1 - scaleFactor) * 50;
-        if (scaleFactor < 1) {
-            blk.setTranslateX(-translateAmount);
-        } else {
-            blk.setTranslateX(translateAmount);
-        }
-
-        return blk;
-    }
-
-    /**
-     * Returns the block unscaled.
-     *
-     * @return blk
-     */
-    public Group getBlockUnscaled() {
-        Group blk = new Group();
-        for (Rectangle rect : colourGroup1) {
-            blk.getChildren().add(rect);
-        }
-
-        for (Rectangle rect : colourGroup2) {
-            blk.getChildren().add(rect);
-        }
-
-        return blk;
     }
 
     /**

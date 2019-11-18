@@ -28,13 +28,13 @@ public class TwistedFourStarBlock extends Block {
     private ArrayList<Polygon> tempGroup2;
     private ArrayList<Polygon> tempGroup3;
     private ArrayList<Polygon> tempGroup4;
+
     private ArrayList<Polygon> colourGroup1;
     private ArrayList<Polygon> colourGroup2;
     private ArrayList<Polygon> colourGroup3;
     private ArrayList<Polygon> colourGroup4;
+
     private ArrayList<Group> quarterSections;
-    private Group block;
-    private double scaleFactor;
 
     /**
      * Generates a block with a twisted star pattern.
@@ -164,36 +164,6 @@ public class TwistedFourStarBlock extends Block {
             block.getChildren().add(group);
         }
     };
-
-    /**
-     * Returns the scaled block.
-     *
-     * @return blk
-     */
-    public Group getBlock() {
-
-        // fix block position based on scalefactor of quilt
-        this.block.setScaleX(scaleFactor);
-        this.block.setScaleY(scaleFactor);
-        double translateAmount = Math.abs(1 - scaleFactor) * 50;
-        if (scaleFactor < 1) {
-            this.block.setTranslateX(-translateAmount);
-        } else {
-            this.block.setTranslateX(translateAmount);
-        }
-
-        return this.block;
-    }
-
-    /**
-     * Returns the block unscaled.
-     *
-     * @return blk
-     */
-    public Group getBlockUnscaled() {
-        return this.block;
-    }
-
 
     public void blockColour(Paint colour, int groupNumber) {
         if (groupNumber == 1) {
