@@ -1,8 +1,20 @@
 package ca.bcit.comp2522.assignments.a3;
 
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -124,13 +136,12 @@ public class QuiltProgram {
      * @param controls a VBox object
      * @return controls a VBox object
      */
-    private VBox setControlSettings(VBox controls) {
+    private void setControlSettings(VBox controls) {
         controls.setStyle("-fx-padding: 40px 45px; "
                         + "-fx-background-color: skyblue");
         controls.setSpacing(BUTTON_SPACING);
-
-        return controls;
     }
+
     /**
      * Sets the buttons and title for a border
      * @param titlePane a StackPane object
@@ -592,7 +603,8 @@ public class QuiltProgram {
         quilt.getQuiltGrid().add(pane, colIndex, rowIndex);
         pane.setOnMouseClicked(e -> {
             Block tempBlock = createBlockOfSelectedType();
-            quilt.getQuiltGrid().add(tempBlock.getBlockScaled(), colIndex, rowIndex);
+            quilt.getQuiltGrid()
+                    .add(tempBlock.getBlockScaled(), colIndex, rowIndex);
         });
     }
 }
