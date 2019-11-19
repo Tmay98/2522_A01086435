@@ -579,7 +579,7 @@ public class QuiltProgram {
                         quilt.getCellSize() / CONVERT_TO_PERCENT);
             }
             setDesignInitialColour();
-            this.borderPane.setCenter(selectedDesign.getBlockUnscaled());
+            this.borderPane.setCenter(selectedDesign.getBlock());
         });
     }
 

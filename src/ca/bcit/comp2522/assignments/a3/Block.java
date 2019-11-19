@@ -1,7 +1,6 @@
 package ca.bcit.comp2522.assignments.a3;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
  * @version 2019
  */
 
-public class Block {
+public class Block implements Colourable {
     /**
      * Rotational value of half of a right angle.
      */
@@ -60,12 +59,6 @@ public class Block {
     private Group block;
     private double scaleFactor;
 
-    /**
-     * Selects a colour for a colour section.
-     * @param paint a Paint object
-     * @param group an int
-     */
-    public void blockColour(Paint paint, int group) { };
     /**
      * Block constructor.
      *
