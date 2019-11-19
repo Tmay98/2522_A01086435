@@ -18,11 +18,11 @@ public class TwistedFourStarBlock extends Block {
     /**
      * Number of times a similar pattern is repeated in a twisted star block.
      */
-    public static final int NUMBER_OF_QUARTERS_IN_BLOCK = 4;
+    public static final int QUARTERS_IN_BLOCK = 4;
     /**
      * Number of small triangles in a single section of a twisted star block.
      */
-    public static final int NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE = 3;
+    public static final int TRIANGLES_IN_COLOUR_GROUP_ONE = 3;
     /**
      * Number of parallelograms per quarter section of a twisted star block.
      */
@@ -31,6 +31,8 @@ public class TwistedFourStarBlock extends Block {
      * Number of coloured sections in a twisted star block
      */
     public static final int COLOUR_GROUPS_IN_BLOCK = 4;
+
+    private ArrayList<Group> quarterSections;
 
     private ArrayList<Polygon> quarterSection1;
     private ArrayList<Polygon> quarterSection2;
@@ -41,8 +43,6 @@ public class TwistedFourStarBlock extends Block {
     private ArrayList<Polygon> colourGroup2;
     private ArrayList<Polygon> colourGroup3;
     private ArrayList<Polygon> colourGroup4;
-
-    private ArrayList<Group> quarterSections;
 
     /**
      * Generates a block with a twisted star pattern.
@@ -102,11 +102,22 @@ public class TwistedFourStarBlock extends Block {
     }
 
     /**
+     * Rescales coordinates for triangles that have been rescaled.
+     * @param triangle a Polygon
+     */
+    private void rescaleTriangleCoordinates(Polygon triangle) {
+        triangle.setTranslateX(
+                -(QUARTER_BLOCK_LENGTH
+                        - QUARTER_BLOCK_LENGTH / 2.0));
+        triangle.setTranslateY(-QUARTER_BLOCK_LENGTH / 2.0);
+    }
+
+    /**
      * Generates the sections in a twisted star patterned block.
      */
     private void createSections() {
         // Group 1 //
-        quarterSection1 = createTriangles(NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE);
+        quarterSection1 = createTriangles(TRIANGLES_IN_COLOUR_GROUP_ONE);
         for (Polygon triangle : quarterSection1) {
             triangle.setFill(Color.BLUE);
             setScaleXY(triangle, QUARTER_TRIANGLE_RATIO);
@@ -126,17 +137,6 @@ public class TwistedFourStarBlock extends Block {
         // Group 4 //
         quarterSection4 = createParallelograms(PARALLELOGRAMS_IN_QUARTER_SECTION);
 
-    }
-
-    /**
-     * Rescales coordinates for triangles that have been rescaled.
-     * @param triangle a Polygon
-     */
-    private void rescaleTriangleCoordinates(Polygon triangle) {
-        triangle.setTranslateX(
-                -(QUARTER_BLOCK_LENGTH
-                        - QUARTER_BLOCK_LENGTH / 2.0));
-        triangle.setTranslateY(-QUARTER_BLOCK_LENGTH / 2.0);
     }
 
     /**
@@ -185,7 +185,7 @@ public class TwistedFourStarBlock extends Block {
     private void createBlock() {
         int quarterSectionRotation = 0;
 
-        for (int i = 0; i < NUMBER_OF_QUARTERS_IN_BLOCK; i++) {
+        for (int i = 0; i < QUARTERS_IN_BLOCK; i++) {
             Group quarterSection = createBlockQuarters();
             quarterSection.setRotate(quarterSectionRotation);
             quarterSectionRotation += RIGHT_ANGLE;

@@ -7,7 +7,7 @@ public interface Colourable {
      * Selects a colour for a colour section.
      *
      * @param paint a Paint object
-     * @param group an int
+     * @param groupNumber an int
      */
-    default void blockColour(Paint paint, int group) { }
+    default void blockColour(Paint paint, int groupNumber) { }
 }

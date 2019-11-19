@@ -30,12 +30,12 @@ public class TwistedFourStarBlockTest {
 
     @Test
     public void testNumberOfQuartersInBlockConstantIsCorrect() {
-        assertEquals(TwistedFourStarBlock.NUMBER_OF_QUARTERS_IN_BLOCK, 4, 0.0);
+        assertEquals(TwistedFourStarBlock.QUARTERS_IN_BLOCK, 4, 0.0);
     }
 
     @Test
     public void testNumberOFTrianglesInColourGroup1ConstantIsCorrect() {
-        assertEquals(TwistedFourStarBlock.NUMBER_OF_TRIANGLES_IN_COLOUR_GROUP_ONE, 3, 0.0);
+        assertEquals(TwistedFourStarBlock.TRIANGLES_IN_COLOUR_GROUP_ONE, 3, 0.0);
     }
 
     @Test
