@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @version 2019
  */
 
-public abstract class Block {
+public class Block {
     /**
      * Rotational value of half of a right angle.
      */
@@ -65,7 +65,7 @@ public abstract class Block {
      * @param paint a Paint object
      * @param group an int
      */
-    public abstract void blockColour(Paint paint, int group);
+    public void blockColour(Paint paint, int group) { };
     /**
      * Block constructor.
      *
