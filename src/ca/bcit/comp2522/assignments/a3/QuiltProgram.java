@@ -69,6 +69,10 @@ public class QuiltProgram {
      * Initial value for block size spinner.
      */
     public static final int BLOCK_SIZE_SPINNER_INITIAL_VALUE = 50;
+    /**
+     * Max value for block size spinner.
+     */
+    public static final int BLOCK_SIZE_SPINNER_MAX_VALUE = 120;
 
     private Quilt quilt;
     private ArrayList<Scene> scenes;
@@ -397,7 +401,7 @@ public class QuiltProgram {
         // Add integer spinner for selecting number of blocks
         SpinnerValueFactory.IntegerSpinnerValueFactory svf1 =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        1, INT_SPINNER_MAX_VALUE,
+                        1, BLOCK_SIZE_SPINNER_MAX_VALUE,
                         BLOCK_SIZE_SPINNER_INITIAL_VALUE);
         SpinnerValueFactory.IntegerSpinnerValueFactory svf2 =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
