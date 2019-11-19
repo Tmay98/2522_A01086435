@@ -30,12 +30,12 @@ public class SquareGridBlockTest {
 
     @Test
     public void testNumRowsConstantIsCorrect() {
-        assertEquals(SquareGridBlock.NUM_ROWS, 4, 0.0);
+        assertEquals(SquareGridBlock.NUMBER_OF_ROWS, 4, 0.0);
     }
 
     @Test
     public void testNumColsConstantIsCorrect() {
-        assertEquals(SquareGridBlock.NUM_COLS, 4, 0.0);
+        assertEquals(SquareGridBlock.NUMBER_OF_COLUMNS, 4, 0.0);
     }
 
     @Test

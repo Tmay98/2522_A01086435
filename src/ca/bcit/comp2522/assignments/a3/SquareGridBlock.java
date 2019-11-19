@@ -16,11 +16,11 @@ public class SquareGridBlock extends Block {
     /**
      * Number of rows in a random square block.
      */
-    public static final int NUM_ROWS = 4;
+    public static final int NUMBER_OF_ROWS = 4;
     /**
      * Number of columns in a random square block.
      */
-    public static final int NUM_COLS = 4;
+    public static final int NUMBER_OF_COLUMNS = 4;
 
     private ArrayList<Rectangle> colourGroup1;
     private ArrayList<Rectangle> colourGroup2;
@@ -59,14 +59,14 @@ public class SquareGridBlock extends Block {
      */
     private void createSections() {
         //create group 1
-        for (int i = 0; i < NUM_ROWS; i++) {
-            for (int j = i % 2; j < NUM_COLS; j += 2) {
+        for (int i = 0; i < NUMBER_OF_ROWS; i++) {
+            for (int j = i % 2; j < NUMBER_OF_COLUMNS; j += 2) {
                 addNewSquare(getColourGroup1(), i, j);
             }
         }
         //create group 2
-        for (int i = 0; i < NUM_ROWS; i++) {
-            for (int j = (i + 1) % 2; j < NUM_COLS; j += 2) {
+        for (int i = 0; i < NUMBER_OF_ROWS; i++) {
+            for (int j = (i + 1) % 2; j < NUMBER_OF_COLUMNS; j += 2) {
                 addNewSquare(getColourGroup2(), i, j);
             }
         }

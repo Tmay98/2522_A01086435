@@ -186,17 +186,17 @@ public class Block {
     /**
      * Adds a scaled square to a group.
      * @param group a Group
-     * @param i an int
-     * @param j an int
+     * @param row an int
+     * @param column an int
      */
-    public void addNewSquare(ArrayList<Rectangle> group, int i, int j) {
+    public void addNewSquare(ArrayList<Rectangle> group, int row, int column) {
         Rectangle square = createSquare();
         square.setScaleX(HALF_RATIO);
         square.setScaleY(HALF_RATIO);
         square.setTranslateX(
-                j * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
+                column * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
         square.setTranslateY(
-                i * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
+                row * SQUARE_LENGTH - SQUARE_LENGTH / 2.0);
         square.setFill(Color.RED);
         group.add(square);
     }
