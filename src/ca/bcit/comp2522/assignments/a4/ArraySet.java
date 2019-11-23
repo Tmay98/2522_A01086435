@@ -78,6 +78,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
             return false;
         }
 
+        if (elementCount == capacity) {
+            resize();
+        }
+
         collection[elementCount++] = element;
         return true;
     }
@@ -174,6 +178,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         }
 
         this.collection = newCollection;
+        this.capacity = elementCount;
     }
 
     /**
