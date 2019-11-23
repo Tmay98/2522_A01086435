@@ -113,6 +113,23 @@ public class ArraySetTest {
     }
 
     @Test
+    public void removeReturnsTrueIfElementIsRemovedCorrectly() {
+        testArraySet.add(testElement1);
+        assertEquals(testArraySet.remove(testElement1), true);
+    }
+
+    @Test
+    public void removeReturnsFalseIfElementIsNotInArraySet() {
+        assertEquals(testArraySet.contains(testElement1), false);
+        assertEquals(testArraySet.remove(testElement1), false);
+    }
+
+    @Test
+    public void removeReturnsFalseIfElementIsNull() {
+        assertEquals(testArraySet.remove(null), false);
+    }
+
+    @Test
     public void elementIsNotInArraySetIfRemovedCorrectly() {
         testArraySet.add(testElement1);
         assertEquals(testArraySet.remove(testElement1), true);
@@ -135,43 +152,73 @@ public class ArraySetTest {
     }
 
     @Test
-    public void removeReturnsTrueIfElementIsRemovedCorrectly() {
+    public void arraySetSizeIsZeroAfterClear() {
         testArraySet.add(testElement1);
-        assertEquals(testArraySet.remove(testElement1), true);
+        testArraySet.add(testElement2);
+        testArraySet.clear();
+        assertEquals(testArraySet.size(), 0, 0.0);
     }
 
     @Test
-    public void removeReturnsFalseIfArraySetIsUnchanged() {
-        
+    public void containsReturnsTrueIfElementIsInArraySet() {
+        testArraySet.add(testElement1);
+        assertEquals(testArraySet.contains(testElement1), true);
     }
 
     @Test
-    public void arraySetIsEmptyAfterClear() {}
+    public void containsReturnsFalseIfElementIsNotInArraySet() {
+        testArraySet.add(testElement1);
+        assertEquals(testArraySet.contains(testElement2), false);
+    }
 
     @Test
-    public void containsReturnsTrueIfElementIsInArraySet() {}
+    public void containsReturnsFalseIfElementIsNull() {
+        testArraySet.add(testElement3);
+        assertEquals(testArraySet.contains(testElement3), false);
+    }
 
     @Test
-    public void containsReturnsFalseIfElementIsNotInArraySet() {}
+    public void containsChecksEntireArraySet() {
+        int testInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        testArraySet.add(testElement1);
+        int secondTestInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(secondTestInt);
+            secondTestInt++;
+        }
+        assertEquals(testArraySet.contains(testElement1), true);
+    }
 
     @Test
-    public void containsChecksEntireArraySet() {}
+    public void containsReturnsFalseOnEmptyArraySet() {
+        testArraySet.clear();
+        assertEquals(testArraySet.contains(testElement1), false);
+    }
 
     @Test
-    public void containsReturnsFalseOnEmptyArraySet() {}
+    public void sizeReturnsCorrectValue() {
+        int testInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        assertEquals(testArraySet.size(), 100, 0.0);
+    }
 
     @Test
-    public void sizeReturnsCorrectValue() {}
+    public void sizeReturnsZeroOnEmptySet() {
+        testArraySet.clear();
+        assertEquals(testArraySet.size(), 0, 0.0);
+    }
 
     @Test
-    public void sizeReturnsZeroOnEmptySet() {}
+    public void resizeDoublesCapacityCorrectly() {
 
-    @Test
-    public void sizeReturnsNegativeOneUponFailure() {}
-
-
-    @Test
-    public void resizeDoublesCapacityCorrectly() {}
+    }
 
 
     @Test
