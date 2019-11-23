@@ -47,7 +47,9 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post size() = 0.
      */
     public ArraySet() {
-        // Your code goes here
+        this.capacity = INITIAL_CAPACITY;
+        this.elementCount = 0;
+        this.collection = (E[]) new Object[INITIAL_CAPACITY];
     }
 
     /**
