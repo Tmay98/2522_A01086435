@@ -166,7 +166,14 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post the capacity of the ArraySet is doubled.
      */
     private void resize() {
-        // Your code goes here
+        int newElementCount = elementCount * 2;
+        E[] newCollection = (E[]) new Object[newElementCount];
+
+        for (int i = 0; i < elementCount; i++) {
+            newCollection[i] = collection[i];
+        }
+
+        this.collection = newCollection;
     }
 
     /**
