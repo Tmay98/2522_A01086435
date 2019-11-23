@@ -106,9 +106,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     }
 
     /**
+     * Returns the index of an element in a collection.
      *
-     * @param element
-     * @return
+     * @param element an element
+     * @return index an int
      */
     private int getIndex(final E element) {
         int index = 0;
