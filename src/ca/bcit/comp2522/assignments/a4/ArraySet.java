@@ -205,10 +205,11 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         }
     }
 
+
     /**
      * Returns an iterator over the elements in this ArraySet. The elements are
      * returned in no particular order.
-     * 
+     *
      * @pre true
      * @post true
      * @return an iterator for the ArraySet of elements that points to the first
@@ -222,7 +223,12 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * SetIterator provides a means for iterating over the elements of an
      * ArraySet.
      */
-    private class SetIterator<E> implements MyIterator<E> {
+    public class SetIterator<T> implements MyIterator<E> {
+
+        /**
+         * Stores index of the next item to be returned by the iterator.
+         */
+        private int nextIndex;
 
         /**
          * Returns true if the iteration has more elements.
@@ -232,8 +238,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          * @return true if the iteration has more elements, false otherwise.
          */
         public boolean hasNext() {
-            // Your code goes here
-            return false;
+            return collection[nextIndex] != null;
         }
 
         /**
@@ -246,8 +251,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          *         called.
          */
         public E next() {
-            // Your code goes here
-            return null;
+            return collection[nextIndex++];
         }
     }
 }
+
