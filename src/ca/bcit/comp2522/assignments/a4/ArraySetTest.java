@@ -47,6 +47,11 @@ public class ArraySetTest {
     }
 
     @Test
+    public void newArraySetHasObjectType() {
+        assertEquals(testArraySet.collection instanceof Object[], true);
+    }
+
+    @Test
     public void addElementIsInArraySetIfElementDoesNotExist() {
         assertEquals(testArraySet.add(testElement1), true);
         assertEquals(testArraySet.contains(testElement1), true);
@@ -217,21 +222,68 @@ public class ArraySetTest {
 
     @Test
     public void resizeDoublesCapacityCorrectly() {
-
+        int testInt = 0;
+        for (int i = 0; i < testArraySet.INITIAL_CAPACITY; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        int oldCapacity = testArraySet.getCapacity();
+        testArraySet.add(testElement1);
+        assertEquals(testArraySet.getCapacity(), oldCapacity * 2);
     }
 
+    @Test
+    public void resizeContainsOldCollectionData() {
+        int testInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            assertEquals(testArraySet.contains(testInt), true);
+            testInt++;
+        }
+    }
 
     @Test
-    public void toArrayReturnsTheSameElementsAsArraySet() {}
+    public void toArrayReturnsTheSameElementsAsArraySet() {
+        int testInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        Object[] testArray = testArraySet.toArray();
+
+        for (Object i : testArray) {
+            assertEquals(testArraySet.contains((int)i), true);
+        }
+    }
 
     @Test
-    public void toArrayReturnsEmptyArrayForEmptyArraySet() {}
+    public void toArraySizeIsTheSameAsCollectionSize() {
+        int testInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        Object[] testArray = testArraySet.toArray();
+        assertEquals(testArraySet.size(), testArray.length, 0.0);
+    }
 
     @Test
-    public void toArrayReturnsNullUponFailure() {}
+    public void toArrayReturnsEmptyArrayForEmptyArraySet() {
+        int testInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        testArraySet.clear();
+        Object[] testArray = testArraySet.toArray();
+
+        assertEquals(testArray.length, 0, 0.0);
+    }
 
     @Test
-    public void setIteratorReturnsIteratorForArraySet() {}
+    public void setIteratorReturnsIteratorForArraySet() {
+
+    }
 
     @Test
     public void setIteratorPointsToFirstElementInArraySet() {}

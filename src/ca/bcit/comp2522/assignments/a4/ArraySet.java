@@ -222,35 +222,32 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * SetIterator provides a means for iterating over the elements of an
      * ArraySet.
      */
-    public class SetIterator<T> implements MyIterator<E> {
-
-        /**
-         * Stores index of the next item to be returned by the iterator.
-         */
-        private int nextIndex;
+    private class SetIterator<E> implements MyIterator<E> {
 
         /**
          * Returns true if the iteration has more elements.
-         * 
+         *
          * @pre true
          * @post true
          * @return true if the iteration has more elements, false otherwise.
          */
         public boolean hasNext() {
-            return collection[nextIndex] != null;
+            // Your code goes here
+            return false;
         }
 
         /**
          * Returns the next element in the iteration and advances to point to
          * the next.
-         * 
+         *
          * @pre @pre.hasNext()
          * @post SetIterator points to the next element in the ArraySet.
          * @return the element pointed to by the SetIterator when the method is
          *         called.
          */
         public E next() {
-            return collection[nextIndex++];
+            // Your code goes here
+            return null;
         }
     }
 }
