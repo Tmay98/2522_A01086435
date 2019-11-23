@@ -173,9 +173,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         int newElementCount = elementCount * 2;
         E[] newCollection = (E[]) new Object[newElementCount];
 
-        for (int i = 0; i < elementCount; i++) {
-            newCollection[i] = collection[i];
-        }
+        copyCollection(newCollection);
 
         this.collection = newCollection;
         this.capacity = elementCount;
@@ -189,8 +187,20 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return an unordered array containing the elements of the ArraySet.
      */
     public E[] toArray() {
-        // Your code goes here
-        return null;
+        E[] returnArray = (E[]) new Object[elementCount];
+        copyCollection(returnArray);
+        return returnArray;
+    }
+
+    /**
+     * Copies current collection to given array.
+     *
+     * @param copy an E[]
+     */
+    private void copyCollection(E[] copy) {
+        for (int i = 0; i < elementCount; i++) {
+            copy[i] = collection[i];
+        }
     }
 
     /**
