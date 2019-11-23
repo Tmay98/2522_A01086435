@@ -25,15 +25,22 @@ public class ArraySetTest {
     }
 
     @Test
-    public void CAPACITY_VALUE_IS_CORRECT() {}
+    public void CAPACITY_VALUE_IS_DEFAULT_WHEN_INITIALIZED() {
+        assertEquals(testArraySet.getCapacity(), testArraySet.INITIAL_CAPACITY, 0.0);
+    }
 
     @Test
-    public void ELEMENT_COUNT_VALUE_IS_ZERO_WHEN_INITIALIZED() {
-        assertEquals()
+    public void CAPACITY_VALUE_IS_ZERO_WHEN_INITIALIZED() {
+        assertEquals(testArraySet.getElementCount(), 0, 0.0);
     }
 
     @Test
     public void ELEMENT_COUNT_VALUE_IS_CORRECT() {}
+
+    @Test
+    public void ELEMENT_COUNT_VALUE_IS_ZERO_WHEN_INITIALIZED() {
+        assertEquals(testArraySet.getElementCount(), 0, 0.0);
+    }
 
     @Test
     public void COLLECTION_SIZE_IS_CORRECT() {}

@@ -78,9 +78,13 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      *         element, else false.
      */
     public boolean add(final E element) {
-        // Your code goes here
-        if (element == null) { return false; }
-        if (this.contains(element)) { return false; }
+        if (element == null) {
+            return false;
+        }
+        if (this.contains(element)) {
+            return false;
+        }
+
         collection[elementCount++] = element;
         return true;
     }
