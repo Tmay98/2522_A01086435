@@ -205,7 +205,6 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         }
     }
 
-
     /**
      * Returns an iterator over the elements in this ArraySet. The elements are
      * returned in no particular order.

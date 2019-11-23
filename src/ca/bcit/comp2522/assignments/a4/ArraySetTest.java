@@ -1,13 +1,10 @@
 package ca.bcit.comp2522.assignments.a4;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.Random;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ArraySetTest {
     private ArraySet<Integer> testArraySet;
@@ -281,32 +278,47 @@ public class ArraySetTest {
     }
 
     @Test
-    public void setIteratorReturnsIteratorForArraySet() {
+    public void hasNextReturnsTrueIfIterationHasMoreElements() {
+        int testInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
 
+        ArraySet.SetIterator it = testArraySet.iterator();
+        assertEquals(it.hasNext(), true);
     }
 
     @Test
-    public void setIteratorPointsToFirstElementInArraySet() {}
+    public void hasNextReturnsTrueIfIterationHasOneElement() {
+        testArraySet.add(testElement1);
+        ArraySet.SetIterator it = testArraySet.iterator();
+        assertEquals(it.hasNext(), true);
+    }
 
     @Test
-    public void setIteratorReturnsNullForEmptyArraySets() {}
+    public void hasNextReturnsFalseOnEmptyArraySet() {
+        ArraySet.SetIterator it = testArraySet.iterator();
+        assertEquals(it.hasNext(), false);
+    }
 
     @Test
-    public void setIteratorReturnsNullUponFailure() {}
+    public void hasNextReturnsFalseOnNullElement() {
+        testArraySet.add(testElement3);
+        ArraySet.SetIterator it = testArraySet.iterator();
+        assertEquals(it.hasNext(), false);
+    }
 
     @Test
-    public void hasNextReturnsTrueIfIterationHasMoreElements() {}
+    public void nextReturnsNextElementInArraySet() {
+        ArraySet.SetIterator it = testArraySet.iterator();
+        int testInt = 0;
 
-    @Test
-    public void hasNextReturnsFalseIfIterationHasNoMoreElements() {}
-
-    @Test
-    public void hasNextReturnsFalseOnEmptyArraySet() {}
-
-    @Test
-    public void nextPointsToNextElementInArraySet() {}
-
-    @Test
-    public void nextReturnsNextElementInArraySet() {}
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            assertEquals(it.next(), testInt);
+            testInt++;
+        }
+    }
 
 }
