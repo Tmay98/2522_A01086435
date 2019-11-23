@@ -25,122 +25,122 @@ public class ArraySetTest {
     }
 
     @Test
-    public void CAPACITY_VALUE_IS_DEFAULT_WHEN_INITIALIZED() {
+    public void elementCountIsZeroWhenArraySetIsInitialized() {
+        assertEquals(testArraySet.getElementCount(), 0, 0.0);
+    }
+
+    @Test
+    public void elementCountValueIsCorrect() {}
+
+    @Test
+    public void elementCountValueIsZeroWhenArraySetIsInitialized() {
+        assertEquals(testArraySet.getElementCount(), 0, 0.0);
+    }
+
+    @Test
+    public void collectionSizeIsCorrect() {}
+
+    @Test
+    public void newArraySetHasDefaultCapacity() {
         assertEquals(testArraySet.getCapacity(), testArraySet.INITIAL_CAPACITY, 0.0);
     }
 
     @Test
-    public void CAPACITY_VALUE_IS_ZERO_WHEN_INITIALIZED() {
-        assertEquals(testArraySet.getElementCount(), 0, 0.0);
-    }
+    public void newArraySetSizeIsZero() {}
 
     @Test
-    public void ELEMENT_COUNT_VALUE_IS_CORRECT() {}
+    public void addElementIsInArraySetIfElementDoesNotExist () {}
 
     @Test
-    public void ELEMENT_COUNT_VALUE_IS_ZERO_WHEN_INITIALIZED() {
-        assertEquals(testArraySet.getElementCount(), 0, 0.0);
-    }
+    public void addElementIsNotInArraySetIfElementExists() {}
 
     @Test
-    public void COLLECTION_SIZE_IS_CORRECT() {}
+    public void addElementIsNotInArraySetIfElementIsNull() {}
 
     @Test
-    public void NEW_ARRAY_SET_HAS_DEFAULT_CAPACITY() {}
+    public void addReturnTrueIfAddIsSuccessful() {}
 
     @Test
-    public void NEW_ARRAY_SET_SIZE_IS_ZERO() {}
+    public void addReturnsFalseIfAddIsUnsuccessful() {}
 
     @Test
-    public void ADD_ELEMENT_IS_IN_ARRAY_SET_IF_ELEMENT_DOES_NOT_EXIST () {}
+    public void addReturnsFalseIfElementIsNull() {}
 
     @Test
-    public void ADD_ELEMENT_IS_NOT_IN_ARRAY_SET_IF_ELEMENT_EXISTS() {}
+    public void elementIsNotInArraySetIfRemovedCorrectly() {}
 
     @Test
-    public void ADD_ELEMENT_IS_NOT_IN_ARRAY_SET_IF_ELEMENT_IS_NULL() {}
+    public void arraySetIsUnchangedIfRemovingNonExistingElement() {}
 
     @Test
-    public void ADD_RETURNS_TRUE_IF_ADD_IS_SUCCESSFUL() {}
+    public void removeReturnsTrueIfElementIsRemovedCorrectly() {}
 
     @Test
-    public void ADD_RETURNS_FALSE_IF_ADD_IS_UNSUCCESSFUL() {}
+    public void removeReturnsFalseIfArraySetIsUnchanged() {}
 
     @Test
-    public void ADD_RETURNS_FALSE_IF_ELEMENT_IS_NULL() {}
+    public void arraySetIsEmptyAfterClear() {}
 
     @Test
-    public void ELEMENT_IS_NOT_IN_ARRAY_SET_IF_REMOVED_CORRECTLY() {}
+    public void containsReturnsTrueIfElementIsInArraySet() {}
 
     @Test
-    public void ARRAY_SET_IS_UNCHANGED_IF_REMOVING_NON_EXISTING_ELEMENT() {}
+    public void containsReturnsFalseIfElementIsNotInArraySet() {}
 
     @Test
-    public void REMOVE_RETURNS_TRUE_IF_ELEMENT_IS_REMOVED_CORRECTLY() {}
+    public void containsChecksEntireArraySet() {}
 
     @Test
-    public void REMOVE_RETURNS_FALSE_IF_ARRAY_SET_IS_UNCHANGED() {}
+    public void containsReturnsFalseOnEmptyArraySet() {}
 
     @Test
-    public void ARRAY_SET_IS_EMPTY_AFTER_CLEAR() {}
+    public void sizeReturnsCorrectValue() {}
 
     @Test
-    public void CONTAINS_RETURNS_TRUE_IF_ELEMENT_IS_IN_ARRAY_SET() {}
+    public void sizeReturnsZeroOnEmptySet() {}
 
     @Test
-    public void CONTAINS_RETURNS_FALSE_IF_ELEMENT_IS_NOT_IN_ARRAY_SET() {}
+    public void sizeReturnsNegativeOneUponFailure() {}
+
 
     @Test
-    public void CONTAINS_CHECKS_ENTIRE_ARRAY_SET() {}
+    public void resizeDoublesCapacityCorrectly() {}
+
 
     @Test
-    public void CONTAINS_RETURNS_FALSE_ON_EMPTY_ARRAY_SET() {}
+    public void toArrayReturnsTheSameElementsAsArraySet() {}
 
     @Test
-    public void SIZE_RETURNS_CORRECT_VALUE() {}
+    public void toArrayReturnsEmptyArrayForEmptyArraySet() {}
 
     @Test
-    public void SIZE_RETURNS_ZERO_ON_EMPTY_SET() {}
+    public void toArrayReturnsNullUponFailure() {}
 
     @Test
-    public void SIZE_RETURNS_NEGATIVE_ONE_UPON_FAILURE() {}
+    public void setIteratorReturnsIteratorForArraySet() {}
 
     @Test
-    public void RESIZE_DOUBLES_CAPACITY_CORRECTLY() {}
+    public void setIteratorPointsToFirstElementInArraySet() {}
 
     @Test
-    public void TO_ARRAY_RETURNS_THE_SAME_ELEMENTS_AS_ARRAY_SET() {}
+    public void setIteratorReturnsNullForEmptyArraySets() {}
 
     @Test
-    public void TO_ARRAY_RETURNS_EMPTY_ARRAY_FOR_EMPTY_ARRAY_SET() {}
+    public void setIteratorReturnsNullUponFailure() {}
 
     @Test
-    public void TO_ARRAY_RETURNS_NULL_UPON_FAILURE() {}
+    public void hasNextReturnsTrueIfIterationHasMoreElements() {}
 
     @Test
-    public void SET_ITERATOR_RETURNS_ITERATOR_FOR_ARRAY_SET() {}
+    public void hasNextReturnsFalseIfIterationHasNoMoreElements() {}
 
     @Test
-    public void SET_ITERATOR_POINTS_TO_FIRST_ELEMENT_IN_ARRAY_SET() {}
+    public void hasNextReturnsFalseOnEmptyArraySet() {}
 
     @Test
-    public void SET_ITERATOR_RETURNS_NULL_FOR_EMPTY_ARRAY_SETS() {}
+    public void nextPointsToNextElementInArraySet() {}
 
     @Test
-    public void SET_ITERATOR_RETURNS_NULL_UPON_FAILURE() {}
+    public void nextReturnsNextElementInArraySet() {}
 
-    @Test
-    public void HAS_NEXT_RETURNS_TRUE_IF_ITERATION_HAS_MORE_ELEMENTS() {}
-
-    @Test
-    public void HAS_NEXT_RETURNS_FALSE_IF_ITERATION_HAS_NO_MORE_ELEMENTS() {}
-
-    @Test
-    public void HAS_NEXT_RETURNS_FALSE_ON_EMPTY_ARRAY_SET() {}
-
-    @Test
-    public void NEXT_POINTS_TO_NEXT_ELEMENT_IN_ARRAY_SET() {}
-
-    @Test
-    public void NEXT_RETURNS_NEXT_ELEMENT_IN_ARRAY_SET() {}
 }
