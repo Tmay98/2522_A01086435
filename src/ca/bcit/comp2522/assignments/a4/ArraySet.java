@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.assignments.a4;
 
-import java.util.Arrays;
-
 /**
  * <p>ArraySet is a resizeable-array implementation of the Set interface. It
  * contains a set of elements in no particular order that excludes duplicates or
@@ -145,7 +143,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element is in the ArraySet, and false otherwise.
      */
     public boolean contains(final E element) {
-        if (this.elementCount == 0) { return false; }
+        if (this.elementCount == 0) {
+            return false;
+        }
+
         for (E e: collection) {
             if (e != null && e.equals(element)) {
                 return true;
@@ -221,9 +222,9 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     /**
      * SetIterator provides a means for iterating over the elements of an
      * ArraySet.
+     *
      */
     public class SetIterator<T> implements MyIterator<E> {
-
         /**
          * Stores index of the next item to be returned by the iterator.
          */
