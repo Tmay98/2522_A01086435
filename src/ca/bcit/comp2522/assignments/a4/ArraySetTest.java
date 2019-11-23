@@ -102,6 +102,17 @@ public class ArraySetTest {
     }
 
     @Test
+    public void addIncreaseMaxCapacityWhenLimitIsReached() {
+        int previousSize = testArraySet.size();
+        int testInt = 0;
+        for (int i = 0; i < 100; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        assertEquals(testArraySet.size(), previousSize + 100, 0.0);
+    }
+
+    @Test
     public void elementIsNotInArraySetIfRemovedCorrectly() {
         testArraySet.add(testElement1);
         assertEquals(testArraySet.remove(testElement1), true);
@@ -115,10 +126,24 @@ public class ArraySetTest {
     }
 
     @Test
-    public void removeReturnsTrueIfElementIsRemovedCorrectly() {}
+    public void arraySetSizeIsSmallerIfElementIsRemoved() {
+        testArraySet.add(testElement1);
+        int previousSize = testArraySet.size();
+
+        testArraySet.remove(testElement1);
+        assertEquals(previousSize, testArraySet.size() + 1);
+    }
 
     @Test
-    public void removeReturnsFalseIfArraySetIsUnchanged() {}
+    public void removeReturnsTrueIfElementIsRemovedCorrectly() {
+        testArraySet.add(testElement1);
+        assertEquals(testArraySet.remove(testElement1), true);
+    }
+
+    @Test
+    public void removeReturnsFalseIfArraySetIsUnchanged() {
+        
+    }
 
     @Test
     public void arraySetIsEmptyAfterClear() {}
