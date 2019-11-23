@@ -6,10 +6,13 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.Random;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ArraySetTest {
     private ArraySet testArraySet;
+    private int testElement1;
+    private int testElement2;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -17,6 +20,8 @@ public class ArraySetTest {
     @org.junit.Before
     public void setUp() throws Exception {
         testArraySet = new ArraySet();
+        testElement1 = 100;
+        testElement2 = 1000;
     }
 
     @Test
@@ -26,19 +31,23 @@ public class ArraySetTest {
 
     @Test
     public void elementCountIsZeroWhenArraySetIsInitialized() {
-        assertEquals(testArraySet.getElementCount(), 0, 0.0);
+        assertEquals(testArraySet.size(), 0, 0.0);
     }
-
-    @Test
-    public void elementCountValueIsCorrect() {}
 
     @Test
     public void elementCountValueIsZeroWhenArraySetIsInitialized() {
-        assertEquals(testArraySet.getElementCount(), 0, 0.0);
+        assertEquals(testArraySet.size(), 0, 0.0);
     }
 
     @Test
-    public void collectionSizeIsCorrect() {}
+    public void collectionSizeIsCorrect() {
+        int testInt = 0;
+        for (int i = 0; i < 9; i++){
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        assertEquals(testArraySet.size(), 9, 0.0);
+    }
 
     @Test
     public void newArraySetHasDefaultCapacity() {
@@ -46,10 +55,14 @@ public class ArraySetTest {
     }
 
     @Test
-    public void newArraySetSizeIsZero() {}
+    public void newArraySetSizeIsZero() {
+    }
 
     @Test
-    public void addElementIsInArraySetIfElementDoesNotExist () {}
+    public void addElementIsInArraySetIfElementDoesNotExist() {
+        assertEquals(testArraySet.add(testElement1), true);
+        assertEquals(testArraySet.contains(testElement1), true);
+    }
 
     @Test
     public void addElementIsNotInArraySetIfElementExists() {}
@@ -58,13 +71,19 @@ public class ArraySetTest {
     public void addElementIsNotInArraySetIfElementIsNull() {}
 
     @Test
-    public void addReturnTrueIfAddIsSuccessful() {}
+    public void addReturnTrueIfAddIsSuccessful() {
+        assertEquals(testArraySet.contains(testElement1), false);
+        assertEquals(testArraySet.add(testElement1), true);
+    }
 
     @Test
     public void addReturnsFalseIfAddIsUnsuccessful() {}
 
     @Test
     public void addReturnsFalseIfElementIsNull() {}
+
+    @Test
+    public void addReturnsFalseIfCollectionIsEmpty() {}
 
     @Test
     public void elementIsNotInArraySetIfRemovedCorrectly() {}

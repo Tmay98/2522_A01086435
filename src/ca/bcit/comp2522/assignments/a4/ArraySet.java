@@ -141,7 +141,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     public boolean contains(final E element) {
         if (this.elementCount == 0) { return false; }
         for (E e: collection) {
-            if (e.equals(element)) {
+            if (e != null && e.equals(element)) {
                 return true;
             }
         }
