@@ -3,9 +3,9 @@ package ca.bcit.comp2522.assignments.a4;
 /**
  * NotImplementedError
  *
- * @author Your name
- * @author Your name
- * @version Date
+ * @author Frances Mach
+ * @author Tommy May
+ * @version 2019
  */
 public class NotImplementedError extends Exception {
 

@@ -3,9 +3,9 @@ package ca.bcit.comp2522.assignments.a4;
 /**
  * Provides a means to access an iterator.
  *
- * @author Your name
- * @author Your name
- * @version Date
+ * @author Frances Mach
+ * @author Tommy May
+ * @version 2019
  */
 
 public interface MyIterable<E> {

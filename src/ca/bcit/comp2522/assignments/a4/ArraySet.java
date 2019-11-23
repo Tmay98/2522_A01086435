@@ -13,9 +13,9 @@ import java.util.Arrays;
  * <p>ArraySet contains a SetIterator that permits access to the elements in the
  * ArraySet one at a time.</p>
  * 
- * @author Your name
- * @author Your name
- * @version Date
+ * @author Frances Mach
+ * @author Tommy May
+ * @version 2019
  * @invariant The ArraySet never contains duplicate elements.
  * @invariant The ArraySet never contains nulls.
  */
@@ -111,7 +111,6 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return The number of elements in the ArraySet.
      */
     public int size() {
-        // Your code goes here
         return -1;
     }
 
