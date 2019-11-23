@@ -117,6 +117,11 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      */
     public boolean contains(final E element) {
         // Your code goes here
+        for (E e: collection) {
+            if (e.equals(element)) {
+                return true;
+            }
+        }
         return false;
     }
 
