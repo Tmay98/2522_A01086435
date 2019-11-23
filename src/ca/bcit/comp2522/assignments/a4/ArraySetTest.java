@@ -28,6 +28,11 @@ public class ArraySetTest {
     public void CAPACITY_VALUE_IS_CORRECT() {}
 
     @Test
+    public void ELEMENT_COUNT_VALUE_IS_ZERO_WHEN_INITIALIZED() {
+        assertEquals()
+    }
+
+    @Test
     public void ELEMENT_COUNT_VALUE_IS_CORRECT() {}
 
     @Test

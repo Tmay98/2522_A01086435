@@ -53,6 +53,21 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     }
 
     /**
+     * Returns the capacity of the ArraySet.
+     * @return capacity an int
+     */
+    public int getCapacity() {
+        return capacity;
+    }
+    /**
+     * Returns the element count of the ArraySet.
+     * @return elementCount an int
+     */
+    public int getElementCount() {
+        return elementCount;
+    }
+
+    /**
      * Adds the specified element to the ArraySet if it is not already present.
      * 
      * @param element The element to be added to the set.
