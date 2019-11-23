@@ -8,5 +8,17 @@ package ca.bcit.comp2522.assignments.a4;
  * @version 2019
  */
 public class NotImplementedError extends Exception {
+    private String key;
 
+    public NotImplementedError(String key) {
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public String toString() {
+        return "Invalid entry: " + key;
+    }
 }

@@ -9,9 +9,20 @@ import java.util.Random;
 import static org.junit.Assert.*;
 
 public class ArraySetTest {
+    private ArraySet testArraySet;
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @org.junit.Before
+    public void setUp() throws Exception {
+        testArraySet = new ArraySet();
+    }
 
     @Test
-    public void CONSTANT_INITIAL_CAPACITY_VALUE_IS_CORRECT() {}
+    public void constantInitialCapacityIsCorrect() {
+        assertEquals(testArraySet.INITIAL_CAPACITY, 10, 0.0);
+    }
 
     @Test
     public void CAPACITY_VALUE_IS_CORRECT() {}
