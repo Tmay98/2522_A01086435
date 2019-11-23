@@ -113,7 +113,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     private int getIndex(final E element) {
         int index = 0;
         for (E e: collection) {
-            if (e.equals(element)) {
+            if (e != null && e.equals(element)) {
                 return index;
             }
             index++;

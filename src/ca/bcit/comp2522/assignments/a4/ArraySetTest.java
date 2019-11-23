@@ -10,9 +10,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ArraySetTest {
-    private ArraySet testArraySet;
+    private ArraySet<Integer> testArraySet;
     private int testElement1;
     private int testElement2;
+    private Integer testElement3;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -22,6 +23,7 @@ public class ArraySetTest {
         testArraySet = new ArraySet();
         testElement1 = 100;
         testElement2 = 1000;
+        testElement3 = null;
     }
 
     @Test
@@ -35,27 +37,13 @@ public class ArraySetTest {
     }
 
     @Test
-    public void elementCountValueIsZeroWhenArraySetIsInitialized() {
-        assertEquals(testArraySet.size(), 0, 0.0);
-    }
-
-    @Test
-    public void collectionSizeIsCorrect() {
-        int testInt = 0;
-        for (int i = 0; i < 9; i++){
-            testArraySet.add(testInt);
-            testInt++;
-        }
-        assertEquals(testArraySet.size(), 9, 0.0);
-    }
-
-    @Test
     public void newArraySetHasDefaultCapacity() {
         assertEquals(testArraySet.getCapacity(), testArraySet.INITIAL_CAPACITY, 0.0);
     }
 
     @Test
     public void newArraySetSizeIsZero() {
+        assertEquals(testArraySet.size(), 0, 0.0);
     }
 
     @Test
@@ -65,10 +53,35 @@ public class ArraySetTest {
     }
 
     @Test
-    public void addElementIsNotInArraySetIfElementExists() {}
+    public void addElementIncreasesElementCountByOne() {
+        int previousSize = testArraySet.size();
+        assertEquals(testArraySet.add(testElement1), true);
+        assertEquals(testArraySet.size(), previousSize + 1, 0.0);
+    }
 
     @Test
-    public void addElementIsNotInArraySetIfElementIsNull() {}
+    public void addElementIncreasesElementCountByFive() {
+        int previousSize = testArraySet.size();
+        int testInt = 0;
+        for (int i = 0; i < 5; i++) {
+            testArraySet.add(testInt);
+            testInt++;
+        }
+        assertEquals(testArraySet.size(), previousSize + 5, 0.0);
+    }
+
+    @Test
+    public void addElementIncreasesElementCountByZeroUponFailure() {
+        assertEquals(testArraySet.add(null), false);
+        assertEquals(testArraySet.size(), 0, 0.0);
+    }
+
+    @Test
+    public void addElementIsNotInArraySetIfElementIsNull() {
+        testElement3 = null;
+        testArraySet.add(null);
+        assertEquals(testArraySet.contains(testElement3), false);
+    }
 
     @Test
     public void addReturnTrueIfAddIsSuccessful() {
@@ -77,19 +90,29 @@ public class ArraySetTest {
     }
 
     @Test
-    public void addReturnsFalseIfAddIsUnsuccessful() {}
+    public void addReturnsFalseIfAddIsUnsuccessful() {
+        assertEquals(testArraySet.add(testElement1), true);
+        assertEquals(testArraySet.contains(testElement1), true);
+        assertEquals(testArraySet.add(testElement1), false);
+    }
 
     @Test
-    public void addReturnsFalseIfElementIsNull() {}
+    public void addReturnsFalseIfElementIsNull() {
+        assertEquals(testArraySet.add(null), false);
+    }
 
     @Test
-    public void addReturnsFalseIfCollectionIsEmpty() {}
+    public void elementIsNotInArraySetIfRemovedCorrectly() {
+        testArraySet.add(testElement1);
+        assertEquals(testArraySet.remove(testElement1), true);
+    }
 
     @Test
-    public void elementIsNotInArraySetIfRemovedCorrectly() {}
-
-    @Test
-    public void arraySetIsUnchangedIfRemovingNonExistingElement() {}
+    public void arraySetIsUnchangedIfRemovingNonExistingElement() {
+        int previousSize = testArraySet.size();
+        assertEquals(testArraySet.remove(testElement1), false);
+        assertEquals(previousSize, testArraySet.size());
+    }
 
     @Test
     public void removeReturnsTrueIfElementIsRemovedCorrectly() {}
