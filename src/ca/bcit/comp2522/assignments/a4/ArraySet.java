@@ -132,7 +132,9 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post size() = 0
      */
     public void clear() {
-        // Your code goes here
+        for (E element: collection) {
+            this.remove(element);
+        }
     }
 
     /**
@@ -144,7 +146,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element is in the ArraySet, and false otherwise.
      */
     public boolean contains(final E element) {
-        // Your code goes here
+        if (this.elementCount == 0) { return false; }
         for (E e: collection) {
             if (e.equals(element)) {
                 return true;
