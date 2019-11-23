@@ -176,7 +176,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         copyCollection(newCollection);
 
         this.collection = newCollection;
-        this.capacity = elementCount;
+        this.capacity = newElementCount;
     }
 
     /**
