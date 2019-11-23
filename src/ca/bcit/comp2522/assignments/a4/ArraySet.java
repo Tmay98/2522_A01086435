@@ -130,9 +130,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post size() = 0
      */
     public void clear() {
-        for (E element: collection) {
-            this.remove(element);
+        for (int i = 0; i < elementCount; i++) {
+            collection[i] = null;
         }
+        elementCount = 0;
     }
 
     /**
