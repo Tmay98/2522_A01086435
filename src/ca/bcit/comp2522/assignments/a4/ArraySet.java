@@ -99,8 +99,29 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element was removed from the ArraySet, else false.
      */
     public boolean remove(final E element) {
-        // Your code goes here
-        return false;
+        int index = getIndex(element);
+        if (index == -1) {
+            return false;
+        }
+        collection[index] = collection[elementCount];
+        collection[elementCount--] = null;
+        return true;
+    }
+
+    /**
+     *
+     * @param element
+     * @return
+     */
+    private int getIndex(final E element) {
+        int index = 0;
+        for (E e: collection) {
+            if (e.equals(element)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 
     /**
