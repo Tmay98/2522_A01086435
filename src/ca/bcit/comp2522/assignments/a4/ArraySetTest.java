@@ -154,6 +154,14 @@ public class ArraySetTest {
     }
 
     @Test
+    public void removeDoesNotLeaveBehindNullObjectInArraySet() {
+        testArraySet.add(testElement1);
+
+        testArraySet.remove(testElement1);
+        assertEquals(testArraySet.contains(null), false);
+    }
+
+    @Test
     public void arraySetSizeIsZeroAfterClear() {
         testArraySet.add(testElement1);
         testArraySet.add(testElement2);
