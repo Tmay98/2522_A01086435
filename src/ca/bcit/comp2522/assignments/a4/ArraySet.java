@@ -224,7 +224,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * ArraySet.
      *
      */
-    public class SetIterator<E> implements MyIterator<E> {
+    class SetIterator<E> implements MyIterator<E> {
         /**
          * Stores index of the next item to be returned by the iterator.
          */
