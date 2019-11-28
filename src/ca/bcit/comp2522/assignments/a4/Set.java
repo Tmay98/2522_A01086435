@@ -47,7 +47,7 @@ public interface Set<E> extends MyIterable<E> {
      * @post Set is not changed.
      * @return An unordered array containing all objects in the set.
      */
-    public E[] toArray();
+    public Object[] toArray();
     
     /**
      * Removes all elements from the set.

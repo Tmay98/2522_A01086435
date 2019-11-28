@@ -189,8 +189,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post true
      * @return an unordered array containing the elements of the ArraySet.
      */
-    public E[] toArray() {
-        E[] returnArray = (E[]) new Object[elementCount];
+    public Object[] toArray() {
+        Object[] returnArray = new Object[elementCount];
         copyCollection(returnArray);
         return returnArray;
     }
@@ -200,7 +200,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      *
      * @param copy an E[]
      */
-    private void copyCollection(E[] copy) {
+    private void copyCollection(Object[] copy) {
         for (int i = 0; i < elementCount; i++) {
             copy[i] = collection[i];
         }
