@@ -1,6 +1,9 @@
 package ca.bcit.comp2522.assignments.a1;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Represents a Pool.
@@ -197,6 +200,7 @@ public class Pool {
      * @return number of guppies
      */
     public int getPopulation() {
+
         int guppiesAlive = 0;
         for (Guppy guppy : guppiesInPool) {
             if (guppy.getIsAlive()) { guppiesAlive++; }
