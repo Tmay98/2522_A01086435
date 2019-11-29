@@ -23,5 +23,5 @@ public interface MyIterator<E> {
      * @post Iterator points to the next object in the set
      * @return The object in the set the iterator was pointing to when the method was called.
      */
-    Object next(); 
+    E next();
 }
