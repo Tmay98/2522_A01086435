@@ -90,10 +90,10 @@ public class Pool {
     /**
      * Constructs an object of type Pool.
      *
-     * @param name a String
-     * @param volumeLitres a double
-     * @param temperatureCelsius a double
-     * @param pH a double
+     * @param name                a String
+     * @param volumeLitres        a double
+     * @param temperatureCelsius  a double
+     * @param pH                  a double
      * @param nutrientCoefficient a double
      * @throws IllegalArgumentException an exception
      */
@@ -203,7 +203,9 @@ public class Pool {
 
         int guppiesAlive = 0;
         for (Guppy guppy : guppiesInPool) {
-            if (guppy.getIsAlive()) { guppiesAlive++; }
+            if (guppy.getIsAlive()) {
+                guppiesAlive++;
+            }
         }
         return guppiesAlive;
     }
@@ -302,7 +304,9 @@ public class Pool {
      * @return true if guppy was added, false otherwise
      */
     public boolean addGuppy(Guppy guppy) {
-        if (guppy == null) { return false; }
+        if (guppy == null) {
+            return false;
+        }
         return guppiesInPool.add(guppy);
     }
 
@@ -366,7 +370,9 @@ public class Pool {
      * @return averageAgeOfGuppies
      */
     public double getAverageAgeInWeeks() {
-        if (getPopulation() == 0) { return 0; }
+        if (getPopulation() == 0) {
+            return 0;
+        }
         int totalGuppiesAge = 0;
         Iterator<Guppy> it = guppiesInPool.iterator();
         while (it.hasNext()) {
@@ -384,7 +390,9 @@ public class Pool {
      * @return averageHealthCoefficient
      */
     public double getAverageHealthCoefficient() {
-        if (getPopulation() == 0) { return 0; }
+        if (getPopulation() == 0) {
+            return 0;
+        }
         double totalHealthCoefficient = 0;
         Iterator<Guppy> it = guppiesInPool.iterator();
         while (it.hasNext()) {
@@ -402,7 +410,9 @@ public class Pool {
      * @return percentage of female guppies in the pool
      */
     public double getFemalePercentage() {
-        if (getPopulation() == 0) { return 0; }
+        if (getPopulation() == 0) {
+            return 0;
+        }
         double totalFemales = 0;
         Iterator<Guppy> it = guppiesInPool.iterator();
         while (it.hasNext()) {
@@ -421,7 +431,9 @@ public class Pool {
      */
     public double getMedianAge() {
         this.removeDeadGuppies();
-        if (getPopulation() == 0) { return 0; }
+        if (getPopulation() == 0) {
+            return 0;
+        }
         Collections.sort(this.guppiesInPool, new GuppyAgeComparator());
         double medianAge = 0.0;
         int guppiesAmount = guppiesInPool.size();
@@ -439,7 +451,9 @@ public class Pool {
      * @return totalBabyGuppies
      */
     public int spawn() {
-        if (getPopulation() == 0) { return 0; }
+        if (getPopulation() == 0) {
+            return 0;
+        }
         Iterator<Guppy> it = guppiesInPool.iterator();
         ArrayList<Guppy> totalbabyGuppies = new ArrayList<>();
         ArrayList<Guppy> babyGuppies;
@@ -461,7 +475,9 @@ public class Pool {
      * @return deadGuppiesAmount
      */
     public int incrementAge() {
-        if (getPopulation() == 0) { return 0; }
+        if (getPopulation() == 0) {
+            return 0;
+        }
         Iterator<Guppy> it = guppiesInPool.iterator();
         int deadGuppiesAmount = 0;
         boolean isAlive;
@@ -482,7 +498,9 @@ public class Pool {
      * @return Amount of guppies that suffocated
      */
     public int adjustForCrowding() {
-        if (getPopulation() == 0) { return 0; }
+        if (getPopulation() == 0) {
+            return 0;
+        }
         int deadGuppiesAmount = 0;
         double totalVolumeNeeded = getGuppyVolumeRequirementInLitres();
         while (Double.compare(totalVolumeNeeded, getVolumeLitres()) > 0) {
@@ -504,8 +522,12 @@ public class Pool {
         Iterator<Guppy> it = guppiesInPool.iterator();
         while (it.hasNext()) {
             Guppy guppy = it.next();
-            if (!guppy.getIsAlive()) { continue; }
-            if (weakestGuppy == null) { weakestGuppy = guppy; }
+            if (!guppy.getIsAlive()) {
+                continue;
+            }
+            if (weakestGuppy == null) {
+                weakestGuppy = guppy;
+            }
             if (guppy.getHealthCoefficient() <= weakestGuppy.getHealthCoefficient()) {
                 weakestGuppy = guppy;
             }
@@ -557,5 +579,12 @@ public class Pool {
     public int hashCode() {
         return Objects.hash(name, volumeLitres, temperatureCelsius, pH,
                 nutrientCoefficient, identificationNumber, guppiesInPool, randomNumberGenerator);
+    }
+
+    static <T extends Number> T processInhabitants(List<T> collection, Predicate<Guppy> tester) {
+        for (T t : collection) {
+        Number i = 0;
+
+        }
     }
 }

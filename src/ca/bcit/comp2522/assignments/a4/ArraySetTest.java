@@ -39,11 +39,6 @@ public class ArraySetTest {
     }
 
     @Test
-    public void newArraySetSizeIsZero() {
-        assertEquals(testArraySet.size(), 0, 0.0);
-    }
-
-    @Test
     public void newArraySetHasObjectType() {
         assertEquals(testArraySet.collection instanceof Object[], true);
     }
