@@ -10,7 +10,6 @@ import java.util.ArrayList;
  */
 public class Graph {
     private ArrayList<Node> nodes;
-    private ArrayList<Node> stack;
 
     /**
      * Instantiates a graph object.
@@ -32,12 +31,10 @@ public class Graph {
     public ArrayList<Node> getNodes() {
         return nodes;
     }
-    /**
-     * Visits a node and puts it on the stack.
-     * @param node a Node
-     */
-    private void visitNode(Node node) {
-        stack.add(node);
+
+    public void findShortestPath() {
+
     }
-    
+
+
 }

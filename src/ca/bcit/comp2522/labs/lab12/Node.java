@@ -16,11 +16,11 @@ public class Node {
         return links;
     }
 
-    public boolean getVisited() {
+    public boolean isVisited() {
         return visited;
     }
 
-    public void setVisited(boolean visited) {
+    public void visit(boolean visited) {
         this.visited = visited;
     }
 
