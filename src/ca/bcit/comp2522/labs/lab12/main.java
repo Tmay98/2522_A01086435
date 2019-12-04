@@ -9,17 +9,17 @@ import java.util.Scanner;
 public class main {
 
     public static void main(String[] args) throws IOException {
+        Graph graph = new Graph();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name of text file");
         String input = in.nextLine();
-        ArrayList<Node> nodes = readFile(input);
-        System.out.println(nodes.get(0).getLinks());
+        graph.setNodes(readFile(input));
     }
 
     static ArrayList<Node> readFile(String path) throws IOException {
         ArrayList<Node> nodes = new ArrayList<>();
         try (BufferedReader br =
-                     new BufferedReader(new FileReader(path))) {
+                     new BufferedReader(new FileReader("src\\ca\\bcit\\comp2522\\labs\\lab12\\" + path))) {
             String st;
             while((st = br.readLine()) != null) {
                 nodes.add(new Node(st));

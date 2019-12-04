@@ -580,11 +580,4 @@ public class Pool {
         return Objects.hash(name, volumeLitres, temperatureCelsius, pH,
                 nutrientCoefficient, identificationNumber, guppiesInPool, randomNumberGenerator);
     }
-
-    static <T extends Number> T processInhabitants(List<T> collection, Predicate<Guppy> tester) {
-        for (T t : collection) {
-        Number i = 0;
-
-        }
-    }
 }
