@@ -4,9 +4,18 @@ import java.util.ArrayList;
 
 public class Node {
     private ArrayList<Integer> links;
+    private boolean visited;
 
     public ArrayList<Integer> getLinks() {
         return links;
+    }
+
+    public boolean getVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
 
     public Node(String connections) {
@@ -14,6 +23,7 @@ public class Node {
         for (int i = 0; i < connections.length(); i++) {
             links.add(Integer.parseInt(connections.substring(i, i + 1)));
         }
+        visited = false;
     }
 
     public static void main(String[] args) {
