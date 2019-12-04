@@ -2,6 +2,12 @@ package ca.bcit.comp2522.labs.lab12;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a Node.
+ *
+ * @author Tommy May & Frances Mach
+ * @version 2019
+ */
 public class Node {
     private ArrayList<Integer> links;
     private boolean visited;
