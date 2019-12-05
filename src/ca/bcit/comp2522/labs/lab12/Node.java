@@ -9,8 +9,13 @@ import java.util.ArrayList;
  * @version 2019
  */
 public class Node {
+    int nodeValue;
     private ArrayList<Integer> links;
     private boolean visited;
+
+    public int getNodeValue() {
+        return nodeValue;
+    }
 
     public ArrayList<Integer> getLinks() {
         return links;
@@ -24,16 +29,12 @@ public class Node {
         this.visited = visited;
     }
 
-    public Node(String connections) {
+    public Node(String connections, int nodeValue) {
         links = new ArrayList<>();
         for (int i = 0; i < connections.length(); i++) {
             links.add(Integer.parseInt(connections.substring(i, i + 1)));
         }
-        visited = false;
-    }
-
-    public static void main(String[] args) {
-        Node test = new Node("0101");
-        System.out.println(test.links);
+        this.visited = false;
+        this.nodeValue = nodeValue;
     }
 }

@@ -14,6 +14,8 @@ public class main {
         System.out.println("Enter name of text file");
         String input = in.nextLine();
         graph.setNodes(readFile(input));
+        graph.findShortestPath(new ArrayList<Node>(), new ArrayList<Node>(), graph.getNodes().get(0), graph.getNodes().get(1));
+        graph.printShortestPaths();
     }
 
     static ArrayList<Node> readFile(String path) throws IOException {
@@ -21,8 +23,9 @@ public class main {
         try (BufferedReader br =
                      new BufferedReader(new FileReader("src\\ca\\bcit\\comp2522\\labs\\lab12\\" + path))) {
             String st;
+            int i = 0;
             while((st = br.readLine()) != null) {
-                nodes.add(new Node(st));
+                nodes.add(new Node(st, i++));
             }
             return nodes;
         }
