@@ -6,7 +6,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class main {
+/**
+ * Main function for finding the shortest path between two nodes in a graph.
+ *
+ * @author Tommy May & Frances Mach
+ * @version 2019
+ */
+public class Main {
 
     public static void main(String[] args) throws IOException {
         Graph graph = new Graph();
