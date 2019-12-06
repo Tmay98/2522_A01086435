@@ -13,8 +13,15 @@ public class main {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name of text file");
         String input = in.nextLine();
+        System.out.println("Enter first node number");
+        int firstNode = in.nextInt();
+        System.out.println("Enter second node number");
+        int secondNode = in.nextInt();
         graph.setNodes(readFile(input));
-        graph.findShortestPath(new ArrayList<Node>(), new ArrayList<Node>(), graph.getNodes().get(0), graph.getNodes().get(1));
+        graph.findShortestPath(new ArrayList<Node>(),
+                new ArrayList<Node>(),
+                graph.getNodes().get(firstNode),
+                graph.getNodes().get(secondNode));
         graph.printShortestPaths();
     }
 
