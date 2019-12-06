@@ -47,10 +47,17 @@ public class Graph {
         return nodes;
     }
 
+    /**
+     * Returns an ArrayList of paths.
+     * @return paths an ArrayList
+     */
     public ArrayList<Path> getPaths() {
         return paths;
     }
 
+    /**
+     * Prints the shortest paths in the Paths ArrayList.
+     */
     public void printShortestPaths() {
         int minLengthPath = paths.get(0).getNodes().size();
 
@@ -71,7 +78,18 @@ public class Graph {
         System.out.println("Minimum length path: " + minLengthPath);
     }
 
-    public void findShortestPath(ArrayList<Node> path, ArrayList<Node> visited, Node startingNode, Node destinationNode) {
+    /**
+     * Finds the shortest between given nodes in a graph.
+     * @param path an ArrayList of Nodes
+     * @param visited an ArrayList of Nodes
+     * @param startingNode a Node
+     * @param destinationNode a Node
+     */
+    public void findShortestPath(
+            ArrayList<Node> path,
+            ArrayList<Node> visited,
+            Node startingNode,
+            Node destinationNode) {
         path.add(startingNode);
         if (startingNode.equals(destinationNode)) {
             paths.add(new Path(path));
@@ -83,7 +101,11 @@ public class Graph {
                 ArrayList<Node> visited2 = visited;
                 visited2.add(startingNode);
                 if (!(visited2.contains(nodes.get(i)))) {
-                    findShortestPath(new ArrayList<>(path), visited2, nodes.get(i), destinationNode);
+                    findShortestPath(
+                            new ArrayList<>(path),
+                            visited2,
+                            nodes.get(i),
+                            destinationNode);
                 }
             }
         }
