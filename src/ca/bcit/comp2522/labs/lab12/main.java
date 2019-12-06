@@ -25,13 +25,21 @@ public class main {
         graph.printShortestPaths();
     }
 
+    /**
+     * Reads a file.
+     * @param path the Filepath
+     * @return nodes an ArrayList of Node
+     * @throws IOException an Exception if file is not opened correctly
+     */
     static ArrayList<Node> readFile(String path) throws IOException {
         ArrayList<Node> nodes = new ArrayList<>();
         try (BufferedReader br =
-                     new BufferedReader(new FileReader("src\\ca\\bcit\\comp2522\\labs\\lab12\\" + path))) {
+                     new BufferedReader(new FileReader(
+                             "src\\ca\\bcit\\comp2522\\labs\\lab12\\"
+                                     + path))) {
             String st;
             int i = 0;
-            while((st = br.readLine()) != null) {
+            while ((st = br.readLine()) != null) {
                 nodes.add(new Node(st, i++));
             }
             return nodes;
