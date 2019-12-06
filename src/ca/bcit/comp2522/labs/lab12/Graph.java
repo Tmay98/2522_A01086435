@@ -98,12 +98,12 @@ public class Graph {
 
         for (int i = 0; i < startingNode.getLinks().size(); i++) {
             if (startingNode.getLinks().get(i) == 1) {
-                ArrayList<Node> visited2 = visited;
-                visited2.add(startingNode);
-                if (!(visited2.contains(nodes.get(i)))) {
+                ArrayList<Node> tempVisited = new ArrayList<>(visited);
+                tempVisited.add(startingNode);
+                if (!(tempVisited.contains(nodes.get(i)))) {
                     findShortestPath(
                             new ArrayList<>(path),
-                            visited2,
+                            tempVisited,
                             nodes.get(i),
                             destinationNode);
                 }
